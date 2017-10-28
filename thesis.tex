@@ -1,15 +1,13 @@
-\RequirePackage[l2tabu, orthodox]{nag}
-\documentclass[a4paper, headinclude, footinclude, BCOR=1cm]{scrbook}
+\documentclass[twoside, titlepage, DIV=8, BCOR=8.5mm, open=right]{scrreprt}
 
 \input{config}
 
 \title{Exploiting emerging DNA sequencing technologies to study genomic rearrangements}
-\author{Sascha {\smaller Sven} Meiers}
+\author{Sascha {\small Sven} Meiers}
 
 \begin{document}
 
-% Custom hyphenation rules need to be declared AFTER \begin{document}!
-\hyphenation{ge-nes}
+\input{hyphenation}
 
 \maketitle
 
@@ -20,7 +18,7 @@
 \input{balancer}
 
 
-\backmatter
+%\backmatter
 
 \printbibliography
 
