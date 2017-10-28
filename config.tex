@@ -1,10 +1,12 @@
 \usepackage{classicthesis}
+\usepackage{etoolbox}
 \usepackage{polyglossia}
 \usepackage[natbib=true, style=authoryear]{biblatex}
 \usepackage{booktabs}
 \usepackage{relsize}
 \usepackage{setspace}
 \usepackage{graphicx}
+\usepackage{marginnote} % /marginpar
 
 \setdefaultlanguage[variant=uk]{english}
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
@@ -21,7 +23,11 @@
 \graphicspath{{figs/}}
 
 %% Custom macros
+\newcommand\margintext[1]{%
+    \ifstrequal{#1}{}{}{{\marginpar{\footnotesize\itshape #1}}}}
 
+
+%% Custom macros (not mine)
 \newcommand*\captitle[1]{\textbf{#1}}
 \newcommand*\todo[1]{%
     \graffito{\textcolor{red}{TO\ DO: #1}}}
