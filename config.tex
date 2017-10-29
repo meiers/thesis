@@ -71,11 +71,11 @@
 \newcommand\margintext[1]{%
     \ifstrequal{#1}{}{}{{\marginpar{\footnotesize\itshape #1}}}}
 
+\newcommand\todo[1]{%
+    \marginpar{\color{red}\textbf{TO\ DO:}\\#1}}
 
 %% Custom macros (not mine)
 \newcommand*\captitle[1]{\textbf{#1}}
-\newcommand*\todo[1]{%
-    \graffito{\textcolor{red}{TO\ DO: #1}}}
 
 \newcommand*\gene[1]{\textit{#1}}
 \newcommand*\ko[1]{\textit{#1\textsuperscript{\(-/-\)}}}
