@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{marginnote} % /marginpar
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
+\usepackage{xcolor} % e.g. for black!50
+\usepackage{adjustbox} % for chapter style
 
 
 
@@ -32,6 +34,37 @@
 \graphicspath{{figs/}}
 
 
+% Chapter style
+\renewcommand*\chapterheadstartvskip{\vspace*{0\textheight}}
+\renewcommand*\chapterheadendvskip{\vspace*{.1\textheight}}
+\setkomafont{chapter}{\rmfamily\fontsize{28}{32}\mdseries}
+
+\makeatletter
+\renewcommand*{\@@makechapterhead}[1]{%
+    \chapterheadstartvskip
+    \noindent
+    \begingroup
+        \usekomafont{chapter}%
+        \makebox[\textwidth][l]{%
+            \begin{adjustbox}{minipage=\textwidth, valign=t}%
+                \hyphenpenalty=10000%
+                \exhyphenpenalty=10000%
+                \raggedright\noindent#1%
+            \end{adjustbox}%
+            \hspace{\marginparsep}%
+            \begin{adjustbox}{minipage=\marginparwidth, valign=t}
+                {\rmfamily%
+                 \color{black!60}%
+                 \addfontfeature{Numbers=Lining}%
+                 \fontsize{150}{150}%
+                 \mdseries%
+                 \thechapter}% % {\chapternumber\addfontfeature{Numbers=Lining}{\chapterformat}}%
+            \end{adjustbox}%
+        }%
+    \endgroup
+    \chapterheadendvskip
+}
+\makeatother
 
 
 %% Custom macros
