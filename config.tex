@@ -9,15 +9,7 @@
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
 \usepackage{xcolor} % e.g. for black!50
 \usepackage{adjustbox} % for chapter style
-
-
-
-%\usepackage[natbib=true, style=authoryear]{biblatex}
-
-%\usepackage{classicthesis}
-%\usepackage{tocstyle}
-%\usepackage{booktabs}
-%\usepackage{relsize}
+\usepackage[macros,xspace]{acro} % acronyms
 
 
 
@@ -58,13 +50,19 @@
                  \addfontfeature{Numbers=Lining}%
                  \fontsize{150}{150}%
                  \mdseries%
-                 \thechapter}% % {\chapternumber\addfontfeature{Numbers=Lining}{\chapterformat}}%
+                 \thechapter}%
             \end{adjustbox}%
         }%
     \endgroup
     \chapterheadendvskip
 }
 \makeatother
+
+\newcommand*\listofabbrev{%
+    \chapter*{List of abbreviations}%
+    \addcontentsline{toc}{chapter}{List of abbreviations}%
+    \printacronyms[heading=none, name={List of abbreviations}]%
+}
 
 
 %% Custom macros
