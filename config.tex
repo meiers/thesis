@@ -67,7 +67,10 @@
 
 %% Custom macros
 \newcommand\margintext[1]{%
-    \ifstrequal{#1}{}{}{{\marginpar{\footnotesize\itshape #1}}}}
+    \ifstrequal{#1}{}{}{{\marginpar{\raggedright\footnotesize\itshape #1}}}}
+\newcommand\explain[2]{%
+    \textbf{\color{black!70} #1}%
+    \margintext{\textbf{#1}\quad #2}}
 
 \newcommand\todo[1]{%
     \marginpar{\color{red}\textbf{TO\ DO:}\\#1}}
