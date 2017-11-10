@@ -9,7 +9,8 @@
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
 \usepackage{xcolor} % e.g. for black!50
 \usepackage{adjustbox} % for chapter style
-\usepackage[macros,xspace]{acro} % acronyms
+\usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
+\usepackage{hyperref}
 
 
 
@@ -67,9 +68,15 @@
 %% Figures
 \newcommand*\marginfig[1]{\includegraphics[width=\marginparwidth]{#1}}
 
+%% Quotes
 \renewcommand*\dictumwidth{0.75\textwidth}
 \setkomafont{dictumtext}{\itshape\small}
 \setkomafont{dictumauthor}{\normalfont}
+
+%% Cite (Bibliography)
+\AtEveryCite{%
+    \let\bibopenparen=\bibopenbracket%
+\let\bibcloseparen=\bibclosebracket}
 
 %% Custom macros
 \newcommand\margintext[1]{%
