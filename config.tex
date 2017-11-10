@@ -67,6 +67,10 @@
 %% Figures
 \newcommand*\marginfig[1]{\includegraphics[width=\marginparwidth]{#1}}
 
+\renewcommand*\dictumwidth{0.75\textwidth}
+\setkomafont{dictumtext}{\itshape\small}
+\setkomafont{dictumauthor}{\normalfont}
+
 %% Custom macros
 \newcommand\margintext[1]{%
     \ifstrequal{#1}{}{}{{\marginpar{\raggedright\footnotesize\itshape #1}}}}
