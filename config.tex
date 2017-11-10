@@ -43,15 +43,16 @@
                 \hyphenpenalty=10000%
                 \exhyphenpenalty=10000%
                 \raggedright\noindent#1%
+
             \end{adjustbox}%
             \hspace{\marginparsep}%
             \begin{adjustbox}{minipage=\marginparwidth, valign=t}
-                {\rmfamily%
+                \ifnumbered{chapter}{\rmfamily%
                  \color{black!60}%
                  \addfontfeature{Numbers=Lining}%
                  \fontsize{150}{150}%
                  \mdseries%
-                 \thechapter}%
+                 \thechapter}\fi%
             \end{adjustbox}%
         }%
     \endgroup
@@ -59,10 +60,18 @@
 }
 \makeatother
 
+%% Abbreviation list
 \newcommand*\listofabbrev{%
     \chapter*{List of abbreviations}%
     \addcontentsline{toc}{chapter}{List of abbreviations}%
     \printacronyms[heading=none, name={List of abbreviations}]%
+}
+
+%% Reference list
+\newcommand*\listofreferences{%
+    \chapter*{Bibliography}
+    \addcontentsline{toc}{chapter}{Bibliography}%
+    \printbibliography[heading=none]%
 }
 
 %% Figures
@@ -73,7 +82,7 @@
 \setkomafont{dictumtext}{\itshape\small}
 \setkomafont{dictumauthor}{\normalfont}
 
-%% Cite (Bibliography)
+%% Cite (Bibliography). See http://merkel.texture.rocks/Latex/natbib.php
 \AtEveryCite{%
     \let\bibopenparen=\bibopenbracket%
 \let\bibcloseparen=\bibclosebracket}
