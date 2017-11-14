@@ -9,6 +9,9 @@
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
 \usepackage{xcolor} % e.g. for black!50
 \usepackage{adjustbox} % for chapter style
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage{caption}
 \usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
 \usepackage{hyperref}
 \RequirePackage[nameinlink, noabbrev]{cleveref} % load LAST
@@ -32,7 +35,6 @@
 \renewcommand*\chapterheadstartvskip{\vspace*{0\textheight}}
 \renewcommand*\chapterheadendvskip{\vspace*{.1\textheight}}
 \setkomafont{chapter}{\rmfamily\fontsize{28}{32}\mdseries}
-
 \makeatletter
 \renewcommand*{\@@makechapterhead}[1]{%
     \chapterheadstartvskip
@@ -77,6 +79,17 @@
 
 %% Figures
 \newcommand*\marginfig[1]{\includegraphics[width=\marginparwidth]{#1}}
+
+%% Captions
+\captionsetup{%
+    format=plain,
+    font={sf,footnotesize},
+    labelfont={bf},
+    labelformat=simple,
+    labelsep=colon,
+    justification=justified}
+\newcommand*\figcap[3]{\caption[#2]{\label{fig:#1}\textbf{#2.\enspace} #3}}
+\newcommand*\tabcap[3]{\caption[#2]{\label{tab:#1}\textbf{#2.\enspace} #3}}
 
 %% Quotes
 \renewcommand*\dictumwidth{0.75\textwidth}
