@@ -9,7 +9,7 @@
 \usepackage{marginnote} % /marginpar
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
 \usepackage{xcolor} % e.g. for black!50
-\usepackage{adjustbox} % for chapter style
+\usepackage[export]{adjustbox} % for chapter style. Need export for the "inner" option in \includegraphics
 \usepackage{booktabs}
 \usepackage{tabu}
 \usepackage{caption}
@@ -96,6 +96,10 @@
 
 %% Figures
 \newcommand*\marginfig[1]{\includegraphics[width=\marginparwidth]{#1}}
+\newlength{\textplusmargin}
+\setlength{\textplusmargin}{\textwidth}
+\addtolength{\textplusmargin}{\marginparwidth}
+\addtolength{\textplusmargin}{\marginparsep}
 
 %% Captions
 \captionsetup{%
