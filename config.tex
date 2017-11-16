@@ -12,6 +12,7 @@
 \usepackage{booktabs}
 \usepackage{tabu}
 \usepackage{caption}
+\usepackage{relsize}
 \usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
 \usepackage{hyperref}
 \RequirePackage[nameinlink, noabbrev]{cleveref} % load LAST
@@ -63,19 +64,34 @@
 }
 \makeatother
 
-%% Abbreviation list
+%% Lists in the front/back matter
 \newcommand*\listofabbrev{%
+    \cleardoublepage
+    \phantomsection
     \chapter*{List of abbreviations}%
     \addcontentsline{toc}{chapter}{List of abbreviations}%
-    \printacronyms[heading=none, name={List of abbreviations}]%
+    \printacronyms[heading=none,exclude-classes=noprint,name={List of abbreviations}]%
 }
-
-%% Reference list
 \newcommand*\listofreferences{%
+    \cleardoublepage
+    \phantomsection
     \chapter*{Bibliography}
     \addcontentsline{toc}{chapter}{Bibliography}%
     \printbibliography[heading=none]%
 }
+\newcommand*\listoffigs{%
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listfigurename}
+    \listoffigures
+}
+\newcommand*\listoftabs{%
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables
+}
+
 
 %% Figures
 \newcommand*\marginfig[1]{\includegraphics[width=\marginparwidth]{#1}}
@@ -100,7 +116,7 @@
 \AtEveryCite{%
     \let\bibopenparen=\bibopenbracket%
 \let\bibcloseparen=\bibclosebracket}
-\renewcommand{\UrlFont}{\small\ttfamily}
+\renewcommand{\UrlFont}{\smaller\ttfamily}
 
 %% Custom macros
 \newcommand\margintext[1]{%
