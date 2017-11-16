@@ -9,7 +9,84 @@
 
 \acreset{snv}
 \subsection{\Acp{snv}}
-(see \cref{sec:mutsign}).
+I used whole genome sequencing data of both $F_0$ and $F_1$ cross
+simulataneously to call \acp{snv}. The comparison of genotypes of the homozygous
+wild type line and the heterozygous cross enabled me to assign mutations to
+individual haplotypes: if, for example, a \snv was called heterozygous in the
+cross and homozygous alternative in the wild type sample, the variant is located
+on the wild type chromosome and not on the homologous balancer chromosome.
+
+Of the 761,348 detected \acp{snv} on \ac{chr2} and \ac{chr3}, 38.9\% can be
+assigned to the balancer chromosomes, 29.5\% to the wild type chromosomes and
+29.8\% are shared between both. Only a fraction of 1.8\% of \acp{snv} did not
+fit the expected genotypes, which can mostly be attributed to regions in the
+wild type chromosomes not being fully homozygous.
+On average every 210bp there is a \snv distinguishing balancer and wild type
+haplotypes.
+
+\begin{table}[ht]
+    \centering
+        %     wild type-specific    224,353
+        %     balancer-specific     296,168
+        %     common                226,907
+        %     -----------------------------
+        %chr2 wild type-specific 109654     48800648 2246.978360
+        %chr2         errorneous    857     48800648   17.561242
+        %chr2       heterozygous   4814     48800648   98.646231
+        %chr2  balancer-specific 132594     48800648 2717.054085
+        %chr2             common 114128     48800648 2338.657470
+        %chr3         errorneous   1003     60189558   16.664020
+        %chr3  balancer-specific 163574     60189558 2717.647470
+        %chr3       heterozygous   7246     60189558  120.386330
+        %chr3             common 112779     60189558 1873.730324
+        %chr3 wild type-specific 114699     60189558 1905.629545
+        %chrX         errorneous    134     23542271    5.691889
+        %chrX       heterozygous   4148     23542271  176.193707
+        %chrX  balancer-specific  22513     23542271  956.279876
+        %chrX             common  52082     23542271 2212.275952
+        %chrX wild type-specific  19870     23542271  844.013732
+    \begin{tabu}{lrrr}
+        \toprule
+        Genotype & \ac{chr2} & \ac{chr3} & \ac{chrX} \\
+        \midrule
+        balancer-specific  & 2717.1 & 2717.6 &  956.3 \\
+        wild type-specific & 2247.0 & 1905.6 &  844.0 \\
+        shared             & 2338.7 & 1873.7 & 2212.3 \\
+        wt heterozygous    &   98.6 &  120.4 &  176.2 \\
+        errorneous         &   17.6 &   16.7 &    5.7 \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{snvs2}{Number of \acp{snv} per Megabase}{The
+        majority of \snv calls are in concordance with the study design
+        (balancer-specific, wild type-specific, or shared), except in short
+        regions of remaining heterozygosity of the wild type chromosomes and
+        a negligible number of false calls.
+        Note that \ac{chrX} is not balanced but also paired with a homologue
+        from a divergent line.}
+\end{table}
+
+The number of balancer-specific \acp{snv} is around 1.3 times higher than wild
+type-specific ones. Moreover, when I compared our fly lines to the Drosophila
+reference panel (DGRP) \citep{Mackay2012,Huang2014}, a panel of fully sequenced
+inbred \species{D. melanogaster} lines derived from a natural population, I
+found that a striking majority of \acp{snv} is represented in the panel, yet
+balancer-specific \acp{snv} to a lower fraction (86.1\%) than wild type-specific
+ones (92.1\%). These observations are not surprising since balancer chromosomes,
+due to their inability to undergo recombination, accumulate and likely tolerate
+more mutations over time than normal chromosomes.
+
+I was also interested in the distribution of base substitutions, i.e.
+the \explain{mutation spectrum}{as a summary of the total set of
+mutations I count the relative frequencies of different base substitutions
+(e.g. \texttt{C>T}) and their trinucleotide contexts (one base up- and
+downstream). The spectrum of somatic \acp{snv} is often analysed in cancer
+genomics in this way, in order to extract \emph{mutational signatures} that are
+linked to mutagenic processes}. The idea behind this is that
+balancer chromosomes had been derived by X-ray mutagenesis and that this
+could have led to a different distribution of base substitutions. However, after
+removing \acp{snv} shared with the DGRP we did not observe any striking
+differences in the \snv signatures between wild type and balancers (see
+\cref{fig:signatures}).
 
 \subsection{Deletion calls and validation strategy}
 \subsection{Duplication call set}
