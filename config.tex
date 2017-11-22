@@ -100,6 +100,46 @@
 \setlength{\textplusmargin}{\textwidth}
 \addtolength{\textplusmargin}{\marginparwidth}
 \addtolength{\textplusmargin}{\marginparsep}
+% Environments \figure -textwidth -textplusmargin
+%     1 = file
+%     2 = label
+%     3 = caption title
+%     4 = caption text
+\newcommand*\figuretextwidth[4]{%
+    \begin{figure}[!ht]
+        \includegraphics[width=\textwidth,center]{#1}%
+        \figcap{#2}{#3}{#4}
+    \end{figure}
+}
+\newcommand*\figuretextplusmargin[4]{%
+    \begin{figure}[!ht]
+        \includegraphics[width=\textplusmargin,inner]{#1}%
+        \figcap{#2}{#3}{#4}
+    \end{figure}
+}
+\newcommand*\figuretwocolumns[8]{%
+    \begin{figure}[!ht]
+        \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
+            \begin{minipage}[b]{0.48\textplusmargin}
+                \includegraphics[width=0.48\textplusmargin]{#1}
+            \end{minipage}
+            \hspace{0.04\textplusmargin}
+            \begin{minipage}[b]{0.48\textplusmargin}
+                \includegraphics[width=0.48\textplusmargin]{#5}
+            \end{minipage}\\[-\baselineskip]%
+            \begin{minipage}[t]{0.48\textplusmargin}
+                \centering
+                \figcap{#2}{#3}{#4}
+            \end{minipage}
+            \hspace{0.04\textplusmargin}
+            \begin{minipage}[t]{0.48\textplusmargin}
+                \centering
+                \figcap{#6}{#7}{#8}
+            \end{minipage}
+        \end{adjustbox}
+    \end{figure}
+}
+
 
 %% Captions
 \captionsetup{%
