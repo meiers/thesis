@@ -23,12 +23,11 @@
 }
 \DeclareAcronym{cyo}{
     short=CyO,
-    format=\scshape,
     long=Curly of Oyster
 }
 \DeclareAcronym{tm3}{
     short=TM3,
-    format=\scshape\addfontfeature{Numbers=Lining},
+    format=\addfontfeature{Numbers=Lining},
     long=Third multiple 3
 }
 \DeclareAcronym{chr2}{
@@ -53,17 +52,25 @@
     short=PCR,
     long=polymerase chain reaction
 }
+\DeclareAcronym{fdr}{
+    short=FDR,
+    long=false discovery rate
+}
 
-% No print
+
+
+
+
+% tools
 \DeclareAcronym{delly}{
     short=Delly,
     format=\scshape,
     long=Delly\footnote{Available online at \url{https://github.com/dellytools/delly}} \citep{Rausch2012},
-    class=noprint
+    class=tools
 }
 \DeclareAcronym{freebayes}{
     short=FreeBayes,
     format=\scshape,
     long=FreeBayes\footnote{Available online at \url{https://github.com/ekg/freebayes}} \citep{Garrison2012},
-    class=noprint
+    class=tools
 }

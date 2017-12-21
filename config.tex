@@ -23,7 +23,7 @@
 
 \setdefaultlanguage[variant=uk]{english}
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
-\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
+\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Barlow}
 \setmonofont{Droid Sans Mono}
 
 \addbibresource{references.bib}
@@ -71,7 +71,7 @@
     \phantomsection
     \chapter*{List of abbreviations}%
     \addcontentsline{toc}{chapter}{List of abbreviations}%
-    \printacronyms[heading=none,exclude-classes=noprint,name={List of abbreviations}]%
+    \printacronyms[heading=none,exclude-classes={noprint,tools},name={List of abbreviations}]%
 }
 \newcommand*\listofreferences{%
     \cleardoublepage
