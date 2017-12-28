@@ -23,7 +23,16 @@ Papers:
 
 
 
-
+% QUOTE FROM Sudmant et al, 2015:
+% To further explore inversion sequence complexity, we performed a battery of
+% targeted analyses, leveraging PacBio resequencing of fos- mids (targeting 34
+% loci), sequencing by Oxford Nanopore Minion (60 loci) and PacBio (206 loci)
+% of long-range PCR amplicons, and data for 13 loci from another sample (CHM1)
+% sequenced by high- coverage PacBio WGS14. Altogether we verified and further
+% characterized 229 inversion sites, 208 using long-read data and 21 by PCR
+% (Supplementary Table 15), increasing the number of known validated inversions
+% by .2.5-fold.
+%
 % SUMMARY OF SUPPL. TABLE 15
 % sheet A. (sheet B contains 21 additional (!) PCR-validated loci)
 %
@@ -40,6 +49,59 @@ Papers:
 % class
 % Complex    Inv and Del   Inverted Dup MultiDel with Inv    Simple Inv
 %      11             28            113                14            42
+
+\begin{table}[ht]
+    \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
+            \begin{minipage}[b]{0.54\textplusmargin}
+                \centering
+                \begin{adjustbox}{tabular=lrrr,valign=b}
+                    \toprule
+                    Method      & \#Total & \#Val. & \#Inval. \\
+                    \midrule
+                    \pcr        & 96  & 21  &   - \\
+                    PacBio      & ??? & ??? & ??? \\
+                    ONT MinION  & 60  &  35 &   2 \\
+                    \bottomrule
+                \end{adjustbox}
+            \end{minipage}
+            \hspace{0.04\textplusmargin}
+            \begin{minipage}[b]{0.42\textplusmargin}
+                \centering
+                \begin{adjustbox}{tabular=lr,valign=b}
+                    \toprule
+                    Class & Count \\
+                    \midrule
+                    Simple inversion     &  42 \\
+                    Inverted duplication & 110 \\
+                    Inv. and del.        &  29 \\
+                    Inv. and multi-del.  &  14 \\
+                    Highly complex       &  11 \\
+                    \bottomrule
+                \end{adjustbox}
+            \end{minipage}\\[-\baselineskip]%
+            \begin{minipage}[t]{0.54\textplusmargin}
+                \centering
+                \tabcap{inv_validations}{Inversion validations}{Number of
+                predicted inversions analysed (\#Total), validated (\#Val.) and
+                invalidated (\#Inval.) using one of several techniques.
+                Not included are orthorgonal validation methods performed by
+                collaborators.}
+            \end{minipage}
+            \hspace{0.04\textplusmargin}
+            \begin{minipage}[t]{0.42\textplusmargin}
+                \centering
+                \tabcap{inv_classes}{Inversion classes}{Summary of classes of
+                    inversions found at the 206 resolved loci, which are also
+                    illustrated in \cref{fig:complex_invs} (\emph{Inv. and del.}:
+                    Inversion flanked by deletion, \emph{Inv. and multi-del.}:
+                    Inversion flanked by multiple deletions)}
+            \end{minipage}
+        \end{adjustbox}
+\end{table}
+
+
+
+
 
 \figuretextwidth{complex_invs.pdf}
     {complex_invs}
