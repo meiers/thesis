@@ -18,7 +18,7 @@ Papers:
 \item HapMap: \citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}
 \item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
 \item PacBio papers: \citep{Chaisson2014,Pendleton2015}
-\item Tools: \blasr, \last, \mummer, \bwamem, \quiver
+\item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
 \end{itemize}
 
 
@@ -135,9 +135,9 @@ Papers:
     {inv_assemblies_sizes}
     {Sizes of rearranged sequences}
     {Sizes were determined from assembled loci using \acs{last}-split as
-    described in section XXX. Note that the overall size of the amplicons
-    is limited, which potentially explains shorter sizes for the inverted part
-    in loci with higher complexity.}
+    described in section XXX. Note that the overall size of the amplicons is
+    limited, which potentially explains shorter sizes for the rearranged part in
+    loci with higher complexity.}
 
 \figuretwocolumns{inv_assemblies_del_sizes.pdf}
     {inv_assemblies_del_sizes}
@@ -154,3 +154,11 @@ Papers:
     (199/210) as well as for a set of 12,206 single-breakpoint deletions (REF needed).
     TODO: information on tests performed}
 
+
+\figuretextwidth{maze_screenshot.pdf}{maze}
+    {Screenshot from \maze}
+    {On the left, \maze displays a dotplot of two sequences (here inversion
+    assembly, vertically, vs. its reference locus, horizontally) and highlights
+    sequence alignments (red). On the right, the sequence alignment around the
+    breakpoints is highlighted and classified into cases of micro-insertions,
+    blunt ends or micro-homology.}
