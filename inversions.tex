@@ -3,14 +3,6 @@
 
 See suppl. info in \cref{sec:suppl_inversions}.
 
-In the motivation to this chapter I mention Adrian's \explain{Four-primer
-strategy}{\marginfig{four_primer_strategy.pdf} Four separate PCRs are run using
-primer pairs FR, fr, Ff and Rr.
-In samples not carrying the inversion only FR and fr will yield bands, in
-homozygous carriers only Ff and Rr, and in heterozygous carriers all four
-reactions will yield bands.} and I explain it quickly in the margin.
-
-
 Papers:
 \begin{itemize}
 \item my co-authorship: \citep{Sudmant2015}
@@ -19,8 +11,24 @@ Papers:
 \item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
 \item PacBio papers: \citep{Chaisson2014,Pendleton2015}
 \item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
+\item Dotplots: \citep{Fitch1969,Gibbs1970}
 \end{itemize}
 
+
+
+\section{Motivation}
+\subsection{The 1000 Genomes Project}
+\subsection{Predicted inversions and the validation problem}
+
+In the motivation to this chapter I mention Adrian's \explain{Four-primer
+strategy}{\marginfig{four_primer_strategy.pdf} Four separate PCRs are run using
+primer pairs FR, fr, Ff and Rr.
+In samples not carrying the inversion only FR and fr will yield bands, in
+homozygous carriers only Ff and Rr, and in heterozygous carriers all four
+reactions will yield bands.} and I explain it quickly in the margin.
+
+
+\section{Long-read sequencing of inversion loci unravels unexpected levels of complexity}
 
 
 % QUOTE FROM Sudmant et al, 2015:
@@ -106,19 +114,30 @@ Papers:
 \figuretextwidth{complex_invs.pdf}
     {complex_invs}
     {Complex inversion types revealed by PacBio and ONT MinION reads}
-    {Examplatory loci were selected to represent the most most commonly seen
-    classes of complex inverted variants (listed in table XXX).
+    {Examplatory loci were selected to represent the most commonly seen
+    classes of complex inverted variants (listed in \cref{tab:inv_classes}).
     Green lines denote inversions predicted by \delly. PacBio circular
-    consesus sequences and raw ONT MinION reads are compared to their reference
-    locus via dotplots using maximal unique matches (REF) of
-    lengths at least 10 (PacBio) or 8 (MinION). Axes denote sequence lengths in
-    base pairs. Original read names are included for later reference.}
+    consesus sequences and raw ONT MinION reads (vertical) are compared to their
+    reference locus (horizontal) via dotplots using maximal unique matches
+    of lengths at least 10 (PacBio) or 8 (MinION). Axes denote sequence lengths
+    in base pairs. Original read names are included for later reference. See
+    \cref{sec:dotplot} for an explanation of the concept of dotplots.}
+
+
+\subsection{Artifacts in amplicon sequencing}
+\label{sec:complex_invs_artifacts}
+
 
 \figuretextwidth{complex_invs_artifacts.pdf}
     {complex_invs_artifacts}
     {Loci showing three alleles, likely resulting from PCR artifacts}
     {Example locus showing more than two alleles in a single diploid sample,
     plotted the same way as in \cref{fig:complex_invs}.}
+
+
+
+\section{Inversion breakpoint analysis}
+\subsection{Assembly of PacBio reads yields sequence information at basepair resolution}
 
 
 
@@ -154,6 +173,10 @@ Papers:
     (199/210) as well as for a set of 12,206 single-breakpoint deletions (REF needed).
     TODO: information on tests performed}
 
+\section{Maze: A tool for match visualization and breakpoint inpsection}
+\subsection{Interactive match visualization in the web browser}
+\label{sec:dotplot}
+
 
 \figuretextwidth{maze_screenshot.pdf}{maze}
     {Screenshot from \maze}
@@ -162,3 +185,10 @@ Papers:
     sequence alignments (red). On the right, the sequence alignment around the
     breakpoints is highlighted and classified into cases of micro-insertions,
     blunt ends or micro-homology.}
+
+
+\subsection{Breakpoint identification and characterization}
+
+
+
+\section{Conclusions}
