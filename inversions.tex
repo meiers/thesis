@@ -62,7 +62,8 @@ reactions will yield bands.} and I explain it quickly in the margin.
     \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
             \begin{minipage}[b]{0.54\textplusmargin}
                 \centering
-                \begin{adjustbox}{tabular=lrrr,valign=b}
+                \adjustbox{valign=b,padding=0ex,margin=0ex}{
+                \begin{tabu}{Xrrr}
                     \toprule
                     Method      & \#Total & \#Val. & \#Inval. \\
                     \midrule
@@ -70,12 +71,15 @@ reactions will yield bands.} and I explain it quickly in the margin.
                     PacBio      & ??? & ??? & ??? \\
                     ONT MinION  & 60  &  35 &   2 \\
                     \bottomrule
-                \end{adjustbox}
+                \end{tabu}
+                }
             \end{minipage}
             \hspace{0.04\textplusmargin}
             \begin{minipage}[b]{0.42\textplusmargin}
                 \centering
-                \begin{adjustbox}{tabular=lr,valign=b}
+                %\begin{adjustbox}{tabular=lr,valign=b}
+                \adjustbox{valign=b,padding=0ex,margin=0ex}{
+                \begin{tabu}{Xr}
                     \toprule
                     Class & Count \\
                     \midrule
@@ -85,7 +89,9 @@ reactions will yield bands.} and I explain it quickly in the margin.
                     Inv. and multi-del.  &  14 \\
                     Highly complex       &  11 \\
                     \bottomrule
-                \end{adjustbox}
+                \end{tabu}
+                }
+                %\end{adjustbox}
             \end{minipage}\\[-\baselineskip]%
             \begin{minipage}[t]{0.54\textplusmargin}
                 \centering
