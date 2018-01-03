@@ -1,5 +1,5 @@
 \chapter{Complex inversions in the human genome}
-\label{sec:inversions}
+\label{sec:complex_invs}
 
 See suppl. info in \cref{sec:suppl_inversions}.
 
@@ -10,6 +10,15 @@ Papers:
 \item HapMap: \citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}
 \item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
 \item PacBio papers: \citep{Chaisson2014,Pendleton2015}
+\item Papers finding complex inversions: Talkowski paper (2017)
+    \url{https://www.ncbi.nlm.nih.gov/pubmed/28260531}, where they use jumping
+    libraries to find even more complex classes. Ashley's Strand-seq inversion
+    paper which at least refers to complex inversions
+    \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5088599/}. Another study
+    (\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4490614/}) found exactly
+    one complex inversion, shown in figure 7
+\item On the
+
 \item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
 \item Dotplots: \citep{Fitch1969,Gibbs1970}
 \end{itemize}
@@ -57,6 +66,7 @@ reactions will yield bands.} and I explain it quickly in the margin.
 % class
 % Complex    Inv and Del   Inverted Dup MultiDel with Inv    Simple Inv
 %      11             28            113                14            42
+
 
 \begin{table}[ht]
     \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
@@ -112,6 +122,7 @@ reactions will yield bands.} and I explain it quickly in the margin.
             \end{minipage}
         \end{adjustbox}
 \end{table}
+\todo{fix left-shifting caused (most likely) by adjustbox}
 
 
 
@@ -191,6 +202,12 @@ reactions will yield bands.} and I explain it quickly in the margin.
     sequence alignments (red). On the right, the sequence alignment around the
     breakpoints is highlighted and classified into cases of micro-insertions,
     blunt ends or micro-homology.}
+
+
+
+...\acs{mummer}'s dotplot function\footnote{More precisely, by the \texttt{mummerplot} command.
+Examples can be found online at \url{http://mummer.sourceforge.net/examples/}.}.
+
 
 
 \subsection{Breakpoint identification and characterization}
