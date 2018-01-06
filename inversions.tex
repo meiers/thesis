@@ -35,11 +35,11 @@ These tremendous efforts, published simultaneously in early
 them Celera’s then-CEO Craig Venter) to determine an average human genome. The
 focus was shifted to the variation present in the human population with the
 initiation of the International HapMap Project in 2002. By performing
-whole-genome SNP genotyping on hundreds of individuals from multiple continents,
+whole-genome \snv genotyping on hundreds of individuals from multiple continents,
 including family-offspring trios, the project generated a first haplotype map of
 the human population\citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}.
 Over the years the HapMap Project was scaled up to more than 1,000 individuals,
-to discover rare SNVs  (minor allele frequency < 5\%) and to call copy number
+to discover rare \acp{snv}  (minor allele frequency < 5\%) and to call copy number
 variants. The samples originally collected for the HapMap Project, which are
 still available today as immortalized lymphoblastoid cell lines, were also used
 by the 1000 Genomoes Project. Starting long before my own participation, with
@@ -54,11 +54,11 @@ sequencing on 2,504 samples and additionally expanded the palette of
 computational methods that were applied as well as added new types of variation
 to be studied\citep{Auton2015}. The final data set consists of approximately
 88 million phased variants, which was estimated to include more than 99\% of
-non-rare SNPs in the studied populations. Besides novel insides on, for example,
+non-rare \acp{snv} in the studied populations. Besides novel insides on, for example,
 seemingly dispensable genes, the primary achievement of the project was to make
 an unprecedented resource of genetic variation available to the public. This
 came along with technical advances in methods and standardizations such as the
-nowadays commonly used file format \textsc{VCF}\footnote{Established for the
+nowadays commonly used file format \vcf\footnote{Established for the
 1000 Genomes Project, the format is nowadays maintained by the Global Alliance
 for Genomics \& Health (\url{https://www.ga4gh.org}}.
 The 1000 Genomes data has since been utilized in many research studies, for
@@ -77,12 +77,52 @@ known variation in the human population.
 
 \subsection{Predicted inversions and the validation problem}
 
-In the motivation to this chapter I mention Adrian's \explain{Four-primer
-strategy}{\marginfig{four_primer_strategy.pdf} Four separate PCRs are run using
-primer pairs FR, fr, Ff and Rr.
-In samples not carrying the inversion only FR and fr will yield bands, in
-homozygous carriers only Ff and Rr, and in heterozygous carriers all four
-reactions will yield bands.} and I explain it quickly in the margin.
+The Structural Variation subgroup of the 1000 Genomes Project focused on the
+identification of various classes of genomic rearrangements. With a total of 83
+scientists involved and led by eight principle investigators with different
+expertise, the group assembled the to date most comprehensive resource of
+structural variation in the human population. Copy number variants, inversions,
+mobile element insertions and other types of \sv were predicted from
+low-coverage whole-genome sequencing data, statistically phased and
+validated using a number of different approaches.
+
+Among his many contributions to this project, \tobias had predicted inversions
+using the paired-end signature-based \sv detection tool \delly. This set of
+inversions, which was strictly filtered according to validation results and
+population genetics aspects, contains a total of 786 inversion calls in the
+range of 500~bp~-~50~kb (median size 1.70~kb) and ended up being the only
+inversion call set used in the project. In comparison to phase one of the 1000
+Genomes Project, this is a more than 15-fold increase in the number of
+inversions.
+
+Before its final release, this call set (just like any other call set in the
+project) had to undergo cycles of validation and filtering. \adrian and
+\benjamin were in charge of running \pcr-based validation experiments of these
+inversions. In a nutshell they applied a \explain{Four-primer strategy}
+{\marginfig{four_primer_strategy.pdf} Four separate PCRs
+are run using primer pairs FR, fr, Ff and Rr. In samples
+not carrying the inversion only FR and fr will yield bands,
+in homozygous carriers only Ff and Rr, and in heterozygous
+carriers all four reactions will yield bands.}
+on inversion loci, which is capable of distinguishing the genotype of inversions
+based on the combination of bands resulting from the \acp{pcr}. However,
+this requires that the breakpoints of the inversion were accurately predicted
+and also lie in regions accessible to targeted \pcr amplification. The latter
+was initially thought to be a problem, as inversions are known to often be
+flanked by inverted repetitive sequence due to their origination through \nahr
+(see \cref{sec:mechanisms}\todo{explain NAHR in this section!}).
+
+When they tested \pcr verification experiments on a subset of 96 predicted
+inversion loci they were puzzled: for the vast majority of loci the received
+band patterns did not match the expectations, neither clearly validating nor
+invalidating the locus. When counted as invalidations, these results would have
+given rise to an \fdr of up to 80\%. Despite multiple trials to improve \pcr
+conditions and primer locations, the experimental verification of the inversion
+call set remained unsuccessful for a long time and posed a scientific mystery.
+
+
+
+
 
 
 \section{Long-read sequencing of inversion loci unravels unexpected levels of complexity}
