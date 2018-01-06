@@ -1,32 +1,80 @@
 \chapter{Complex inversions in the human genome}
 \label{sec:complex_invs}
 
-See suppl. info in \cref{sec:suppl_inversions}.
 
-Papers:
-\begin{itemize}
-\item my co-authorship: \citep{Sudmant2015}
-\item HGP and Celera: \citep{Lander2001,Venter2001}
-\item HapMap: \citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}
-\item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
-\item PacBio papers: \citep{Chaisson2014,Pendleton2015}
-\item Papers finding complex inversions: Talkowski paper (2017)
-    \url{https://www.ncbi.nlm.nih.gov/pubmed/28260531}, where they use jumping
-    libraries to find even more complex classes. Ashley's Strand-seq inversion
-    paper which at least refers to complex inversions
-    \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5088599/}. Another study
-    (\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4490614/}) found exactly
-    one complex inversion, shown in figure 7
-\item On the
-
-\item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
-\item Dotplots: \citep{Fitch1969,Gibbs1970}
-\end{itemize}
+In 2014 and 2015 I was invited to collaborate with a large consortium of
+scientists on the 1000 Genomes Project. My supervisor Jan Korbel was the
+co-leader of the structural variation subgroup and together with my colleagues
+\tobias, \adrian, \benjamin, \markus, and \andreas
+I was involved in the validation and characterization of inversions.
+This chapter covers my work for the 1000 Genomes Project, which not only turned
+out to solve an interesting mystery but also resulted in a co-authorship on
+\cite{Sudmant2015}. I continue by describing subsequent work, including a side
+project on sequence match visualization that came into being from collaboration
+with \markus (\cref{sec:maze}), as well as an analysis of inversion breakpoints
+(\cref{sec:breakpoints}). These results have never been published in a journal,
+but were presented partially in form of a poster at the German Conference for
+Bioinformatics 2016 in Berlin. There is supplementary information to this
+chapter enclosed in the appendix (\cref{sec:suppl_inversions}).
 
 
 
 \section{Motivation}
 \subsection{The 1000 Genomes Project}
+\label{sec:1000G}
+
+The 1000 Genomes Project was the effort of a large international panel of
+scientists to capture the genetic diversity of the human population as
+comprehensively as possible. The project can be regarded as the hitherto final
+step in a series of projects that unraveled and characterize the human genome:
+The Human Genome Project, which, founded in 1990, was the first large-scale
+collaborative work in biology, as well as their private competitor Celera
+Genomics (from 1998) aimed at completing the first human genome sequence.
+These tremendous efforts, published simultaneously in early
+2001\citep{Lander2001,Venter2001}, had both used DNA of a few individuals (among
+them Celera’s then-CEO Craig Venter) to determine an average human genome. The
+focus was shifted to the variation present in the human population with the
+initiation of the International HapMap Project in 2002. By performing
+whole-genome SNP genotyping on hundreds of individuals from multiple continents,
+including family-offspring trios, the project generated a first haplotype map of
+the human population\citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}.
+Over the years the HapMap Project was scaled up to more than 1,000 individuals,
+to discover rare SNVs  (minor allele frequency < 5\%) and to call copy number
+variants. The samples originally collected for the HapMap Project, which are
+still available today as immortalized lymphoblastoid cell lines, were also used
+by the 1000 Genomoes Project. Starting long before my own participation, with
+the pilot phase publication dating back to 2010\citep{Durbin2010}, the project
+even extended this set of samples by multiple other
+populations\citep{1000GenomesProjectConsortium2012}. However, the fundamental
+novelty was to apply low-coverage whole-genome sequencing which allows to assess
+a much broader spectrum of variants in a much larger portion of the genome.
+
+In the third and final phase the project had performed mean 7.4x-coverage
+sequencing on 2,504 samples and additionally expanded the palette of
+computational methods that were applied as well as added new types of variation
+to be studied\citep{Auton2015}. The final data set consists of approximately
+88 million phased variants, which was estimated to include more than 99\% of
+non-rare SNPs in the studied populations. Besides novel insides on, for example,
+seemingly dispensable genes, the primary achievement of the project was to make
+an unprecedented resource of genetic variation available to the public. This
+came along with technical advances in methods and standardizations such as the
+nowadays commonly used file format \textsc{VCF}\footnote{Established for the
+1000 Genomes Project, the format is nowadays maintained by the Global Alliance
+for Genomics \& Health (\url{https://www.ga4gh.org}}.
+The 1000 Genomes data has since been utilized in many research studies, for
+example to refine human population history\citep{Veeramah2014}, to
+impute\citep{Howie2012} missing \acp{sv} in many genome-wide association studies
+(e.g. \cite{Wood2014}), or to discriminate somatic from germline mutation in
+cancer studies\citep{Hiltemann2015}. At last, since the start of the 1000
+Genomes Project a considerable number of similarly large sequencing studies has
+popped up that focus on specific populations\citep{UK10K,Sulem2015,Telenti2016}
+or disease\citep{Campbell2017} and which eventually scale up the catalogue of
+known variation in the human population.
+
+
+
+
+
 \subsection{Predicted inversions and the validation problem}
 
 In the motivation to this chapter I mention Adrian's \explain{Four-primer
@@ -153,8 +201,9 @@ reactions will yield bands.} and I explain it quickly in the margin.
 
 
 
-\section{Inversion breakpoint analysis}
-\subsection{Assembly of PacBio reads yields sequence information at basepair resolution}
+\section{Assembly of PacBio reads yields sequence information at basepair resolution}
+\label{sec:breakpoints}
+
 
 
 
@@ -190,7 +239,12 @@ reactions will yield bands.} and I explain it quickly in the margin.
     (199/210) as well as for a set of 12,206 single-breakpoint deletions (REF needed).
     TODO: information on tests performed}
 
+
+
 \section{Maze: A tool for match visualization and breakpoint inpsection}
+\label{sec:maze}
+
+
 \subsection{Interactive match visualization in the web browser}
 \label{sec:dotplot}
 
@@ -215,3 +269,31 @@ Examples can be found online at \url{http://mummer.sourceforge.net/examples/}.}.
 
 
 \section{Conclusions}
+
+
+
+
+
+
+
+
+
+Papers:
+\begin{itemize}
+\item my co-authorship: \citep{Sudmant2015}
+\item HGP and Celera: \citep{Lander2001,Venter2001}
+\item HapMap: \citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}
+\item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
+\item PacBio papers: \citep{Chaisson2014,Pendleton2015}
+\item Papers finding complex inversions: Talkowski paper (2017)
+    \url{https://www.ncbi.nlm.nih.gov/pubmed/28260531}, where they use jumping
+    libraries to find even more complex classes. Ashley's Strand-seq inversion
+    paper which at least refers to complex inversions
+    \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5088599/}. Another study
+    (\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4490614/}) found exactly
+    one complex inversion, shown in figure 7
+\item On the
+
+\item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
+\item Dotplots: \citep{Fitch1969,Gibbs1970}
+\end{itemize}
