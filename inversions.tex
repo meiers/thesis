@@ -19,6 +19,7 @@ chapter enclosed in the appendix (\cref{sec:suppl_inversions}).
 
 
 
+
 \section{Motivation}
 \subsection{The 1000 Genomes Project}
 \label{sec:1000G}
@@ -98,7 +99,7 @@ inversions.
 Before its final release, this call set (just like any other call set in the
 project) had to undergo cycles of validation and filtering. \adrian and
 \benjamin were in charge of running \pcr-based validation experiments of these
-inversions. In a nutshell they applied a \explain{Four-primer strategy}
+inversions. In a nutshell they applied a \explain{Four primer strategy}
 {\marginfig{four_primer_strategy.pdf} Four separate PCRs
 are run using primer pairs FR, fr, Ff and Rr. In samples
 not carrying the inversion only FR and fr will yield bands,
@@ -126,6 +127,24 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
 
 
 \section{Long-read sequencing of inversion loci unravels unexpected levels of complexity}
+\label{sec:complex_invs_validation}
+
+By the time I became involved in the inversion validation project my colleagues
+had already decided for a new strategy. They selected a subset of small
+inversions in a range of up to 10~kb including the surrounding genomic regions
+via amplification through long-range \pcr. The resulting amplicons were then
+submitted to long-read sequencing in order to uncover the true genomic structure
+underlying the predicted inversions. At the same time collaborators within the
+1000 Genomes Project had performed independent inversion validation experiments
+that will not be addressed in detail here. Just to mention them briefly: 35 loci
+were inserted into fosmid libraries, clonally expanded and then submitted to
+\pacbio sequencing; another set of loci was genotyped in the cell line CHM1,
+which had recently been sequenced with \pacbio \citep{Chaisson2014} and then
+validated using the publicly available long read data; another 29 loci present
+in the individual NA12878 were evaluated in additional available whole-genome
+\pacbio sequencing data for this individual \citep{Pendleton2015}; at last, small
+set of inversion breakpoints was submitted to Sanger sequencing
+\citep[supplementary methods]{Sudmant2015}.
 
 
 % QUOTE FROM Sudmant et al, 2015:
@@ -154,8 +173,7 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
 % class
 % Complex    Inv and Del   Inverted Dup MultiDel with Inv    Simple Inv
 %      11             28            113                14            42
-
-
+%
 \begin{table}[ht]
     \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
             \begin{minipage}[b]{0.54\textplusmargin}
@@ -169,7 +187,6 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
                     PacBio      & 308 & 186 &  37 \\
                     ONT MinION  &  96 &  54 &   6 \\
                     Fosmid      &  34 &  28 &   4 \\
-                    \midrule
                     Total       & 308 & 229 &  47 \\
                     \bottomrule
                 \end{tabu}
@@ -178,7 +195,6 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
             \hspace{0.04\textplusmargin}
             \begin{minipage}[b]{0.42\textplusmargin}
                 \centering
-                %\begin{adjustbox}{tabular=lr,valign=b}
                 \adjustbox{valign=b,padding=0ex,margin=0ex}{
                 \begin{tabu}{Xr}
                     \toprule
@@ -192,7 +208,6 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
                     \bottomrule
                 \end{tabu}
                 }
-                %\end{adjustbox}
             \end{minipage}\\[-\baselineskip]%
             \begin{minipage}[t]{0.54\textplusmargin}
                 \centering
@@ -215,8 +230,56 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
 \todo{fix left-shifting caused (most likely) by adjustbox}
 
 
+The validation experiments carried out at EMBL were three-fold: First, a small
+subset of inversion calls, mostly loci with two-sided support from \delly calls,
+could be validated using \pcr and aforementioned four primer strategy. For the
+majority of predictions however, \pcr validations had remained inconclusive so
+that long-read sequencing was applied. So secondly, amplicons were submitted to
+\pacbio single-molecule sequencing\footnote{\label{footnote:xbpIhd}Details on
+library preparation and sequencing can be found in the supplementary methods of
+\cite{Sudmant2015}} at Baylor College of Medicine and at MPI for Plant Breeding
+Research, Cologne\footnote{Data is publicly available through the European
+Nucleotide Archive via accession numbers SAMEA3299513, SAMEA3257441, and
+SAMEA3257407}. Thirdly, a smaller number of loci were sequenced on a
+\minion device\footnoteref{footnote:xbpIhd} at EMBL. These numbers are
+summarized in \cref{tab:inv_validations}.
 
+I received both the raw sequencing data of the amplicons in multiple stages. At
+first I explored the differences between raw \pacbio reads and the circular
+consensus sequences provided by \pacbio’s internal software. In virtually all
+cases the circular consensus sequence showed the same information as its raw
+subreads, yet with less sequencing errors, which is why I preferred the
+consensus sequences from that point on. After mapping to the human reference
+genome using \blasr, I selected reads mapping their respective locus for
+visualization. I then generated dotplots of each long read against its reference
+locus using a custom script, which was developed by \markus and me and which is
+further described in \cref{sec:maze}. I used a very similar approach to analyze
+\minion data: I obtained both 1D reads as well as 2D reads from multiple
+different sequencing runs. I then utilized \last to map reads to an artificial
+reference only containing the loci of interest. Again I selected mapping reads
+for visualization through dotplots.
 
+Finally, I scanned the approximately 30,000 resulting plots together with
+\adrian for signs of inversions at the predicted loci. We categorized loci based
+on our visual inspection into the three classes: ``validated'', ``invalidated'',
+and ``inconclusive''.  We required at least five independent reads supporting
+the alternative allele to count an inversion-type variant as validated. On the
+other hand, we deemed a locus as invalidated only if there were at least 30
+reads supporting the reference allele and not a single one with an inversion
+signal. This asymmetric measure is motivated by an allelic imbalance yielding
+from the \pcr, as I briefly describe in \cref{sec:complex_invs_artifacts}. The
+majority of validations were successful through support from \pacbio reads,
+which outperformed \minion data in both quality and quantity in our
+setup.\footnote{Note that I do not carry out a detailed comparison of both
+technologies. Instead, we primarily used \pacbio and additionally explored a
+very early version of \minion, which turned out to be helpful for a subset of
+loci}. In 20 cases \minion was instrumental in validating loci that could not be
+resolved by \pacbio due to a lack of coverage. Reassuringly, among the set of 37
+loci that were both informative in \pacbio and \minion data, 35 loci agreed in
+showing an inversion-type variant and the other two agreed in showing the
+absence thereof. The final \fdr for inversions in the 1000 Genomes project was
+estimated to be 17\%, although this estimate might be conservative because of
+potential allelic dropouts (as explained in \cref{sec:complex_invs_artifacts}).
 
 \figuretextwidth{complex_invs.pdf}
     {complex_invs}
@@ -229,6 +292,46 @@ call set remained unsuccessful for a long time and posed a scientific mystery.
     of lengths at least 10 (PacBio) or 8 (MinION). Axes denote sequence lengths
     in base pairs. Original read names are included for later reference. See
     \cref{sec:dotplot} for an explanation of the concept of dotplots.}
+
+Most interestingly, we observed that only a minority of cases turned out to be
+simple inversions in the sense that a contiguous stretch of DNA is re-oriented
+within its original locus. Instead, most positive loci harbored additional
+complexity, i.e. other types of variation mixed with the inversion. We
+identified five major classes among the inversion-positive loci, which are
+presented in \cref{fig:complex_invs}: simple inversions, inverted duplications,
+inversion flanked by deletions, inversion flanked by multiple deletions, and
+loci with even higher complexity. In summary, a mere 20\% of inversions
+validated by long reads are simple; the majority, on the other hand, are
+inverted duplications (see \cref{tab:inv_classes}). Precisely, this is the case
+for the set of inversions with a single breakpoint predicted by \delly. There is
+a smaller subset of 21 validated inversion predictions with double-sided support
+from read pairs that are all simple inversions. The estimated \fdr for
+inversions with double-sided support is 9\%.
+
+After the completion of the 1000 Genomes Project, \tobias adapted \delly to be
+able to distinguish double-sided (hence likely simple) inversion calls from
+potentially complex ones. To do so, overlapping paired-end signatures are
+combined and tested for the possibility of the locus showing an inverted
+duplication or an inversion flanked by a deletion. Nevertheless, this approach
+would most likely not have been successful in the scope of the 1000 Genomes
+Project due to the low average coverage of 7.5x, since without sufficient
+coverage it becomes less likely to find enough breakpoint-spanning read pairs
+for both ends of the complex rearrangement.
+
+In the aftermath, when the high level of complexity is seen, it is clear why
+\pcr validations were bound to fail. In fact, for simple inversions that were
+predicted as such (due to double-sided support from read pairs) \pcr
+verification experiments worked about as good as expected. Nevertheless, complex
+loci were only visible to long read sequencing. Now that we know how
+these types of variants look like, paired-end mapping-based tools can be trained
+to capture these events and \delly is one of the first tools capable of identifying
+such classes of complex \acp{sv}. At last, the abundance of complexity was higher
+than anticipated; yet the total number of identified complex inversions is still
+small compared to other, e.g. copy-number variants, and their functional role
+remains to be shown.
+
+
+
 
 
 \subsection{Artifacts in amplicon sequencing}

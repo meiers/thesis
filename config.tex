@@ -72,16 +72,14 @@
     \phantomsection
     \chapter*{List of abbreviations}%
     \addcontentsline{toc}{chapter}{List of abbreviations}%
-    \printacronyms[heading=none,exclude-classes={noprint,tools},name={List of abbreviations}]%
+    \printacronyms[heading=none,exclude-classes={noprint,tools,people},name={List of abbreviations}]%
 }
 \newcommand*\listofreferences{%
     \cleardoublepage
     \phantomsection
     \chapter*{Bibliography}
     \addcontentsline{toc}{chapter}{Bibliography}%
-    \begin{footnotesize}
     \printbibliography[heading=none]%
-    \end{footnotesize}
 }
 \newcommand*\listoffigs{%
     \cleardoublepage
@@ -165,6 +163,12 @@
     \let\bibopenparen=\bibopenbracket%
 \let\bibcloseparen=\bibclosebracket}
 \renewcommand{\UrlFont}{\smaller\ttfamily}
+
+%% Refer to a previously used footnote
+% https://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
 
 %% Custom macros
 \newcommand\margintext[1]{%
