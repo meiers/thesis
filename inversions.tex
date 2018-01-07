@@ -332,17 +332,74 @@ remains to be shown.
 
 
 
-
-
+\FloatBarrier
 \subsection{Artifacts in amplicon sequencing}
 \label{sec:complex_invs_artifacts}
 
+During the analysis of amplicons I made a number of interesting observations
+that can most likely be attributed to errors occurring in \pcr or long-read
+sequencing. Since these observations led to confusion (or at least to
+discussions) during data analysis I describe them below and propose possible
+explanations for them.
+
+A first type of artifacts is linked to \pacbio's circular consensus sequences.
+As mentioned in \cref{sec:pacbio}, the quality of a \pacbio read can be
+increased by sequencing the same DNA fragment multiple times in a ring-like
+structure. \pacbio’s software resolves this repetitive signal by splitting it at
+the motif of the adapter sequence used to close the ring and by forming a
+consensus of the resulting sub-reads. In a few cases this software reported
+reads that consisted of an amplicon locus concatenated to a reverse copy of
+itself. A possible explanation of these cases would be that the software misses
+an adapter sequence, e.g. due to mutations occurring in early \pcr cycles or due
+to insufficient sequencing quality. Yet also the possibility of a \pcr artifact
+cannot be excluded. Eventually this signature was readily identified and did not
+pose a problem in the analysis.
 
 \figuretextwidth{complex_invs_artifacts.pdf}
     {complex_invs_artifacts}
     {Loci showing three alleles, likely resulting from PCR artifacts}
     {Example locus showing more than two alleles in a single diploid sample,
     plotted the same way as in \cref{fig:complex_invs}.}
+
+A more severe artifact was allelic imbalance among the \pcr amplicons. I
+observed up to 100-fold ratios in the number of reads supporting alternative and
+reference allele. Intriguingly there was a clear trend towards the shorter
+allele being more abundant. For example in an inverted duplication, the
+reference allele was usually more abundant than the inversion allele, whereas in
+the case of an inversion flanked by a deletion, the alternative allele was seen
+more frequently. This is, however, not suprising as it is a known effect of \pcr
+to prefer shorter fragments and one of the reasons why many DNA protocols (such
+as standard Illumina sequencing for example) contain a size selection step. This
+is also why we required at least 30 reads of the reference allele to be seen
+before declaring a locus invalidated. Yet it could mean that some of the
+invalidated loci are in fact true inversion-type alleles but the alternative
+allele dropped out. This was not futher explored so that \fdr estimates for the
+amplicon-based inversion validation can be considered conservative.
+
+A last, initially very puzzling observation is also linked to long-range \pcr
+and demonstrated in \cref{fig:complex_invs_artifacts}. Up on inspection of
+dotplots of long reads I identified at least six loci that seemed to carry three
+different alleles. In all cases the same two alternative alleles were present in
+addition to a reference allele: an inverted duplication and a deletion. At first
+I verified that these observations are also present in \minion data to exclude
+a \pacbio sequencing artifact (also \cref{fig:complex_invs_artifacts}).
+Next, I began investigating the possibility of the whole genomic locus being
+duplicated within the genome, which could explain the presence of more than two
+alleles. I did not find such evidence based on read mapping and neither did the
+duplication call set created for the 1000 Genomes Project contain any
+information supporting this theory. The possibility remains that a rather recent
+event duplicated the same locus in the analyzed cell lines, yet a much simpler
+explanation is on hand. We have reason to believe that the deletion was caused
+during \pcr by the presence of the inverted duplication. Such \pcr artifacts
+have been previously described \citep{Ji1994,Hommelsheim2015} and this theory is
+further supported by the fact that the deletion breakpoints in all cases roughly
+align with the insert position of the inverted copy. Even when this replication
+error, caused by the polymerase jumping to an annealing homologous region,
+occurred only once during the amplification process the then-shorter allele
+could have been favored during subsequent \pcr cycles. We decided to count these
+loci as inverted duplications, hence also as validated.
+
+
 
 
 
