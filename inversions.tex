@@ -803,30 +803,81 @@ instrumental in gaining the scientific insights described in
 
 \section{Conclusions}
 
+The third and final phase of the 1000 Genomes Project created an unprecedented
+resource of variation in the human population \citep{Auton2015}. One of the
+major achievements was the integrated map of structural variation
+\citep{Sudmant2015}, for which various classes of \acp{sv} were detected and
+genotyped in 2,504 individuals. My colleagues and I were responsible for the
+set of inversions, which are notoriously difficult to ascertain as also other
+population-scale studies note \citep{Kidd2008,Hehir-Kwa2016}. With 768 loci it
+is to date the most comprehensive high-accuracy inversion-type call set of the
+human population.
+
+These inversions had been predicted from low-coverage paired-end sequencing data,
+but \pcr-based validation experiments proved difficult. For a while it was a
+major mystery why inversions that seemed to be accurately predicted could not be
+experimentally validated. This mystery was solved with the help of long-read
+sequencing, notably \pacbio and \minion sequencing. A subset of 208 predicted
+loci (all below 10~kb in size) were amplified together with surrounding genomic
+DNA, sequenced and then visualized via dotplots. This way, more than 80\% of
+analyzed loci could be verified, exemplifying the potential of third-generation
+sequencing.
+
+Strikingly, we found that the vast majority of loci turned out to be complex
+instead of simple. This realization explained the initial dilemma of
+\pcr-based verification experiments and it revealed a previously unexpected
+amount of complexity. Besides simple inversions, we discovered inverted
+duplications as the most abundant class of complex \acp{sv} with inversion
+signature, but also inversions flanked by deletions on one or both sides and
+variants with even higher complexity (shown in \cref{fig:complex_invs}). The
+existence and amount of such complex variants has since been confirmed and even
+extended to more complex classes by independent studies (notably
+\cite{Collins2017}, but also \cite{Sanders2016} and \cite[fig. 7]{English2015}).
+
+A presumably abundant source of inversions is \acl{nahr}, which creates
+inversions embedded in inverted repeats \citep{Carvalho2016}. For example, up to
+12\% of the human genome were estimated to be susceptible to \nahr-mediated
+inversions \citep{Dittwald2013}. However, paired-end mapping strategies are
+known to have limited power when \sv breakpoints align with repetitive sequence
+because of their inability to correctly map reads in those regions together with
+their short insert sizes, which typically cannot span these repetitive elements.
+\citep{Korbel2007} note a mere 14\% of SVs, which they detected using paired-end
+mapping, to \nahr and the SV calls, notably inversions, of the 1000 Genomes
+Project underlie a similar detection bias. In contrast, studies using alternative
+technologies reveal higher levels of \nahr-mediated inversions: Kidd et al.
+report 67\% of inversions identified to be flanked by inverted repeats using
+fosmid libraries (Kidd2008), Chaisson find et al 68\% of 34 inversions detected
+via \pacbio assemblies \citep{Chaisson2014}, and also optical mapping reportedly
+has a greater ability to detect \acp{sv} embedded in repetitive DNA
+\citep[fig. 6]{Teague2010}. Furthermore, studies using breakpoint-independent
+approaches report inversions in a much larger size range (i.e. a minimum of 200kb
+in \cite{Bansal2007}; a median size of 176kb in \cite{Sanders2016} using
+Strand-seq).
+
+It can thus be noted that the inversions predicted by the 1000 Genomes Project
+are complementary to previously revealed inversions, both in terms of size and
+in the high level of complexity. While generally the functional relevance of
+this class of complex SVs remains to be shown, a few variants overlap genes as
+for example \textit{Ras} homologue family member H \textit{(RHOH)}
+\citep{Sudmant2015}. \Ac{nahr} appears not to be relevant in creating these
+\acp{sv}, but the effective mechanisms still remain obsure. A higher number of
+micro-insertions, as I found through detailed breakpoint analysis based on
+nucleotide-resolution assembly sequences, could hint at \nhej or a
+replication-based mechanism (e.g. \bir) operating. \cite{Collins2017}, who did a
+more extensive analysis of complex rearrangements, suggest the synchronous repair
+of simultaneous double-strand breaks as seen in cases of chromothripsis might
+play a role here.
+
+Finally we learned that complex classes of inversions are present in the human
+genome and that this complexity should be taken into consideration in future
+efforts of \sv discovery. \Ac{delly} is one of the first tool that is capable of
+doing so, yet manual inspection of complex \acp{sv} is still highly recommended
+(also reported for other tools \citep{Collins2017}). \maze, which resulted as a
+side product from this work, is a handy tool to inspect complex \acp{sv}
+sequenced with long reads and can be used in the future to further investigate
+complex loci.
 
 
 
 
 
-
-
-
-Papers:
-\begin{itemize}
-\item my co-authorship: \citep{Sudmant2015}
-\item HGP and Celera: \citep{Lander2001,Venter2001}
-\item HapMap: \citep{InternationalHapMapConsortium2005,Frazer2007,Altshuler2010}
-\item 1000G: \citep{Durbin2010,1000GenomesProjectConsortium2012,Auton2015}
-\item PacBio papers: \citep{Chaisson2014,Pendleton2015}
-\item Papers finding complex inversions: Talkowski paper (2017)
-    \url{https://www.ncbi.nlm.nih.gov/pubmed/28260531}, where they use jumping
-    libraries to find even more complex classes. Ashley's Strand-seq inversion
-    paper which at least refers to complex inversions
-    \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5088599/}. Another study
-    (\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4490614/}) found exactly
-    one complex inversion, shown in figure 7
-\item On the
-
-\item Tools: \blasr, \last, \mummer, \bwamem, \quiver, \celeraassembler, \maze
-\item Dotplots: \citep{Fitch1969,Gibbs1970}
-\end{itemize}
