@@ -526,7 +526,7 @@ I used sequence alignments calculated by the split-mode of \last, as implemented
 in \maze, to determine each mapping segment and to resolve breakpoints (see
 \cref{sec:maze_breakpoints} for more detail). This way I resolved the sizes of
 the rearranged sequence of all different classes of \sv, as shown in
-\cref{fig:inv_assemblies_del_sizes}.
+\cref{fig:inv_assemblies_sizes}.
 
 \figuretwocolumns{inv_assemblies_del_sizes.pdf}
     {inv_assemblies_del_sizes}
@@ -543,6 +543,33 @@ the rearranged sequence of all different classes of \sv, as shown in
     (199/210) as well as for a set of 12,206 single-breakpoint deletions from
     \cite{Sudmant2015}.}
 
+Interestingly, an immediate observation was that inverted duplications and
+proximal duplications show the same very tight size distribution of
+approximately 200~-~400~bp (\cref{fig:inv_assemblies_sizes}). Furthermore, not
+only the size of the
+additional copy but also the distance to the insertion point is highly similar,
+between 0.5 and 3 kb. While these sizes could be limited due to the amplicon
+approach, which is dependent on the capabilities of long-range \pcr, the
+predictions made by \delly suggest not. The paired-end calling by \delly does
+not penalize the detection of larger versions of the same types of variants but
+reported only few, which suggests that these classes of variation indeed follow
+such a tight size distribution. Of course germline variants underlie selective
+forces; it is thus unclear whether the mechanism of origin exclusively creates
+this short size spectrum or whether larger inverted or promximal duplications
+are strongly selected against. Nevertheless, the similarities between inverted
+and proximal duplication suggest both to be generate by a similar, possibly
+replication-based mechanism.
+
+Moreover, I also observed an interesting feature of the deletions flanking some
+inversions. The classification into ``simple inversion'', ``inversion flanked by
+deletion'', and ``inversion flanked by multiple deletions'' relies on a
+rule-of-thumb estimate during visual inspection. As
+\cref{fig:inv_assemblies_del_sizes} suggests, deletions flanking inversions
+display a continuous size spectrum instead of falling into clear categories
+(deletion vs. no deletion). This again hints at a common mechanism generating
+these three classes of inversions, which sloppily handles the ends of the
+to-be-inverted sequence and hence creates more or less large deletions at one
+or both ends.
 
 
 
