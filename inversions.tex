@@ -20,6 +20,7 @@ chapter enclosed in the appendix (\cref{sec:suppl_inversions}).
 
 
 
+
 \section{Motivation}
 \subsection{The 1000 Genomes Project}
 \label{sec:1000G}
@@ -75,7 +76,6 @@ known variation in the human population.
 
 
 
-
 \subsection{Predicted inversions and the validation problem}
 
 The Structural Variation subgroup of the 1000 Genomes Project focused on the
@@ -111,7 +111,7 @@ this requires that the breakpoints of the inversion were accurately predicted
 and also lie in regions accessible to targeted \pcr amplification. The latter
 was initially thought to be a problem, as inversions are known to often be
 flanked by inverted repetitive sequence due to their origination through \nahr
-(see \cref{sec:mechanisms}\todo{explain NAHR in this section!}).
+(see \cref{sec:mechanisms}).
 
 When they tested \pcr verification experiments on a subset of 96 predicted
 inversion loci they were puzzled: for the vast majority of loci the received
@@ -416,7 +416,7 @@ frequency of approximately 0.05\%, yet some of them are present much more
 frequently. The origin of such inherited variation, which might have occurred
 thousands of generations ago, is not accessible to functional assays. However,
 as various different studies revealed in the past (reviewed in
-\cite{Onishi-Seebacher2011,Hastings2009} and partly explained in section
+\cite{Onishi-Seebacher2011,Hastings2009} and partly explained in
 \cref{sec:mechanisms}), the mechanisms generating \acp{sv} leave stochastic but
 specific traces in the genome that can later be revealed and potentially
 tracked. In more detail, these traces are found around the breakpoint junctions
@@ -483,9 +483,9 @@ to be crucial in achieving near-perfect quality.
     {inv_assemblies_sizes}
     {Sizes of rearranged sequences}
     {Sizes were determined from assembled loci using \acs{last}-split as
-    described in section XXX. Note that the overall size of the amplicons is
-    limited, which potentially explains shorter sizes for the rearranged part in
-    loci with higher complexity.}
+    described in \cref{sec:size_of_assemblies}. Note that the overall size of
+    the amplicons is limited, which potentially explains shorter sizes for the
+    rearranged part in loci with higher complexity.}
 
 Afterwards I prepared the contigs for visualization-guided manual validation. I
 inserted all contigs into a database and used an early version of \maze (see
@@ -521,6 +521,7 @@ yielding the best data per locus is explicitely listed in
 
 
 \subsection{Sizes of rearranged sequences suggest origin through a common mechanism}
+\label{sec:size_of_assemblies}
 
 I used sequence alignments calculated by the split-mode of \last, as implemented
 in \maze, to determine each mapping segment and to resolve breakpoints (see
@@ -536,7 +537,7 @@ the rearranged sequence of all different classes of \sv, as shown in
     loci that were classified as ``simple inversion'', ``inversion flanked by
     deletion'', or ``inversion flanked by multiple deletions''.}
         {inv_assemblies_microhomology.pdf}
-    {inv_assembles_microhomology}
+    {inv_assemblies_microhomology}
     {Breakpoint characteristics of complex loci vs. deletions}
     {Micro-deletions or -duplications (a.k.a. micro-homology) as identified by
     \last-split are reported for assembled loci with exactly two breakpoints
@@ -598,7 +599,7 @@ deletion breakpoints available from the 1000 Genomes Project \citep{Sudmant2015}
 parts of which had been analyzed beforehands \citep{Abyzov2015}. I filtered to
 this data set down to 12,206 single-breakpoint events without additional
 complexity and compared the breakpoint characteristics of complex \acp{sv} and
-deletions as shown in \cref{fig:inv_assembles_microhomology}. Interstingly,
+deletions as shown in \cref{fig:inv_assemblies_microhomology}. Interstingly,
 deletions and complex \acp{sv} did not differ strongly in the amount and length
 of micro-homology. However, the distributions in general differed significantly
 (p-value < 0.001, Kolmogorov–Smirnov test ) with complex \acp{sv} harboring less
@@ -627,13 +628,69 @@ not strong enough to make these distinctions.
 
 
 
-\section{Maze: A tool for match visualization and breakpoint inpsection}
+
+
+\section{\texorpdfstring{\maze}{Maze}: A tool for match visualization and breakpoint inpsection}
 \label{sec:maze}
+
+A common theme of this thesis is how the development of computational methods
+for analysis and, notably, visualization of biological data are instrumental to
+accelerate scientific research. This chapter shall not fall behind in that
+respect. Together with \markus I developed a tool to easily visualize the
+alignment of two DNA sequences and to inspect the breakpoints of potential
+matches between them. Termed \maze, this piece of software resulted from the
+necessities I faced during the analyses described in
+\crefrange{sec:complex_invs_validation}{sec:breakpoints}. It is available online at
+\url{https://github.com/dellytools/maze} or, in a version with reduced
+functionality, at \url{https://gear.embl.de/maze/}. In this section I describe
+the method, design decisions, and its use cases.
+
+
 
 
 \subsection{Interactive match visualization in the web browser}
 \label{sec:maze_dotplot}
 
+\maze is designed to quickly compare two nucleotide sequences against another.
+As an easy-to-grasp, visual comparison method we chose dotplots, which have a
+long-standing tradition in sequence analysis \citep{Fitch1969,Gibbs1970}. The
+principle of dotplots is to graphically highlight regional identity of two
+different sequences or of the same sequence to itself in a 2-dimensional matrix.
+The top panel of \cref{fig:complex_invs_artifacts} shows such a graphical
+comparison of two similar sequences, and \cref{fig:complex_invs} shows examples
+of sequences carrying different types of inversion compared to a non-inverted
+sequence. In contrast to a sequence alignment, which generally aims at computing
+the constellation of two sequences having the closest distance, a dotplot
+simultaneously compares all substrings of both sequences to one another.
+
+This idea has recurred many times in the history of bioinformatics with
+different goals in mind. For example, some dotplots originally designed for
+peptide comparisons color matches based on exact, single-character matches.
+Dotplots for DNA comparison, on the other hand, tend to require longer matches
+or calculate an average of the identity of multiple characters within a sliding
+window. This is to reduce the background noise that naturally occurs when
+comparing sequences with a small alphabet, such as DNA\footnote{For instance, a
+single-character comparison of two random DNA sequences would fill as much as
+one quarter of the matrix}. Furthermore, dotplots have been optimized for
+differently scaled inputs. A genome-scale comparison\footnote{See for example
+\url{http://last.cbrc.jp/hg18-mm9.png} for a human vs. mouse comparison}
+likely requires a different design and different data structures to find matches
+than the comparison of many small sequences.
+
+The dotplots generated by \maze display \explain{maximal unique match}{
+consecutive stretch of exact matches that is not included in any other such
+stretch, hence cannot be expanded to either side. A maximal \emph{unique} match
+additionally require the match to occur exactly once in both sequences}es or,
+alternatively, just maximal matches). Those can be fast computed by \mummer,
+which internally uses an efficient suffix tree data structure. They are then
+filtered to a minimum length and displayed in a web browser using Javascript.
+This is basically the same as offered by \acs{mummer}'s dotplot function\footnote{
+More precisely, by the \emph{mummerplot} command. Examples can be found online
+at \url{http://mummer.sourceforge.net/examples/}}. Although maximal unique
+matches have many of the aforementioned advantages for DNA comparisons, they are
+bad at handling small insertions or deletions as they show only exact matches.
+This is why the minimal length offers a trade-off between sensitivity
+(shorter matches) and reduction of background noise (longer matches).
 
 \figuretextwidth{maze_screenshot.pdf}{maze}
     {Screenshot from \maze}
@@ -643,15 +700,102 @@ not strong enough to make these distinctions.
     breakpoints is highlighted and classified into cases of micro-insertions,
     blunt ends or micro-homology.}
 
+The selling point of \maze is its ease of use tailored towards quick inspection
+of long-read sequencing data of, for example, amplicons. The sequences can be
+entered as standard FASTA or FASTQ files through a user interface in the web
+browser. Dotplots are calculated on the fly and displayed as in \cref{fig:maze}
+(left panel). \Ac{maze} also computes matches to the reverse complement sequence
+and displays those in red. Besides a one-vs.-one mode, \maze can compare many
+sequences to a single one, just as I needed in \cref{sec:complex_invs_validation}
+to inspect long reads of amplicon sequencing. Moreover, Maze can also compare
+multiple pairs of sequences, a scenario that became relevant once optimal
+assemblies for diferent loci were available in \cref{sec:breakpoints}. In those
+sections an early version of \maze was used and plots were written as PDF files
+instead of displayed in the web browser.
+
+The current version of \maze uses the popular d3 library\footnote{Found online
+at \url{https://d3js.org/}} to display dotplots. A user can readily adapt the
+minimum length and type of matches to be calculated via in-app settings. The
+dotplot can be panned and zoomed-in using the computer mouse, saved as PDF, and
+by using keyboard shortcuts a user can quickly browse through multiple dotplots.
+At last, after I successfully utilized \maze’s dotplots to solve the inversion
+validation mystery of \cref{sec:complex_invs_validation}, I extended its
+functionality by an analysis module dedicated to breakpoints of sequence
+matches, as I describe in the upcoming section.
 
 
-...\acs{mummer}'s dotplot function\footnote{More precisely, by the \texttt{mummerplot} command.
-Examples can be found online at \url{http://mummer.sourceforge.net/examples/}.}.
 
 
 
 \subsection{Breakpoint identification and characterization}
 \label{sec:maze_breakpoints}
+
+Any analysis of \sv breakpoints depends a reasonable definition of what
+breakpoints actually are and how to determine them. I found a convincing
+solution in an algorithm called \last-split \citep{Frith2015}: given a sequence
+and a reference genome, it finds the optimal alignments that maximally cover the
+query sequence without allowing overlaps.  This idea treats the contiguous
+sequence (from assembled reads, in this case) as the true allele and tries to
+split it into consecutive parts that can be assigned to their most likely
+origins in the reference genome. This also means that while the sequence is
+split into consecutive stretches, matches on the reference are unconstrained and
+can potentially overlap, e.g. in the case of a duplication. This method was
+specifically designed with inversions and complex rearrangements in mind
+and therefor determines breakpoints accurately in the given scenario.
+
+The breakpoint module of \maze runs \last-split on the two given sequences to
+determine breakpoints. First of all, the aligning parts are highlighted inside
+the dotplot as rectangles that become visible when a user crosses the respective
+entry with the computer mouse (\cref{fig:maze}, on the left). In addition to
+that, a separate field on the right displays the exact sequence alignment in
+form of text (not shown in \cref{fig:maze}). Given the breakpoints from
+\last-split, \maze can compute the characteristics of that breakpoint in respect
+to the reference sequence. For example, if the two consecutive parts of the
+sequence match to regions of the reference genome that slightly overlap, the
+exact position of the breakpoint is ambiguous. This is what is commonly
+understood as micro-homology (see \cref{sec:mechanisms} and compare to
+figure 1 in \cite{Hastings2009}) and can be evidence for a
+micro-homology-dependent mechanism forming the \sv. If the two regions are not
+exactly contiguous in the sequence because no according match to the reference
+is found, an insertion of other, possibly non-templated DNA occurred. \Ac{maze}
+graphically arranges the alignments around the breakpoints, detects such
+features and reports them in a separate panel on the right, as can be seen in
+\cref{fig:maze} (right panel). The respective matches are highlighted within the
+alignment to direct the user’s attention to the right position belonging to the
+breakpoint. A current shortcoming is that the extension of this alignment does
+not allow gaps. In order to do so, another alignment would have to be computed,
+yet of a region which was deemed irrelevant by the \last aligner. Additionally
+to the breakpoints on the query sequence, a third panel focuses on the
+breakpoints of the reference sequence (not shown in \cref{fig:maze}).
+Neighboring reference matches also can overlap, meaning the affected bases are
+duplicated in the sequence, or can be distinct with a small gap in between.
+These micro-duplications and micro-deletions are similarly displayed up to a
+size of 100~bp by \maze.
+
+I used an early version of this breakpoint analysis tool to obtain the results
+in \cref{sec:breakpoints}. Together with custom scripts the analysis was
+automated to process a large number of loci sequentially, allowing me to
+generate \crefrange{fig:inv_assemblies_del_sizes}{fig:inv_assemblies_microhomology}.
+In the current available version\footnote{\url{https://github.com/dellytools/maze/commit/106803d350719188181ce39cbb5c832822b724da}}
+of \maze this functionality was abandoned for the sake of simplicity. I utilized
+expandable fields to support a user in showing or hiding certain information and
+adopted the modern look and feel of the main window of Maze that was designed by
+\markus.
+
+In summary, \maze is a user-friendly and easy-to-install software specifically
+designed for inspecting long reads or assemblies in the range up to 50~kb. It
+allows a user to visually browse through their sequence data to (1) judge the
+quality (compare, for example, \pacbio to \minion data in \cref{fig:complex_invs}),
+(2) distinguish successful sequencing reads from artifacts and (3) discover
+interesting alleles such as complex rearrangements. The additional breakpoint
+module of \maze comes into play whenever a user is interested in characteristics
+of the breakpoint junctions of \acp{sv}. \Ac{maze} uses current web browser-based
+technology and a modern design to offer a responsive user experience and was
+instrumental in gaining the scientific insights described in
+\crefrange{complex_invs_validation}{sec:breakpoints}.
+
+
+
 
 
 
