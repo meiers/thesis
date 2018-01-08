@@ -291,7 +291,7 @@ potential allelic dropouts (as explained in \cref{sec:complex_invs_artifacts}).
     reference locus (horizontal) via dotplots using maximal unique matches
     of lengths at least 10 (\pacbio) or 8 (MinION). Axes denote sequence lengths
     in base pairs. Original read names are included for later reference. See
-    \cref{sec:dotplot} for an explanation of the concept of dotplots.}
+    \cref{sec:maze_dotplot} for an explanation of the concept of dotplots.}
 
 Most interestingly, we observed that only a minority of cases turned out to be
 simple inversions in the sense that a contiguous stretch of DNA is re-oriented
@@ -487,22 +487,6 @@ to be crucial in achieving near-perfect quality.
     limited, which potentially explains shorter sizes for the rearranged part in
     loci with higher complexity.}
 
-\figuretwocolumns{inv_assemblies_del_sizes.pdf}
-    {inv_assemblies_del_sizes}
-    {Size of flanking deletions}
-    {Size of deletions (detected via \acs{last}-split, see section XXX) next to
-    inverted sequences in all assembled loci that were classified as
-    ``simple inversion'', ``inversion flanked by deletion'', or ``inversion
-    flanked by multiple deletions''.}
-        {inv_assemblies_microhomology.pdf}
-    {inv_assembles_microhomology}
-    {Breakpoint characteristics of complex loci vs. deletions}
-    {Micro-deletions or -duplications (a.k.a. micro-homology) as identified by
-    \last-split are reported for assembled loci with exactly two breakpoints
-    (199/210) as well as for a set of 12,206 single-breakpoint deletions (REF needed).
-    TODO: information on tests performed}
-
-
 Afterwards I prepared the contigs for visualization-guided manual validation. I
 inserted all contigs into a database and used an early version of \maze (see
 \cref{sec:maze}) to prepare dotplots. The goal was to decide whether they (a)
@@ -529,9 +513,35 @@ separately (e.g. within the inverted part and the flanking parts separately) and
 known \acp{snv} were not counted. Eventually I gathered high quality,
 basepair-resolution sequence information for 210 loci (and 365 sample) of
 different classes of variants. The sizes and qualities of the best sequence per
-locus are shown in \cref{fig:inv_assemblies_qualities} and are the technology yielding the best data per
-locus is explicitely listed in \cref{tab:inversionlocilist}.
+locus are shown in \cref{fig:inv_assemblies_qualities} and are the technology
+yielding the best data per locus is explicitely listed in
+\cref{tab:inversionlocilist}.
 
+
+
+
+\subsection{Sizes of rearranged sequences suggest origin through a common mechanism}
+
+I used sequence alignments calculated by the split-mode of \last, as implemented
+in \maze, to determine each mapping segment and to resolve breakpoints (see
+\cref{sec:maze_breakpoints} for more detail). This way I resolved the sizes of
+the rearranged sequence of all different classes of \sv, as shown in
+\cref{fig:inv_assemblies_del_sizes}.
+
+\figuretwocolumns{inv_assemblies_del_sizes.pdf}
+    {inv_assemblies_del_sizes}
+    {Size of flanking deletions}
+    {Size of deletions (detected via \acs{last}-split, see method in
+    \cref{sec:maze_breakpoints}) next to inverted sequences in all assembled
+    loci that were classified as ``simple inversion'', ``inversion flanked by
+    deletion'', or ``inversion flanked by multiple deletions''.}
+        {inv_assemblies_microhomology.pdf}
+    {inv_assembles_microhomology}
+    {Breakpoint characteristics of complex loci vs. deletions}
+    {Micro-deletions or -duplications (a.k.a. micro-homology) as identified by
+    \last-split are reported for assembled loci with exactly two breakpoints
+    (199/210) as well as for a set of 12,206 single-breakpoint deletions from
+    \cite{Sudmant2015}.}
 
 
 
@@ -543,7 +553,7 @@ locus is explicitely listed in \cref{tab:inversionlocilist}.
 
 
 \subsection{Interactive match visualization in the web browser}
-\label{sec:dotplot}
+\label{sec:maze_dotplot}
 
 
 \figuretextwidth{maze_screenshot.pdf}{maze}
@@ -562,6 +572,9 @@ Examples can be found online at \url{http://mummer.sourceforge.net/examples/}.}.
 
 
 \subsection{Breakpoint identification and characterization}
+\label{sec:maze_breakpoints}
+
+
 
 
 
