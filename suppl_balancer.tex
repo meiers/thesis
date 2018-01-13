@@ -1,6 +1,7 @@
 \chapter{Supplementary information to \texorpdfstring{\cref{sec:balancer}}{the balancer project}}
 \label{sec:suppl_balancer}
 
+
 The content of this supplementary chapter is largly taken from the supplementary
 methods in \textbf{our paper}\todo{cite our paper} and partly adapted when
 neccessary.
@@ -41,4 +42,53 @@ from deeper investigations of mutational signatures.
      base substitutions in their three-nucleotide context for balancer- and
      wild type-specific \acp{snv}. \Acp{snv} that are found in DGRP were
      removed, leaving 58,457 variants.}
+
+
+
+
+\section{Deletion calling}
+\label{sec:suppl_del}
+
+I used \delly version 0.7.2 on the \wgs data of the $F_0$ and $F_1$ data
+simultaneously and applied an extensive filtering procedure to reduce the number
+of false positive calls. From the initial 10,421 deletion calls, 5,150 dropped
+out because they were not flagged as ``QC PASS'', were not on one of the main
+chromosomes (\ac{chr2}, \ac{chr3}, or \ac{chrX}), had a mapping quality value of
+less than 60 or did not match the expected genotypes (i.e. balancer-specific,
+wild type-specific, and common - together constituting more than 90\% of the calls).
+Furthermore I required a minimum number of supporting read pairs for reference
+and alternative allele combined, namely 40 read pairs for ``imprecise'' \delly
+calls and 25 split reads for breakpoint-precise \delly calls.
+
+Next, I developed a dynamic read depth ratio filter that was applied to deletion
+predictions of 160~bp or larger.
+To this end, the read count within the predicted deletion was normalized by the
+summed read count in size-matched intervals flanking the locus and these values
+were compared between samples. I required a minimum difference in the read depth
+ratio between samples with different genotypes and this threshold increases
+dynamically with \sv size. This is motivated by the fact that for larger deletions
+the average read depth signal is more robust against local fluctuations in coverage.
+To give an example, this filter removed a number of predictions above 100~kb in
+size, which could be clearly identified as false positives by inspecting additional
+(e.g. Hi-C) data. At last I overlapped deletions with a mappability map to
+classify them into high (at least 50\% in a uniquely mappable region) or
+low-confidence loci. Eventually we obtained four call sets: 3,072 calls with
+high-confidence and below 50~bp, 737 calls with high confidence and from
+50~-~159~bp, 395 large calls with high confidence and 75 large ones with low
+confidence.
+
+As a validation \yad performed \pcr on randomly selected loci in the latter three
+categories. I designed primers using a lab-internal extension to \primerthree
+and \yad amplified 25 loci per category in both samples via \pcr.
+In the size range 50-159~bp 24 out of 25 loci validated, also 24/25 loci
+validated for high confidence calls of 160~bp, and 25/25 loci validated for
+low-confidence calls, yielding an estimated FDR of 2.66\%.
+At last we merged the set of \delly deletion calls into the set of small
+deletions called by \freebayes and chose a lower size cutoff of 15~bp. During
+the merging process \freebayes calls were given priority over matching \delly
+calls (based on 50\% reciprocal overlap). The final data set (referred to as
+``deletions'' in the main text) contains 8,340 deletions on chromosomes 2, 3 and
+X.
+
+
 
