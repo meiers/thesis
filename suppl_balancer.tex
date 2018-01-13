@@ -1,6 +1,28 @@
 \chapter{Supplementary information to \texorpdfstring{\cref{sec:balancer}}{the balancer project}}
 \label{sec:suppl_balancer}
 
+The content of this supplementary chapter is largly taken from the supplementary
+methods in \textbf{our paper}\todo{cite our paper} and partly adapted when
+neccessary.
+
+\section{SNV calling}
+\label{sec:suppl_snv}
+
+Both \wgs and mate pair sequencing data was mapped to
+\ac{dm6} using \bwamem version 0.7.15. \Ac{snv} and short indel calling was
+performed using \freebayes version v0.9.21-19 with disabled population priors on
+the \wgs data of both $F_0$ and $F_1$ samples simultaneously. The results were
+filtered using \vcflib based on a quality value of at least 30,
+a minimum of at least two reads carrying the allele to the right and to the left
+end, and on the fact that the allele was seen on at least two reads mapping in
+each direction. We further normalized variants, removed mutli-allelic variants,
+and decomposed multi-nucleotide substitutions (which are reported as haplotype
+blocks by \freebayes) into \acp{snv} using \vt (the sub-command \textsc{decompose\_blocksub}
+was used for decomposition). We finally remove contigs other than chromosome 2,
+3, and X and obtained a total of 860,095 \acp{snv} and small indels.
+
+
+
 \section{Mutational signature analysis}
 \label{sec:suppl_mutsign}
 
@@ -11,7 +33,6 @@ count base substitutions and their contexts of the remaining 58,457 variants
 and plotted their relative frequencies in \cref{fig:signatures}. The absence
 of striking differences between balancer and wild type spectra demotivated me
 from deeper investigations of mutational signatures.
-
 
 \figuretextplusmargin{snp_signatures_dgrp_removed.pdf}
     {signatures}
