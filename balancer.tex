@@ -88,5 +88,65 @@ removing \acp{snv} shared with the DGRP we did not observe any striking
 differences in the \snv signatures between wild type and balancers (see
 \cref{fig:signatures}).
 
-\subsection{Deletion calls and validation strategy}
-\subsection{Duplication call set}
+
+
+\subsection{\texorpdfstring{\Aclp{cnv}}{Copy number variants}}
+\label{sec:balancer_cnv}
+
+\figuretwocolumns
+    {SVsize_DEL.pdf}{svsize_del}{Deletion size distribution}
+    {The size distribution of final deletion calls (based on \delly and
+    \freebayes) is shown. Common deletions (present in both balancer and wild
+    type chromosomes) were excluded in the from 160~bp on. A higher number of
+     balancer- over wild type-specific deletions was observed and this ratio
+     increases with larger sizes.}
+    {SVsize_DUP.pdf}{svsize_dup}{Duplication size distribution}
+    {The final duplication set consisting of manually validated tandem
+    duplication and a set of three non-tandem duplications is shown.}
+
+
+\paragraph{Deletions}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabu}{lrrrr}
+        \toprule
+        Deletion subset           & \#Calls &  V &  I & Emp. \fdr\\
+        \midrule
+        \emph{<50~bp}             &   3,072 &  0 &  0 & \emph{unknown} \\
+        50 - 159~bp               &     737 & 24 &  1 &     4\% \\
+        160+~bp, low mappability  &      75 & 25 &  0 &     0\% \\
+        160+~bp, high mappability &     395 & 24 &  1 &     4\% \\
+        \midrule
+        Weighted average          &   4,279 &    &    & 0.375\% \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{pcrresults}{\Ac{pcr} for deletion validation}{Number of calls as
+        well as number number of validated (\textbf{V}) and invalidated
+        (\textbf{I}) loci as determined by \pcr. The proportion of validated
+        calls determines the empirical \ac{fdr} (\textbf{Emp. \fdr}).
+        Calls below 160~bp were not \pcr-validated.}
+\end{table}
+
+
+\paragraph{Duplications}
+
+\figuretextwidth{dup_validation_example.pdf}{dup_validation} % DUP00003911
+    {Signals used for duplication validation shown in an example}
+    {A tandem duplication at locus \textit{chr2R:7,520,066−7,526,996} is shown,
+    which was predicted based on paired-end read signature using \delly.
+    The additional signals
+    included for a visual validation are (1) a mappability track (fraction
+    of uniquely mappable reads), (2) the bi-allelic frequency (fraction of
+    reads supporting the alternative allele of an \snv), and (3)
+    the total read coverage (as genomic coverage, in 100bp windows). Bi-allelic
+    frequency is typically the clearest signal to discriminate true from false
+    copy number variants, but it reuqires the presence of \acp{snv}. Note }
+    \todo{describe bi-allelic frequency in intro; or here, if not there.}
+
+
+There are further examples in the supplementary material (see \crefrange{fig:dup_validation_wt}{fig:dup_validation_false}).
+
+\paragraph{Summary}
+
+
