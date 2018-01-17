@@ -119,24 +119,30 @@
         \figcap{#2}{#3}{#4}
     \end{figure}
 }
-\newcommand*\figuretwocolumns[8]{%
+\newlength\tmplengthone
+\newlength\tmplengthtwo
+\newcommand*\figuretwocolumns[9][0.5]{%
     \begin{figure}[!ht]
+        % tmplengthone := (#1-0.02)*\textwidth
+        \setlength\tmplengthone{\dimexpr#1\textplusmargin-0.02\textplusmargin\relax}
+        % tmplengthtwo := (1-#1-0.02)*\textwidth
+        \setlength\tmplengthtwo{\dimexpr\textplusmargin-#1\textplusmargin-0.02\textplusmargin\relax}
         \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
-            \begin{minipage}[b]{0.48\textplusmargin}
-                \includegraphics[width=0.48\textplusmargin]{#1}
+            \begin{minipage}[b]{\tmplengthone}
+                \includegraphics[width=\tmplengthone]{#2}
             \end{minipage}
             \hspace{0.04\textplusmargin}
-            \begin{minipage}[b]{0.48\textplusmargin}
-                \includegraphics[width=0.48\textplusmargin]{#5}
+            \begin{minipage}[b]{\tmplengthtwo}
+                \includegraphics[width=\tmplengthtwo]{#6}
             \end{minipage}\\[-\baselineskip]%
-            \begin{minipage}[t]{0.48\textplusmargin}
+            \begin{minipage}[t]{\tmplengthone}
                 \centering
-                \figcap{#2}{#3}{#4}
+                \figcap{#3}{#4}{#5}
             \end{minipage}
             \hspace{0.04\textplusmargin}
-            \begin{minipage}[t]{0.48\textplusmargin}
+            \begin{minipage}[t]{\tmplengthtwo}
                 \centering
-                \figcap{#6}{#7}{#8}
+                \figcap{#7}{#8}{#9}
             \end{minipage}
         \end{adjustbox}
     \end{figure}
