@@ -3,9 +3,43 @@
 
 \section{Motivation}
 
-\section{Study design}
+\section{Background}
+\subsection{Impact of \texorpdfstring{\acp{sv}}{SVs} in health and disease}
+\subsection{Three-dimensional chromatin organization and recent findings on its role in gene regulation}
 
-\section{Results}
+
+\section{Design of the study}
+
+\explain{\cyo}{chromosome 2 balancer, derived from original work of
+\citet{Oster1956}, which carries the \textit{Cy}
+allele, hence showing a characteristic phenotype of curly wings in adult flies
+\marginfig{dm_cyo.pdf}}
+
+%\margintext{\marginfig{balancer_chroms.pdf}\captionof{figure}{Lallalala}}
+
+\figuretwocolumns[0.38]
+    {balancer_chroms.pdf}{balancer_chroms}{Genome overview}{Schematic of the
+        four chromosomes of (female) \textit{D. melanogaster} flies of the wild
+        type line $F_0$ and of the double balancer cross $F_1$. \Ac{cyo} red,
+        \ac{tm3} blue. }
+    {balancer_crossing_scheme.pdf}{balancer_crossing_scheme}{Crossing scheme}{
+        The fly lines used in this study are derived from a homozygous wild type
+        line, denoted by \textit{+/+;+/+} or $F_0$ and a double balancer line
+        (\textit{w;If/CyO;Sb/TM3,Ser}). After a first cross adult flies are
+        selected for markers of both balancer chromosomes, yielding an $F_1$
+        generation (a.k.a. double balancer cross). A backcross with the initial
+        wild type line generates a pool of four different genotypes ($N_1$)
+        of which on average 25\% of both chromosome 2 and 3 are balancer
+        chromosomes.}
+
+\begin{itemize}
+\item Balancer chromosomes: \cite{Muller1928,Oster1956,Tinderholt1960,Miller2016}
+\end{itemize}
+
+
+
+
+\section{Mutational landscape of balanced chromosomes}
 
 \acreset{snv}
 \subsection{\Acp{snv}}
@@ -150,3 +184,28 @@ There are further examples in the supplementary material (see \crefrange{fig:dup
 \paragraph{Summary}
 
 
+
+\section{xxx}
+Karyotype\footnote{
+    Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
+    33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
+    \ac{tm3} = \textit{3Lt-65E 85E-79E 100C-100F2 92D1-85E 65E-71C
+    94D-93A 76C-71C 94F-100C 79E-76C 93A-92E1 100F3-3Rt}.
+    Source: \url{https://bdsc.indiana.edu/stocks/balancers/balancer_bps.html}.}
+
+\figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_hiC_rearrangements}
+    {Major rearrangements of the balancer chromosomes revealed by Hi-C}{
+    Haplotype-resolved Hi-C contact frequency maps of chromosomes 2 and 3 in
+    respect to the wild type reference genome are shown (A). Details of the data
+    processing can be found in \cref{sec:suppl_hic}. The bottom triangles show
+    characteristic ``bowtie-shaped'' patterns as well as gaps on the diagonal
+    that demarcate breakpoint junctions of the rearranged balancer chromosomes.
+    The respective sections of the reference genome are color-coded, with a grey
+    circle representing centromers.
+    These junctions can be followed to reconstruct the relative order of the
+    balancer chromosomes such as shown in the top panel (B). Vertical ``bowties''
+    represent a connection of segments in same orientation where as horizontal
+    ones mark junction of segments that are inverted in respect to one another.
+    The fully reconstructed order of the balancer genomes is shown in the bottom
+    panel (C). This matches previous annotation from karyotyping\footnotemark.
+    }
