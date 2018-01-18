@@ -185,7 +185,9 @@ There are further examples in the supplementary material (see \crefrange{fig:dup
 
 
 
-\section{xxx}
+\section{Validation of large chromosomal rearrangements in Hi-C data}
+\label{sec:balancer_hic_svs}
+
 Karyotype\footnote{
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
     33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
@@ -207,5 +209,20 @@ Karyotype\footnote{
     represent a connection of segments in same orientation where as horizontal
     ones mark junction of segments that are inverted in respect to one another.
     The fully reconstructed order of the balancer genomes is shown in the bottom
-    panel (C). This matches previous annotation from karyotyping\footnotemark.
-    }
+    panel (C). This matches previous annotation from karyotyping\footnotemark.}
+
+
+\figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
+    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
+    Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
+    The top panel displays differential unnormalized Hi-C fragment counts
+    ($\textrm{log}_2 \frac{\textrm{balancer}}{\textrm{wild type}}$)
+    colored from red (positive) to blue (negative). The panel below shows the
+    biallelic frequency. This duplication was initially discovered
+    based on the characteristic biallelic frequency signal and is validated by
+    a total increase of locus-internal Hi-C contacts on the balancer chromosome,
+    as seen as the red triangle. Moreover, a decrease in balancer-specific
+    contacts close to the diagonal left of the locus (blue) as
+    well as an increase left of the upper tip of the triangular region
+    suggest the duplication was inserted to the left in inverted orientation.
+    Hi-C data processing and plots were contributed by \alek.}
