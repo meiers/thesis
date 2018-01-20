@@ -34,6 +34,13 @@ allele, hence showing a characteristic phenotype of curly wings in adult flies
 
 \begin{itemize}
 \item Balancer chromosomes: \cite{Muller1928,Oster1956,Tinderholt1960,Miller2016}
+\item CCC studies in Drosophila: \cite{Sexton2012,Ghavi-Helm2014}
+\item General Hi-C studies: \cite{Dixon2012}
+\item DHS data set: \cite{Thomas2011}
+\item FlyBase \citep{Gramates2017} and modENCODE \citep{Celniker2009}
+\item Previous work of the Furlong lab: \cite{Furlong2001,Ghavi-Helm2014}
+\item Balancer breakpoints: \cref{tab:blancer_breakpoints}
+\item Maternal-to-zygote transition review \citep{Tadros2009}
 \end{itemize}
 
 
@@ -230,17 +237,31 @@ Karyotype\footnote{
 
 
 
-\section{ASE}
+\section{Global changes in gene expression}
+\label{sec:ase}
+
 
 \begin{itemize}
 \item Reviews: Tuuli Lappalainen \citep{Castel2015}
 \item Alelle-seq, using personalized genomes \citep{Rozowsky2014}
 \item Reference graphs \citep{Dilthey2015,Marschall2016,Novak101378}
+\item ASE tools \citep{Skelly2011,Mayba2014,Harvey2014,Romanel2015,VandeGeijn2015,Liu2016}
+\item ASE biases by mappinge etc. \citep{Degner2009,Stevenson2013}
 \end{itemize}
 
+
+\subsection{Controlling for maternally deposited mRNA in early embryos}
+\label{sec:maternalRNA}
 
 \figuretextwidth{ASE_histograms.pdf}{ASE_histograms}{Allelic mRNA ratio per gene}{
     Histograms of the fraction per gene of balancer RNA-seq fragments among the
     fragments that can be assigned to one of the haplotypes for three
     different RNA-seq experiments with two replicates each. The expected
-    fraction of 25\% is marked by a dotted line.}
+    fraction of 25\% is marked by a dotted line. Counts were derived as described
+    in \cref{sec:ase_impl}.}
+
+
+\subsection{Allele-specific expression detection}
+\label{sec:ase_impl}
+
+
