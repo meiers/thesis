@@ -172,7 +172,7 @@ are summarized by ``duplications'' in the main text.
 
 
 
-\section{Detail on ASE detection using DESeq2}
+\section{Detail on \texorpdfstring{\ase}{ASE} detection using DESeq2}
 \label{sec:suppl_deseq}
 The main idea is explained in \cref{sec:ase_impl}. Haplotype-resolved fragment
 counts were calculated using \textsc{HTSeq-count} \citep{Anders2015}.
@@ -183,6 +183,17 @@ reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
 2R, 3L, and 3R were considered). \deseq was tested with a design
 \texttt{\footnotesize \textasciitilde Replicate + Haplotype}. The resulting p-values were corrected using
 \textsc{FDRtool} \citep{Strimmer2008}.
+
+
+
+\section{Further \texorpdfstring{\ase}{ASE} related analyses}
+\label{sec:suppl_ase_more}
+
+\figuretextwidth{ASE_genes_around_bps.pdf}{suppl_ase_genes_around_bps}
+    {Number of \texorpdfstring{\ase}{ASE} genes around the breakpoints of large
+    chromosomal rearrangments}{This plot shows the number of significant \ase
+    genes at given distances to one of the large rearrangments, or to random
+    positions in the genome (quantiles of 500 random samplings are shown).}
 
 
 
