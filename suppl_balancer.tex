@@ -134,9 +134,10 @@ are summarized by ``duplications'' in the main text.
 
 \begin{table}[ht]
     \centering
+    {\small
     \begin{tabu}{llrrrl}
         \toprule
-        Balancer & Chrom & $5\prime$ bp. & $3\prime$ bp.      & Del.(-)/ Dup.(+) &   Genes affected  \\
+        Bal      & Chr & $5\prime$ bp. & $3\prime$ bp. &        Del/Dup & Genes affected  \\
         \midrule
         \cyo     & 2L    & 2,137,075   & 2,137,067   & +9               & GlyP: $3\prime$ UTR      \\
                  & 2L    & 12,704,657  & 12,704,649  & +9               & nAChRalpha6: intron \\
@@ -157,11 +158,15 @@ are summarized by ``duplications'' in the main text.
                  & 3R    & -           & -           & -                & unknown           \\
         \bottomrule
     \end{tabu}
+    }
     \tabcap{blancer_breakpoints}{Breakpoint positions of balancer chromosomes}{
         Breakpoint positions of the major rearrangements of both balancer
-        chromosomes were identified in Hi-C data and refined through their
+        chromosomes (Bal) were identified in Hi-C data and refined based on their
         paired-end signature uncovered by \delly. Values in italic could not be
-        resolved at the base pair level.
+        resolved at the base pair level. Between the $3\prime$ and $5\prime$ ends
+        of the breakpoints deletions or duplications can have occurred:
+        Deletions are states as negative integers, duplications as poitive
+        integers (Del/Dup).
     }
 \end{table}
 
