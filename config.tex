@@ -107,13 +107,13 @@
 %     2 = label
 %     3 = caption title
 %     4 = caption text
-\newcommand*\figuretextwidth[4]{%
+\newcommand*\figuretextwidth[4]{%                       <- figuretextwidth [4]
     \begin{figure}[!ht]
         \includegraphics[width=\textwidth,center]{#1}%
         \figcap{#2}{#3}{#4}
     \end{figure}
 }
-\newcommand*\figuretextplusmargin[4]{%
+\newcommand*\figuretextplusmargin[4]{%                  <- figuretextplusmargin [4]
     \begin{figure}[!ht]
         \includegraphics[width=\textplusmargin,inner]{#1}%
         \figcap{#2}{#3}{#4}
@@ -121,7 +121,7 @@
 }
 \newlength\tmplengthone
 \newlength\tmplengthtwo
-\newcommand*\figuretwocolumns[9][0.5]{%
+\newcommand*\figuretwocolumns[9][0.5]{%                 <- figuretwocolumns [8]
     \begin{figure}[!ht]
         % tmplengthone := (#1-0.02)*\textwidth
         \setlength\tmplengthone{\dimexpr#1\textplusmargin-0.02\textplusmargin\relax}
@@ -147,6 +147,12 @@
         \end{adjustbox}
     \end{figure}
 }
+\newcommand*\figuremargin[4]{%                          <- figuremargin [4]
+    \marginpar{%
+        \marginfig{#1}%
+        \captionof{figure}[#3]{\label{fig:#2}\textbf{#3.\enspace} #4}}%
+}
+
 
 
 %% Captions

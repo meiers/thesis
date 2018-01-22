@@ -94,6 +94,7 @@
 }
 
 
+
 % tools
 \DeclareAcronym{delly}{
     short=Delly,
@@ -167,6 +168,19 @@
     long=Primer 3\footnote{Available online at \url{https://primer3plus.com/cgi-bin/dev/primer3plus.cgi}} \citep{Untergasser2012},
     class=tools
 }
+\DeclareAcronym{STAR}{
+    short=STAR,
+    format=\scshape,
+    long=STAR\footnote{Available online at \url{https://github.com/alexdobin/STAR}} \citep{Dobin2013},
+    class=tools
+}
+\DeclareAcronym{deseq}{
+    short=DESeq2,
+    format=\scshape,
+    long=DESeq2\footnote{Available via Bioconductor (\url{https://bioconductor.org/packages/release/bioc/html/DESeq2.html})} \citep{Love2014},
+    class=tools
+}
+
 
 
 
@@ -228,3 +242,8 @@
     long=Eileen Furlong,
     class=people
 }
+
+
+% Additional abbreviations not handled via ACRO
+\newcommand\Npat{$N_1^{pat}$}
+\newcommand\Nmat{$N_1^{mat}$}

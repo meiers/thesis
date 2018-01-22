@@ -245,8 +245,9 @@ Karyotype\footnote{
 \item Reviews: Tuuli Lappalainen \citep{Castel2015}
 \item Alelle-seq, using personalized genomes \citep{Rozowsky2014}
 \item Reference graphs \citep{Dilthey2015,Marschall2016,Novak101378}
-\item ASE tools \citep{Skelly2011,Mayba2014,Harvey2014,Romanel2015,VandeGeijn2015,Liu2016}
+\item ASE tools \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGeijn2015,Liu2016}
 \item ASE biases by mappinge etc. \citep{Degner2009,Stevenson2013}
+\item further tools: \deseq, \STAR.
 \end{itemize}
 
 
@@ -264,4 +265,43 @@ Karyotype\footnote{
 \subsection{Allele-specific expression detection}
 \label{sec:ase_impl}
 
+
+
+
+\begin{table}[ht]
+    \centering
+    \begin{tabu}{lrrrr}
+        \toprule
+        Data set   & Total reads   & Balancer   & WT   & Ambiguous \\
+        \midrule
+        \Npat\enspace 1. replicate & 51,560,368  & 6.151\% & 22.489\%  & 0.136\% \\
+        \Npat\enspace 2. replicate & 52,618,060  & 5.762\% & 21.471\%  & 0.139\% \\
+        \Nmat\enspace 1. replicate & 54,521,194  & 8.030\% & 20.879\%  & 0.142\% \\
+        \Nmat\enspace 2. replicate & 48,179,068  & 7.834\% & 20.352\%  & 0.153\% \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{balancer_rnaseq}{Haplotype separation of RNA-seq data}{
+        Fraction of RNA-seq read pairs that could be assigned to either one of
+        the haplotypes balancer or wild type (WT) ot that contained conflicting
+        variants (ambiguous). The difference to 100\% in each comes from read
+        pairs that could not be assigned.}
+\end{table}
+
+
+\figuretextwidth{DESeq2_N1_6_8h.pdf}{DESeq}{ASE analysis based on
+    \texorpdfstring{\deseq}{DESeq2}}{Average haplotype-resolved fragment count
+    per gene across four replicates vs. log 2 fold change of balancer over wild
+    type counts are shown. A single outlier to the right was trimmed.}
+
+
+\subsection{RNA-seq control experiments}
+\label{sec:ase_controls}
+
+
+
+
+\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE fractions per chromosome}{ASE
+    fraction detected on each of the chromosomes 2, 3, and X in a female adult
+    line $F_1^{f}$. Error bars indicate 99\% confidence intervals from a binomial
+    test.}
 
