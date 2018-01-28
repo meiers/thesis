@@ -1,12 +1,87 @@
-\chapter{Effects of \acsp{sv} on gene expression and chromatin organisation}
+\chapter{Effects of SVs on gene expression and chromatin
+organization in \texorpdfstring{\textit{D. melanogaster}}{D. melanogaster}}
 \label{sec:balancer}
 
-\section{Motivation}
+
+
+The research projects described in previous chapters focused on the technical
+aspects of identifying and characterizing \acp{sv}. For the project described in
+this chapter I teamed up with \yad, \alek and \eileen to study the functional
+impact of \acp{sv}, specifically of large chromosomal rearrangements, in the model
+organism \textit{Drosophila melanogaster}. Yet also in this chapter recent
+sequencing technologies, notably \hic, were instrumental in the characterization
+of \acp{sv}, which was an essential step of the project. All wet lab experiments
+described below were performed by \yad with the help of XXX\todo{who helped Yad?}.
+\alek implemented all \hic- and Capture \hic-related analyses, which are hence
+only depicted briefly. All other computational analyses including all figures
+are my own work if not explicitly stated differently. Supplementary information
+can be found in \cref{sec:suppl_balancer}. At the time of writing the study was
+not yet complete - thus the following should be considered a status report of
+ongoing work.
+
+
 
 \section{Background}
-\subsection{Impact of \texorpdfstring{\acp{sv}}{SVs} in health and disease}
-\subsection{Three-dimensional chromatin organization and recent findings on its role in gene regulation}
+\label{sec:balancer_background}
 
+
+\subsection{Impact of \texorpdfstring{\acp{sv}}{SVs} in health and disease}
+
+Population-scale studies revealed that \acp{sv} are a major contributor to
+genetic variation in the human population \citep{Conrad2010} – in fact they
+contribute more base pair differences than \acp{snv} \citep{Sudmant2015}.
+Besides their abundance in healthy individuals, \acp{sv} had earlier already
+been recognized for their role in a number of diseases, as
+\citet{Zhang2009,Weischenfeldt2013,Carvalho2016} review in more detail.
+
+The consequences certain \acp{sv} imply can range from purely molecular
+phenotypes, such as altered gene expression, to little severe (e.g. the efficiency of
+starch digestion depending on the copy number of \textit{AMY1} \citep{Perry2007})
+or more severe phenotypes (e.g. red-green blindness, caused by \acp{cnv} on
+chromosome X \citep{Nathans1986}), to disease or to an increased susceptibility
+towards a disease (e.g. to complex diseases such as autoimmunity
+\citep{Fanciulli2007} or autism \citep{Sebat2007}). Especially \acp{cnv}, the
+most-frequently studied type of \sv, have been linked to Mendelian diseases
+\citep[table 2]{Zhang2009} and are frequently involved in cancer
+\citep{Beroukhim2010}. Yet the types of \acp{sv} linked to disease are by far
+not restricted to localized deletions or duplications: Trisomy 21, as an example
+for aneuploidy in general, causes Down syndrome and was among the earliest
+identified genetic diseases \citep{Lejeune1959}. Also inversions were identified
+as the cause of several Mendelian diseases \citep{Feuk2010}. Recurrent
+translocations, often creating gene fusions, are known to be driving many
+different cancer types \citep{Mertens2015} and also transposable elements have
+been noted be to play a role in cancer \citep{Burns2017}.
+
+The mechanisms by which \acp{sv} can induce these phenotypic consequences are
+manifold, too: Breakpoints of \acp{sv} that fall into a gene may cause its loss
+of function. Aforementioned gene fusions can create novel chimeras that
+potentially exert fundamentally different functions from the original genes
+\citep{Mertens2015}. Copy number gains or losses lead to dosage imbalance, with
+critical consequences for many cancer-associated genes \citep{Fehrmann2015}, and
+a heterozygous loss or a \loh event can bring recessive mutations into play that
+had been masked beforehand.
+
+Furthermore \acp{sv} may impact on the molecular level, e.g. on gene expression,
+which can partly be studied even if not associated with any real phenotype. In
+the context of \explain{expression quantitiative trail loci}{are genomic loci
+with different alleles that influence the expression of (typically a single) genes
+not neccessarily in close proximity.} analyses
+more and more such effects have lately been found \citep{Sudmant2015,Chiang2017}.
+Causative \acp{sv} need not affect the actual gene itself, but could target
+regulatory sequences in proximity or elsewhere in the genome instead. This is
+typically the case for aforementioned expression quantitative trait loci, yet
+the (then very surprising) discovery was already made in 1979 in a row of
+heritable blood diseases named thalassaemia \citep{Fritsch1979}.
+
+At last, another mechanism has recently gained attention in which \acp{sv}
+neither affect genes nor regulatory sequences, but re-model the
+three-dimensional chromatin organization instead. As this is a central aspect of
+our study, it is further elaborated in \todo{refer to right section}.
+
+
+
+\subsection{Three-dimensional chromatin conformation}
+\label{sec:chromatin_conformation}
 
 
 \figuremargin{TAD_schematic_zaugg.jpg}{TAD_schematic}{Schematic of

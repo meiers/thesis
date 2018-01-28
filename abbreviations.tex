@@ -34,24 +34,6 @@
     format=\addfontfeature{Numbers=Lining},
     long={Third multiple 3, Serrate}
 }
-\DeclareAcronym{chr2}{
-    short=Chr2,
-    format=\scshape\addfontfeature{Numbers=Lining},
-    long=chromosome 2,
-    class=noprint
-}
-\DeclareAcronym{chr3}{
-    short=Chr3,
-    format=\scshape\addfontfeature{Numbers=Lining},
-    long=chromosome 3,
-    class=noprint
-}
-\DeclareAcronym{chrX}{
-    short=ChrX,
-    format=\scshape,
-    long=chromosome X,
-    class=noprint
-}
 \DeclareAcronym{pcr}{
     short=PCR,
     long=polymerase chain reaction
@@ -95,6 +77,10 @@
 \DeclareAcronym{ase}{
     short=ASE,
     long=allele-specific expression
+}
+\DeclareAcronym{loh}{
+    short=LOH,
+    long=loss of heterozygosity
 }
 
 
@@ -186,10 +172,29 @@
 }
 
 
+
 % do not print
 \DeclareAcronym{ccby4}{
     short=CC BY 4.0,
     long=Creative Commons Attribution 4.0 {\footnotesize (\url{https://creativecommons.org/licenses/by/4.0/})},
+    class=noprint
+}
+\DeclareAcronym{chr2}{
+    short=Chr2,
+    format=\scshape\addfontfeature{Numbers=Lining},
+    long=chromosome 2,
+    class=noprint
+}
+\DeclareAcronym{chr3}{
+    short=Chr3,
+    format=\scshape\addfontfeature{Numbers=Lining},
+    long=chromosome 3,
+    class=noprint
+}
+\DeclareAcronym{chrX}{
+    short=ChrX,
+    format=\scshape,
+    long=chromosome X,
     class=noprint
 }
 
@@ -197,12 +202,20 @@
 % technologies
 \DeclareAcronym{pacbio}{
     short=PacBio,
-    long=Pacific BioSciences%
+    long=Pacific BioSciences,
+    class=noprint
 }
 \DeclareAcronym{minion}{
     short=ONT MinION,
-    long=Oxford Nanopore Technologies MinION%
+    long=Oxford Nanopore Technologies MinION,
+    class=noprint
 }
+\DeclareAcronym{hic}{
+    short=Hi-C,
+    long=chromatin conformation capture followed by high-throughput sequencing,
+    class=noprint
+}
+
 
 
 
@@ -259,3 +272,11 @@
 \newcommand\Nmat{$N_1^{mat}$}
 \newcommand\Fcyo{$F_1^{CyO}$}
 \newcommand\Ftm{$F_1^{TM3}$}
+
+
+
+% NEver expand the following terms, e.g. people
+\acuse{tobias,markus,adrian,benjamin,andreas}
+\acuse{jan,eileen,yad,alek}
+\acuse{hic}
+
