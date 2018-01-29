@@ -104,13 +104,66 @@ under \acl{ccby4}.}
 
 
 \section{Design of the study}
+\label{sec:balancer_study_design}
 
-\explain{\cyo}{chromosome 2 balancer, derived from original work of
-\citet{Oster1956}, which carries the \textit{Cy}
-allele, hence showing a characteristic phenotype of curly wings in adult flies
-\marginfig{dm_cyo.pdf}}
+In this study we set out to understand how genomic aberrations such as the
+disruption of \acp{tad} caused by large chromosomal rearrangements and other
+\acp{sv} can affect the regulation of surrounding genes. In contrast to previous
+studies (as outlined in \cref{sec:disrupting_tads}) we explicitly
+focused on a phenotypically healthy system where no dominating effects, but
+rather modest changes in molecular phenotypes were to be expected. We think this
+work will complement previous studies, which had investigated rather
+pathological situations, and open a new perspective on the functional impact of
+\acp{tad}. Moreover, instead of selecting a single locus we aimed at testing
+multiple rearrangements in a genome-wide fashion to gain a broader understanding
+on the generality of such effects.
 
-%\margintext{\marginfig{balancer_chroms.pdf}\captionof{figure}{Lallalala}}
+
+
+
+\subsection{Balancer chromosomes carry large genomic rearrangements}
+\label{sec:balancer_balancers}
+
+We found a suitable model system for this task in so-called balancer chromosomes
+of \textit{Drosophila melanogaster}. These naturally derived chromosomes have a
+long tradition in fly genetics and are frequently used as a tool to keep
+recessive lethal mutations from being lost from the population. Three relevant
+features allow them to perform this task: (1) they carry recessive lethal
+mutations so that homozygous offspring will not live, effectively balancing the
+alleles in a population. This further requires that haplotypes remain intact and
+are not exchanged with their homologue, so consequently (2) balancer chromosomes
+suppress recombination by disrupting homologous pairing. This is achieved by the
+introduction of multiple large inversions via, for example,
+\explain{X-ray mutagenesis}{Balancer chromosomes date back to the work of
+    Hermann Joseph Muller, who in the 1920s studied mutagenesis through X-ray
+    radiation \citep{Muller1928} and received a Nobel prize in 1948\footnote{See
+    more in a blog post from Laurence A. Moran:
+    \url{https://sandwalk.blogspot.de/2008/10/hermann-muller-invented-balancer.html}}}.
+(3) Balancer chromosomes include dominant marker alleles so that carriers can be
+readily detected based on their phenotype in adult stage. Such balancer
+chromosomes are nowadays available for all the major chromosomes 2, 3, and X.
+Interestingly, despite their common usage only recently some balancer
+chromosomes had been characterized via whole-genome sequencing \citep{Miller2016}.
+
+We chose balancer chromosomes for chromosome 2 and 3, namely \explain{\cyo}{
+    chromosome 2 balancer, derived from original work of \citet{Oster1956},
+    which carries the \textit{Cy} allele, hence showing a characteristic
+    phenotype of curly wings in adult flies \marginfig{dm_cyo.pdf}}
+and TM3 \citep{Tinderholt1960} to create a double balancer line, named $F_1$.
+See \cref{fig:balancer_chroms} for an overview of the \textit{D. melanogaster}
+genome of both the wild type line and the double balancer line utilized in this
+study. For both balancer chromosomes the major rearrangements had been
+previously characterized by karyotyping (see
+note\footnoteref{footnote:balancer_karyotype} and
+\cref{fig:balancer_hiC_rearrangements}). The idea behind using two balancer
+chromosomes was to effectively increase the number of genomic rearrangements to
+be studied, which was an important consideration early on in the project.
+Together both balancer chromosomes carry 16 breakpoints of large, partly
+centromere-spanning inversions and we expected them to contain additional
+sub-microscopic \acp{sv} related to their mutagenic origin. Accordingly, one of
+the first step of the study was a deep characterization of the mutational
+landscape  of the balancer chromosomes, which is presented in
+\cref{sec:balancer_mutational_landscape}.
 
 \figuretwocolumns[0.38]
     {balancer_chroms.pdf}{balancer_chroms}{Genome overview}{Schematic of the
@@ -127,21 +180,77 @@ allele, hence showing a characteristic phenotype of curly wings in adult flies
         of which on average 25\% of both chromosome 2 and 3 are balancer
         chromosomes.}
 
-\begin{itemize}
-\item Balancer chromosomes: \cite{Muller1928,Oster1956,Tinderholt1960,Miller2016}
-\item CCC studies in Drosophila: \cite{Sexton2012,Ghavi-Helm2014}
-\item General Hi-C studies: \cite{Dixon2012}
-\item DHS data set: \cite{Thomas2011}
-\item FlyBase \citep{Gramates2017} and modENCODE \citep{Celniker2009}
-\item Previous work of the Furlong lab: \cite{Furlong2001,Ghavi-Helm2014}
-\item Balancer breakpoints: \cref{tab:blancer_breakpoints}
-\item Maternal-to-zygote transition review \citep{Tadros2009}
-\end{itemize}
+
+
+
+
+\subsection{Studying \texorpdfstring{\textit{cis}}{cis}-regulatory effects via
+    \texorpdfstring{\acl{ase}}{allele-specific expression}}
+\label{sec:balancer_ase_motivation}
+
+To study the effects of \acp{sv} on gene regulation we wanted to compare global
+gene expression of the balancer chromosomes against expression of the wild type
+homologues. This could principally be done by comparing two different fly
+strains, one carrying genomic rearrangements and one without. However, while
+this is also not possible using balancer chromosomes that cannot be
+in a homozygous state, this approach would make it difficult to distinguish
+\textit{cis}-regulation, i.e. the effect of alterations of the DNA itself, from
+\textit{trans}-regulation such as an altered expression of some transcription
+factor. This is why another central foundation of this study was to compare wild
+type chromosomes and balancer chromosomes within the same nucleus via \ase. This
+is achieved by measuring gene expression separately for both alleles, where
+alleles differ by naturally occurring variation, notably \acp{snv}.
+Since we were able to resolve complete haplotypes in this study, we could
+measure expression not only at single alleles but could assign alleles to
+the balancer- or wild type chromosomes and can thus distinguish up- and
+down-regulated genes of the balancer chromosomes in respect to the wild type
+expression. \Crefrange{sec:balancer_maternal_rna}{sec:balancer_ase_impl} provide
+more detail on the procedure.
+We assume that the vast majority of \acp{snv} simply tag alleles but do not have
+an effect on their regulation, or that this effect is negligible in comparison
+to larger rearrangements. This might not be true in all cases and it can indeed
+be difficult to assign a change in expression to the respective functional
+mutation.
+
+
+
+
+
+\subsection{Haplotype-resolved Hi-C data to study chromatin conformation}
+\label{sec:balancer_study_design_hic}
+
+A central point of this research study was to explore the three-dimensional
+chromatin conformation of the highly rearranged balancer chromosomes and to link
+this to observed \ase. Similarly to gene expression we also needed to measure
+chromatin conformation in a haplotype-resolved manner. We hence performed a \hic
+experiment and again used \acp{snv} to distinguish fragments belonging to
+balancer- or wild type chromosomes. As a matter of fact these haplotype-specific
+contact frequency maps an additionally be utilized to characterize genomic
+rearrangements (described in \cref{sec:balancer_hic_svs}).
+
+Early on we made a decision to study fly embryos (instead of adult flies) for
+mainly two reasons: To begin with, \textit{D. melanogaster} embryos are well
+described, there is an outstanding amount of external data available
+\citep{Gramates2017,Celniker2009}, and the Furlong lab has years of experience
+with them (e.g. \cite{Furlong2001,Ghavi-Helm2014}). The second point is a
+technical limitation in that it is experimentally difficult (if not infeasible)
+to extract intact nuclei from adult flies, which is a crucial step to any
+3C-based experiment. Collecting double balancer embryos, on the other hand, is
+not possible based on markers only expressed in an adult stage. We hence decided
+to collect fly embryos from a backcross of the double balancer line ($F_1$) with
+the original wild type line ($F_0$). The resulting pool, termed $N_1$, is a mix
+of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
+effectively 25\% of chromosomes 2 and 3 are balancer chromosomes.
+
+In the subsequent sections I describe the methodology and our findings on the
+effect genomic rearrangements have on chromatin organization and gene regulation.
+
 
 
 
 
 \section{Mutational landscape of balanced chromosomes}
+\label{sec:balancer_mutational_landscape}
 
 \acreset{snv}
 \subsection{\Acp{snv}}
