@@ -11,7 +11,7 @@ impact of \acp{sv}, specifically of large chromosomal rearrangements, in the mod
 organism \textit{Drosophila melanogaster}. Yet also in this chapter recent
 sequencing technologies, notably \hic, were instrumental in the characterization
 of \acp{sv}, which was an essential step of the project. All wet lab experiments
-described below were performed by \yad with the help of XXX\todo{who helped Yad?}.
+described below were performed by \yad with the help of \rebecca.
 \alek implemented all \hic- and Capture \hic-related analyses, which are hence
 only depicted briefly. All other computational analyses including all figures
 are my own work if not explicitly stated differently. Supplementary information
@@ -42,7 +42,7 @@ chromosome X \citep{Nathans1986}), to disease or to an increased susceptibility
 towards a disease (e.g. to complex diseases such as autoimmunity
 \citep{Fanciulli2007} or autism \citep{Sebat2007}). Especially \acp{cnv}, the
 most-frequently studied type of \sv, have been linked to Mendelian diseases
-\citep[table 2]{Zhang2009} and are frequently involved in cancer
+\citep[see table 2]{Zhang2009} and are frequently involved in cancer
 \citep{Beroukhim2010}. Yet the types of \acp{sv} linked to disease are by far
 not restricted to localized deletions or duplications: Trisomy 21, as an example
 for aneuploidy in general, causes Down syndrome and was among the earliest
@@ -58,11 +58,11 @@ of function. Aforementioned gene fusions can create novel chimeras that
 potentially exert fundamentally different functions from the original genes
 \citep{Mertens2015}. Copy number gains or losses lead to dosage imbalance, with
 critical consequences for many cancer-associated genes \citep{Fehrmann2015}, and
-a heterozygous loss or a \loh event can bring recessive mutations into play that
-had been masked beforehand.
+a heterozygous deletion or a \loh event can bring recessive mutations into play
+that had been masked beforehand.
 
 Furthermore \acp{sv} may impact on the molecular level, e.g. on gene expression,
-which can partly be studied even if not associated with any real phenotype. In
+which can partly be studied even if not associated with a real phenotype. In
 the context of \explain{expression quantitiative trail loci}{are genomic loci
 with different alleles that influence the expression of (typically a single) genes
 not neccessarily in close proximity.} analyses
@@ -76,7 +76,7 @@ heritable blood diseases named thalassaemia \citep{Fritsch1979}.
 At last, another mechanism has recently gained attention in which \acp{sv}
 neither affect genes nor regulatory sequences, but re-model the
 three-dimensional chromatin organization instead. As this is a central aspect of
-our study, it is further elaborated in \todo{refer to right section}.
+our study, it is further elaborated in \cref{sec:disrupting_tads}.
 
 
 
@@ -182,8 +182,8 @@ in a homozygous state, this approach would make it difficult to distinguish
 \textit{cis}-regulation, i.e. the effect of alterations of the DNA itself, from
 \textit{trans}-regulation such as an altered expression of some transcription
 factor. This is why another central foundation of this study was to compare wild
-type chromosomes and balancer chromosomes within the same nucleus via \ase. This
-is achieved by measuring gene expression separately for both alleles, where
+type chromosomes and balancer chromosomes within the same nucleus via \acf{ase}.
+This is achieved by measuring gene expression separately for both alleles, where
 alleles differ by naturally occurring variation, notably \acp{snv}.
 Since we were able to resolve complete haplotypes in this study, we could
 measure expression not only at single alleles but could assign alleles to
@@ -219,27 +219,27 @@ mutation.
 \subsection{Haplotype-resolved Hi-C data to study chromatin conformation}
 \label{sec:balancer_study_design_hic}
 
-A central point of this research study was to explore the three-dimensional
+Another central point of the study was to explore the three-dimensional
 chromatin conformation of the highly rearranged balancer chromosomes and to link
 this to observed \ase. Similarly to gene expression we also needed to measure
 chromatin conformation in a haplotype-resolved manner. We hence performed a \hic
 experiment and again used \acp{snv} to distinguish fragments belonging to
-balancer- or wild type chromosomes. As a matter of fact these haplotype-specific
-contact frequency maps an additionally be utilized to characterize genomic
-rearrangements (described in \cref{sec:balancer_hic_svs}).
+balancer- or wild type chromosomes. As a matter of fact the resulting
+haplotype-resolved maps of contact frequency can additionally be utilized to
+characterize genomic rearrangements (described in \cref{sec:balancer_hic_svs}).
 
 Early on we made a decision to study fly embryos (instead of adult flies) for
 mainly two reasons: To begin with, \textit{D. melanogaster} embryos are well
 described, there is an outstanding amount of external data available
 \citep{Gramates2017,Celniker2009}, and the Furlong lab has years of experience
-with them (e.g. \cite{Furlong2001,Ghavi-Helm2014}). The second point is a
-technical limitation in that it is experimentally difficult (if not infeasible)
-to extract intact nuclei from adult flies, which is a crucial step to any
-3C-based experiment. Collecting double balancer embryos, on the other hand, is
-not possible based on markers only expressed in an adult stage. We hence decided
+with them (e.g. \cite{Furlong2001,Ghavi-Helm2014}). Secondly, though,
+it is experimentally very difficult (if not infeasible) to extract intact
+nuclei from adult flies, which is a crucial step to 3C-based experiments.
+Directly collecting double balancer embryos, on the other hand, is not
+realizable based on markers only expressed at an adult stage. We hence decided
 to collect fly embryos from a backcross of the double balancer line ($F_1$) with
-the original wild type line ($F_0$). The resulting pool, termed $N_1$, is a mix
-of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
+the original wild type line ($F_0$). The resulting generatio, termed $N_1$, is a
+mix of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
 effectively 25\% of chromosomes 2 and 3 are balancer chromosomes.
 
 In the subsequent sections I describe the methodology and our findings on the
@@ -399,7 +399,7 @@ There are further examples in the supplementary material (see \crefrange{fig:dup
 \section{Validation of large chromosomal rearrangements in Hi-C data}
 \label{sec:balancer_hic_svs}
 
-Karyotype\footnote{
+Karyotype\footnote{\label{footnote:balancer_karyotype}
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
     33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
     \ac{tm3} = \textit{3Lt-65E 85E-79E 100C-100F2 92D1-85E 65E-71C
@@ -420,7 +420,8 @@ Karyotype\footnote{
     represent a connection of segments in same orientation where as horizontal
     ones mark junction of segments that are inverted in respect to one another.
     The fully reconstructed order of the balancer genomes is shown in the bottom
-    panel (C). This matches previous annotation from karyotyping\footnotemark.}
+    panel (C). This matches previous annotation from
+    karyotyping\footnoteref{footnote:balancer_karyotype}.}
 
 
 \figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
@@ -456,18 +457,18 @@ Karyotype\footnote{
 
 
 \subsection{Controlling for maternally deposited mRNA in early embryos}
-\label{sec:maternalRNA}
+\label{sec:balancer_maternal_rna}
 
 \figuretextwidth{ASE_histograms.pdf}{ASE_histograms}{Allelic mRNA ratio per gene}{
     Histograms of the fraction per gene of balancer RNA-seq fragments among the
     fragments that can be assigned to one of the haplotypes for three
     different RNA-seq experiments with two replicates each. The expected
     fraction of 25\% is marked by a dotted line. Counts were derived as described
-    in \cref{sec:ase_impl}.}
+    in \cref{sec:balancer_ase_impl}.}
 
 
 \subsection{Allele-specific expression detection}
-\label{sec:ase_impl}
+\label{sec:balancer_ase_impl}
 
 
 More detail in \cref{sec:suppl_deseq}.
