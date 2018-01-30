@@ -252,8 +252,9 @@ effect genomic rearrangements have on chromatin organization and gene regulation
 \section{Mutational landscape of balanced chromosomes}
 \label{sec:balancer_mutational_landscape}
 
-\acreset{snv}
-\subsection{\Acp{snv}}
+
+\subsection{\Aclp{snv}}
+\label{sec:balancer_snvs}
 I used whole genome sequencing data of both $F_0$ and $F_1$ cross
 simulataneously to call \acp{snv}. The comparison of genotypes of the homozygous
 wild type line and the heterozygous cross enabled me to assign mutations to
@@ -443,17 +444,7 @@ Karyotype\footnote{\label{footnote:balancer_karyotype}
 
 
 \section{Global changes in gene expression}
-\label{sec:ase}
-
-
-\begin{itemize}
-\item Reviews: Tuuli Lappalainen \citep{Castel2015}
-\item Alelle-seq, using personalized genomes \citep{Rozowsky2014}
-\item Reference graphs \citep{Dilthey2015,Marschall2016,Novak101378}
-\item ASE tools \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGeijn2015,Liu2016}
-\item ASE biases by mappinge etc. \citep{Degner2009,Stevenson2013}
-\item further tools: \deseq, \STAR.
-\end{itemize}
+\label{sec:balancer_ase}
 
 
 \subsection{Controlling for maternally deposited mRNA in early embryos}
@@ -496,11 +487,11 @@ More detail in \cref{sec:suppl_deseq}.
 \figuretextwidth{DESeq2_N1_6_8h.pdf}{DESeq}{ASE analysis based on
     \texorpdfstring{\deseq}{DESeq2}}{Average haplotype-resolved fragment count
     per gene across four replicates vs. log 2 fold change of balancer over wild
-    type counts are shown. A single outlier to the right was trimmed.}
+    type counts are shown. A single outlier to the right was trimmed. }
 
 
 \subsection{RNA-seq control experiments}
-\label{sec:ase_controls}
+\label{sec:balancer_ase_controls}
 
 
 
@@ -512,8 +503,13 @@ More detail in \cref{sec:suppl_deseq}.
 
 
 
+\section{The interplay between SVs and differentially expressed genes}
+
+\subsection{Genes affected by large rearrangements}
+\label{sec:balancer_ase_breakpoints}
+
 \subsection{Positional clustering of ASE genes}
-\label{sec:ase_clustering}
+\label{sec:balancer_ase_clustering}
 
 \figuretextwidth{ase_clustering.pdf}{ase_clustering}{Distance between
     neighboring ASE genes}{This is a histogram of distances between neighboring
@@ -575,3 +571,23 @@ List of cases in \cref{tab:meilist}
     to an MEI driving their chimeric expression are highlighted in blue.}
 
 
+
+
+
+\section{Changes in chromatin conformation: an outlook}
+\label{sec:balancer_cc}
+
+\subsection{Haplotype-resolved maps of contact frequency}
+\label{sec:balancer_cc_impl}
+
+\subsection{Differences in chromatin conformation between wild type and balancer chromosomes}
+\label{sec:balancer_cc_differences}
+
+
+
+\section{Integrated visualization of single loci for data exploration}
+\label{sec:balancer_visualization}
+
+
+\section{Conclusions}
+\label{sec:balancer_concl}

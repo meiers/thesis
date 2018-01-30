@@ -174,8 +174,8 @@ are summarized by ``duplications'' in the main text.
 
 \section{Detail on \texorpdfstring{\ase}{ASE} detection using DESeq2}
 \label{sec:suppl_deseq}
-The main idea is explained in \cref{sec:ase_impl}. Haplotype-resolved fragment
-counts were calculated using \textsc{HTSeq-count} \citep{Anders2015}.
+The main idea is explained in \cref{sec:balancer_ase_impl}. Haplotype-resolved
+fragment counts were calculated using \textsc{HTSeq-count} \citep{Anders2015}.
 In the main analysis we then tested genes for \ase by inserting these
 haplotype-specific counts of all four replicates (2x \Nmat, 2x \Npat) into a
 matrix and supplying it to \deseq. Genes were filtered for a minimum number of
