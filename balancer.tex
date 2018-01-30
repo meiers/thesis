@@ -249,6 +249,8 @@ effect genomic rearrangements have on chromatin organization and gene regulation
 
 
 
+
+
 \section{Mutational landscape of balanced chromosomes}
 \label{sec:balancer_mutational_landscape}
 
@@ -354,22 +356,31 @@ substitutions, i.e. the \explain{mutation spectrum}
 
 
 
+
 \subsection{\texorpdfstring{\Aclp{cnv}}{Copy number variants}}
 \label{sec:balancer_cnv}
 
-\figuretwocolumns
-    {SVsize_DEL.pdf}{svsize_del}{Deletion size distribution}
-    {The size distribution of final deletion calls (based on \delly and
-    \freebayes) is shown. Common deletions (present in both balancer and wild
-    type chromosomes) were excluded in the from 160~bp on. A higher number of
-     balancer- over wild type-specific deletions was observed and this ratio
-     increases with larger sizes.}
-    {SVsize_DUP.pdf}{svsize_dup}{Duplication size distribution}
-    {The final duplication set consisting of manually validated tandem
-    duplication and a set of three non-tandem duplications is shown.}
+\paragraph{Deletions} I called deletions on \wgs data of the $F_0$ and $F_1$
+samples based on their paired-end read signature using \delly and developed an
+extensive set of filters to reduce false positive predictions. For both reasons
+of filtering and with validation in mind I categorized deletion calls into three
+size ranges: (1) Below 50~bp -- these calls, predicted from split reads,
+historically belong into the indel category and an additional set in this size
+range was predicted with \freebayes. (2) 50~-~159~bp -- a size range where
+predictions based on a split read signature typically yields reliable results,
+yet these calls are large enough for validation with \pcr.
+(3) 160~bp and larger -- in this size range I apply filters using additional
+read depth signal before \pcr-based experimental validations.
 
-
-\paragraph{Deletions}
+For deletion predictions based on a paired-end read signature it is highly
+recommended to utilize an additional read depth-based signal for filtering
+(this is not exclusive to \delly, but noted also by the authors of other tools,
+e.g. \cite{Layer2014}). Hence I developed an ad hoc filtering strategy
+for larger (meaning 160~bp and more) deletion calls, which compares read depths
+between samples (see \cref{sec:suppl_del} for detail). As a consequence I
+excluded shared deletions in this size range, i.e. ones present in both balancer
+and wild type haplotypes. However, this is not a limitation to this study as we
+are primarily interested in genetic variation distinguishing the homologues.
 
 \begin{table}[ht]
     \centering
@@ -392,8 +403,55 @@ substitutions, i.e. the \explain{mutation spectrum}
         Calls below 160~bp were not \pcr-validated.}
 \end{table}
 
+Then \yad performed \pcr verification experiments on 75 randomly picked loci for
+three subsets of deletion calls (\cref{tab:pcrresults}). A locus was considered
+validated if the resulting \pcr bands of both $F_0$ and $F_1$ sample matched the
+expected sizes; otherwise it was classified as invalidated. In order to be able
+to compare homozygous and heterozygous results shared variants were not
+submitted to \pcr. The final deletion call set based on \delly predictions
+contained 4,279 calls. In order to get a single set of deletions I chose a lower
+cutoff of 15~bp for deletions and merged the \delly call set with small
+deletions predicted by \freebayes. This led to a total set of 8,340 calls on
+chromosomes 2, 3, and X with a size distribution as shown in
+\cref{fig:svsize_del}.
 
-\paragraph{Duplications}
+\figuretwocolumns
+    {SVsize_DEL.pdf}{svsize_del}{Deletion size distribution}
+    {The size distribution of final deletion calls (based on \delly and
+    \freebayes) is shown. Common deletions (present in both balancer and wild
+    type chromosomes) were excluded in the from 160~bp on. A higher number of
+     balancer- over wild type-specific deletions was observed and this ratio
+     increases with larger sizes.}
+    {SVsize_DUP.pdf}{svsize_dup}{Duplication size distribution}
+    {The final duplication set consisting of manually validated tandem
+    duplication and a set of three non-tandem duplications is shown.}
+
+\paragraph{Duplications} Next, I also predicted tandem duplications using \delly
+using both \wgs and mate pair data simultaneously (see also
+\cref{sec:suppl_dup}). Typically this class of variant is harder to
+ascertain than deletions, which exhibit a very clear read-depth signal.
+Yet also for duplications orthogonal information in addition
+to the paired-end read signature can be utilized to gain confidence in
+predictions. Specifically these are read depth, which should be considered in
+the context of local mappability, and the bi-allelic frequency.                 \todo{Exlain bi-allelic freuqency in the INTRO}
+After initial filters I generated overview plots containing such information for
+352 loci on chromosomes 2 and 3. One example is shown in
+\cref{fig:dup_validation}, and further examples, including a negative one, can
+be found in \cref{fig:dup_validation_wt,fig:dup_validation_false}.
+Upon inspection of the plots I demanded to see a change in read depth between
+samples, as well as a characteristic change in the bi-allelic frequency. In a
+balancer-specific duplication, for instance, the read-depth should increase only
+in the $F_1$ sample and the bi-allelic frequency of \acp{snv} should switch from
+50\% to either 33\% or 66\%.
+
+In addition to tandem duplications predicted by \delly I found another three
+non-tandem duplications by manual inspection of the bi-allelic frequency signal
+across the genome, which were then included in the set of duplications prior
+to manual validation. Some predicted loci could not be validated because they
+resided within low-mappability regions, rendering both read depth and allelic
+support for \acp{snv} unreliable. Nevertheless, I verified a total of 122
+duplications in the size range from several hundred base pairs up to 258~kb
+using this strategy (\cref{fig:svsize_dup}).
 
 \figuretextwidth{dup_validation_example.pdf}{dup_validation} % DUP00003911
     {Signals used for duplication validation shown in an example}
@@ -408,10 +466,31 @@ substitutions, i.e. the \explain{mutation spectrum}
     copy number variants, but it reuqires the presence of \acp{snv}. Note }
     \todo{describe bi-allelic frequency in intro; or here, if not there.}
 
+\paragraph{Summary} The \acp{cnv} I report for balancer and wild type
+chromosomes contain an abundance of short deletions starting from 15~bp and up
+to 5.2~kb. The short size range of these deletions is owed to the gene-dense
+character of the \textit{D. melanogaster} genome and in line with a previous
+study that performed population-scale \sv calling in a population of flies,
+where a median deletion size of 178~bp at a lower cutoff of 50~bp is reported
+\citep{Zichner2013}.
+With an experimentally estimated \fdr of 3.75\% the deletion call set can be
+considered of high accuracy. Although no unexpectedly large deletions were
+detected in neither wild type nor balancer chromosomes, I do note a slightly
+higher rate of deletions on the balancer chromosomes. The ratios are 1.08 for
+deletions in the size range below 50~bp, 1.3 for 50~-~159~bp, and 1.9 for larger
+ones. Interstingly, a study in human cancer reported an increase in deletion
+rate as a consequence of ionizing radiation \citep{Behjati2016}, hence the
+subtle increase in deletion number (notably in the larger size spectrum) could
+in fact be a fading trace of the irradiation applied during generation of the
+balancer chromosomes.
 
-There are further examples in the supplementary material (see \crefrange{fig:dup_validation_wt}{fig:dup_validation_false}).
+Duplications, on the other hand, which underlay thorough manual validation,
+where distributed evenly on balancer and wild type chromosomes. Nevertheless,
+an exceptionally large duplication was found on \cyo, which effectively
+increases the dosage of around 33 genes.
 
-\paragraph{Summary}
+
+
 
 
 
