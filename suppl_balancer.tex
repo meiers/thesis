@@ -208,7 +208,74 @@ reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
     {Number of \texorpdfstring{\ase}{ASE} genes around the breakpoints of large
     chromosomal rearrangments}{This plot shows the number of significant \ase
     genes at given distances to one of the large rearrangments, or to random
-    positions in the genome (quantiles of 500 random samplings are shown).}
+    positions in the genome (quantiles of 500 random samplings are shown).
+    Genes directly affected by breakpoints were removed.}
+
+
+
+
+
+
+\section{Mobile-element analysis}
+\label{sec:suppl_meis}
+
+
+{
+\footnotesize
+\begin{longtable}{llrll}
+    \tabcap{meilist}{List of identified mobile element insertions}
+           {List of insertions of mobile elements that were successfully
+           identified as described in \cref{sec:balancer_ase_mei} and correspond
+           to the start points of RNA-seq signal measured for the respective
+           genes. \textit{+/-}: orientation of transcription of the gene.
+           \textit{lfc}: log fold change of gene expression balancer/wild type.
+           \textit{TE familiy}: Most likely family of transposable element.
+           \textit{MEI pos}: Position of \mei relative to the gene (upstream/downstream)
+           as well as orientation of the insertion of the \mei.} \\
+    \toprule
+    Gene ID     &   +/- &   lfc.    &   TE family           &   MEI pos     \\
+    \midrule
+    FBgn0265959 &   +   &   5.42    &    gb/AY180917/roo    &   downstream, +   \\
+    FBgn0034085 &   -   &   5.10    &    gb/AY180917/roo    &   downstream, -   \\
+    FBgn0051116 &   -   &   4.91    &    gb/AY180917/roo    &   downstream, -   \\
+    FBgn0015038 &   -   &   4.59    &    gb/X02599/copia    &   downstream, -   \\
+    FBgn0047351 &   -   &   3.76    &    gb/AY180917/roo    &   downstream, -   \\
+    FBgn0031414 &   +   &   3.74    &    gb/AY180917/roo    &   downstream, +   \\
+    FBgn0052985 &   +   &   3.63    &    gb/V00246/FB       &   downstream, ?   \\
+    FBgn0036224 &   +   &   3.20    &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0051164 &   +   &   3.09    &    gb/AY180917/roo    &   downstream, +   \\
+    FBgn0050044 &   +   &   2.80    &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0033469 &   +   &   2.66    &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0024150 &   -   &   2.41    &    gb/AY180917/roo    &   downstream, -   \\
+    FBgn0027552 &   -   &   2.39    &    gb/X01472/17.6     &   upstream, -     \\
+    FBgn0043005 &   -   &   2.34    &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0038784 &   -   &   2.19    &    gb/AC005453/1360   &   upstream, -     \\
+    FBgn0031219 &   -   &   2.11    &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0083141 &   +   &   2.01    &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0039104 &   -   &   2.01    &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0031220 &   -   &   2.00    &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0000527 &   -   &   2.00    &    gb/nnnnnnnn/412    &   downstream, -   \\
+    FBgn0031631 &   -   &   0.95    &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0039613 &   +   &   -1.25   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0036454 &   +   &   -1.32   &    gb/X03431/297      &   downstream, +   \\
+    FBgn0033792 &   +   &   -1.39   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0265851 &   +   &   -1.44   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0267936 &   +   &   -1.82   &    gb/X02599/copia    &   upstream, +     \\
+    FBgn0035187 &   -   &   -1.88   &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0259219 &   +   &   -1.98   &    gb/X02599/copia    &   upstream, +     \\
+    FBgn0250910 &   -   &   -2.10   &    gb/V00246/FB       &   downstream, ?   \\
+    FBgn0026592 &   +   &   -2.44   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0266782 &   +   &   -2.60   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0011230 &   -   &   -2.78   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0035610 &   -   &   -2.84   &    gb/AY180917/roo    &   downstream, -   \\
+    FBgn0267130 &   +   &   -2.81   &    gb/AY180917/roo    &   upstream, ?     \\
+                &       &           &    gb/AY180917/roo    &   downstream, +   \\
+    FBgn0034467 &   -   &   -3.78   &    gb/AY180917/roo    &   upstream, -     \\
+    FBgn0262020 &   +   &   -3.88   &    gb/AY180917/roo    &   upstream, +     \\
+    FBgn0035638 &   -   &   -6.14   &    gb/X02599/copia    &   upstream, -     \\
+    \bottomrule
+\end{longtable}
+}
 
 
 
