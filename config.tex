@@ -108,13 +108,13 @@
 %     3 = caption title
 %     4 = caption text
 \newcommand*\figuretextwidth[4]{%                       <- figuretextwidth [4]
-    \begin{figure}[!ht]
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,center]{#1}%
         \figcap{#2}{#3}{#4}
     \end{figure}
 }
 \newcommand*\figuretextplusmargin[4]{%                  <- figuretextplusmargin [4]
-    \begin{figure}[!ht]
+    \begin{figure}[t]
         \includegraphics[width=\textplusmargin,inner]{#1}%
         \figcap{#2}{#3}{#4}
     \end{figure}
@@ -122,7 +122,7 @@
 \newlength\tmplengthone
 \newlength\tmplengthtwo
 \newcommand*\figuretwocolumns[9][0.5]{%                 <- figuretwocolumns [8]
-    \begin{figure}[!ht]
+    \begin{figure}[t]
         % tmplengthone := (#1-0.02)*\textwidth
         \setlength\tmplengthone{\dimexpr#1\textplusmargin-0.02\textplusmargin\relax}
         % tmplengthtwo := (1-#1-0.02)*\textwidth
