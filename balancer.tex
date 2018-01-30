@@ -594,9 +594,21 @@ together this is best explained by an inverted duplication occurring in tandem.
 
 
 
+
 \FloatBarrier
 \section{Global changes in gene expression}
 \label{sec:balancer_ase}
+
+In the next step we sought to measure gene expression from both haplotypes to
+determine the potential impact of the observed genetic variation on the
+regulation of genes. To do so we first had to overcome biases related to
+maternally deposited mRNA present in early embryos, as described subsequently.
+Then I implemented robust \ase detection across multiple biological replicates
+(\cref{sec:balancer_ase_impl}) and applied it to the data of our study as well
+as in the scope of two additional control experiments
+(\cref{sec:balancer_ase_controls}).
+
+
 
 
 \subsection{Controlling for maternally deposited mRNA in early embryos}
@@ -608,6 +620,44 @@ together this is best explained by an inverted duplication occurring in tandem.
     different RNA-seq experiments with two replicates each. The expected
     fraction of 25\% is marked by a dotted line. Counts were derived as described
     in \cref{sec:balancer_ase_impl}.}
+
+At an early stage of the project we sequenced mRNA from 4-8h embryos of the
+$N_1$ backcross (\cref{fig:balancer_crossing_scheme}) to explore the power to
+detect significant \ase genes. As briefly introduced in
+\cref{sec:balancer_study_design_hic}, 25\% of chromosomes 2 and 3 within the
+genetic pool consist of balancer chromosomes. This means that when we separate
+RNA-seq reads by haplotype we expect their distribution to be centered around a
+balancer fraction of 25\%. As the left panels of \cref{fig:ASE_histograms}
+display, this initial experiment was marked by a (unsatisfactory) wide
+distribution. More precisely, it did not follow a binomial distribution, which
+is a model applied by many \ase detection methods, but showed a large
+overrepresentation of wild type mRNA instead. Only after discussions with
+\garfield we figured that, since we had crossed female wild type flies with double
+balancer males, the reason for this skew in the distribution could be attributed
+to \explain{maternally deposited mRNA}{Before maternal-to-zygotic transition
+    zygotes or early embryos do not transcribe their own genes but utilize mRNA
+    of the maternal cell that was loaded into the egg during oogenesis. After
+    around two hours of embryonic development a large portion of maternal mRNA
+    is actively degraded, yet not for the complete transcriptome
+    \citep{Tadros2009}}
+present in early embryos as well as unfertilized eggs remaining in the sequenced
+pool.
+
+Accordingly, \yad initiated a new experiment with modified conditions: First, we
+collected embryos only in a later, 6-8h time window when the impact of maternal
+mRNA is expected to be weaker. Second, she manually sorted out unfertilized eggs
+from the collection of embryos. And third, she derived two different crosses,
+one with a paternal double balancer line (same way as initially), termed \Npat,
+and another one with a maternal double balancer line, \Nmat. The potential
+effect of maternally deposited mRNA will then cause a shift in exactly opposite
+directions in both these lines, which can be accounted for during the \ase
+calling. These considerations are nicely reflected in the histograms on the
+right of \cref{fig:ASE_histograms}. More narrow peaks indicate a much lower
+fraction of maternal transcripts, and a shift from left to right between \Npat
+to \Nmat point to remaining maternal transcripts that can be identified as such.
+
+
+
 
 
 \subsection{Allele-specific expression detection}
