@@ -252,23 +252,37 @@ effect genomic rearrangements have on chromatin organization and gene regulation
 \section{Mutational landscape of balanced chromosomes}
 \label{sec:balancer_mutational_landscape}
 
+We performed deep paired-end \wgs (approximately 100~x and 200~x, respectively)
+of both the wild type line ($F_0$) and the double balancer line ($F_1$) with
+read lengths of 300~bp and 200~bp on an Illumina MiSeq platform. To be able to
+better resolve \acp{sv} we additionally sequenced mate pair libraries of both       \todo{explain mate pair in introduction}
+samples with a read length of 2~x~100~bp and a median insert size of circa 4~kb.
+I utilzied this data as well as \hic data (briefly described in
+\cref{sec:balancer_cc_impl}) to characterize the mutations present on balancer
+and wild type chromosomes in respect to a common reference genome, as described
+subsequently.
+
 
 \subsection{\Aclp{snv}}
 \label{sec:balancer_snvs}
-I used whole genome sequencing data of both $F_0$ and $F_1$ cross
-simulataneously to call \acp{snv}. The comparison of genotypes of the homozygous
-wild type line and the heterozygous cross enabled me to assign mutations to
-individual haplotypes: if, for example, a \snv was called heterozygous in the
-cross and homozygous alternative in the wild type sample, the variant is located
-on the wild type chromosome and not on the homologous balancer chromosome.
 
-Of the 761,348 detected \acp{snv} on \ac{chr2} and \ac{chr3}, 38.9\% can be
+I utilized the \wgs data of both $F_0$ and $F_1$ cross simulataneously to call
+\acp{snv} and small indels with \freebayes. The comparison of genotypes of the
+homozygous wild type line and the heterozygous cross enabled me to assign
+mutations to individual haplotypes: if, for example, a \snv is heterozygous in
+the cross and homozygous alternative in the wild type sample, the variant is
+located on the wild type chromosome and not on the homologous balancer
+chromosome.
+
+Of the 761,348 detected \acp{snv} on \ac{chr2} and \ac{chr3}, 38.9\% could be
 assigned to the balancer chromosomes, 29.5\% to the wild type chromosomes and
-29.8\% are shared between both. Only a fraction of 1.8\% of \acp{snv} did not
-fit the expected genotypes, which can mostly be attributed to regions in the
-wild type chromosomes not being fully homozygous.
-On average every 210bp there is a \snv distinguishing balancer and wild type
-haplotypes.
+29.8\% were shared between both. Only a fraction of 1.8\% of \acp{snv} did not
+match one of the expected genotypes, which can mostly be attributed to regions
+in the wild type chromosomes not being fully homozygous (see \cref{tab:snvs2}).
+These numbers imply that, on average, there is one \snv every 210~bp that
+distinguishes balancer and wild type haplotypes. This density was an important
+parameter as \acp{snv} were utilized to separate sequencing data such as
+RNA-seq into haplotypes later on (e.g. in \cref{sec:balancer_ase_impl}).
 
 \begin{table}[ht]
     \centering
@@ -311,28 +325,32 @@ haplotypes.
         from a divergent line.}
 \end{table}
 
-The number of balancer-specific \acp{snv} is around 1.3 times higher than wild
+The number of balancer-specific \acp{snv} was around 1.3 times higher than wild
 type-specific ones. Moreover, when I compared our fly lines to the Drosophila
 reference panel (DGRP) \citep{Mackay2012,Huang2014}, a panel of fully sequenced
-inbred \species{D. melanogaster} lines derived from a natural population, I
+inbred \textit{D. melanogaster} lines derived from a natural population, I
 found that a striking majority of \acp{snv} is represented in the panel, yet
 balancer-specific \acp{snv} to a lower fraction (86.1\%) than wild type-specific
 ones (92.1\%). These observations are not surprising since balancer chromosomes,
 due to their inability to undergo recombination, accumulate and likely tolerate
-more mutations over time than normal chromosomes.
+more mutations over time than normal chromosomes \citep{Araye2013}.
 
-I was also interested in the distribution of base substitutions, i.e.
-the \explain{mutation spectrum}{as a summary of the total set of
-mutations I count the relative frequencies of different base substitutions
-(e.g. \texttt{C>T}) and their trinucleotide contexts (one base up- and
-downstream). The spectrum of somatic \acp{snv} is often analysed in cancer
-genomics in this way, in order to extract \emph{mutational signatures} that are
-linked to mutagenic processes}. The idea behind this is that
-balancer chromosomes had been derived by X-ray mutagenesis and that this
-could have led to a different distribution of base substitutions. However, after
-removing \acp{snv} shared with the DGRP we did not observe any striking
-differences in the \snv signatures between wild type and balancers (see
-\cref{fig:signatures}).
+Moreover, I was interested in the inspecting the distribution of base
+substitutions, i.e. the \explain{mutation spectrum}
+    {as a summary of the total set of
+    mutations I count the relative frequencies of different base substitutions
+    (e.g. \texttt{C>T}) and their tri-nucleotide contexts (one base up- and
+    downstream). The spectrum of somatic \acp{snv} is often analysed in cancer
+    genomics in this way, in order to extract \emph{mutational signatures} that
+    are linked to mutagenic processes}
+ of the balancer chromosomes. The idea behind this is that balancer chromosomes
+ had been derived by X-ray mutagenesis and that this could have led to a
+ different distribution of base substitutions. However, after removing \acp{snv}
+ shared with the DGRP I did not observe any striking differences in the mutation
+ spectrum of \acp{snv} between wild type and balancers (see
+ \cref{fig:signatures}; more detailed methods in \cref{sec:suppl_mutsign}).
+
+
 
 
 
