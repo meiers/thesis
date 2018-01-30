@@ -463,8 +463,7 @@ using this strategy (\cref{fig:svsize_dup}).
     reads supporting the alternative allele of an \snv), and (3)
     the total read coverage (as genomic coverage, in 100bp windows). Bi-allelic
     frequency is typically the clearest signal to discriminate true from false
-    copy number variants, but it reuqires the presence of \acp{snv}. Note }
-    \todo{describe bi-allelic frequency in intro; or here, if not there.}
+    copy number variants, but reuqires the presence of \acp{snv}.}
 
 \paragraph{Summary} The \acp{cnv} I report for balancer and wild type
 chromosomes contain an abundance of short deletions starting from 15~bp and up
@@ -497,14 +496,81 @@ increases the dosage of around 33 genes.
 \section{Validation of large chromosomal rearrangements in Hi-C data}
 \label{sec:balancer_hic_svs}
 
-Karyotype\footnote{\label{footnote:balancer_karyotype}
+I further aimed at refining breakpoint junctions of the major rearrangements on
+the balancer chromosomes, which had previously been known only at microscopic
+resolution\footnote{\label{footnote:balancer_karyotype}
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
     33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
     \ac{tm3} = \textit{3Lt-65E 85E-79E 100C-100F2 92D1-85E 65E-71C
     94D-93A 76C-71C 94F-100C 79E-76C 93A-92E1 100F3-3Rt}.
-    Source: \url{https://bdsc.indiana.edu/stocks/balancers/balancer_bps.html}.}
+    Source: \url{https://bdsc.indiana.edu/stocks/balancers/balancer_bps.html}.}.
+Based on allelic separation using \acp{snv}, \alek generated a \hic map of
+contact frequencies for both balancer and wild type haplotypes separately, yet
+in respect to the same reference genome (\cref{sec:balancer_cc_impl}).
+Right away we identified strong signals off the diagonal with a characteristic
+``bowtie'' shape as shown in \cref{fig:balancer_cc_impl}, which coincide with
+gaps close to the diagonal. Undoubtedly this signal stems from the genomic
+rearrangements we expected to see and by comparing them to the available
+karyotype information Yad Ghavi-Helm could assign 15/16 of these breakpoints to
+the respective inversions. I then searched through inversion and
+translocation\footnote{Translocations are connections across chromosomes, yet
+    because the left and right arms of chromosomes 2 and 3 are reported
+    separately in \ac{dm6} rearrangements spanning the centromere are reported
+    as translocations.}
+predictions made using \delly on \wgs and mate pair sequencing data to
+track down breakpoints at base pair resolution. This yielded base pair
+resolution breakpoints in in 14/15 cases, which are reported in
+\cref{sec:suppl_balancer_breakpoints}.
 
-\figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_hiC_rearrangements}
+\figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
+    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
+    Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
+    The top panel displays differential unnormalized Hi-C fragment counts
+    ($\textrm{log}_2 \frac{\textrm{balancer}}{\textrm{wild type}}$)
+    colored from red (positive) to blue (negative). The panel below shows the
+    biallelic frequency. This duplication was initially discovered
+    based on the characteristic biallelic frequency signal and is validated by
+    a total increase of locus-internal Hi-C contacts on the balancer chromosome,
+    as seen as the red triangle. Moreover, a decrease in balancer-specific
+    contacts close to the diagonal left of the locus (blue) as
+    well as an increase left of the upper tip of the triangular region
+    suggest the duplication was inserted to the left in inverted orientation.
+    Hi-C data processing and plots were contributed by \alek.}
+
+Reassuringly, when I compared these
+breakpoint with the genomic positions stated in a recent study mapping mutations
+on \ac{tm3} \citep{Miller2016} I found precise agreement for 8 of 10
+breakpoints. For one of the two remaining breakpoints (20.3~Mb on \ac{tm3})
+that were missed both by Miller et al. and here I could at least estimate the
+breakpoint location at a resolution of 5kb and further narrowed it down to a
+``best guess'' based on manual inspection of mate pair data. The other
+breakpoint is outside the span of the reference genome and thus inaccessible to
+read-mapping based methods. Only one of the breakpoint junctions in the balancer
+chromosomes showed a precise re-ligation, whereas most of them are scarred by a
+loss of genetic material (9 cases, max. 1.8~kb, median 114~bp) or small sequence
+duplications (4 cases, median 9~bp, max 281~bp; see also
+\cref{sec:suppl_balancer_breakpoints}). Additionally, the estimation of the
+breakpoint at 20.3~Mb on \ac{tm3} appears to carry a deletion of around 17~kb.
+
+Moreover, I utilized the haplotype-resolved contact maps further to validate and
+characterize other large \acp{sv}. Notably, an inversion of approximately 40~kb
+on \ac{tm3}\footnote{Precisely, at \textit{chr3L:~14.61~-~14.64~Mb}.} was
+validated by a characteristic Hi-C signal (data not shown). I also inspected
+aforementioned 258~kb duplication on \cyo closer, which I had predicted by a
+chatacteristic bi-allelic frequency signal (described in
+\cref{sec:balancer_cnv}). Interestingly, the differential \hic contact map as
+displayed in \cref{fig:dup_hic_biaf} confirms the duplication (seen as a red
+triangle, which stands for a total increase in contacts on the balancer
+haplotype), yet also suggests that the additional copy of the locus was most
+likely inserted in inverted orientation to its left end. There are two signals
+providing evidence for this: A reduction in contacts of the locus to its left
+neighboring region (blue), suuggesting that this end of the locus is no longer
+proximal to its original left neighboring region, just as if an insertion had
+happened there. And secondly, there is a striking increase in contact frequency
+of the right end of the duplicated locus to the left neighboring region. Taken
+together this is best explained by an inverted duplication occurring in tandem.
+
+\figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_cc_impl}
     {Major rearrangements of the balancer chromosomes revealed by Hi-C}{
     Haplotype-resolved Hi-C contact frequency maps of chromosomes 2 and 3 in
     respect to the wild type reference genome are shown (A). Details of the data
@@ -522,24 +588,13 @@ Karyotype\footnote{\label{footnote:balancer_karyotype}
     karyotyping\footnoteref{footnote:balancer_karyotype}.}
 
 
-\figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
-    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
-    Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
-    The top panel displays differential unnormalized Hi-C fragment counts
-    ($\textrm{log}_2 \frac{\textrm{balancer}}{\textrm{wild type}}$)
-    colored from red (positive) to blue (negative). The panel below shows the
-    biallelic frequency. This duplication was initially discovered
-    based on the characteristic biallelic frequency signal and is validated by
-    a total increase of locus-internal Hi-C contacts on the balancer chromosome,
-    as seen as the red triangle. Moreover, a decrease in balancer-specific
-    contacts close to the diagonal left of the locus (blue) as
-    well as an increase left of the upper tip of the triangular region
-    suggest the duplication was inserted to the left in inverted orientation.
-    Hi-C data processing and plots were contributed by \alek.}
 
 
 
 
+
+
+\FloatBarrier
 \section{Global changes in gene expression}
 \label{sec:balancer_ase}
 
