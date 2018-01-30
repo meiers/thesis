@@ -527,6 +527,32 @@ From the point of view of large rearrangements \cref{fig:suppl_ase_genes_around_
 
 
 
+\subsection{\texorpdfstring{\ase}{ASE} signal related to changes in copy number}
+\label{sec:balancer_ase_cnvs}
+
+
+% Testing this matrix for randomness:
+%           no_CNV CNV_overlap
+% no_ASE      4551         292
+% ASE_genes    439          73
+%
+%         Fisher's Exact Test for Count Data
+%
+% p-value = 2.63e-10
+% alternative hypothesis: true odds ratio is not equal to 1
+% 95 percent confidence interval:
+%  1.940543 3.426937
+% sample estimates:
+% odds ratio
+%   2.591054
+\figuretextwidth{ASE_cnv_overlap.pdf}{ASE_cnv_overlap}{Log fold change of
+    \texorpdfstring{\ase}{ASE} genes overlapping \texorpdfstring{\acp{cnv}}{CNVs}}
+    {Fold change (log 2) of 73 significant \ase genes that overlap \acp{cnv}.
+    Two genes overlapped multiple different \acp{cnv} (\textit{ambiguous}). A
+    positive log fold change means higher expression in the balancer haplotype
+    and vice versa.}
+
+
 
 \subsection{Mobile element insertions can give rise to strong ASE signals}
 \label{sec:balancer_ase_mei}
@@ -542,5 +568,10 @@ From the point of view of large rearrangements \cref{fig:suppl_ase_genes_around_
 }
 
 List of cases in \cref{tab:meilist}
+
+\figuretextplusmargin{MEI_impact.pdf}{balancer_mei_impact}{ASE genes associated
+    to MEI}{List of significant ASE genes (x axis) ordered by log fold change
+    (balancer/wild type, y axis). Genes that are very likely dis-regulated due
+    to an MEI driving their chimeric expression are highlighted in blue.}
 
 
