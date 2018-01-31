@@ -752,16 +752,80 @@ are reported (Furlong lab, unpublished work).
 
 
 
+
 \subsection{RNA-seq control experiments}
 \label{sec:balancer_ase_controls}
 
+\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE fractions per chromosome}{        % move this up or down in the final layout!
+    \acs{ase} fraction detected on each of the chromosomes 2, 3, and X in a
+    female adult line $F_1^{f}$. Error bars indicate 99\% confidence intervals
+    from a binomial test.}
+We carefully considered some of the assumptions made in the \ase analysis and
+decided to carry out two important control experiments. A first question was
+whether balanced chromosomes carry a higher fraction of \ase genes than
+unbalanced chromosomes such as chromosome X. This could not be answered in our
+$N_1$ backcrosses, where chromosome X eventually became homozygous due to the
+maternal wild type line. Instead, we performed RNA-seq on adult, handpicked
+female flies from the $F_1$ generation, named $F_1^f$, and sequenced two
+replicates. In this sample chromosome X is paired with its (non-rearranged,
+but diverged) homologue at a ratio of 50\%, too, and can thus be compared to
+chromosomes 2 and 3. The two chromosome X homologues contain less, but still
+sufficient distinguishing variation for \ase analysis (see \cref{tab:snvs2}).
+I ran the same \ase analysis as in \cref{sec:balancer_ase_impl} on $F_1^f$
+RNA-seq data and found 301/4940 (6.1\%) significant \ase genes on chromosomes
+2 and 3 and 24/463 (5.2\%) on chromosome X. The lower fractions compared to
+the embryonic $N_1$ samples are of no concern as gene expression is expected to
+be highly tissue- and developmental stage-dependent. Importantly though, the
+fraction of \ase genes on balancer chromosomes is not significantly higher than
+on chromosome X (p=0.47, Fisher’s exact test) as shown in \cref{fig:ase_chrX}.
+
+Furthermore we wanted to test whether the existence of multiple different
+genotypes in the $N_1$ generation could cause potential \textit{trans} effects,
+e.g. whether genes on chromosome 3 would depend on the presence of \cyo
+(i.e. balancer chromosome 2), and vice versa. In order to test this we generated
+three new $F_1$ generations of adult flies with different genotypes: one line
+(\Fcyo) with only chromosome 2 balanced, another one (\Ftm) with only
+chromosome 3 balanced, and a last one with double balancer configuration ($F_1$).
+The latter one differs from $F_1^f$ only in that it includes both sexes and that
+it was sequenced together with \Fcyo and \Ftm under equal conditions. Note that
+in these single-balancer lines the aforementioned haplotype separation is only
+possible on the balanced chromosomes themselves, for which \acp{snv} had been
+previously mapped.
+
+Next, I determined \ase genes only on chromosome 2 using two replicates of \Fcyo
+and two replicates of $F_1$ and using \deseq as described previously.
+Accordingly, I did the same for chromosome 3 using \Ftm and $F_1$.
+Together I obtained 478/6356 (7.5\%) significant \ase genes across both balancer
+chromosomes – a number that is fairly in accordance to the results of the
+previously sequenced $F_1^f$ generation. Moreover, the balancer-to-wild type
+ratios of genes from these two samples are in high correlation (Pearson’s
+$r^2$~=~0.824). Relevantly, I was then able to test the interaction term of \ase
+and genetic background using \deseq: I asked, for instance, for which genes on
+chromosome 2 the \ase ratio changed significantly between $F_1$ and \Fcyo.
+As before I repeated this analysis separately on both chromosomes and found a
+significant interaction for 77/5981 genes (1.3\%) at an FDR of 5\% and a
+minimum fold change of 1.5. In order to put this number into context, I also
+estimated the differences in \ase ratio between the two adult double balancer
+samples (i.e. $F_1$ vs. female-only $F_1^f$). These samples are similarly
+high correlated (Pearson’s $r^2$~=~0.848) and I detected 20/5382 (0.4\%) genes
+for which the balancer/wild type ratio is significantly influenced by the
+genetic background (also at an FDR of 5\% and a minimum fold change of 1.5).
+Requiring a fold change of at least two, these rates decrease to 39/5981
+(0.65\%) and 11/5382 (0.2\%).
+The analysis is shown in \cref{fig:ASE_single_balancer_control}.
+
+We concluded from this analysis that there is indeed a \textit{trans} effect of
+the genetic background on the haplotype ratios of genes. However, this effect is
+small, maybe negligible, and even between the genetically seemingly identical
+lines such as $F_1$ and $F_1^f$ significant changes are observed.
+We together reasoned that the analysis of a double balancer line (in contrast
+to a single balancer line) adds another variable to our study design that has to
+be considered as it has a small but notable effect, yet that this strategy is
+still preferable because of the sheer amount of chromosomal rearrangements that
+can be studied.
 
 
 
-\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE fractions per chromosome}{ASE
-    fraction detected on each of the chromosomes 2, 3, and X in a female adult
-    line $F_1^{f}$. Error bars indicate 99\% confidence intervals from a binomial
-    test.}
 
 
 
