@@ -972,15 +972,49 @@ conformation-related mechansisms such as enhancer hijacking.
     as well as the portion of RNA-seq reads that could be resolved to the
     wild type (top panel) and balancer (middle panel) haplotypes. Colored
     vertical lines represent \acp{snv} used for haplotype-separation. RNA-seq
-    tracks were visualized using \igb.
-}
+    tracks were visualized using \igb.}
 
-List of cases in \cref{tab:meilist}
+In a thorough manual data inspection \yad found a sizeable number of genes with
+an RNA-seq signal that did not start at their expected transcription start site.
+We further found that this expression was often only present on one of the two
+haplotypes, and that the RNA-seq coverage started at a seemingly random
+position. Interstingly, despite starting in an intronic or even intergeneic
+region, this signal would often pick up a characteristic splicing pattern
+(high signal within exons, no or low signal along introns) from the end of the
+first traversed exon. \Cref{fig:balancer_mei_example} depicts an example gene
+with strong balancer-specific gene expression.
+
+We speculated that this might be driven by the insertion of mobile elements in
+the positions where the RNA-seq signal started. So I developed a computational
+pipeline that extracts DNA-sequencing reads of a given genomic region,
+computes an assembly of these reads using \spades and compares the assembled
+contigs to a database of common transposable elements in \textit{Drosophila}.
+The comparison is done via read mapping and confirmed visually using the dotplot
+functionality developed for previous work (\cref{sec:maze}). Using this
+approach I found transposable element insertions in 42 loci. Based on the
+position and orientation of the mobile element (i.e. mobile elements contain
+their own transcription start site) I evaluated whether the aberrant \ase
+signal of the gene could be caused by chimeric transcription from the mobile
+element’s promoter. This seems to be the case in 37 loci (\cref{tab:meilist}),
+of which 25 were expressed high enough to be tested for \ase.
 
 \figuretextplusmargin{MEI_impact.pdf}{balancer_mei_impact}{ASE genes associated
     to MEI}{List of significant ASE genes (x axis) ordered by log fold change
     (balancer/wild type, y axis). Genes that are very likely dis-regulated due
     to an MEI driving their chimeric expression are highlighted in blue.}
+
+All these 25 genes were also significant, partially with extreme fold changes
+reported as shown in \cref{fig:balancer_mei_impact}. In the aftermath, this is
+little surprising given that an \mei drives expression of a gene that, even if
+weak, can be orders of magnitudes larger than the second copy which is only
+weakly expressed, if at all. \Acp{mei} could in principle also cause chimeric
+expression of higher expressed genes. Though, in those cases the additional
+mRNA is probably negligible compared to the active transcription of both
+haplotypes. Yet it should be kept in mind that this analysis centered on
+differentially expressed genes with aberrant transcription start sites, hence
+the full impact of \mei is likely under-explored.
+
+
 
 
 
