@@ -869,13 +869,41 @@ of variation introduced through these rearrangements.
 \subsection{Positional clustering of ASE genes}
 \label{sec:balancer_ase_clustering}
 
+Following the intuition that \ase genes could be located at the junctions of
+large chromosomal rearrangements on the balancer chromosomes, I specifically
+looked for an enrichment of \ase genes around breakpoints compared to random
+positions places in the genome (\cref{fig:suppl_ase_genes_around_bps}).
+Surprisingly, only a single breakpoint, namely \textit{chr3R:20.31~Mb},
+appeared to be surrounded by more significant genes than expected: in this case
+5 out of 6 neighbouring genes, which span a region of around $\pm$~50~kb.
+By means of integrated visualization of the locus (explained in
+\cref{sec:balancer_visualization}) I observed that two genes left of the
+breakpoint were highly up- and another one to the right down-regulated in the
+balancer chromosome. An additional gene was disrupted by the breakpoint itself.
+However, a closer data inspection revealed that the \ase signal of these genes
+is likely caused by chimeric transcription across the breakpoint junction. We
+observed such chimeric, likely non-functional expression happening on an
+appreciable set of other genes, too, as \cref{sec:balancer_ase_mei} elaborates.
+
 \figuretextwidth{ase_clustering.pdf}{ase_clustering}{Distance between
     neighboring ASE genes}{This is a histogram of distances between neighboring
     significant ASE genes (blue) as well as of the same number of random control
     genes (sampled from expressed, but non-ASE genes 500 times). Errorbars
     indicate the 5\% and 95\% quantiles of random sub-sampling.}
 
-From the point of view of large rearrangements \cref{fig:suppl_ase_genes_around_bps}
+I then sought to take a more unbiased approach and searched the set of \ase
+genes for positional clustering anywhere in the genome.
+As \cref{fig:ase_clustering} demonstrates, \ase genes are located as far away
+from another as a size-matched set of control genes, maybe with the exception of
+a small set of genes in a distance of approximately 3~kb to one another.
+These, as the integrated visualization again quickly revealed, mostly belong to
+the large duplication on \cyo (see \cref{sec:balancer_cnv,fig:dup_validation})
+and not to one of the chromosomal rearrangements. We thus concluded that there
+is no single spot in the balancer genomes that shows an enrichment in
+significantly mis-regulated genes; instead \acl{ase} is fairly
+evenly distributed across the genome. In addition, these analyses hinted at
+mechanisms unrelated to chromatin conformation that could create \ase signal,
+which are further explored subsequently.
 
 
 
