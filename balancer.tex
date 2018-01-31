@@ -660,11 +660,50 @@ to \Nmat point to remaining maternal transcripts that can be identified as such.
 
 
 
+
 \subsection{Allele-specific expression detection}
 \label{sec:balancer_ase_impl}
 
+The basic idea of measuring \ase is to separate the RNA-seq signal for a given
+gene into its two alleles and to test the resulting ratio against a null
+hypothesis of both alleles being represented equally. This is typically done by
+mapping RNA-seq data to a common reference and inspecting sites of tagging
+variants (i.e. \acp{snv}), although some approaches also rely on mapping to
+personalized genomes to overcome mapping biases \citep{Rozowsky2014} and future
+extensions of this idea will likely lead towards reference graphs
+\citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection
+requires many different considerations, as nicely elaborated by \cite{Castel2015},
+and there is an abundance of software available to perform the different steps
+involved \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGeijn2015,Liu2016}.
+However, due the particular requirements in our study these are mostly not
+applicable: First, we needed to test \ase against an unusual fraction of 25\%,
+whereas some models (reasonably) expect a 50\% null hypothesis. Second, we were
+using multiple replicates simultaneously to reduce statistical noise, and third,
+we expected the different replicates to entail different \ase ratios for some
+genes (i.e. the ones with maternal mRNA), a situation that is unique to our
+study. I hence implemented an approach to \ase detection that captures these
+features.
 
-More detail in \cref{sec:suppl_deseq}.
+As a first step I mapped RNA-seq read pairs to \ac{dm6} using \STAR. I then
+separated the RNA-seq data into haplotype using a simple Python script based on
+\textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
+This approach considers all \acp{snv} that a read pair overlaps and can hence
+also detect if observed alleles within the fragment are conflicting expected
+haplotypes – a fact that we deemed especially important for the separation of
+Hi-C data later on (\cref{sec:balancer_cc_impl}). The approach is complementary
+to the \snv-centric approaches of other tools (e.g. \cite{Castel2015}) that
+yield allelic read counts at each site. Furthermore, I preferred to derive a
+single sum of fragments for each allele of a whole gene instead of considering
+different sites of variation within the same gene. This has the downside that
+it might mask potential allele-specific alternative exon usage, which was
+recently shown to occur at cites of CTCF (CCCCTC-binding factor)
+\citep{Ruiz-Velasco2017}, and which can be identified using profound
+statistical tests \citep[for instance]{Skelly2011}. On the other hand this
+summary approach does not require an additional model to integrate sites of
+variation within a gene (such as presented by \cite{Mayba2014}) and can be
+expected to be more robust to local fluctuations in coverage than single-\snv
+analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
+2x~144~bp) as shown in \cref{tab:balancer_rnaseq}.
 
 \begin{table}[ht]
     \centering
@@ -685,11 +724,32 @@ More detail in \cref{sec:suppl_deseq}.
         pairs that could not be assigned.}
 \end{table}
 
+At last, I had to decide for a statistical method to test against the null
+hypothesis. The commonly used Binomial test is known to inflate small p-values
+\citep{Harvey2014} and further cannot integrate our replicate design. I thus
+used \deseq, a well-established tool for differential RNA-seq analysis, to test
+for \ase. Given the haplotype-specific counts for each gene, \deseq is able to
+detect divergence from the 25\% fraction across multiple replicates and can
+further cope with a potential shift in \ase ratio between the replicates caused
+by maternally deposited mRNA, which will increase the p-value. It also performs
+multiple testing correction at a controlled \fdr (more detail in
+\cref{sec:suppl_deseq}).
 
 \figuretextwidth{DESeq2_N1_6_8h.pdf}{DESeq}{ASE analysis based on
     \texorpdfstring{\deseq}{DESeq2}}{Average haplotype-resolved fragment count
     per gene across four replicates vs. log 2 fold change of balancer over wild
     type counts are shown. A single outlier to the right was trimmed. }
+
+Among 5357 genes on chromosome 2 and 3 for which there was sufficient
+haplotype-resolved coverage we detected 476 significant \ase genes (8.9\%) at a
+\fdr of 5\%. The median fold change was 1.8 with a symmetrical distribution in
+both directions (see \cref{fig:DESeq}). At a minimum fold change of at least
+1.5, 322 genes remain (6.0\%). These percentages are similar to the fraction of
+\ase genes in $F_1$ crosses of two distinct DGRP lines, where 5-10\% ASE genes
+are reported (Furlong lab, unpublished work).
+
+
+
 
 
 \subsection{RNA-seq control experiments}
