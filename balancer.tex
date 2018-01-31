@@ -189,7 +189,7 @@ Since we were able to resolve complete haplotypes in this study, we could
 measure expression not only at single alleles but could assign alleles to
 the balancer- or wild type chromosomes and can thus distinguish up- and
 down-regulated genes of the balancer chromosomes in respect to the wild type
-expression. \Crefrange{sec:balancer_maternal_rna}{sec:balancer_ase_impl} provide
+expression. \Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl} provide
 more detail on the procedure.
 We assume that the vast majority of \acp{snv} simply tag alleles but do not have
 an effect on their regulation, or that this effect is negligible in comparison
@@ -386,7 +386,7 @@ are primarily interested in genetic variation distinguishing the homologues.
     \centering
     \begin{tabu}{lrrrr}
         \toprule
-        Deletion subset           & \#Calls &  V &  I & Emp. \fdr\\
+        Deletion subset           & \#Calls &  V &  I & Empirical \fdr\\
         \midrule
         \emph{<50~bp}             &   3,072 &  0 &  0 & \emph{unknown} \\
         50 - 159~bp               &     737 & 24 &  1 &     4\% \\
@@ -399,7 +399,7 @@ are primarily interested in genetic variation distinguishing the homologues.
     \tabcap{pcrresults}{\Ac{pcr} for deletion validation}{Number of calls as
         well as number number of validated (\textbf{V}) and invalidated
         (\textbf{I}) loci as determined by \pcr. The proportion of validated
-        calls determines the empirical \ac{fdr} (\textbf{Emp. \fdr}).
+        calls determines the empirical \ac{fdr}.
         Calls below 160~bp were not \pcr-validated.}
 \end{table}
 
