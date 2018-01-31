@@ -829,10 +829,42 @@ can be studied.
 
 
 
+
 \section{The interplay between SVs and differentially expressed genes}
+\label{sec:balancer_sv_interplay}
+
+After we characterized \acp{sv} and detected differentially expressed genes we
+were interested in their relationship. In the upcoming section I describe how we
+explored their correlation and which \acp{sv} we believe are causal to \ase
+genes. Later on, \cref{sec:balancer_cc} will specifically cover the role of
+chromatin conformation.
+
+
 
 \subsection{Genes affected by large rearrangements}
 \label{sec:balancer_ase_breakpoints}
+
+During the characterization of the breakpoints of large chromosomal
+rearrangements I found that they often happen to disrupt genes. In fact, 11 out
+of 15 breakpoints do so, affecting genes such as \textit{Src42A}
+(Draper-Shark-mediated signalling immune response pathway), \textit{GlyP}
+(carbohydrate metabolism pathway) and \textit{p53} (tumour suppressor). The
+deletion present at breakpoint \textit{chr3R:20.3~Mb} even spans a complete
+gene, which is consequently lost in the balancer chromosome. All cases are
+listed in \cref{tab:blancer_breakpoints}. We assume that disrupted genes become
+non-functional or at least severely truncated on the balancer chromosomes,
+which is why most of them also show up in the set of \ase genes.
+
+These frequent gene knockouts are perhaps surprising, as it is expected that
+selective forces during the creation of balancer chromosomes would rule out
+breakpoints disrupting critical genes. It can thus be assumed that these
+particular genes are not dosage-dependent. It is in fact reported that balancer
+chromosomes can tolerate recessive mutations due to the reduced influence of
+natural selection \citep{Araye2013} - yet one should acknowledge the high amount
+of variation introduced through these rearrangements.
+
+
+
 
 \subsection{Positional clustering of ASE genes}
 \label{sec:balancer_ase_clustering}
