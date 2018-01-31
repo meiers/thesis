@@ -912,7 +912,6 @@ which are further explored subsequently.
 \subsection{\texorpdfstring{\ase}{ASE} signal related to changes in copy number}
 \label{sec:balancer_ase_cnvs}
 
-
 % Testing this matrix for randomness:
 %           no_CNV CNV_overlap
 % no_ASE      4551         292
@@ -933,6 +932,33 @@ which are further explored subsequently.
     Two genes overlapped multiple different \acp{cnv} (\textit{ambiguous}). A
     positive log fold change means higher expression in the balancer haplotype
     and vice versa.}
+
+Next, I tried to understand how much of the \ase signal is caused by \acp{cnv}.
+I therefor inspected significant \ase genes that have at least one of their
+exons (incl. $3^\prime$ or $5^\prime$ untranslated regions) affected by a \cnv.
+This overlap yielded 73 genes, which in is a significantly higher fraction
+among the ASE genes (14\%) than among expressed, but non-ASE genes (292 cases,
+6\%; p-value $<10^-9$, Fisher's exact test). \Cref{fig:ASE_cnv_overlap} shows
+the effect \acp{cnv} have on the expression of \ase genes. As expectable, a
+clear trend towards a dosage effect can be seen, i.e. that a deletion on the
+balancer chromosome decreases and a duplication increases the balancer
+expression (seen by a positive log fold change), and vice versa for
+wild-type-specific \acp{cnv}. Duplications, which exhibit a far larger size
+distribution than deletions (\cref{fig:svsize_del,fig:svsize_dup}), show a
+clearer signal of differential expression as they often duplicate whole genes.
+Yet even in such cases it cannot necessarily be expected that a higher copy
+number also leads to an increase in transcribed RNA –- a partial copy could
+even disrupt a gene in a way that its expression decreases. This complexity
+becomes more obvious in the case of deletions, which often affect only a single
+exon. The specific explanation for each gene could, if need to, be unravelled
+in case-by-case fashion.
+
+We derive as a conclusion from this analysis that up to 14\% of significant \ase
+genes could be explained directly by \acp{cnv} affecting their exons.
+Ergo, these genes can be exluded from the search for any chromatin
+conformation-related mechansisms such as enhancer hijacking.
+
+
 
 
 
