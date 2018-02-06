@@ -73,8 +73,10 @@ typically the case for aforementioned expression quantitative trait loci, yet
 the (then very surprising) discovery was already made in 1979 in a row of
 heritable blood diseases named thalassaemia \citep{Fritsch1979}.
 
-At last, another mechanism has recently gained attention in which \acp{sv}
-neither affect genes nor regulatory sequences, but re-model the
+The impact of position effects in health and disease have long been noted, yet
+the underlying mechanism was so far not understood \citep{Kleinjan2005}.
+Over the past years we have gained more insight into a mechanism in which
+\acp{sv} neither affect genes nor regulatory sequences, but re-model the
 three-dimensional chromatin organization instead. As this is a central aspect of
 our study, it is further elaborated in \cref{sec:disrupting_tads}.
 
@@ -125,10 +127,11 @@ and promoters) are cause or consequence of active expression, but it was
 observed that many such contacts establish long before gene activation
 \citep{Ghavi-Helm2014}. Moreover, \cite{Symmons2014} inserted reporter genes at
 several hundred sites of the mouse genome and observed tissue-specific activity
-in spatial blocks that correspond to \acp{tad}. In addition to other functional
-studies, which are described subsequently, these results suggest that \acp{tad}
-exert a crucial regulatory function by confining promoter-enhancer interactions.
-
+in spatial blocks that correspond to \acp{tad}. These results suggest that
+\acp{tad} exert a crucial regulatory function by confining promoter-enhancer
+interactions inside, as \cite{Ji2016} call them, insulated neighbourhoods. A
+series of perturbation studies support this hypothesis, as described
+subsequently.
 
 
 
@@ -136,6 +139,42 @@ exert a crucial regulatory function by confining promoter-enhancer interactions.
 
 \subsection{Consequences of disrupting chromatin conformation}
 \label{sec:disrupting_tads}
+
+The disruption of \tad boundaries was shown to be able to cause severe
+misregulation via a so-called enhancer adoption \citep{Lettice2011} or enhancer
+hijacking \citep{Northcott2014} mechanism. According to the hypothesis, merging
+of two \acp{tad} as a consequence of an \sv alters the ``search space'' of an
+enhancer, which can then suddenly drive expression of another gene in
+non-physiological amounts. This was quite remarkably shown in various cancer
+types including medulloblastoma \citep{Northcott2014}, lung cancer and
+colorectal cancer \citep{Weischenfeldt2016} and acute lymphoblastic leukemia
+\citep{Hnisz2016}. Furthermore, computational studies linked this mechanism to
+genetic diseases via mining of public databases and showed, for example, that
+around 10\% of disease-associated deletions potentially function via an enhancer
+adoption mechanism \citep{Ibn-Salem2014,Zepeda-Mendoza2017}.
+
+Moreover, as \cite{Lupianez2016,Krijger2016} review, a number of studies
+specificially tested this hypothesis on particular genomic loci by genome
+editing using CRISPR/Cas \citep{Doudna2014}. For example, \cite{Guo2015} altered
+the binding site of an architectural protein in proximity of an enhancer element
+and observed looping as well as ectopic gene expression across this boundary.
+Similarly, \cite{Narendra2015} observe heterochromatin spreading when they
+deleted such a boundary at the \textit{Hox} locus in \textit{Drosophila}.
+In fact already \cite{Nora2012} observed this mechanisms when they studied an
+additional mouse line with a \tad boundary deletion and observed a merged \tad
+and ectopic gene expression instead of the two clearly separated \acp{tad} and
+regulatory insulation seen in wild type mice.
+
+Recently, \cite{Lupianez2015} impressively replicated limb abnormalities in mice
+that were known from human genetic diseases. They first showed that these
+abnormalities arise in a developmental stage from misregulated gene expression
+caused by \tad boundary deletions. When they engineered similar deletions in
+mice using the CRISPR/Cas9 system they observed large changes in chromatin
+conformation, ectopic gene expression across the boudary and indeed the same
+phenotype of limb malformations that had been seen in human. Together, these
+studies underline the functional role of \acp{tad} and suggest that breaking
+\acp{tad} potentially leads to misregulation via an enhancer adoption mechanism.
+
 
 
 
@@ -1068,11 +1107,8 @@ the full impact of \mei is likely under-explored.
 \subsection{Differences in chromatin conformation between wild type and balancer chromosomes}
 \label{sec:balancer_cc_differences}
 
-
-
-\section{Integrated visualization of single loci for data exploration}
+\section{Integrated visualization of genomic loci}
 \label{sec:balancer_visualization}
-
 
 \section{Conclusions}
 \label{sec:balancer_concl}
