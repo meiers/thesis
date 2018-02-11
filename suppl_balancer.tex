@@ -132,7 +132,7 @@ X.
 \figuretextwidth{dup_validation_example_wt.pdf}{dup_validation_wt} % DUP00014221
     {Example for a wild type-specific duplication}
     {Wild-type specific tandem duplication at locus
-    \textit{chr3R:26,960,008−26,964,205}. The bi-allelic frequnency signal
+    \textit{chr3R:26,960,008−26,964,205}. The \baf signal
     clearly suggests a heterozygous duplication in the $F_1$ cross and the
     increased read depth in the wild type sample identifies it as present on
     the wild type chromosome.}
@@ -140,7 +140,7 @@ X.
 \figuretextwidth{dup_validation_example_false.pdf}{dup_validation_false} %
     {Example for a false duplication prediction}
     {Predicted duplication locus \textit{chr3R:22,101,264−22,107,086} is not
-    validated by the bi-allelic frequncy signal.}
+    validated by the \baf signal.}
 
 I used \delly version 0.7.5 in tandem duplication mode and supplied both mate
 pair and \wgs libraries for $F_0$ and $F_1$ samples simultaneously. Duplication
@@ -151,10 +151,10 @@ known issue of the duplication classifier, which reports many homozygous tandem
 duplications as heterozygous. For all remaining 352 calls I generated detailed
 overview plots that contained multiple lines of information: a total read-depth
 track, a mappability track, overlapping gene annotations and, importantly, a
-track showing the bi-allelic frequency measured at SNV positions. These plots
+track showing the \baf measured at SNV positions. These plots
 allowed me to sort out false positives, leaving 122 manually curated
 high-quality tandem duplications. Aside from tandem duplications I further
-inspected the bi-allelic frequency ratio across the genomes and unraveled three
+inspected the \baf ratio across the genomes and unraveled three
 non-tandem duplications of 4.3~kb, 10.4~kb and 258~kb size. Both sets together
 are summarized by ``duplications'' in the main text.
 

@@ -511,19 +511,19 @@ ascertain than deletions, which exhibit a very clear read-depth signal.
 Yet also for duplications orthogonal information in addition
 to the paired-end read signature can be utilized to gain confidence in
 predictions. Specifically these are read depth, which should be considered in
-the context of local mappability, and the bi-allelic frequency.                 \todo{Exlain bi-allelic freuqency in the INTRO}
+the context of local mappability, and the \baf.                                 \todo{Exlain \baf in the INTRO}
 After initial filters I generated overview plots containing such information for
 352 loci on chromosomes 2 and 3. One example is shown in
 \cref{fig:dup_validation}, and further examples, including a negative one, can
 be found in \cref{fig:dup_validation_wt,fig:dup_validation_false}.
 Upon inspection of the plots I demanded to see a change in read depth between
-samples, as well as a characteristic change in the bi-allelic frequency. In a
+samples, as well as a characteristic change in the \baf. In a
 balancer-specific duplication, for instance, the read-depth should increase only
-in the $F_1$ sample and the bi-allelic frequency of \acp{snv} should switch from
+in the $F_1$ sample and the \baf of \acp{snv} should switch from
 50\% to either 33\% or 66\%.
 
 In addition to tandem duplications predicted by \delly I found another three
-non-tandem duplications by manual inspection of the bi-allelic frequency signal
+non-tandem duplications by manual inspection of the \baf signal
 across the genome, which were then included in the set of duplications prior
 to manual validation. Some predicted loci could not be validated because they
 resided within low-mappability regions, rendering both read depth and allelic
@@ -537,10 +537,10 @@ using this strategy (\cref{fig:svsize_dup}).
     which was predicted based on paired-end read signature using \delly.
     The additional signals
     included for a visual validation are (1) a mappability track (fraction
-    of uniquely mappable reads), (2) the bi-allelic frequency (fraction of
+    of uniquely mappable reads), (2) the \baf (fraction of
     reads supporting the alternative allele of an \snv), and (3)
-    the total read coverage (as genomic coverage, in 100bp windows). Bi-allelic
-    frequency is typically the clearest signal to discriminate true from false
+    the total read coverage (as genomic coverage, in 100bp windows). \Ac{baf}
+    is typically the clearest signal to discriminate true from false
     copy number variants, but reuqires the presence of \acp{snv}.}
 
 \paragraph{Summary} The \acp{cnv} I report for balancer and wild type
@@ -635,7 +635,7 @@ characterize other large \acp{sv}. Notably, an inversion of approximately 40~kb
 on \ac{tm3}\footnote{Precisely, at \textit{chr3L:~14.61~-~14.64~Mb}.} was
 validated by a characteristic Hi-C signal (data not shown). I also inspected
 aforementioned 258~kb duplication on \cyo closer, which I had predicted by a
-chatacteristic bi-allelic frequency signal (described in
+chatacteristic \baf signal (described in
 \cref{sec:balancer_cnv}). Interestingly, the differential \hic contact map as
 displayed in \cref{fig:dup_hic_biaf} confirms the duplication (seen as a red
 triangle, which stands for a total increase in contacts on the balancer
@@ -748,7 +748,12 @@ hypothesis of both alleles being represented equally. This is typically done by
 mapping RNA-seq data to a common reference and inspecting sites of tagging
 variants (i.e. \acp{snv}), although some approaches also rely on mapping to
 personalized genomes to overcome mapping biases \citep{Rozowsky2014} and future
-extensions of this idea will likely lead towards reference graphs
+extensions of this idea will likely lead towards \explain{reference graphs}{
+    represent different alleles in a reference genome simultaneously in order
+    to reduce read mapping bias. Such graphs could contain two different alleles,
+    but also all haplotypes present in a population. However, this requires new
+    algorithms for the interpretation of sequencing data, which the topic is
+    subject to active research.}
 \citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection
 requires many different considerations, as nicely elaborated by \cite{Castel2015},
 and there is an abundance of software available to perform the different steps
