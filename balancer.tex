@@ -247,25 +247,25 @@ landscape  of the balancer chromosomes, which is presented in
 
 
 
-\subsection{Studying \texorpdfstring{\textit{cis}}{cis}-regulation via
-    \texorpdfstring{\acl{ase}}{allele-specific expression}}
+\subsection{Studying \texorpdfstring{\textit{cis}}{cis}-regulation through
+    allele-specific gene expression and haplotype-resolved chromatin conformation}
 \label{sec:balancer_ase_motivation}
 
 To study the effects of \acp{sv} on gene regulation we wanted to compare global
-gene expression of the balancer chromosomes against expression of the wild type
+gene expression of the balancer chromosomes against their the wild type
 homologues. This could principally be done by comparing two different fly
 strains, one carrying genomic rearrangements and one without. However, while
 this is also not possible using balancer chromosomes that cannot be
 in a homozygous state, this approach would make it difficult to distinguish
 \textit{cis}-regulation, i.e. the effect of alterations of the DNA itself, from
 \textit{trans}-regulation such as an altered expression of some transcription
-factor. This is why another central foundation of this study was to compare wild
+factor. This is why a central foundation of this study was to compare wild
 type chromosomes and balancer chromosomes within the same nucleus via \acf{ase}.
 This is achieved by measuring gene expression separately for both alleles, where
 alleles differ by naturally occurring variation, notably \acp{snv}.
 Since we were able to resolve complete haplotypes in this study, we could
 measure expression not only at single alleles but could assign alleles to
-the balancer- or wild type chromosomes and can thus distinguish up- and
+the balancer- or wild type chromosomes and thus distinguish up- and
 down-regulated genes of the balancer chromosomes in respect to the wild type
 expression. \Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl} provide
 more detail on the procedure.
@@ -274,8 +274,6 @@ an effect on their regulation, or that this effect is negligible in comparison
 to larger rearrangements. This might not be true in all cases and it can indeed
 be difficult to assign a change in expression to the respective functional
 mutation.
-
-
 
 \figuretwocolumns[0.38]
     {balancer_chroms.pdf}{balancer_chroms}{Genome overview}{Schematic of the
@@ -292,19 +290,14 @@ mutation.
         of which on average 25\% of both chromosome 2 and 3 are balancer
         chromosomes.}
 
-
-
-\subsection{Differences in chromatin conformation studied via haplotype-resolved Hi-C data}
-\label{sec:balancer_study_design_hic}
-
 Another central point of the study was to explore the three-dimensional
 chromatin conformation of the highly rearranged balancer chromosomes and to link
-this to observed \ase. Similarly to gene expression we also needed to measure
-chromatin conformation in a haplotype-resolved manner. We hence performed a \hic
+this to observed \ase. To this end we needed to measure
+chromatin conformation in a haplotype-resolved manner, too. We hence performed a \hic
 experiment and again used \acp{snv} to distinguish fragments belonging to
 balancer- or wild type chromosomes. As a matter of fact the resulting
 haplotype-resolved maps of contact frequency can additionally be utilized to
-characterize genomic rearrangements (described in \cref{sec:balancer_hic_svs}).
+characterize genomic rearrangements, as I describe in \cref{sec:balancer_hic_svs}.
 
 Early on we made a decision to study fly embryos (instead of adult flies) for
 mainly two reasons: To begin with, \textit{D. melanogaster} embryos are well
@@ -318,10 +311,10 @@ realizable based on markers only expressed at an adult stage. We hence decided
 to collect fly embryos from a backcross of the double balancer line ($F_1$) with
 the original wild type line ($F_0$). The resulting generatio, termed $N_1$, is a
 mix of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
-effectively 25\% of chromosomes 2 and 3 are balancer chromosomes.
-
-In the subsequent sections I describe the methodology and our findings on the
-effect genomic rearrangements have on chromatin organization and gene regulation.
+effectively 25\% of chromosomes 2 and 3 are balancer chromosomes. This cross
+was used both to measure \ase and chromatin conformation. In the subsequent
+sections I describe the methodology and our findings on the effect genomic
+rearrangements have on chromatin organization and gene regulation.
 
 
 
