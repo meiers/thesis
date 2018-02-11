@@ -71,7 +71,7 @@ Causative \acp{sv} need not affect the actual gene itself, but could target
 regulatory sequences in proximity or elsewhere in the genome instead. This is
 typically the case for aforementioned expression quantitative trait loci, yet
 the (then very surprising) discovery was already made in 1979 in a row of
-heritable blood diseases named thalassaemia \citep{Fritsch1979}.
+heritable blood diseases named thalassemia \citep{Fritsch1979}.
 
 The impact of position effects in health and disease have long been noted, yet
 the underlying mechanism was so far not understood \citep{Kleinjan2005}.
@@ -154,7 +154,7 @@ around 10\% of disease-associated deletions potentially function via an enhancer
 adoption mechanism \citep{Ibn-Salem2014,Zepeda-Mendoza2017}.
 
 Moreover, as \cite{Lupianez2016,Krijger2016} review, a number of studies
-specificially tested this hypothesis on particular genomic loci by genome
+specifically tested this hypothesis on particular genomic loci by genome
 editing using CRISPR/Cas \citep{Doudna2014}. For example, \cite{Guo2015} altered
 the binding site of an architectural protein in proximity of an enhancer element
 and observed looping as well as ectopic gene expression across this boundary.
@@ -567,7 +567,7 @@ increases the dosage of around 33 genes.
 \subsection{Validation of large rearrangements using Hi-C data}
 \label{sec:balancer_hic_svs}
 
-I further aimed at refining breakpoint junctions of the major rearrangements on     \todo{include recent results from Miller et al \url{http://www.g3journal.org/content/ggg/early/2018/02/02/g3.118.200021.full.pdf}}
+I further aimed at refining breakpoint junctions of the major rearrangements on     \todo{Alek: include recent results from Miller et al \url{http://www.g3journal.org/content/ggg/early/2018/02/02/g3.118.200021.full.pdf}}
 the balancer chromosomes, which had previously been known only at microscopic
 resolution\footnote{\label{footnote:balancer_karyotype}
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
@@ -583,7 +583,9 @@ Right away we identified strong signals off the diagonal with a characteristic
 gaps close to the diagonal. Undoubtedly this signal stems from the genomic
 rearrangements we expected to see and by comparing them to the available
 karyotype information Yad Ghavi-Helm could assign 15/16 of these breakpoints to
-the respective inversions. I then searched through inversion and
+the respective inversions - the last breakpoint appears to lie outside the
+mappable reference genome and is thus inaccessible to read-mapping based methods.
+I then searched through inversion and
 translocation\footnote{Translocations are connections across chromosomes, yet
     because the left and right arms of chromosomes 2 and 3 are reported
     separately in \ac{dm6} rearrangements spanning the centromere are reported
@@ -609,19 +611,17 @@ resolution breakpoints in in 14/15 cases, which are reported in
     Hi-C data processing and plots were contributed by \alek.}
 
 Reassuringly, when I compared these
-breakpoint with the genomic positions stated in a recent study mapping mutations
+breakpoint with the genomic positions stated in a recent study mapping mutations        \todo{here new Miller paper}
 on \ac{tm3} \citep{Miller2016} I found precise agreement for 8 of 10
-breakpoints. For one of the two remaining breakpoints (20.3~Mb on \ac{tm3})
-that were missed both by Miller et al. and here I could at least estimate the
-breakpoint location at a resolution of 5kb and further narrowed it down to a
-``best guess'' based on manual inspection of mate pair data. The other
-breakpoint is outside the span of the reference genome and thus inaccessible to
-read-mapping based methods. Only one of the breakpoint junctions in the balancer
+breakpoints. We provide a ``best guess'' of the breakpoint on \ac{tm3} at
+approximately 20.3~Mb based on \hic information and manual inspection of mate
+pair data. Only one of the breakpoint junctions in the balancer
 chromosomes showed a precise re-ligation, whereas most of them are scarred by a
 loss of genetic material (9 cases, max. 1.8~kb, median 114~bp) or small sequence
 duplications (4 cases, median 9~bp, max 281~bp; see also
-\cref{sec:suppl_balancer_breakpoints}). Additionally, the estimation of the
-breakpoint at 20.3~Mb on \ac{tm3} appears to carry a deletion of around 17~kb.
+\cref{sec:suppl_balancer_breakpoints}). Additionally, we predict that the
+breakpoint on \ac{tm3} at 20.3~Mb contains a deletion of around 17~kb, which could
+explain the difficulties in ascertainment by Miller et al.
 
 Moreover, I utilized the haplotype-resolved contact maps further to validate and
 characterize other large \acp{sv}. Notably, an inversion of approximately 40~kb
@@ -695,7 +695,7 @@ as in the scope of two additional control experiments
 At an early stage of the project we sequenced mRNA from 4-8h embryos of the
 $N_1$ backcross (\cref{fig:balancer_crossing_scheme}) to explore the power to
 detect significant \ase genes. As briefly introduced in
-\cref{sec:balancer_study_design_hic}, 25\% of chromosomes 2 and 3 within the
+\cref{sec:balancer_ase_motivation}, 25\% of chromosomes 2 and 3 within the
 genetic pool consist of balancer chromosomes. This means that when we separate
 RNA-seq reads by haplotype we expect their distribution to be centered around a
 balancer fraction of 25\%. As the left panels of \cref{fig:ASE_histograms}
@@ -1054,7 +1054,7 @@ In a thorough manual data inspection \yad found a sizeable number of genes with
 an RNA-seq signal that did not start at their expected transcription start site.
 We further found that this expression was often only present on one of the two
 haplotypes, and that the RNA-seq coverage started at a seemingly random
-position. Interstingly, despite starting in an intronic or even intergeneic
+position. Interestingly, despite starting in an intronic or even intergeneic
 region, this signal would often pick up a characteristic splicing pattern
 (high signal within exons, no or low signal along introns) from the end of the
 first traversed exon. \Cref{fig:balancer_mei_example} depicts an example gene
