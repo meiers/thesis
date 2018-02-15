@@ -33,7 +33,7 @@ I participated, we discovered that most of the inversions (explained in
 Instead they are complex variants that tricked structural variation prediction
 methods into calling inversions. I unravelled the true genomic structure of some
 of these complex loci using long-read sequencing (introduced in
-\cref{sec:pacbio,sec:ont}) and tried to gain insights on the molecular
+\cref{sec:long_read_seq}) and tried to gain insights on the molecular
 mechanisms that might have created these classes of variation.
 
 Chapter XXX \todo{refer to chapter} talks about Strand-seq (introduced in \cref{sec:strandseq})
@@ -68,19 +68,11 @@ figures and tables.
 \section{Genetic variation}
 \label{sec:variation}
 
-\begin{itemize}
-\item types: SNVs, SVs, aneuploidy
-\item haplotypes, phasing
-\item germline vs. somatic + mosaicism
-\item
-\end{itemize}
-
 
 
 \section{Structural Variation}
 \label{sec:sv}
 
-\subsection{Copy-number variants}
 
 \figuretextwidth{SVs.pdf}{SV_classes}{Types of structural variants}
     {Each case is depicted by the original locus on the left and the affected
@@ -100,27 +92,29 @@ figures and tables.
 \subsection{Molecular mechanisms of SV formation}
 \label{sec:mechanisms}
 
-\subsection{Other types of SVs}
-translocations, MEIs, NUMTs, micro-satellites  ... ?
 
 \subsection{Molecular mechanisms of SV formation}
 \label{sec:mechanisms}
 
-Review from Cavalho and  Lupski \citep{Carvalho2016}
+\subsection{Methods of SV detection}
+\label{sec:sv_detection}
+
+\subsection{SV prediction utilizing DNA sequencing data}
+\label{sec:sv_detection_ngs}
 
 
 
-\section{DNA-sequencing methodology}
+\section{DNA sequencing technologies}
+\label{sec:sequencing}
 
-\dictum[Frederick Sanger\footnotemark]{(...) [The] knowledge of sequences could
-contribute much to our understanding of living matter.}
-\footnotetext{From his biography for the Nobel Prize\cite{Sanger1980}}
+%\dictum[Frederick Sanger\footnotemark]{(...) [The] knowledge of sequences could
+%contribute much to our understanding of living matter.}
+%\footnotetext{From his biography for the Nobel Prize\cite{Sanger1980}}
 
-\subsection{High-throughput sequencing}
-\label{sec:hts}
+\subsection{Massively parallel sequencing}
+\label{sec:mps}
 
-The foundation of DNA-sequencing as we know it today was laid in 1977 by
-Sanger and his ``chain-terminaiton'' technique \citep{Sanger1977}.
+
 
 \figurepagewidth{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads from
 \mps are typically short (up to 150~bp), are sequenced from their $5^\prime$
@@ -129,17 +123,28 @@ libraries, the lengths of the original DNA fragment (which can be estimated
 after read mapping) is called insert size and usually much larger in mate pair
 experiments than paired-end experiments.}
 
-\subsection{Pacific BioSciences\texorpdfstring{\textsuperscript{\textregistered}}{(R)} long read sequencing}
-\label{sec:pacbio}
+
+
+\subsection{Long read sequencing}
+\label{sec:long_read_seq}
+
+
+\figuretextwidth{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
+    \texorpdfstring{\acs{pacbio}}{PacBio} and ONT sequencing}{\textit{a)} \pacbio
+    sequencing utilizes the concept of sequencing by synthesis similarly to
+    the Illumina technology.
+    Figure taken from \citetitle{Heather2016} \citep{Heather2016} licensed under
+    \acl{ccby4}.}
+
+Pacific BioSciences\texorpdfstring{\textsuperscript{\textregistered}}{(R)} long read sequencing
 Single Molecule, Real-Time Sequencing (SMRT\textsuperscript{\textregistered})
 
 \todo{Circular consesus sequence - how it works}
 
-\subsection{Oxford Nanopore Technologies\texorpdfstring{\textsuperscript{\textregistered}}{{R}}}
-\label{sec:ont}
+Oxford Nanopore Technologies\texorpdfstring{\textsuperscript{\textregistered}}{{R}}
+
 MinION\textregistered
 
-\todo{2d reads - how it works}
 
 \subsection{Chromatin conformation capture sequencing}
 \label{sec:ccc}
