@@ -152,6 +152,13 @@
         \marginfig{#1}%
         \captionof{figure}[#3]{\label{fig:#2}\textbf{#3.\enspace} #4}}%
 }
+\newcommand*\figurepagewidth[4]{%                       <- figurepagewidth [4]
+    \begin{figure}[t]
+        \hspace{-\dimexpr\oddsidemargin+1in}%
+        \makebox[\textwidth][l]{\includegraphics[width=\paperwidth]{#1}}%
+        \figcap{#2}{#3}{#4}
+    \end{figure}
+}
 
 
 
