@@ -241,7 +241,7 @@ library preparation and sequencing can be found in the supplementary methods of
 Research, Cologne\footnote{Data is publicly available through the European
 Nucleotide Archive via accession numbers SAMEA3299513, SAMEA3257441, and
 SAMEA3257407}. Thirdly, a smaller number of loci were sequenced on a
-\minion device\footnoteref{footnote:xbpIhd} at EMBL. These numbers are
+\ont MinION device\footnoteref{footnote:xbpIhd} at EMBL. These numbers are
 summarized in \cref{tab:inv_validations}.
 
 I received both the raw sequencing data of the amplicons in multiple stages. At
@@ -254,7 +254,7 @@ genome using \blasr, I selected reads mapping their respective locus for
 visualization. I then generated dotplots of each long read against its reference
 locus using a custom script, which was developed by \markus and me and which is
 further described in \cref{sec:maze}. I used a very similar approach to analyze
-\minion data: I obtained both 1D reads as well as 2D reads from multiple
+\ont MinION data: I obtained both 1D reads as well as 2D reads from multiple
 different sequencing runs. I then utilized \last to map reads to an artificial
 reference only containing the loci of interest. Again I selected mapping reads
 for visualization through dotplots.
@@ -269,13 +269,13 @@ reads supporting the reference allele and not a single one with an inversion
 signal. This asymmetric measure is motivated by an allelic imbalance yielding
 from the \pcr, as I briefly describe in \cref{sec:complex_invs_artifacts}. The
 majority of validations were successful through support from \pacbio reads,
-which outperformed \minion data in both quality and quantity in our
+which outperformed \ont MinION data in both quality and quantity in our
 setup.\footnote{Note that I do not carry out a detailed comparison of both
 technologies. Instead, we primarily used \pacbio and additionally explored a
-very early version of \minion, which turned out to be helpful for a subset of
-loci}. In 20 cases \minion was instrumental in validating loci that could not be
+very early version of \ont MinION, which turned out to be helpful for a subset of
+loci}. In 20 cases \ont MinION was instrumental in validating loci that could not be
 resolved by \pacbio due to a lack of coverage. Reassuringly, among the set of 37
-loci that were both informative in \pacbio and \minion data, 35 loci agreed in
+loci that were both informative in \pacbio and \ont MinION data, 35 loci agreed in
 showing an inversion-type variant and the other two agreed in showing the
 absence thereof. The final \fdr for inversions in the 1000 Genomes project was
 estimated to be 17\%, although this estimate might be conservative because of
@@ -381,7 +381,7 @@ and demonstrated in \cref{fig:complex_invs_artifacts}. Up on inspection of
 dotplots of long reads I identified at least six loci that seemed to carry three
 different alleles. In all cases the same two alternative alleles were present in
 addition to a reference allele: an inverted duplication and a deletion. At first
-I verified that these observations are also present in \minion data to exclude
+I verified that these observations are also present in \ont MinION data to exclude
 a \pacbio sequencing artifact (also \cref{fig:complex_invs_artifacts}).
 Next, I began investigating the possibility of the whole genomic locus being
 duplicated within the genome, which could explain the presence of more than two
@@ -785,7 +785,7 @@ adopted the modern look and feel of the main window of Maze that was designed by
 In summary, \maze is a user-friendly and easy-to-install software specifically
 designed for inspecting long reads or assemblies in the range up to 50~kb. It
 allows a user to visually browse through their sequence data to (1) judge the
-quality (compare, for example, \pacbio to \minion data in \cref{fig:complex_invs}),
+quality (compare, for example, \pacbio to \ont MinION data in \cref{fig:complex_invs}),
 (2) distinguish successful sequencing reads from artifacts and (3) discover
 interesting alleles such as complex rearrangements. The additional breakpoint
 module of \maze comes into play whenever a user is interested in characteristics
@@ -817,7 +817,7 @@ These inversions had been predicted from low-coverage paired-end sequencing data
 but \pcr-based validation experiments proved difficult. For a while it was a
 major mystery why inversions that seemed to be accurately predicted could not be
 experimentally validated. This mystery was solved with the help of long-read
-sequencing, notably \pacbio and \minion sequencing. A subset of 208 predicted
+sequencing, notably \pacbio and \ont MinION sequencing. A subset of 208 predicted
 loci (all below 10~kb in size) were amplified together with surrounding genomic
 DNA, sequenced and then visualized via dotplots. This way, more than 80\% of
 analyzed loci could be verified, exemplifying the potential of third-generation
