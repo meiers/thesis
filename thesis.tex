@@ -42,25 +42,28 @@
 }
 
 \begin{document}
-
 \input{hyphenation}
 
 % Front matter
 \maketitle
+\frontmatter
 \input{summary}
-\tableofcontents
 \input{acknowledgements}
+\tableofcontents
 \listofabbrev
 \listoffigs
 \listoftabs
 
 
 % Main content
+\mainmatter
 \input{intro}
 \input{inversions}
 \input{balancer}
 
+
 % appendix
+\appendix
 \input{appendix}
 \input{suppl_inversions}
 \input{suppl_balancer}
