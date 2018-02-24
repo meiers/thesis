@@ -4,20 +4,17 @@ organization in \texorpdfstring{\textit{D. melanogaster}}{D. melanogaster}}
 
 
 
-The research projects described in previous chapters focused on the technical
-aspects of identifying and characterizing \acp{sv}. For the project described in
-this chapter I teamed up with \yad, \alek and \eileen to study the functional
+In the project described here I teamed up with \yad, \alek and \eileen to study the functional
 impact of \acp{sv}, specifically of large chromosomal rearrangements, in the model
-organism \textit{Drosophila melanogaster}. Yet also in this chapter recent
+organism \textit{Drosophila melanogaster}. Also in this chapter recent
 sequencing technologies, notably \hic, were instrumental in the characterization
 of \acp{sv}, which was an essential step of the project. All wet lab experiments
 described below were performed by \yad with the help of \rebecca.
-\alek implemented all \hic- and Capture \hic-related analyses, which are hence
+\alek implemented all \hic-related analyses, which are hence
 only depicted briefly. All other computational analyses including all figures
 are my own work if not explicitly stated differently. Supplementary information
-can be found in \cref{sec:suppl_balancer}. At the time of writing the study was
-not yet complete - thus the following should be considered a status report of
-ongoing work.
+can be found in \cref{sec:suppl_balancer}. At the time of writing a manuscript
+of this study was in preparation [Ghavi-Helm, Meiers, Jankowski, et al., 2018].
 
 
 
@@ -49,17 +46,17 @@ for aneuploidy in general, causes Down syndrome and was among the earliest
 identified genetic diseases \citep{Lejeune1959}. Also inversions were identified
 as the cause of several Mendelian diseases \citep{Feuk2010}. Recurrent
 translocations, often creating gene fusions, are known to be driving many
-different cancer types \citep{Mertens2015} and also transposable elements have
-been noted be to play a role in cancer \citep{Burns2017}.
+different cancer types \citep{Mertens2015} and, at last, transposable elements h
+ave been noted be to play a role in cancer \citep{Burns2017}.
 
 The mechanisms by which \acp{sv} can induce these phenotypic consequences are
-manifold, too: Breakpoints of \acp{sv} that fall into a gene may cause its loss
+manifold. Breakpoints of \acp{sv} that fall into a gene may cause its loss
 of function. Aforementioned gene fusions can create novel chimeras that
 potentially exert fundamentally different functions from the original genes
 \citep{Mertens2015}. Copy number gains or losses lead to dosage imbalance, with
 critical consequences for many cancer-associated genes \citep{Fehrmann2015}, and
-a heterozygous deletion or a \loh event can bring recessive mutations into play
-that had been masked beforehand.
+a heterozygous deletion or a \loh event can reveal recessive mutations
+that had been rescued by a funcitonal allele beforehand.
 
 Furthermore \acp{sv} may impact on the molecular level, e.g. on gene expression,
 which can partly be studied even if not associated with a real phenotype. In
@@ -75,10 +72,10 @@ heritable blood diseases named thalassemia \citep{Fritsch1979}.
 
 The impact of position effects in health and disease have long been noted, yet
 the underlying mechanism was so far not understood \citep{Kleinjan2005}.
-Over the past years we have gained more insight into a mechanism in which
+Over the past years the community has gained more insight into a mechanism in which
 \acp{sv} neither affect genes nor regulatory sequences, but re-model the
-three-dimensional chromatin organization instead. As this is a central aspect of
-our study, it is further elaborated in \cref{sec:disrupting_tads}.
+three-dimensional chromatin organization instead, which is elaborated in more
+detail below (\cref{sec:disrupting_tads}).
 
 
 
@@ -89,14 +86,14 @@ our study, it is further elaborated in \cref{sec:disrupting_tads}.
 \figuremargin{TAD_schematic_zaugg.jpg}{TAD_schematic}{Schematic of
 \texorpdfstring{\aclp{tad}}{topologically associating domains}}{Characteristic
 triangles in a mammalian \hic map (top) belong to spatial domains of DNA
-inside the nucleus (bottom). Figure taken from \citep{Ruiz-Velasco2017} licensed
-under \acl{ccby4}.}
+inside the nucleus (bottom). Figure taken from \citetitle{Ruiz-Velasco2017}
+\citep{Ruiz-Velasco2017} licensed under \acl{ccby4}.}
 
 The advance of chromatin conformation capture techniques, notably \hic
 (introduced in \cref{sec:ccc}), revealed a feature of the spatial organization
 of chromatin named topologically associating domains (\acp{tad})
-\citep{Dixon2012,Nora2012,Sexton2012,Rao2014a}\footnote{See
-\cref{sec:suppl_balancer_literature} for comments on the cited literature.}.
+\citep{Dixon2012,Nora2012,Sexton2012,Rao2014a} (see
+\cref{sec:suppl_balancer_literature} for comments on the cited literature).
 \Acp{tad} are physical domains of
 DNA that are characterized by an increase in chromatin interactions inside them
 and a relative insulation of contacts across distinct domains. These structures
@@ -122,15 +119,16 @@ house-keeping genes and conserved across cell types
 Well-characterized long-range interactions between promoters and enhancers
 appear to be confined within \acp{tad} (reviewed in \cite{Smallwood2013}) and
 units of enhancers and promoters with correlated activity align with them
-\citep{Shen2012}. It is unclear whether these DNA loops (connecting enhancers
-and promoters) are cause or consequence of active expression, but it was
+\citep{Shen2012}. It is unclear whether the DNA loops connecting enhancers
+and promoters, which can be revealed through 3C-based techniques, are cause
+or consequence of active expression, but it was
 observed that many such contacts establish long before gene activation
 \citep{Ghavi-Helm2014}. Moreover, \cite{Symmons2014} inserted reporter genes at
 several hundred sites of the mouse genome and observed tissue-specific activity
 in spatial blocks that correspond to \acp{tad}. These results suggest that
 \acp{tad} exert a crucial regulatory function by confining promoter-enhancer
 interactions inside, as \cite{Ji2016} call them, insulated neighbourhoods. A
-series of perturbation studies support this hypothesis, as described
+series of perturbation studies firther support this hypothesis, as described
 subsequently.
 
 
@@ -153,12 +151,12 @@ genetic diseases via mining of public databases and showed, for example, that
 around 10\% of disease-associated deletions potentially function via an enhancer
 adoption mechanism \citep{Ibn-Salem2014,Zepeda-Mendoza2017}.
 
-Moreover, as \cite{Lupianez2016,Krijger2016} review, a number of studies
+Moreover, as \cite{Lupianez2016} and \cite{Krijger2016} review, a number of studies
 specifically tested this hypothesis on particular genomic loci by genome
 editing using CRISPR/Cas \citep{Doudna2014}. For example, \cite{Guo2015} altered
-the binding site of an architectural protein in proximity of an enhancer element
-and observed looping as well as ectopic gene expression across this boundary.
-Similarly, \cite{Narendra2015} observe heterochromatin spreading when they
+the binding sites of an architectural protein in proximity of an enhancer element
+and observed looping as well as ectopic gene expression across the boundary.
+Similarly, \cite{Narendra2015} observed heterochromatin spreading when they
 deleted such a boundary at the \textit{Hox} locus in \textit{Drosophila}.
 In fact already \cite{Nora2012} observed this mechanisms when they studied an
 additional mouse line with a \tad boundary deletion and observed a merged \tad
@@ -169,7 +167,7 @@ Recently, \cite{Lupianez2015} impressively replicated limb abnormalities in mice
 that were known from human genetic diseases. They first showed that these
 abnormalities arise in a developmental stage from misregulated gene expression
 caused by \tad boundary deletions. When they engineered similar deletions in
-mice using the CRISPR/Cas9 system they observed large changes in chromatin
+mice using the CRISPR/Cas system they observed large changes in chromatin
 conformation, ectopic gene expression across the boudary and indeed the same
 phenotype of limb malformations that had been seen in human. Together, these
 studies underline the functional role of \acp{tad} and suggest that breaking
@@ -208,8 +206,8 @@ long tradition in fly genetics and are frequently used as a tool to keep
 recessive lethal mutations from being lost from the population. Three relevant
 features allow them to perform this task: (1) they carry recessive lethal
 mutations so that homozygous offspring will not live, effectively balancing the
-alleles in a population. This further requires that haplotypes remain intact and
-are not exchanged with their homologue, so consequently (2) balancer chromosomes
+alleles in a population. This further requires that haplotypes remain intact,
+so consequently (2) balancer chromosomes
 suppress recombination by disrupting homologous pairing. This is achieved by the
 introduction of multiple large inversions via, for example,
 \explain{X-ray mutagenesis}{Balancer chromosomes date back to the work of
@@ -221,11 +219,12 @@ introduction of multiple large inversions via, for example,
 readily detected based on their phenotype in adult stage. Such balancer
 chromosomes are nowadays available for all the major chromosomes 2, 3, and X.
 Interestingly, despite their common usage only recently some balancer
-chromosomes had been characterized via whole-genome sequencing \citep{Miller2016}.
+chromosomes had been characterized via whole-genome sequencing \citep{Miller2016,Miller2018}.
 
 We chose balancer chromosomes for chromosome 2 and 3, namely \explain{\cyo}{
-    chromosome 2 balancer, derived from original work of \citet{Oster1956},
-    which carries the \textit{Cy} allele, hence showing a characteristic
+    chromosome 2 balancer, derived from \cite{Oster1956} and based on work of
+    \cite{Ward1923} (see \cite{Miller2018}), which carries the \textit{Cy}
+    allele, hence showing a characteristic
     phenotype of curly wings in adult flies \marginfig{dm_cyo.pdf}}
 and TM3 \citep{Tinderholt1960} to create a double balancer line, named $F_1$.
 See \cref{fig:balancer_chroms} for an overview of the \textit{D. melanogaster}
@@ -233,8 +232,8 @@ genome of both the wild type line and the double balancer line utilized in this
 study. For both balancer chromosomes the major rearrangements had been
 previously characterized by karyotyping (see
 note\footnoteref{footnote:balancer_karyotype} and
-\cref{fig:balancer_hiC_rearrangements}). The idea behind using two balancer
-chromosomes was to effectively increase the number of genomic rearrangements to
+\cref{fig:balancer_hic_rearrangements}). With two balancer chromosomes,
+we effectively increased the number of genomic rearrangements to
 be studied, which was an important consideration early on in the project.
 Together both balancer chromosomes carry 16 breakpoints of large, partly
 centromere-spanning inversions and we expected them to contain additional
@@ -259,21 +258,17 @@ this is also not possible using balancer chromosomes that cannot be
 in a homozygous state, this approach would make it difficult to distinguish
 \textit{cis}-regulation, i.e. the effect of alterations of the DNA itself, from
 \textit{trans}-regulation such as an altered expression of some transcription
-factor. This is why a central foundation of this study was to compare wild
-type chromosomes and balancer chromosomes within the same nucleus via \acf{ase}.
-This is achieved by measuring gene expression separately for both alleles, where
-alleles differ by naturally occurring variation, notably \acp{snv}.
-Since we were able to resolve complete haplotypes in this study, we could
-measure expression not only at single alleles but could assign alleles to
-the balancer- or wild type chromosomes and thus distinguish up- and
-down-regulated genes of the balancer chromosomes in respect to the wild type
-expression. \Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl} provide
-more detail on the procedure.
+factor. This is why a central foundation of the study was to compare wild
+type chromosomes and balancer chromosomes within the same fly line via \acf{ase} analysis.
+This is achieved by measuring gene expression separately for both alleles, which
+differ by naturally occurring variation, notably \acp{snv}.
+Since we were able to resolve chromosome-long haplotypes in this study, alleles can be
+aggregated across genes and expression changes can be distinguished into up- and
+down-regulation of the balancer genes in respect to the wild type genes.
+\Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl} provide more detail on the procedure.
 We assume that the vast majority of \acp{snv} simply tag alleles but do not have
 an effect on their regulation, or that this effect is negligible in comparison
-to larger rearrangements. This might not be true in all cases and it can indeed
-be difficult to assign a change in expression to the respective functional
-mutation.
+to larger rearrangements.
 
 \figuretwocolumns[0.38]
     {balancer_chroms.pdf}{balancer_chroms}{Genome overview}{Schematic of the
@@ -292,8 +287,7 @@ mutation.
 
 Another central point of the study was to explore the three-dimensional
 chromatin conformation of the highly rearranged balancer chromosomes and to link
-this to observed \ase. To this end we needed to measure
-chromatin conformation in a haplotype-resolved manner, too. We hence performed a \hic
+this to observed \ase. We hence performed a \hic
 experiment and again used \acp{snv} to distinguish fragments belonging to
 balancer- or wild type chromosomes. As a matter of fact the resulting
 haplotype-resolved maps of contact frequency can additionally be utilized to
@@ -303,13 +297,13 @@ Early on we made a decision to study fly embryos (instead of adult flies) for
 mainly two reasons: To begin with, \textit{D. melanogaster} embryos are well
 described, there is an outstanding amount of external data available
 \citep{Gramates2017,Celniker2009}, and the Furlong lab has years of experience
-with them (e.g. \cite{Furlong2001,Ghavi-Helm2014}). Secondly, though,
+on embryogenesis (e.g. \cite{Furlong2001,Ghavi-Helm2014}). Secondly,
 it is experimentally very difficult (if not infeasible) to extract intact
-nuclei from adult flies, which is a crucial step to 3C-based experiments.
-Directly collecting double balancer embryos, on the other hand, is not
-realizable based on markers only expressed at an adult stage. We hence decided
+nuclei from adult flies, which is a crucial requirement for \hic experiments.
+However, collecting double balancer embryos is not directly possible
+based on markers only expressed in an adult stage. We hence decided
 to collect fly embryos from a backcross of the double balancer line ($F_1$) with
-the original wild type line ($F_0$). The resulting generatio, termed $N_1$, is a
+the original wild type line ($F_0$). The resulting generation, termed $N_1$, is a
 mix of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
 effectively 25\% of chromosomes 2 and 3 are balancer chromosomes. This cross
 was used both to measure \ase and chromatin conformation. In the subsequent
@@ -322,24 +316,27 @@ rearrangements have on chromatin organization and gene regulation.
 
 
 
-\section{Mutational landscape of balanced chromosomes}
+
+
+\section{Results I: Mutational landscape of balanced chromosomes}
 \label{sec:balancer_mutational_landscape}
 
-We performed deep paired-end \wgs (approximately 100~x and 200~x, respectively)
+We performed deep paired-end \acf{wgs} (approximately 100~x and 200~x, respectively)
 of both the wild type line ($F_0$) and the double balancer line ($F_1$) with
-read lengths of 300~bp and 200~bp on an Illumina MiSeq platform. To be able to
+read lengths of 300 and 200~bp on an Illumina MiSeq platform. To be able to
 better resolve \acp{sv} we additionally sequenced mate pair libraries of both       \todo{explain mate pair in introduction}
 samples with a read length of 2~x~100~bp and a median insert size of circa 4~kb.
-I utilzied this data as well as \hic data (briefly described in
+I utilzied this data as well as \hic data (experiments described in
 \cref{sec:balancer_cc_impl}) to characterize the mutations present on balancer
-and wild type chromosomes in respect to a common reference genome, as described
-subsequently.
+and wild type chromosomes in respect to a common reference genome. Below, a deep
+characterization of mutations on the balanced chromosomes are described.
+
 
 
 \subsection{\Aclp{snv}}
 \label{sec:balancer_snvs}
 
-I utilized the \wgs data of both $F_0$ and $F_1$ cross simulataneously to call
+I utilized \wgs data of both $F_0$ and $F_1$ cross simulataneously to call
 \acp{snv} and small indels with \freebayes. The comparison of genotypes of the
 homozygous wild type line and the heterozygous cross enabled me to assign
 mutations to individual haplotypes: if, for example, a \snv is heterozygous in
@@ -347,15 +344,15 @@ the cross and homozygous alternative in the wild type sample, the variant is
 located on the wild type chromosome and not on the homologous balancer
 chromosome.
 
-Of the 761,348 detected \acp{snv} on \ac{chr2} and \ac{chr3}, 38.9\% could be
+Of the 761,348 detected \acp{snv} on chromosomes 2 and 3, 38.9\% could be
 assigned to the balancer chromosomes, 29.5\% to the wild type chromosomes and
 29.8\% were shared between both. Only a fraction of 1.8\% of \acp{snv} did not
-match one of the expected genotypes, which can mostly be attributed to regions
-in the wild type chromosomes not being fully homozygous (see \cref{tab:snvs2}).
+match any of the expected genotypes, which can mostly be attributed to regions
+in the wild type chromosomes not being fully homozygous (\cref{tab:snvs2}).
 These numbers imply that, on average, there is one \snv every 210~bp that
 distinguishes balancer and wild type haplotypes. This density was an important
-parameter as \acp{snv} were utilized to separate sequencing data such as
-RNA-seq into haplotypes later on (e.g. in \cref{sec:balancer_ase_impl}).
+parameter as \acp{snv} were utilized later to separate sequencing data such as
+RNA-seq into haplotypes (\cref{sec:balancer_ase_impl,sec:balancer_cc_impl}).
 
 \begin{table}[ht]
     \centering
@@ -384,14 +381,14 @@ RNA-seq into haplotypes later on (e.g. in \cref{sec:balancer_ase_impl}).
         \midrule
         balancer-specific  & 2717.1 & 2717.6 &  956.3 \\
         wild type-specific & 2247.0 & 1905.6 &  844.0 \\
-        shared             & 2338.7 & 1873.7 & 2212.3 \\
+        common             & 2338.7 & 1873.7 & 2212.3 \\
         wt heterozygous    &   98.6 &  120.4 &  176.2 \\
         errorneous         &   17.6 &   16.7 &    5.7 \\
         \bottomrule
     \end{tabu}
     \tabcap{snvs2}{Number of \acp{snv} per Megabase}{The
         majority of \snv calls are in concordance with the study design
-        (balancer-specific, wild type-specific, or shared), except in short
+        (balancer-specific, wild type-specific, or common), except in short
         regions of remaining heterozygosity of the wild type chromosomes and
         a negligible number of false calls.
         Note that \ac{chrX} is not balanced but also paired with a homologue
@@ -399,7 +396,7 @@ RNA-seq into haplotypes later on (e.g. in \cref{sec:balancer_ase_impl}).
 \end{table}
 
 The number of balancer-specific \acp{snv} was around 1.3 times higher than wild
-type-specific ones. Moreover, when I compared our fly lines to the Drosophila
+type-specific ones. Moreover, when I compared the observed variation to the \textit{Drosophila}
 reference panel (DGRP) \citep{Mackay2012,Huang2014}, a panel of fully sequenced
 inbred \textit{D. melanogaster} lines derived from a natural population, I
 found that a striking majority of \acp{snv} is represented in the panel, yet
@@ -408,7 +405,7 @@ ones (92.1\%). These observations are not surprising since balancer chromosomes,
 due to their inability to undergo recombination, accumulate and likely tolerate
 more mutations over time than normal chromosomes \citep{Araye2013}.
 
-Moreover, I was interested in the inspecting the distribution of base
+Moreover, I was had a closer look at the distribution of base
 substitutions, i.e. the \explain{mutation spectrum}
     {as a summary of the total set of
     mutations I count the relative frequencies of different base substitutions
@@ -416,12 +413,12 @@ substitutions, i.e. the \explain{mutation spectrum}
     downstream). The spectrum of somatic \acp{snv} is often analysed in cancer
     genomics in this way, in order to extract \emph{mutational signatures} that
     are linked to mutagenic processes}
- of the balancer chromosomes. The idea behind this is that balancer chromosomes
- had been derived by X-ray mutagenesis and that this could have led to a
- different distribution of base substitutions. However, after removing \acp{snv}
- shared with the DGRP I did not observe any striking differences in the mutation
- spectrum of \acp{snv} between wild type and balancers (see
- \cref{fig:signatures}; more detailed methods in \cref{sec:suppl_mutsign}).
+of the balancer chromosomes. The idea behind this is that balancer chromosomes,
+which had been derived by X-ray mutagenesis, could exhibit distinct pattern in
+the distribution of base substitutions. However, after removing \acp{snv}
+shared with the DGRP I did not observe any striking differences in the mutation
+spectrum of \acp{snv} between wild type and balancers (see
+\cref{fig:signatures}; more detailed methods in \cref{sec:suppl_mutsign}).
 
 
 
@@ -431,27 +428,25 @@ substitutions, i.e. the \explain{mutation spectrum}
 \subsection{\texorpdfstring{\Aclp{cnv}}{Copy number variants}}
 \label{sec:balancer_cnv}
 
-\paragraph{Deletions} I called deletions on \wgs data of the $F_0$ and $F_1$
-samples based on their paired-end read signature using \delly and developed an
+\paragraph{Deletions} I called deletions from \wgs data of the $F_0$ and $F_1$
+samples using \delly, which utilizes paired-end read signatures, and developed an
 extensive set of filters to reduce false positive predictions. For both reasons
 of filtering and with validation in mind I categorized deletion calls into three
-size ranges: (1) Below 50~bp -- these calls, predicted from split reads,
+size ranges: (1) Below 50~bp: these calls, predicted from split reads,
 historically belong into the indel category and an additional set in this size
-range was predicted with \freebayes. (2) 50~-~159~bp -- a size range where
+range was predicted with \freebayes. (2) 50~-~159~bp: a size range where
 predictions based on a split read signature typically yields reliable results,
 yet these calls are large enough for validation with \pcr.
-(3) 160~bp and larger -- in this size range I apply filters using additional
-read depth signal before \pcr-based experimental validations.
-
-For deletion predictions based on a paired-end read signature it is highly
-recommended to utilize an additional read depth-based signal for filtering
-(this is not exclusive to \delly, but noted also by the authors of other tools,
-e.g. \cite{Layer2014}). Hence I developed an ad hoc filtering strategy
-for larger (meaning 160~bp and more) deletion calls, which compares read depths
-between samples (see \cref{sec:suppl_del} for detail). As a consequence I
-excluded shared deletions in this size range, i.e. ones present in both balancer
-and wild type haplotypes. However, this is not a limitation to this study as we
-are primarily interested in genetic variation distinguishing the homologues.
+(3) 160~bp and larger: in this size range additional filters based on a
+read depth signal are applied prior to \pcr-based experimental validations.
+The latter is highly recommended for \cnv predictions based on a paired-end read
+signature in general and noted also by authors of other tools than \delly
+(e.g. \cite{Layer2014}). I developed an ad hoc filtering strategy
+for larger ($\geq$ 160~bp) deletion calls, which compares locally normalized
+read depths between of between heterozygous and homozygous samples (see
+\cref{sec:suppl_del} for details). As a consequence, shared deletions are
+excluded in this size range, which is not a limitation to our study, though, as
+we are primarily interested in genetic variation distinguishing the homologues.
 
 \begin{table}[ht]
     \centering
@@ -474,12 +469,12 @@ are primarily interested in genetic variation distinguishing the homologues.
         Calls below 160~bp were not \pcr-validated.}
 \end{table}
 
-Then \yad performed \pcr verification experiments on 75 randomly picked loci for
+After that, \yad performed \pcr verification experiments on 75 randomly picked loci for
 three subsets of deletion calls (\cref{tab:pcrresults}). A locus was considered
 validated if the resulting \pcr bands of both $F_0$ and $F_1$ sample matched the
-expected sizes; otherwise it was classified as invalidated. In order to be able
-to compare homozygous and heterozygous results shared variants were not
-submitted to \pcr. The final deletion call set based on \delly predictions
+expected sizes; otherwise it was classified as invalidated. Common variants were
+not submitted to \pcr validations to allow comparison between homozygous and
+heterozygous samples. The final deletion call set based on \delly predictions
 contained 4,279 calls. In order to get a single set of deletions I chose a lower
 cutoff of 15~bp for deletions and merged the \delly call set with small
 deletions predicted by \freebayes. This led to a total set of 8,340 calls on
@@ -497,30 +492,27 @@ chromosomes 2, 3, and X with a size distribution as shown in
     {The final duplication set consisting of manually validated tandem
     duplication and a set of three non-tandem duplications is shown.}
 
-\paragraph{Duplications} Next, I also predicted tandem duplications using \delly
-using both \wgs and mate pair data simultaneously (see also
-\cref{sec:suppl_dup}). Typically this class of variant is harder to
-ascertain than deletions, which exhibit a very clear read-depth signal.
-Yet also for duplications orthogonal information in addition
-to the paired-end read signature can be utilized to gain confidence in
-predictions. Specifically these are read depth, which should be considered in
-the context of local mappability, and the \baf.                                 \todo{Exlain \baf in the INTRO}
+\paragraph{Duplications} Next, I predicted tandem duplications using \delly
+on \wgs and mate pair data simultaneously (see
+\cref{sec:suppl_dup}). Typically this class of \sv is harder to
+ascertain than deletions both utilizing paired-end and read depth signals.
+Yet also for duplications orthogonal information in addition can be utilized to
+gain confidence in predictions. Specifically these are read depth, which should
+be considered in the context of local mappability, and \baf.
 After initial filters I generated overview plots containing such information for
-352 loci on chromosomes 2 and 3. One example is shown in
-\cref{fig:dup_validation}, and further examples, including a negative one, can
+352 loci on chromosomes 2 and 3. An example is shown in
+\cref{fig:dup_validation}, and further examples, including a negative case, can
 be found in \cref{fig:dup_validation_wt,fig:dup_validation_false}.
-Upon inspection of the plots I demanded to see a change in read depth between
-samples, as well as a characteristic change in the \baf. In a
+I looked for a change in read depth between samples as well as a characteristic
+change in \baf to validate calls. In a
 balancer-specific duplication, for instance, the read-depth should increase only
 in the $F_1$ sample and the \baf of \acp{snv} should switch from
-50\% to either 33\% or 66\%.
+50\% to around 33\% and 66\%.
 
 In addition to tandem duplications predicted by \delly I found another three
 non-tandem duplications by manual inspection of the \baf signal
 across the genome, which were then included in the set of duplications prior
-to manual validation. Some predicted loci could not be validated because they
-resided within low-mappability regions, rendering both read depth and allelic
-support for \acp{snv} unreliable. Nevertheless, I verified a total of 122
+to manual validation. In total I verified a total of 122
 duplications in the size range from several hundred base pairs up to 258~kb
 using this strategy (\cref{fig:svsize_dup}).
 
@@ -537,27 +529,27 @@ using this strategy (\cref{fig:svsize_dup}).
     copy number variants, but reuqires the presence of \acp{snv}.}
 
 \paragraph{Summary} The \acp{cnv} I report for balancer and wild type
-chromosomes contain an abundance of short deletions starting from 15~bp and up
+chromosomes contain an abundance of short deletions from 15~bp up
 to 5.2~kb. The short size range of these deletions is owed to the gene-dense
 character of the \textit{D. melanogaster} genome and in line with a previous
 study that performed population-scale \sv calling in a population of flies,
 where a median deletion size of 178~bp at a lower cutoff of 50~bp is reported
 \citep{Zichner2013}.
 With an experimentally estimated \fdr of 3.75\% the deletion call set can be
-considered of high accuracy. Although no unexpectedly large deletions were
-detected in neither wild type nor balancer chromosomes, I do note a slightly
+considered of high accuracy. Although very large deletions were
+detected neither in wild type nor balancer chromosomes, I do note a slightly
 higher rate of deletions on the balancer chromosomes. The ratios are 1.08 for
 deletions in the size range below 50~bp, 1.3 for 50~-~159~bp, and 1.9 for larger
 ones. Interstingly, a study in human cancer reported an increase in deletion
-rate as a consequence of ionizing radiation \citep{Behjati2016}, hence the
+rate as a consequence of ionizing radiation \citep{Behjati2016}, suggesting that the
 subtle increase in deletion number (notably in the larger size spectrum) could
-in fact be a fading trace of the irradiation applied during generation of the
+be a trace of the irradiation applied during generation of the
 balancer chromosomes.
 
 Duplications, on the other hand, which underlay thorough manual validation,
-where distributed evenly on balancer and wild type chromosomes. Nevertheless,
-an exceptionally large duplication was found on \cyo, which effectively
-increases the dosage of around 33 genes.
+where distributed evenly on balancer and wild type chromosomes. An exceptionally
+large duplication of 258~kb was found on \cyo, which effectively
+increases the copy number of 33 genes.
 
 
 
@@ -567,7 +559,7 @@ increases the dosage of around 33 genes.
 \subsection{Validation of large rearrangements using Hi-C data}
 \label{sec:balancer_hic_svs}
 
-I further aimed at refining breakpoint junctions of the major rearrangements on     \todo{Alek: include recent results from Miller et al \url{http://www.g3journal.org/content/ggg/early/2018/02/02/g3.118.200021.full.pdf}}
+I further aimed at refining breakpoint junctions of the major rearrangements on
 the balancer chromosomes, which had previously been known only at microscopic
 resolution\footnote{\label{footnote:balancer_karyotype}
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
@@ -575,31 +567,30 @@ resolution\footnote{\label{footnote:balancer_karyotype}
     \ac{tm3} = \textit{3Lt-65E 85E-79E 100C-100F2 92D1-85E 65E-71C
     94D-93A 76C-71C 94F-100C 79E-76C 93A-92E1 100F3-3Rt}.
     Source: \url{https://bdsc.indiana.edu/stocks/balancers/balancer_bps.html}.}.
-Based on allelic separation using \acp{snv}, \alek generated a \hic map of
-contact frequencies for both balancer and wild type haplotypes separately, yet
-in respect to the same reference genome (\cref{sec:balancer_cc_impl}).
-Right away we identified strong signals off the diagonal with a characteristic
-``bowtie'' shape as shown in \cref{fig:balancer_cc_impl}, which coincide with
-gaps close to the diagonal. Undoubtedly this signal stems from the genomic
-rearrangements we expected to see and by comparing them to the available
-karyotype information Yad Ghavi-Helm could assign 15/16 of these breakpoints to
-the respective inversions - the last breakpoint appears to lie outside the
-mappable reference genome and is thus inaccessible to read-mapping based methods.
+\alek generated \hic maps of contact frequencies for both balancer and wild type
+haplotypes separately in respect to the same reference genome (see
+\cref{sec:balancer_cc_impl}). In these maps, which are shown in
+\cref{fig:balancer_hic_rearrangements}, we identified strong contact signals off
+the diagonal with a characteristic ``bowtie'' shape that coincide with gaps
+close to the diagonal. Undoubtedly these signals stem from genomic
+rearrangements and by comparing them to the available cytogenetic information,
+\yad could assign 15/16 of these breakpoints to the respective inversions.
+The last breakpoint appears to lie outside the mappable reference genome and is
+thus inaccessible to read-mapping based methods.
 I then searched through inversion and
-translocation\footnote{Translocations are connections across chromosomes, yet
-    because the left and right arms of chromosomes 2 and 3 are reported
-    separately in \ac{dm6} rearrangements spanning the centromere are reported
-    as translocations.}
+translocation\footnote{These are not actual translocation, they just exhibit
+    translocation signatures because the left and right arms of chromosomes 2
+    and 3 are reported separately in \ac{dm6}}
 predictions made using \delly on \wgs and mate pair sequencing data to
 track down breakpoints at base pair resolution. This yielded base pair
-resolution breakpoints in in 14/15 cases, which are reported in
-\cref{sec:suppl_balancer_breakpoints}.
+resolution breakpoints in 14/15 cases, which are reported in
+\cref{tab:blancer_breakpoints}.
 
 \figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
     \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
     Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
     The top panel displays differential unnormalized Hi-C fragment counts
-    ($\textrm{log}_2 \frac{\textrm{balancer}}{\textrm{wild type}}$)
+    ($\textrm{log}_2 \frac{bal}{wt}$)
     colored from red (positive) to blue (negative). The panel below shows the
     biallelic frequency. This duplication was initially discovered
     based on the characteristic biallelic frequency signal and is validated by
@@ -610,22 +601,33 @@ resolution breakpoints in in 14/15 cases, which are reported in
     suggest the duplication was inserted to the left in inverted orientation.
     Hi-C data processing and plots were contributed by \alek.}
 
-Reassuringly, when I compared these
-breakpoint with the genomic positions stated in a recent study mapping mutations        \todo{here new Miller paper}
-on \ac{tm3} \citep{Miller2016} I found precise agreement for 8 of 10
-breakpoints. We provide a ``best guess'' of the breakpoint on \ac{tm3} at
-approximately 20.3~Mb based on \hic information and manual inspection of mate
-pair data. Only one of the breakpoint junctions in the balancer
-chromosomes showed a precise re-ligation, whereas most of them are scarred by a
+Since our (yet unpublished) \hic- and \mps-based breakpoint refinement, two
+consecutive studies had mapped---for the first time---the genomic coordinates of
+several balancer rearrangements including \cyo and \ac{tm3}
+\citep{Miller2018,Miller2018}. Reassuringly, when I compared our
+results to the positions stated inthese studies I found precise agreement for
+12/12 breakpoints provided by the studies. However, utilizing read pair and
+split-read signatures in paired-end \mps data followed by assembly, these
+studies failed to identify three breakpoints: for two of them (namely \textit{2L:2.14~Mb}
+and \textit{2L:12.71~Mb} on \cyo) estimates at 10~kb resolution were provided but they are
+off from our reported breakpoints by several kilobases. Another
+breakpoint (\textit{3R:20.3~Mb} on \ac{tm3}) remained fully obscure, whereas we at least
+provide a ``best guess'' based on \hic information. This strongly highlights the
+technological advantage in our study: through \hic we were able to track down
+the genomic positions of breakpoints down to 5~kb resolution. Then,
+both short- and long-insert paired sequencing data was searched for read pairs
+spanning the breakpoint junction. We found, again in agreement with these previous
+studies, that only one of the breakpoint junctions in the balancer chromosomes
+showed a precise re-ligation, whereas most of them are scarred by a
 loss of genetic material (9 cases, max. 1.8~kb, median 114~bp) or small sequence
-duplications (4 cases, median 9~bp, max 281~bp; see also
+duplications (4 cases, median 9~bp, max 281~bp; see
 \cref{sec:suppl_balancer_breakpoints}). Additionally, we predict that the
-breakpoint on \ac{tm3} at 20.3~Mb contains a deletion of around 17~kb, which could
+breakpoint on \ac{tm3} at \textit{3L:20.3~Mb} contains a deletion of around 17~kb, which could
 explain the difficulties in ascertainment by Miller et al.
 
 Moreover, I utilized the haplotype-resolved contact maps further to validate and
 characterize other large \acp{sv}. Notably, an inversion of approximately 40~kb
-on \ac{tm3}\footnote{Precisely, at \textit{chr3L:~14.61~-~14.64~Mb}.} was
+on \ac{tm3} (\textit{chr3L:14.61-14.64~Mb}). was
 validated by a characteristic Hi-C signal (data not shown). I also inspected
 aforementioned 258~kb duplication on \cyo closer, which I had predicted by a
 chatacteristic \baf signal (described in
@@ -641,7 +643,7 @@ happened there. And secondly, there is a striking increase in contact frequency
 of the right end of the duplicated locus to the left neighboring region. Taken
 together this is best explained by an inverted duplication occurring in tandem.
 
-\figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_cc_impl}
+\figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_hic_rearrangements}
     {Major rearrangements of the balancer chromosomes revealed by Hi-C}{
     Haplotype-resolved Hi-C contact frequency maps of chromosomes 2 and 3 in
     respect to the wild type reference genome are shown (A). Details of the data
@@ -652,10 +654,10 @@ together this is best explained by an inverted duplication occurring in tandem.
     circle representing centromers.
     These junctions can be followed to reconstruct the relative order of the
     balancer chromosomes such as shown in the top panel (B). Vertical ``bowties''
-    represent a connection of segments in same orientation where as horizontal
-    ones mark junction of segments that are inverted in respect to one another.
+    represent a connection of segments in same orientation, horizontal
+    ones segments that are inverted to one another.
     The fully reconstructed order of the balancer genomes is shown in the bottom
-    panel (C). This matches previous annotation from
+    panel (C) and exactly matches previous annotation from
     karyotyping\footnoteref{footnote:balancer_karyotype}.}
 
 
@@ -666,8 +668,10 @@ together this is best explained by an inverted duplication occurring in tandem.
 
 
 
+
+
 \FloatBarrier
-\section{Global changes in gene expression}
+\section{Results II: Global changes in gene expression}
 \label{sec:balancer_ase}
 
 In the next step we sought to measure gene expression from both haplotypes to
