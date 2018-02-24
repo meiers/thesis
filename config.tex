@@ -7,6 +7,7 @@
 \usepackage[l2tabu, orthodox]{nag} % better warnings
 \usepackage{graphicx}
 \usepackage{fontawesome} % \faExternalLink
+\usepackage{euler}       % \AMS Euler math font
 \usepackage{marginnote} % \marginpar
 \usepackage[natbib, backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99, useprefix]{biblatex}
 \usepackage{xcolor} % e.g. for black!50
@@ -19,15 +20,21 @@
 \usepackage{relsize}
 \usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
 \usepackage{hyperref}
-\RequirePackage[nameinlink, noabbrev]{cleveref} % load LAST
+\RequirePackage[nameinlink, noabbrev]{cleveref} % load last !!!
 
 
 
-
+% Good style recommondations from here:
+% https://tex.stackexchange.com/questions/9533/what-best-combination-of-fonts-for-serif-sans-and-mono-do-you-recommend
 \setdefaultlanguage[variant=uk]{english}
-\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
-\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Barlow}
-\setmonofont{Droid Sans Mono}
+% https://sourceforge.net/projects/linuxlibertine/. Open Font License
+\setmainfont[Mapping=tex-text, Numbers=OldStyle]{Linux Libertine}
+% Calibri - the nicest one, but not free unfortunately.
+% Linux Biolinum O - a bit particular.
+% Open Sans - two dense (and line height seems smaller)
+\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Linux Biolinum O}
+% https://fonts.google.com/specimen/Inconsolata. Open Font License
+\setmonofont{Inconsolata}
 
 \addbibresource{references.bib}
 
