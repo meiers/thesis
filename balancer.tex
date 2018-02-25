@@ -714,19 +714,19 @@ to \explain{maternally deposited mRNA}{Before maternal-to-zygotic transition
     zygotes or early embryos do not transcribe their own genes but utilize mRNA
     of the maternal cell that was loaded into the egg during oogenesis. After
     around two hours of embryonic development a large portion of maternal mRNA
-    is actively degraded, yet not for the complete transcriptome
+    is actively degraded, yet some maternal transcipt can remain
     \citep{Tadros2009}}
 present in early embryos as well as unfertilized eggs remaining in the sequenced
 pool.
 
-Accordingly, \yad initiated a new experiment with modified conditions: First, we
+To solve this issue, \yad initiated a new experiment with modified conditions: First, she
 collected embryos only in a later, 6-8h time window when the impact of maternal
-mRNA is expected to be weaker. Second, she manually sorted out unfertilized eggs
-from the collection of embryos. And third, she derived two different crosses,
-one with a paternal double balancer line (same way as initially), termed \Npat,
+mRNA is expected to be weaker. Secondly, she manually sorted out unfertilized eggs
+from the collection of embryos. And thirdly, she derived two different crosses,
+one with a paternal double balancer line (as initially), termed \Npat,
 and another one with a maternal double balancer line, \Nmat. The potential
-effect of maternally deposited mRNA will then cause a shift in exactly opposite
-directions in both these lines, which can be accounted for during the \ase
+presence of maternally deposited mRNA will then cause a shift in exactly opposite
+directions in both these lines, which can be accounted for during \ase
 calling. These considerations are nicely reflected in the histograms on the
 right of \cref{fig:ASE_histograms}. More narrow peaks indicate a much lower
 fraction of maternal transcripts, and a shift from left to right between \Npat
@@ -743,44 +743,44 @@ to \Nmat point to remaining maternal transcripts that can be identified as such.
 The basic idea of measuring \ase is to separate the RNA-seq signal for a given
 gene into its two alleles and to test the resulting ratio against a null
 hypothesis of both alleles being represented equally. This is typically done by
-mapping RNA-seq data to a common reference and inspecting sites of tagging
+mapping RNA-seq reads to a common reference and inspecting sites of tagging
 variants (i.e. \acp{snv}), although some approaches also rely on mapping to
 personalized genomes to overcome mapping biases \citep{Rozowsky2014} and future
 extensions of this idea will likely lead towards \explain{reference graphs}{
-    represent different alleles in a reference genome simultaneously in order
-    to reduce read mapping bias. Such graphs could contain two different alleles,
-    but also all haplotypes present in a population. However, this requires new
-    algorithms for the interpretation of sequencing data, which the topic is
-    subject to active research.}
-\citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection
+    represent different alleles or haplotypes in a reference genome simultaneously
+    in order to reduce read mapping bias. For example diploid genomes, but also
+    whole populations could be represented in such a data strucutre. However,
+    such approaches, which are being actively researched, require new methods
+    for processing and interpretation of sequencing data}
+\citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection         \todo{Check whether margin explanations end with dot or not}
 requires many different considerations, as nicely elaborated by \cite{Castel2015},
 and there is an abundance of software available to perform the different steps
 involved \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGeijn2015,Liu2016}.
-However, due the particular requirements in our study these are mostly not
-applicable: First, we needed to test \ase against an unusual fraction of 25\%,
-whereas some models (reasonably) expect a 50\% null hypothesis. Second, we were
-using multiple replicates simultaneously to reduce statistical noise, and third,
+However, due the particular requirements of our study, they are mostly not
+applicable here: First, we needed to test \ase against an unusual fraction of 25\%,
+whereas some models (reasonably) expect a 50\% null hypothesis. Second, we
+would like to incorporate multiple replicates to reduce statistical noise, and third,
 we expected the different replicates to entail different \ase ratios for some
 genes (i.e. the ones with maternal mRNA), a situation that is unique to our
 study. I hence implemented an approach to \ase detection that captures these
 features.
 
 As a first step I mapped RNA-seq read pairs to \ac{dm6} using \STAR. I then
-separated the RNA-seq data into haplotype using a simple Python script based on
+separated read pairs into haplotypes using a simple Python script based on
 \textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
 This approach considers all \acp{snv} that a read pair overlaps and can hence
-also detect if observed alleles within the fragment are conflicting expected
-haplotypes – a fact that we deemed especially important for the separation of
-Hi-C data later on (\cref{sec:balancer_cc_impl}). The approach is complementary
-to the \snv-centric approaches of other tools (e.g. \cite{Castel2015}) that
-yield allelic read counts at each site. Furthermore, I preferred to derive a
-single sum of fragments for each allele of a whole gene instead of considering
-different sites of variation within the same gene. This has the downside that
-it might mask potential allele-specific alternative exon usage, which was
-recently shown to occur at cites of CTCF (CCCCTC-binding factor)
-\citep{Ruiz-Velasco2017}, and which can be identified using profound
-statistical tests \citep[for instance]{Skelly2011}. On the other hand this
-summary approach does not require an additional model to integrate sites of
+also detect if observed alleles within the fragment are disaccordant---a fact
+that we deemed especially important for the separation of \hic
+data later on (\cref{sec:balancer_cc_impl}). This approach also differs
+from the \snv-centric approaches of other tools (e.g. \cite{Castel2015}) that
+yield allelic read counts at each variant. Furthermore, I preferred to derive a
+single sum of fragments for each allele of a whole gene, instead of considering
+different sites of variation within a gene. This comes with caveat that
+it might mask potential allele-specific alternative exon usage, which, for instance, was
+recently shown to occur at cites of CTCF binding motifs
+\citep{Ruiz-Velasco2017} and which can be identified using profound
+statistical tests \citep[for instance]{Skelly2011}. The advantage, though, is
+that our method does not require an additional model to integrate across sites of
 variation within a gene (such as presented by \cite{Mayba2014}) and can be
 expected to be more robust to local fluctuations in coverage than single-\snv
 analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
@@ -790,7 +790,7 @@ analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
     \centering
     \begin{tabu}{lrrrr}
         \toprule
-        Data set   & Total reads   & Balancer   & WT   & Ambiguous \\
+        Data set   & Total reads   & Balancer   & WT   & Disaccordant \\
         \midrule
         \Npat 1. replicate & 51,560,368  & 6.151\% & 22.489\%  & 0.136\% \\
         \Npat 2. replicate & 52,618,060  & 5.762\% & 21.471\%  & 0.139\% \\
@@ -801,11 +801,11 @@ analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
     \tabcap{balancer_rnaseq}{Haplotype separation of RNA-seq data}{
         Fraction of RNA-seq read pairs that could be assigned to either one of
         the haplotypes balancer or wild type (WT) ot that contained conflicting
-        variants (ambiguous). The difference to 100\% in each comes from read
+        variants (disaccordant). The difference to 100\% in each comes from read
         pairs that could not be assigned.}
 \end{table}
 
-At last, I had to decide for a statistical method to test against the null
+At last, each gene should be statistically tested against the null
 hypothesis. The commonly used Binomial test is known to inflate small p-values
 \citep{Harvey2014} and further cannot integrate our replicate design. I thus
 used \deseq, a well-established tool for differential RNA-seq analysis, to test
@@ -818,7 +818,7 @@ multiple testing correction at a controlled \fdr (more detail in
 
 \figuretextwidth{DESeq2_N1_6_8h.pdf}{DESeq}{ASE analysis based on
     \texorpdfstring{\deseq}{DESeq2}}{Average haplotype-resolved fragment count
-    per gene across four replicates vs. log 2 fold change of balancer over wild
+    per gene across four replicates vs. log ratio of balancer over wild
     type counts are shown. A single outlier to the right was trimmed. }
 
 Among 5357 genes on chromosome 2 and 3 for which there was sufficient
@@ -837,14 +837,15 @@ are reported (Furlong lab, unpublished work).
 \subsection{RNA-seq control experiments}
 \label{sec:balancer_ase_controls}
 
-\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE fractions per chromosome}{        % move this up or down in the final layout!
-    \acs{ase} fraction detected on each of the chromosomes 2, 3, and X in a
-    female adult line $F_1^{f}$. Error bars indicate 99\% confidence intervals
-    from a binomial test.}
 We carefully considered some of the assumptions made in the \ase analysis and
 decided to carry out two important control experiments. A first question was
 whether balanced chromosomes carry a higher fraction of \ase genes than
-unbalanced chromosomes such as chromosome X. This could not be answered in our
+unbalanced chromosomes such as chromosome X.
+\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE per chromosome}{
+    Balancer fraction of allele-specific RNA-seq fragments on chromosomes 2, 3,
+    and X in a adult, female flies from an $F_1^{f}$ line. Error bars
+    indicate 99\% confidence intervals from a binomial test.}
+This could not be answered in our
 $N_1$ backcrosses, where chromosome X eventually became homozygous due to the
 maternal wild type line. Instead, we performed RNA-seq on adult, handpicked
 female flies from the $F_1$ generation, named $F_1^f$, and sequenced two
@@ -852,43 +853,44 @@ replicates. In this sample chromosome X is paired with its (non-rearranged,
 but diverged) homologue at a ratio of 50\%, too, and can thus be compared to
 chromosomes 2 and 3. The two chromosome X homologues contain less, but still
 sufficient distinguishing variation for \ase analysis (see \cref{tab:snvs2}).
-I ran the same \ase analysis as in \cref{sec:balancer_ase_impl} on $F_1^f$
+I executed \ase analysis as described in \cref{sec:balancer_ase_impl} on $F_1^f$
 RNA-seq data and found 301/4940 (6.1\%) significant \ase genes on chromosomes
 2 and 3 and 24/463 (5.2\%) on chromosome X. The lower fractions compared to
-the embryonic $N_1$ samples are of no concern as gene expression is expected to
-be highly tissue- and developmental stage-dependent. Importantly though, the
+embryonic $N_1$ samples are of no concern, as gene expression is expected to
+be highly tissue- and developmental\ stage-dependent. Importantly though, the
 fraction of \ase genes on balancer chromosomes is not significantly higher than
 on chromosome X (p=0.47, Fisher’s exact test) as shown in \cref{fig:ase_chrX}.
 
 Furthermore we wanted to test whether the existence of multiple different
 genotypes in the $N_1$ generation could cause potential \textit{trans} effects,
 e.g. whether genes on chromosome 3 would depend on the presence of \cyo
-(i.e. balancer chromosome 2), and vice versa. In order to test this we generated
+(i.e. balancer chromosome 2), and vice versa. In order to test this \yad generated
 three new $F_1$ generations of adult flies with different genotypes: one line
 (\Fcyo) with only chromosome 2 balanced, another one (\Ftm) with only
 chromosome 3 balanced, and a last one with double balancer configuration ($F_1$).
-The latter one differs from $F_1^f$ only in that it includes both sexes and that
-it was sequenced together with \Fcyo and \Ftm under equal conditions. Note that
-in these single-balancer lines the aforementioned haplotype separation is only
+The latter differs from $F_1^f$ by including both sexes and it was sequenced
+together with \Fcyo and \Ftm to prevent batch effects. Note that
+in these single-balancer lines, haplotype separation is only
 possible on the balanced chromosomes themselves, for which \acp{snv} had been
 previously mapped.
 
-Next, I determined \ase genes only on chromosome 2 using two replicates of \Fcyo
-and two replicates of $F_1$ and using \deseq as described previously.
-Accordingly, I did the same for chromosome 3 using \Ftm and $F_1$.
+I then determined \ase genes on chromosome 2 using two replicates of \Fcyo
+and two replicates of $F_1$ as described previously. Respectively, I did
+the same for chromosome 3 using \Ftm and $F_1$.
 Together I obtained 478/6356 (7.5\%) significant \ase genes across both balancer
 chromosomes – a number that is fairly in accordance to the results of the
-previously sequenced $F_1^f$ generation. Moreover, the balancer-to-wild type
+previously sequenced $F_1^f$ generation. Moreover, the balancer-to-wild\ type
 ratios of genes from these two samples are in high correlation (Pearson’s
 $r^2$~=~0.824). Relevantly, I was then able to test the interaction term of \ase
 and genetic background using \deseq: I asked, for instance, for which genes on
-chromosome 2 the \ase ratio changed significantly between $F_1$ and \Fcyo.
-As before I repeated this analysis separately on both chromosomes and found a
+chromosome 2 the \ase ratio significantly changes between $F_1$ (contianing
+\ac{tm3}) and \Fcyo (not containing \ac{tm3}).
+Again I executed this analysis separately on both chromosomes and found a
 significant interaction for 77/5981 genes (1.3\%) at an FDR of 5\% and a
 minimum fold change of 1.5. In order to put this number into context, I also
 estimated the differences in \ase ratio between the two adult double balancer
-samples (i.e. $F_1$ vs. female-only $F_1^f$). These samples are similarly
-high correlated (Pearson’s $r^2$~=~0.848) and I detected 20/5382 (0.4\%) genes
+samples (i.e. $F_1$ vs. female-only $F_1^f$). These samples also exhibit high
+correlation (Pearson’s $r^2$~=~0.848) and I detected 20/5382 (0.4\%) genes
 for which the balancer/wild type ratio is significantly influenced by the
 genetic background (also at an FDR of 5\% and a minimum fold change of 1.5).
 Requiring a fold change of at least two, these rates decrease to 39/5981
@@ -900,9 +902,9 @@ the genetic background on the haplotype ratios of genes. However, this effect is
 small, maybe negligible, and even between the genetically seemingly identical
 lines such as $F_1$ and $F_1^f$ significant changes are observed.
 We together reasoned that the analysis of a double balancer line (in contrast
-to a single balancer line) adds another variable to our study design that has to
-be considered as it has a small but notable effect, yet that this strategy is
-still preferable because of the sheer amount of chromosomal rearrangements that
+to a single balancer line) adds another variable to our study design that should
+be kept in mind (as it has a small, but notable effect), yet that this strategy
+is still preferable due to the sheer amount of chromosomal rearrangements that
 can be studied.
 
 
@@ -911,10 +913,10 @@ can be studied.
 
 
 
-\section{The interplay between SVs and differentially expressed genes}
+\section{Results III: The interplay between SVs and differentially expressed genes}
 \label{sec:balancer_sv_interplay}
 
-After we characterized \acp{sv} and detected differentially expressed genes we
+After characterizing \acp{sv} and detecting differentially expressed genes we
 were interested in their relationship. In the upcoming section I describe how we
 explored their correlation and which \acp{sv} we believe are causal to \ase
 genes. Later on, \cref{sec:balancer_cc} will specifically cover the role of
@@ -925,8 +927,8 @@ chromatin conformation.
 \subsection{Genes affected by large rearrangements}
 \label{sec:balancer_ase_breakpoints}
 
-During the characterization of the breakpoints of large chromosomal
-rearrangements I found that they often happen to disrupt genes. In fact, 11 out
+During the characterization of the large chromosomal rearrangements
+I observed that they often happen to disrupt genes. In fact, 11 out
 of 15 breakpoints do so, affecting genes such as \textit{Src42A}
 (Draper-Shark-mediated signalling immune response pathway), \textit{GlyP}
 (carbohydrate metabolism pathway) and \textit{p53} (tumour suppressor). The
@@ -938,11 +940,12 @@ which is why most of them also show up in the set of \ase genes.
 
 These frequent gene knockouts are perhaps surprising, as it is expected that
 selective forces during the creation of balancer chromosomes would rule out
-breakpoints disrupting critical genes. It can thus be assumed that these
-particular genes are not dosage-dependent. It is in fact reported that balancer
-chromosomes can tolerate recessive mutations due to the reduced influence of
-natural selection \citep{Araye2013} - yet one should acknowledge the high amount
-of variation introduced through these rearrangements.
+breakpoints disrupting genes. It can thus be assumed that these
+particular genes are not dosage-dependent. Balancer chromosomes are indeed known
+to tolerate recessive mutation due to the reduced influence of
+natural selection \citep{Araye2013}. Yet the frequency of gene knockouts
+without apparent phenotypic consequences should be acknowledged here.
+
 
 
 
@@ -950,32 +953,34 @@ of variation introduced through these rearrangements.
 \subsection{Positional clustering of ASE genes}
 \label{sec:balancer_ase_clustering}
 
-Following the intuition that \ase genes could be located at the junctions of
-large chromosomal rearrangements on the balancer chromosomes, I specifically
-looked for an enrichment of \ase genes around breakpoints compared to random
+Following the intuition that \ase genes could be preferably located around
+rearrangement junctions on the balancer chromosomes, I specifically
+looked for an enrichment of \ase genes at breakpoints compared to random
 positions places in the genome (\cref{fig:suppl_ase_genes_around_bps}).
 Surprisingly, only a single breakpoint, namely \textit{chr3R:20.31~Mb},
-appeared to be surrounded by more significant genes than expected: in this case
-5 out of 6 neighbouring genes, which span a region of around $\pm$~50~kb.
-By means of integrated visualization of the locus (explained in
-\cref{sec:balancer_visualization}) I observed that two genes left of the
-breakpoint were highly up- and another one to the right down-regulated in the
-balancer chromosome. An additional gene was disrupted by the breakpoint itself.
-However, a closer data inspection revealed that the \ase signal of these genes
-is likely caused by chimeric transcription across the breakpoint junction. We
-observed such chimeric, likely non-functional expression happening on an
-appreciable set of other genes, too, as \cref{sec:balancer_ase_mei} elaborates.
+appeared to be surrounded by more \ase genes than expected by random chance: 5
+out of 6 neighbouring genes, which span a region of around $\pm$~50~kb.
+By means of integrated visualization (\cref{sec:balancer_visualization}) of this
+locus I noted that two genes were highly up-regulated left of the breakpoint,
+another gene down-regulated right of the breakpoint, and an additional gene
+disrupted by the breakpoint itself. Notably, this was the only breakpoint
+that could potentially involve a chromatin-structure-related mechanism affecting
+gene regulation. However, closer inspection revealed that the \ase signal of
+these genes is likely caused by chimeric transcription across the breakpoint
+junction. We observed such chimeric, likely non-functional expression happening
+on an appreciable set of other genes, too, as I elaborate in
+\cref{sec:balancer_ase_mei}.
 
 \figuretextwidth{ase_clustering.pdf}{ase_clustering}{Distance between
     neighboring ASE genes}{This is a histogram of distances between neighboring
-    significant ASE genes (blue) as well as of the same number of random control
-    genes (sampled from expressed, but non-ASE genes 500 times). Errorbars
-    indicate the 5\% and 95\% quantiles of random sub-sampling.}
+    significant ASE genes (blue) as well as between a random set of control
+    genes (grey), which were sampled from expressed, but non-ASE genes 500 times.
+    Errorbars indicate the 5\% and 95\% quantiles of random sub-sampling.}
 
-I then sought to take a more unbiased approach and searched the set of \ase
+I then turned to a more unbiased approach and searched the set of \ase
 genes for positional clustering anywhere in the genome.
-As \cref{fig:ase_clustering} demonstrates, \ase genes are located as far away
-from another as a size-matched set of control genes, maybe with the exception of
+As \cref{fig:ase_clustering} demonstrates, \ase genes are generally located as
+far away from another as random expressed genes, with the exception of
 a small set of genes in a distance of approximately 3~kb to one another.
 These, as the integrated visualization again quickly revealed, mostly belong to
 the large duplication on \cyo (see \cref{sec:balancer_cnv,fig:dup_validation})
@@ -1009,35 +1014,35 @@ which are further explored subsequently.
 %   2.591054
 \figuretextwidth{ASE_cnv_overlap.pdf}{ASE_cnv_overlap}{Log fold change of
     \texorpdfstring{\ase}{ASE} genes overlapping \texorpdfstring{\acp{cnv}}{CNVs}}
-    {Fold change (log 2) of 73 significant \ase genes that overlap \acp{cnv}.
-    Two genes overlapped multiple different \acp{cnv} (\textit{ambiguous}). A
-    positive log fold change means higher expression in the balancer haplotype
+    {Expression level log fold change of 73 significant \ase genes that overlap
+    \acp{cnv}. Two genes overlap multiple different \acp{cnv} (\textit{ambiguous}).
+    A positive log fold change means higher expression in the balancer haplotype
     and vice versa.}
 
 Next, I tried to understand how much of the \ase signal is caused by \acp{cnv}.
 I therefor inspected significant \ase genes that have at least one of their
 exons (incl. $3^\prime$ or $5^\prime$ untranslated regions) affected by a \cnv.
-This overlap yielded 73 genes, which in is a significantly higher fraction
-among the ASE genes (14\%) than among expressed, but non-ASE genes (292 cases,
+This overlap yielded 73 genes, which is a significantly higher fraction
+among the \ase genes (14\%) than among expressed, but non-\ase genes (292 cases,
 6\%; p-value $<10^-9$, Fisher's exact test). \Cref{fig:ASE_cnv_overlap} shows
 the effect \acp{cnv} have on the expression of \ase genes. As expectable, a
-clear trend towards a dosage effect can be seen, i.e. that a deletion on the
-balancer chromosome decreases and a duplication increases the balancer
+clear trend towards a dosage effect can be seen, i.e. that a deletion within a
+balancer gene decreases and a duplication increases the balancer
 expression (seen by a positive log fold change), and vice versa for
-wild-type-specific \acp{cnv}. Duplications, which exhibit a far larger size
-distribution than deletions (\cref{fig:svsize_del,fig:svsize_dup}), show a
+wild-type-specific \acp{cnv}. Duplications, which are typically much larger in
+size than deletions (\cref{fig:svsize_del,fig:svsize_dup}), show a
 clearer signal of differential expression as they often duplicate whole genes.
-Yet even in such cases it cannot necessarily be expected that a higher copy
-number also leads to an increase in transcribed RNA –- a partial copy could
-even disrupt a gene in a way that its expression decreases. This complexity
-becomes more obvious in the case of deletions, which often affect only a single
-exon. The specific explanation for each gene could, if need to, be unravelled
+Yet it cannot be expected that a higher copy number neccessarily leads to an
+increase in transcribed RNA. For example, a partial duplication could disrupt a
+gene in a way that its expression decreases. Accordingly, the impact on
+expression is less clear for deletions that typically affect only single exons.
+The specific explanation for each gene could, if need to, be unravelled
 in case-by-case fashion.
 
 We derive as a conclusion from this analysis that up to 14\% of significant \ase
-genes could be explained directly by \acp{cnv} affecting their exons.
-Ergo, these genes can be exluded from the search for any chromatin
-conformation-related mechansisms such as enhancer hijacking.
+genes could be explained directly by \acp{cnv} affecting their exons---ergo,
+these genes are unlikely to be involved in chromatin\ conformation-related
+mechansisms.
 
 
 
@@ -1066,17 +1071,17 @@ first traversed exon. \Cref{fig:balancer_mei_example} depicts an example gene
 with strong balancer-specific gene expression.
 
 We speculated that this might be driven by the insertion of mobile elements in
-the positions where the RNA-seq signal started. So I developed a computational
+the positions where the RNA-seq signal started. Hence I developed a computational
 pipeline that extracts DNA-sequencing reads of a given genomic region,
 computes an assembly of these reads using \spades and compares the assembled
 contigs to a database of common transposable elements in \textit{Drosophila}.
 The comparison is done via read mapping and confirmed visually using the dotplot
-functionality developed for previous work (\cref{sec:maze}). Using this
+functionality of \maze developed during previous work (\cref{sec:maze}). Using this
 approach I found transposable element insertions in 42 loci. Based on the
 position and orientation of the mobile element (i.e. mobile elements contain
 their own transcription start site) I evaluated whether the aberrant \ase
 signal of the gene could be caused by chimeric transcription from the mobile
-element’s promoter. This seems to be the case in 37 loci (\cref{tab:meilist}),
+element’s promoter. This is the case in 37 loci (\cref{tab:meilist}),
 of which 25 were expressed high enough to be tested for \ase.
 
 \figuretextplusmargin{MEI_impact.pdf}{balancer_mei_impact}{ASE genes associated
@@ -1084,16 +1089,17 @@ of which 25 were expressed high enough to be tested for \ase.
     (balancer/wild type, y axis). Genes that are very likely dis-regulated due
     to an MEI driving their chimeric expression are highlighted in blue.}
 
-All these 25 genes were also significant, partially with extreme fold changes
-reported as shown in \cref{fig:balancer_mei_impact}. In the aftermath, this is
+Astonishingly, all 25 genes were also called to show significant \ase, partially
+with extreme fold changes reported as shown in \cref{fig:balancer_mei_impact}.
+In the aftermath, this is
 little surprising given that an \mei drives expression of a gene that, even if
 weak, can be orders of magnitudes larger than the second copy which is only
 weakly expressed, if at all. \Acp{mei} could in principle also cause chimeric
-expression of higher expressed genes. Though, in those cases the additional
+expression of higher expressed genes, but in such cases the additional
 mRNA is probably negligible compared to the active transcription of both
-haplotypes. Yet it should be kept in mind that this analysis centered on
+haplotypes. At last, it should be kept in mind that this analysis centered on
 differentially expressed genes with aberrant transcription start sites, hence
-the full impact of \mei is likely under-explored.
+the full impact of \mei is still under-explored.
 
 
 
