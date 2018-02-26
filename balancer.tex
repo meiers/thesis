@@ -1113,7 +1113,7 @@ the full impact of \mei is still under-explored.
 \label{sec:balancer_cc}
 
 Here, I summarize our findings in respect to the chromatin conformation of
-balancer and wild type chromosomes. Most analyses described here were performed
+balancer and wild type chromosomes. Most analyses described below were performed
 by \alek unless clearly marked by ``I''. These investigations were ongoing at
 the time of writing and might hence be subject to change prior to final
 publication.
@@ -1125,13 +1125,25 @@ To study chromatin organization, we performed \hic on nuclei from 4-8~h embryos
 of the $N_1$ generation in two biological replicates. We sequenced the \hic
 library in as many as 24 lanes on an Illumina machine to obtain high resolution
 contact frequency maps. We then annotated read pairs by haplotype in the same
-way RNA-seq data was annotated beforehand (\cref{sec: balancer_ase_impl}).
+way RNA-seq data was annotated beforehand (\cref{sec:balancer_ase_impl}).
 Moreover, a strict filter procedure was designed following recommendations from
 \cite{Ramirez2018}, which is described in the appendix (see \cref{sec:suppl_hic}
-and \cref{tab: hic_fragments} for details on the effect of different filters).
+and \cref{tab:hic_fragments} for details on the effect of different filters).
 Finally, 117 million pairwise contacts remained on the wild type chromosomes
 and 35 million on the balancer chromosomes to build \hic maps in 5~kb
-resolution.
+resolution. It is interesting to note that more \hic read pairs could be
+separated into haplotypes relative to RNA-seq read pairs, despite shorter read
+lengths (38\% vs. 28\%, approximately). This is a consequence of the large
+``insert sizes'' of \hic data, which make it more likely for a pair to bridge
+genomic regions with low \snv density \citep{Edge2017}.
+
+\figuretextwidth[t]{HiC_ASE_genes_Alek.pdf}{HiC_ASE_genes}{Differential \hic
+    contact around genes}{This shows differential \hic contacts between gene
+    promoters (at 0~kb; all genes are aligned and oriented with the gene and
+    downstream sequence to the right) and all other 5~kb bins within $\pm$100~kb.
+    On the y-axis, the fraction of significantly differential \hic contacts among
+    all \hic contacts is shown. The signal is averaged across \ase and non-\ase
+    genes and plotted here including 90\% confidence interavls.}
 
 At first we visually compared the contact maps of matching genomic regions of
 balancer and wild type chromosomes using, among others, the visualization tools
@@ -1148,6 +1160,42 @@ profiles for seven window sizes\footnote{50~kb, 60~kb, 80~kb, 100~kb, 130~kb,
 160~kb, and 195~kb} and averaged them at each genomic position. We found a high
 correlation ($r^2 = 0.93$) between balancer and wild type haplotypes,
 confirming our visual impression.
+
+Despite the similarity on the large scale, single pairwise contacts can in fact
+differ between the haplotypes. We hence tested for significant differential
+pairwise contacts using \deseq by providing haplotype-resolved fragment counts
+in 5~kb bins utilizing both \hic replicates. Among 509,217 tested pairwise
+connections that had sufficient read support we found a total of 48,206
+significant differences. Despite attempts to normalize for distances in the
+altered genomic order, 1,388 (2.9\%) of the detected significant differences
+spanned across a breakpoint of the large chromosomal rearrangements---these
+pairs were excluded from the further analysis.
+
+We were then interested in whether changes in chromatin architecture are
+associated with differential gene expression. Except for breakpoint-spanning
+contacts. To study a potential relationship between \ase and differential
+contacts, we centered \hic contacts at gene promoters (i.e. at the 5~kb bin
+surrounding the promoter) and averaged across many genes. In
+\cref{fig:HiC_ASE_genes}, genes are aligned and oriented according to their
+transcription start site and the average fraction of differential contacts among
+all contacts are shown on the y-axis. Interestingly, we found that on average
+there were more differential \hic contacts reaching to the promoters of
+\ase genes than to promoters of non-ASE genes. This difference is pronounced
+within 50~kb around the gene and notably vanishes at a distance of 100~kb.
+This data suggests that chromatin conformation might indeed play a role in
+regulating gene expression. However, it is unclear whether the conformational
+changes are cause or consequence of altered gene expression and how much this
+association varies between single loci.
+
+
+
+
+
+\subsection{TAD structure around breakpoints}
+\label{sec:balancer_tads_at_bp}
+
+
+
 
 
 
@@ -1211,6 +1259,10 @@ according to our ASE analysis (orange color for significance).
 Such a breakpoint-centered plot is accompanied by two additional
 plots that represent the same locus in the genomic order of the balancer
 chromosomes, which can be found in the appendix (\cref{fig:ggbio2,fig:ggbio3}).
+
+
+
+
 
 
 
