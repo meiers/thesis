@@ -1116,8 +1116,69 @@ the full impact of \mei is still under-explored.
 \subsection{Differences in chromatin conformation between wild type and balancer chromosomes}
 \label{sec:balancer_cc_differences}
 
+
+
+
 \section{Integrated visualization of genomic loci}
 \label{sec:balancer_visualization}
+
+With a variety of data available in our study including RNA-seq and \hic, we
+faced the challenge of how to explore these datasets around loci of interest.
+Genome Browsers, which were specifically designed for this task, can show
+multiple tracks of different data in respect to the same genomic coordinates
+\citep{Freese2016,Thorvaldsdottir2013,Gramates2017}. In our particular case
+existing solutions were not satisfying, though. First of all, we would like to
+include \hic maps into our figures. Second, we needed all data to be
+represented in the two different genome assemblies resulting from balancer and
+wild type chromosomes. Only recently some tools (published or at pre-print
+stage) addressed the first point \citep{Ramirez2018,Kerpedjiev2017}, yet not
+allowing the flexibility we required. This is why \alek and I utilized the
+R-package \textsc{ggBio} \citep{Yin2012} to create our own tailored
+visualization.
+
+\figuretextplusmargin{ggbio_dm6_2R_14Mb.jpg}{ggbio1}{Integrated visualization
+    around breakpoint \textit{2R:14.1~Mb}}{
+     visualized via custom plot functions based on
+    \textsc{ggBio} \citep{Yin2012}. The figure is explained in the main text.}
+
+\Cref{fig:ggbio1} shows an excerpt of one of the plots we generated. The top
+panel of the figure highlights \circled{a} the position of the genomic locus
+within the respective chromosomal assembly (here the wild type reference genome
+\textsc{dm6}) with colors that roughly correspond to the initial illustration of
+balancer chromosomes (\cref{fig:balancer_hic_rearrangements}). Below, we
+incorporated different \hic maps. IN \cref{fig:ggbio1}, there are is one \hic
+map created only on \circled{b} wild type data and one only on \circled{c}
+balancer \hic data. Around the breakpoint of one of the large rearrangements,
+for example at \textit{chr2R:14.07~Mb} as shown here, these haplotype-resolved
+\hic maps quite remarkably display the missing connections in the balancer
+chromosome. If these signals were plotted in respect to the genomic order of
+the balancer chromosome, this gap would be visible in the wild type track
+respectively (see \cref{fig:ggbio2,fig:ggbio3} for exactly this).
+Optionally, the plot can include additional \hic maps, for
+example generated from the complete data or showing differential contacts,
+as in \cref{fig:dup_hic_biaf}.
+
+The middle part of the figure may contain arbitrary one-dimensional genomic
+features. The example figure includes \circled{d} deletion calls on balancer and
+wild type haplotype, \circled{e} DNase-I hypersensitivity tracks (Furlong lab,
+unpublished data), and strand-specific RNA-seq tracks including \circled{f} all
+RNA-seq reads, only \circled{g} wild\ type-specific RNA-seq reads and only
+\circled{h} balancer-specific RNA-seq reads (positive: coverage on plus strand;
+negative: minus strand). Other signals that could be displayed
+are \snv positions, other \sv classes, insulation scores, or predicted
+\tad boundaries.
+
+The bottom part contains \circled{i} gene annotations and maps the
+genomic coordinates of genes to a table listing additional information about
+these genes, including their names. Shown here are the \circled{k} total
+expression level, the \circled{j} log fold change of RNA levels in balancer
+compared to wild type haplotypes, and whether this change is significant
+according to our ASE analysis (orange color for significance).
+Such a breakpoint-centered plot is accompanied by two additional
+plots that represent the same locus in the genomic order of the balancer
+chromosomes, which can be found in the appendix (\cref{fig:ggbio2,fig:ggbio3}).
+
+
 
 \section{Conclusions}
 \label{sec:balancer_concl}

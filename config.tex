@@ -13,6 +13,7 @@
 \usepackage{xcolor} % e.g. for black!50
 \usepackage[export]{adjustbox} % for chapter style. Need export for the "inner" option in \includegraphics
 \usepackage[section]{placeins}
+\usepackage{tikz}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{tabu}
@@ -21,7 +22,6 @@
 \usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
 \usepackage{hyperref}
 \RequirePackage[nameinlink, noabbrev]{cleveref} % load last !!!
-
 
 
 % Good style recommondations from here:
@@ -207,6 +207,16 @@
 
 \newcommand\todo[1]{%
     \marginpar{\footnotesize\color{red}\textbf{TO\ DO:}\\#1}}
+
+% circle around a letter
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.5pt,minimum size=12pt] (char) {\textsf{\small#1}};}}
+% https://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
+%\newcommand{\circled}[1]{%
+%  \tikz[baseline=(char.base)]{%
+%    \node[shape = circle, draw, inner sep = 1pt] (char) {};%
+%    \node at (char.base) {};}}
+%\robustify{\circled}
 
 %% Custom macros (not mine)
 \newcommand*\captitle[1]{\textbf{#1}}
