@@ -324,7 +324,7 @@ rearrangements have on chromatin organization and gene regulation.
 We performed deep paired-end \acf{wgs} (approximately 100~x and 200~x, respectively)
 of both the wild type line ($F_0$) and the double balancer line ($F_1$) with
 read lengths of 300 and 200~bp on an Illumina MiSeq platform. To be able to
-better resolve \acp{sv} we additionally sequenced mate pair libraries of both       \todo{explain mate pair in introduction}
+better resolve \acp{sv} we additionally sequenced mate pair libraries of both
 samples with a read length of 2~x~100~bp and a median insert size of circa 4~kb.
 I utilzied this data as well as \hic data (experiments described in
 \cref{sec:balancer_cc_impl}) to characterize the mutations present on balancer
@@ -1107,14 +1107,48 @@ the full impact of \mei is still under-explored.
 
 
 
-\section{Changes in chromatin conformation: an outlook}
+
+
+\section{Results IV: Changes in chromatin conformation}
 \label{sec:balancer_cc}
 
-\subsection{Haplotype-resolved maps of contact frequency}
-\label{sec:balancer_cc_impl}
+Here, I summarize our findings in respect to the chromatin conformation of
+balancer and wild type chromosomes. Most analyses described here were performed
+by \alek unless clearly marked by ``I''. These investigations were ongoing at
+the time of writing and might hence be subject to change prior to final
+publication.
 
 \subsection{Differences in chromatin conformation between wild type and balancer chromosomes}
-\label{sec:balancer_cc_differences}
+\label{sec:balancer_cc_impl}
+
+To study chromatin organization, we performed \hic on nuclei from 4-8~h embryos
+of the $N_1$ generation in two biological replicates. We sequenced the \hic
+library in as many as 24 lanes on an Illumina machine to obtain high resolution
+contact frequency maps. We then annotated read pairs by haplotype in the same
+way RNA-seq data was annotated beforehand (\cref{sec: balancer_ase_impl}).
+Moreover, a strict filter procedure was designed following recommendations from
+\cite{Ramirez2018}, which is described in the appendix (see \cref{sec:suppl_hic}
+and \cref{tab: hic_fragments} for details on the effect of different filters).
+Finally, 117 million pairwise contacts remained on the wild type chromosomes
+and 35 million on the balancer chromosomes to build \hic maps in 5~kb
+resolution.
+
+At first we visually compared the contact maps of matching genomic regions of
+balancer and wild type chromosomes using, among others, the visualization tools
+described in \cref{sec:balancer_visualization}. Except for in proximity of the
+breakpoints of large rearrangements, at which contact frequencies of the two
+differently arranged chromosomes cannot simply be compared, we observed a
+striking similarity between the balancer and wild type chromosomes. As it
+appears, the rearrangement on the balancer chromosomes affects the
+three-dimensional chromatin organization only locally around breakpoints and
+anywhere else it remains mainly unaffected. In order to quantify this we
+calculated the \tad separation score as a one-dimensional feature of the local
+compactness \citep{Ramirez2015,Ramirez2018}. In fact we calculated score
+profiles for seven window sizes\footnote{50~kb, 60~kb, 80~kb, 100~kb, 130~kb,
+160~kb, and 195~kb} and averaged them at each genomic position. We found a high
+correlation ($r^2 = 0.93$) between balancer and wild type haplotypes,
+confirming our visual impression.
+
 
 
 
