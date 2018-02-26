@@ -227,8 +227,8 @@ haplotype-specific counts of all four replicates (2x \Nmat, 2x \Npat) into a
 matrix and supplying it to \deseq. Genes were filtered for a minimum number of
 reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
 2R, 3L, and 3R were considered). \deseq was tested with a design
-\texttt{\footnotesize \textasciitilde Replicate + Haplotype}. The resulting p-values were corrected using
-\textsc{FDRtool} \citep{Strimmer2008}.
+\texttt{\footnotesize \textasciitilde Replicate + Haplotype}. The resulting
+p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
 
 
 
@@ -325,12 +325,7 @@ reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
 
 
 
-
-
-\section{Hi-C analyses}
-\label{sec:suppl_hic}
-
-
+\section{Integrated visualization}
 
 \figuretextplusmargin{ggbio_dm6_2R_14Mb_2.jpg}{ggbio2}{Integrated visualization
     around breakpoint \textit{2R:14.1~Mb}: balancer chromosome assembly (I)}{
@@ -338,7 +333,7 @@ reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
     \cref{sec:balancer_visualization}. Here, the locus belonging to the
     \textbf{green} genomic region is shown in respect to a custom reference
     genome that represents the genomic order of the balancer chromosomes.
-    Notably, the gap in \hic contacts are now present in the balancer genome}
+    Notably, the gap in \hic contacts are now present in the balancer track.}
 
 \figuretextplusmargin{ggbio_dm6_2R_14Mb_3.jpg}{ggbio3}{Integrated visualization
     around breakpoint \textit{2R:14.1~Mb}: balancer chromosome assembly (II)}{
@@ -346,4 +341,58 @@ reads (average of 50 fragments per gene per sample) and by chromosome (only 2L,
     \cref{sec:balancer_visualization}. Here, the locus belonging to the
     \textbf{red} genomic region is shown in respect to a custom reference
     genome that represents the genomic order of the balancer chromosomes.
-    Notably, the gap in \hic contacts are now present in the balancer genome}
+    Notably, the gap in \hic contacts are now visible in the balancer track.}
+
+\FloatBarrier
+
+
+
+\section{Hi-C matrix generation (\texorpdfstring{\alek}{Aleksander Jankowski})}
+\label{sec:suppl_hic}
+
+Following the approach of \cite{Ramirez2018}, sequencing reads obtained from
+the \hic experiment were mapped to \ac{dm6} using \bwamem with parameters
+\texttt{-E50 -L0}. We performed read mapping separately for both reads of a pair
+to not bias the alignment towards an assumed paired-end distance or orientation.
+Read pairs were further processed using \textsc{pairSAMtools}\footnote{\url{http://pairsamtools.readthedocs.io/}}
+to select only valid \hic molecules formed via a single ligation event. To
+remove \pcr duplicates, we used \textsc{pairSAMtools} \texttt{dedup} with option
+\texttt{--max-mismatch 0} to keep only a random read pair among the pairs with
+both reads identically mapped. Afterwards, reads were separated according to
+their haplotype annotations as described in \cref{sec:balancer_ase_impl}.
+Finally, for reads with chimeric alignments only the alignment positioned at the
+$5^\prime$ end was retained. The effect of filtering and read separation is
+shown in \cref{tab:hic_fragments}. Reads assigned to the balancer haplotype were
+lifted to the balancer pseudoassembly using \textsc{CrossMap} \citep{Zhao2014}.
+The reads were then counted in 5~kb bins using \texttt{hicBuildMatrix} from
+\textsc{HiCExplorer} with default parameters \citep{Ramirez2018} to obtain
+contact frequency matrices per haplotype. We observed an exponential distance
+decay that is expected from \hic experiments. Finally, we applied intrinsic
+matrix balancing normalization using \texttt{hicCorrectMatrix} on these matrices.
+
+
+\begin{table}[ht]
+    \centering
+    % total:     6,003,153,598
+    % after dup: 3,015,772,580
+    % WT:          880,989,508
+    %  - filter:   301,325,509
+    % balancer:    279,072,596
+    %  - filter:    90,624,566
+    \begin{tabu}{lrrr}
+        \toprule
+        Steps of data processing & Replicate 1 & Replicate 2 & Fraction \\
+        \midrule
+        Total read pairs                  & 2,261,026,305 & 3,742,127,293 & 100.0\% \\
+        After duplicate removal           & 1,377,657,560 & 1,638,115,020 &  50.2\% \\
+        Wild type haplotype               &   352,799,755 &   528,189,753 &  14.7\% \\
+        \quad ---filtered                 &   117,407,775 &   183,917,734 &   5.0\% \\
+        Balancer haplotype                &   113,011,608 &   166,060,988 &   4.6\% \\
+        \quad ---filtered                 &    35,489,102 &    55,135,464 &   1.5\% \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{hic_fragments}{Number reads read pairs during \texorpdfstring{\hic}{Hi-C}
+        analysis}{Number of read pairs avaialble for a \hic contact map
+        drastically reduce due to haplotype separation and filtering, as
+        explained in \cref{sec:suppl_hic}.}
+\end{table}
