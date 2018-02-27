@@ -1194,7 +1194,89 @@ association varies between single loci.
 \subsection{TAD structure around breakpoints}
 \label{sec:balancer_tads_at_bp}
 
+One of the crucial questions of the study was how chromatin conformation,
+especially \tad structure, would change around breakpoints of large chromosomal
+rearrangements. Based on \hic data \acp{tad} can be predicted using one of
+several available algorithms – however, given the differences in the predictions
+from these methods, this is still a major challenge in the field
+\citep[notably figure 3]{Forcato2017}. We utilized \tad calling based on the
+\tad separation score \citep{Ramirez2018} to predict \acp{tad} only on the
+contact map of the wild type chromosomes. This resulted in 880 domain calls with
+a median size of 125~kb, which is a slightly lower segmentation than reported by
+\cite{Sexton2012} (1,170 domains with a median size of 62~kb).
 
+We then inspected the \acp{tad} around the 15 breakpoints of large chromosomal
+rearrangements. Most \tad callers, including the method we applied here, report
+\tad boundaries as infinitesimal points instead of larger intervals, which we
+think does not capture the reality well. In order to distinguish intra-\tad
+space from boundaries, I thus required a minimum distance of 20\% (of \tad size)
+to both ends of the interval in order to consider a \tad disruption.
+According to this computational analysis, 12/15 breakpoints fall into \acp{tad}
+rather than into boundaries (\cref{tab:tads_at_bp}). Since \tad calls did not
+always match our visual impression, \cref{tab:tads_at_bp} also includes a manual
+annotation, in which we classified 10/15 breakpoints as breaking \acp{tad}.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabu}{lrrrrl}
+        \toprule
+        \multicolumn3{c}{Breakpoint coordinates} & \acs{tad} & Distance & Evaluation\\
+        \midrule
+        chr2L  & 2,137,067   & 2,137,075   &  180~kb &       22,925  &  $+$   \\
+        chr2L  & 12,704,649  & 12,704,657  &  335~kb & \sout{14,649} &  $-$   \\
+        chr2L  & 9,805,567   & 9,805,575   &  200~kb &       94,425  &  $++$  \\
+        chr2R  & 14,067,771  & 14,067,782  &  215~kb &      107,218  &  $++$  \\
+        chr2R  & 6,012,459   & 6,012,739   &   40~kb &        7,261  &  $--$  \\
+        chr2R  & 21,971,918  & 21,972,072  &  205~kb &      101,918  &  $+$   \\
+        chr3L  & 6,925,034   & 6,926,125   &  230~kb &       53,875  &  $++$  \\
+        chr3R  & 9,943,831   & 9,944,040   &  115~kb &       40,960  &  $+$   \\
+        chr3L  & 15,150,269  & 15,150,272  &  120~kb &  \sout{5,269} &  $--$  \\
+        chr3R  & 23,050,763  & 23,050,764  &  380~kb &       79,236  &  $+$   \\
+        chr3L  & 19,386,273  & 19,388,151  &  310~kb &      126,273  &  $+$   \\
+        chr3R  & 20,637,930  & 20,637,930  &  275~kb &       82,930  &  $-$   \\
+        chr3L  & 22,637,876  & 22,637,952  &  310~kb &       82,048  &  $+$   \\
+        chr3R  & 31,653,695  & 31,653,707  &  135~kb &       43,695  &  $++$  \\
+        chr3R  & 20,308,200  & 20,325,700  &  260~kb & \sout{13,200} &  $--$  \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{tads_at_bp}{Overview of \texorpdfstring{\tad}{TAD} calls at
+    breakpoint positions}{  \Ac{tad} annotation at breakpoints of large
+    chromosomal rearrangements. \Acp{tad} were called only based on wild type
+    \hic data using the approach of \cite{Ramirez2018}. Column \emph{\acs{tad}}
+    contains the size of the overlapping \tad call and \emph{Distance} the
+    distance of breakpoints to the \tad boundaries. Only in three cases (marked
+    by \sout{Distance}) breakpoints were closer to \tad boundaries by more than
+    20\% of \tad size---these cases supposedly do not interrupt \tad structure.
+    The \emph{Evaluation} column contains a manual assessment
+    of \acp{tad} based on inspection of \hic maps. $+$ means that a \tad is
+    likely interrupted, $++$ it is clearly interrupted, and $-$
+    ($--$) that breakpoints likely (clearly) fall into \tad boundaries.}
+\end{table}
+
+Aforementioned computational criteria can also be applied to \tad calls from
+balancer \hic data in respect to the balancer genomic order, in order to
+evaluate formation of new \acp{tad} around the junction points. According to
+computational analysis (again using the 20\%-distance criterion), 8/15 of these
+junction points appear to reside within newly formed \acp{tad}. A manual
+inspection also yielded 8/15 cases of \tad formation, yet in two examples my
+classification differed from the computational analysis.
+
+Despite inaccuracies in computationally defining \acp{tad}, the numbers reported
+here make clear that breakpoints in fact disrupt \tad structure of the wild type
+chromosomes. Moreover, in the new genomic order of the balancer chromosome, new
+\acp{tad} have formed across the junctions in many cases. This is for example the
+case at locus \textit{chr2R:14.0~Mb}, which is visualized in \cref{fig:ggbio1}
+(and explained in more detail subsequently). Domains that were not affected by
+breakpoints, on the other hand, did not seem to change at all
+(\cref{sec:balancer_cc_impl}).
+Interestingly, when we inspected newly formed \acp{tad} spanning breakpoint
+junctions, we observed that they often expanded up to neighboring domains,
+effectively re-using previous \tad boundaries. This has not been formally tested,
+though. However, as already noted earlier (\cref{sec:sec:balancer_ase_clustering})
+\tad disruptions or formations appear not to have a notable effect on gene
+expression. \Ac{ase} genes are not enriched around breakpoints, but rather
+spread evenly across the genome, and no evidence for the presence of an
+enhancer\ hijacking-like mechanism could be found in this study.
 
 
 
@@ -1203,6 +1285,10 @@ association varies between single loci.
 
 \section{Integrated visualization of genomic loci}
 \label{sec:balancer_visualization}
+
+At last, this section covers a methodological aspect that was essential in
+eriving many of the aforementioned results, especially of section
+\cref{sec:balancer_tads_at_bp}.
 
 With a variety of data available in our study including RNA-seq and \hic, we
 faced the challenge of how to explore these datasets around loci of interest.
@@ -1268,3 +1354,100 @@ chromosomes, which can be found in the appendix (\cref{fig:ggbio2,fig:ggbio3}).
 
 \section{Conclusions}
 \label{sec:balancer_concl}
+
+In this study, we aimed at testing the influence of \acp{sv} on chromatin
+organization and gene expression. Particularly, we wanted to assess whether an
+enhancer hijacking mechanism, which affects gene regulation by restructuring
+chromatin in 3D, occurs in a phenotypically healthy organism and how frequent it
+might be. Based on the study design and experiments of \yad, I deeply
+characterized balancer chromosomes of \textit{Drosophila melanogaster} in terms
+of variation, gene expression and chromatin conformation. I unraveled the exact
+positions of the cytogenetically annotated rearrangements, which were partly
+found concurrently by two studies \citep{Miller2016,Miller2018} and which are in
+perfect agreement to the results stated therein. I further characterized the
+balancer and wild type chromosomes in respect to \acp{snv}, small indels,
+deletions and duplications, the latter two of which were validated
+experimentally or computationally using independent signatures. Based on
+haplotype-tagging \acp{snv}, I developed a methodology to detect \acl{ase}
+across four biological replicates and including a correction for maternally
+deposited mRNA. I find that genes with significant differential expression
+between both haplotypes are distributed rather equally across the genome and
+not enriched at breakpoints.
+
+Utilizing \hic data, \alek found that global chromatin structure, notably the
+patterning into \aclp{tad}, is generally not different between wild type and
+balancer chromosomes, despite their tremendously different genomic order. This
+supports the current notion in the field that \acp{tad} are established by their
+boundaries and are hence a local feature of chromatin. Nevertheless, exactly at
+the breakpoints local chromatin structure necessarily changes, as is exemplified
+for one locus in \cref{fig:ggbio1}.
+
+Based on computational \tad predictions (\alek) and manual inspection, I found
+that in 10-12 out of 15 cases \acp{tad} of the wild type chromosome were
+disrupted and in approximately 8 cases, new \acp{tad} were formed within the
+balancer chromosomes. Since only few \ase genes are found within these \acp{tad}
+and we generally could not detect any enrichment for \ase genes close to
+breakpoints, we do not think that these changes in chromatin structure affect
+gene expression in our model. This is in stark contrast to previous studies
+(\cref{sec:disrupting_tads}), where typically a single \tad disruption is
+reported to ectopically express genes in non-physiological amounts. A possible
+explanation for this apparent discrepancy is natural selection. Just as in our
+study \tad disruptions had undergone selection to guarantee viability of the
+organism, the alterations in chromatin structure analyzed in many of these
+aforementioned studies had been selected for a pathological phenotype such as
+cancer or Mendelian diseases.
+
+Selective pressure might indeed have prevented misregulation via enhancer
+hijacking-like mechanisms. However, at the same time a great amount of
+variability with consequences on gene expression was tolerated: For instance,
+\acl{cnv}, one of which duplicates 33 genes at once, are abundant and believed
+to alter expression of 73 genes. Rearrangement breakpoints directly disrupt
+genes, including \textit{p53}, in 11/15 cases. And while these changes typically
+alter expression ratios in the range of not more than two- to three-fold, there
+is a relevant number of \aclp{mei} that drive expression of at least 25 genes.
+This typically leads to drastic \ase signals in the order of dozens to hundred
+times fold change. However, the resulting chimeric transcripts lack exons or
+contain intergenic sequence, so it is unclear whether they are functional.
+
+Eventually, hundreds of genes remain that are significantly differentially
+expressed but for which we have no explanation at hand. By correlating these
+genes with significant differences in three-dimensional chromatin interactions,
+we found that indeed chromatin structure appears to be preferably altered around
+\ase genes (\cref{fig:HiC_ASE_genes}) and might consequently play a role in
+mediating transcriptional regulation. Recently, \cite{Li2018} described a clear
+correlation between changes in intra-\tad density and up- or down-regulation of
+gene expression during differentiation of leukemia cell lines. It was suggested
+that both arise simultaneously as consequence of an altered epigenetic state of
+the \tad, as for example \cite{LeDily2014} observed. This could potentially
+explain our observations, too. It is different from enhancer hijacking though,
+but epigenetic mechanisms could principally also play a role in suppressing
+enhancer hijacking. For example, among the eight described examples of neo-\tad
+formation across the balancer chromosomes, it is easily conceivable that
+previously active enhancer elements entered new \acp{tad} but were subsequently
+hindered from driving ectopic expression via chromatin modifications, for
+example.
+
+In conclusion, this study finds that genomic rearrangements can vastly alter
+chromatin architecture, but that this does not necessarily translates to
+functional consequences. We do not observe any signs of enhancer hijacking when
+\acp{tad} are broken, which could be a consequence of selective pressure and
+which demonstrates the extraordinary robustness of biological systems. Subtle
+changes in gene expression, to which our approach is sensitive to, were not
+found to be enriched around disrupted TADs either, suggesting that enhancer
+hijacking-related mechanisms operate on a all-or-nothing basis. Additional
+biological mechanism such as epigenetics might play a role in buffering the
+effects of rearrangements, yet this analyzing this was beyong the scope of this
+study. Future research will be necessary to fully understand the impact of
+chromatin architecture on gene regulation.
+
+% Discussion (leave out in interest of time)
+% ==========================================
+% Potential caveats of this study
+% -------------------------------
+%  - Read mapping bias / ASE analysis
+%    We think we have long-enough reads (Degner2009, Stevenson2013)
+%  - 1:3 ratio vs. single balancer flies
+%  - ASE analysis:
+%    Average across gene maybe cancel out such effects
+%  - which variants cause effects? (e.g. nonsense-mediated decay??)
+%  - TAD calling difficult
