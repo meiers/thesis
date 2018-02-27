@@ -125,12 +125,14 @@
 %     4 = caption text
 \newcommand*\figuretextwidth[5][ht]{%                       <- figuretextwidth [4]
     \begin{figure}[#1]
+        \captionsetup{type=figure}
         \includegraphics[width=\textwidth,center]{#2}%
         \figcap{#3}{#4}{#5}
     \end{figure}
 }
 \newcommand*\figuretextplusmargin[4]{%                  <- figuretextplusmargin [4]
     \begin{figure}[t]
+        \captionsetup{type=figure}
         \includegraphics[width=\textplusmargin,inner]{#1}%
         \figcap{#2}{#3}{#4}
     \end{figure}
@@ -139,6 +141,7 @@
 \newlength\tmplengthtwo
 \newcommand*\figuretwocolumns[9][0.5]{%                 <- figuretwocolumns [8]
     \begin{figure}[t]
+        \captionsetup{type=figure}
         % tmplengthone := (#1-0.02)*\textwidth
         \setlength\tmplengthone{\dimexpr#1\textplusmargin-0.02\textplusmargin\relax}
         % tmplengthtwo := (1-#1-0.02)*\textwidth
@@ -165,11 +168,13 @@
 }
 \newcommand*\figuremargin[4]{%                          <- figuremargin [4]
     \marginpar{%
+        \captionsetup{type=figure}
         \marginfig{#1}%
         \captionof{figure}[#3]{\label{fig:#2}\textbf{#3.\enspace} #4}}%
 }
 \newcommand*\figurepagewidth[4]{%                       <- figurepagewidth [4]
     \begin{figure}[t]
+        \captionsetup{type=figure}
         \hspace{-\dimexpr\oddsidemargin+1in}%
         \makebox[\textwidth][l]{\includegraphics[width=\paperwidth]{#1}}%
         \figcap{#2}{#3}{#4}
