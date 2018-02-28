@@ -1,163 +1,38 @@
-\chapter{Introduction}
+\chapter{General Introduction}
 \label{sec:intro}
 
 
-\section{This thesis in a nutshell}
-This thesis is about \emph{exploiting emerging DNA sequencing technologies to
-study genomic rearrangements}. I summarize my different efforts at
-characterizing this specific type of genetic variation and at developing the
-right computational tools do to so. A common theme throughout this work is that
-scientific research thrives through modern technology (DNA sequencing technology
-in this case) going hand in hand with the right computational methods to analyse
-and visualize data. In fact, large parts of my work describe the development of
-such methods. I worked on multiple different research projects during my nearly
-four years at the European Molecular Biology Laboratory, which are all connected
-by this aspect of method development and the fact that they aimed at
-characterizing structural variation.
-
-As you might have realized by now, this
-thesis was not written for readers who are fully ignorant of bioinformatics. I
-expect a minimum knowledge of, for example, what DNA is, but I try to introduce
-the more specific parts subsequently or at the beginning of each chapter.
-\Cref{sec:intro} starts off by introducing genetic variation in general,
-structural variation in more detail and multiple modern DNA sequencing
-technologies/protocols that are essential for later chapters. At last, when I
-use less well-known terms but they occur only locally or are less relevant for
-the understanding of the topic I sometimes use the margin of the page to say a
-few words about them.
-
-In \cref{sec:complex_invs} I present my research on \emph{complex inversions in
-the human genome}. During the final phase of the 1000 Genomes Project, in which
-I participated, we discovered that most of the inversions (explained in
-\cref{sec:variation}) that had been predicted are in fact not simple inversions.
-Instead they are complex variants that tricked structural variation prediction
-methods into calling inversions. I unravelled the true genomic structure of some
-of these complex loci using long-read sequencing (introduced in
-\cref{sec:long_read_seq}) and tried to gain insights on the molecular
-mechanisms that might have created these classes of variation.
-
-Chapter XXX \todo{refer to chapter} talks about Strand-seq (introduced in \cref{sec:strandseq})
-and a computational approach to detect structural variation from single-cell
-sequencing data. This technology nicely complements the standard DNA sequencing
-as used for \cref{sec:complex_invs} as it can unravel inversions based on a
-completely independent signal. I developed (or am developing) a computational
-method to predict various classes of structural variation in addition to
-inversions from the same Strand-seq data. A specific focus is on finding
-mosaic events and on phasing those (see \cref{sec:variation}\todo{explain mosaicism in section \cref{sec:variation}}).
-
-The functional aspect of structural variation is finally addressd in chapter
-\cref{sec:balancer}. In this project I collaborated with a fly geneticist and an
-expert in chromatin conformation capture analysis (explained in \cref{sec:ccc})
-to study the consequences of chromosomal rearrangements on the expression of
-genes and on the three-dimensional organization of chromosomes. In contrast to
-a number of popular recent studies we use phenotypically healthy organisms and
-rearrangements which are not known to be pathological. And in fact we
-observe that gene expression appears not to be affected in the way these other
-studies suggest. In this chapter, too, the development of computational methods
-and visualization was instrumental to obtain results.
-
-At the end (chapter XXX\todo{refer to last chapter}) I again summarize my
-findings and draw conclusions across the multiple different projects. I again
-point out how and why visualization was key in obtaining these findings and
-discuss where I see the need for future improvements. The appendix
-(\cref{sec:appendix}) contains supplementary information such as additional
-figures and tables.
+\section{Overview of the dissertation}
+\label{sec:overview}
+\todo{three projects ... current chapter gives motivation}
 
 
-
-\section{Genetic variation}
+\section{Genetic variation and general terminology}
 \label{sec:variation}
-
 
 
 \section{Structural Variation}
 \label{sec:sv}
-
-
-\figuretextwidth{SVs.pdf}{SV_classes}{Types of structural variants}
-    {Each case is depicted by the original locus on the left and the affected
-    locus on the right, where dashed lines are used to highlight the orientation.
-    \textit{Top:} Different types of focal \acp{sv} of a genomic locus (red)
-    within double-stranded DNA (represented by grey line).  \textit{Bottom:}
-    Chromosomes are depicted by double oval shapes. In the (balanced)
-    translocation, chromosomes 12 and 17 are chosen exemplary to stress that
-    exchange happens between non-homologous chromosomes. In the \loh event,
-    though, the maternal and paternal homologue of the same chromosome are
-    shown.}
-
-
-\subsection{Different types of SVs}
-\label{sec:sv_classes}
-
-\subsection{Molecular mechanisms of SV formation}
-\label{sec:mechanisms}
-
-
-\subsection{Molecular mechanisms of SV formation}
-\label{sec:mechanisms}
-
-\subsection{Methods of SV detection}
-\label{sec:sv_detection}
-
-\subsection{SV prediction utilizing DNA sequencing data}
-\label{sec:sv_detection_ngs}
-
+\input{svs}
 
 
 \section{DNA sequencing technologies}
 \label{sec:sequencing}
-
-%\dictum[Frederick Sanger\footnotemark]{(...) [The] knowledge of sequences could
-%contribute much to our understanding of living matter.}
-%\footnotetext{From his biography for the Nobel Prize\cite{Sanger1980}}
-
-\subsection{Massively parallel sequencing}
-\label{sec:mps}
+\input{seq_tech}
 
 
-
-\figurepagewidth{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads from
-\mps are typically short (up to 150~bp), are sequenced from their $5^\prime$
-ends and can be single-ended or paired-end. In paired-end or mate pair
-libraries, the lengths of the original DNA fragment (which can be estimated
-after read mapping) is called insert size and usually much larger in mate pair
-experiments than paired-end experiments.}
+\section{Structural variant detection}
+\label{sec:sv_detection}
+\input{sv_detection}
 
 
-
-\subsection{Long read sequencing}
-\label{sec:long_read_seq}
-
-
-\figuretextwidth{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
-    \texorpdfstring{\acs{pacbio}}{PacBio} and ONT sequencing}{\textit{a)} \pacbio
-    sequencing utilizes the concept of sequencing by synthesis similarly to
-    the Illumina technology.
-    Figure taken from \citetitle{Heather2016} \citep{Heather2016} licensed under
-    \acl{ccby4}.}
-
-Pacific BioSciences\texorpdfstring{\textsuperscript{\textregistered}}{(R)} long read sequencing
-Single Molecule, Real-Time Sequencing (SMRT\textsuperscript{\textregistered})
-
-\todo{Circular consesus sequence - how it works}
-
-Oxford Nanopore Technologies\texorpdfstring{\textsuperscript{\textregistered}}{{R}}
-
-MinION\textregistered
+\section{Scope of this thesis}
+\label{sec:motivation}
 
 
-\subsection{Chromatin conformation capture sequencing}
-\label{sec:ccc}
+\subsection{State of the art and limitations of SV calling}
 
-Hi-C \citep{Lieberman-Aiden2009} and Capture Hi-C \citep{Dryden2014,Schoenfelder2015,Jager2015,Mifsud2015}.
+\subsection{Research goals of the thesis}
 
-\figuretextwidth{chrom_conf_cap_Li2014_CC.jpg}{ccc}{Chromatin conformation
-    technologies}{Figure taken from \citetitle{Li2014} \citep{Li2014}
-    licensed under \acl{ccby4}.}
 
-\subsection{Strand-seq}
-\label{sec:strandseq}
 
-\figuretextwidth{strand_seq.pdf}{strand_seq}{Strand-seq principle}{Figure
-    modified from \citetitle{Sanders2016} \citep{Sanders2016} licensed under
-    \acl{ccby4}.}
