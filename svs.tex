@@ -15,8 +15,8 @@ flavors of which the major ones are described subsequently.
 \Acp{sv} in the human genome are of particular relevance in health and disease.
 For example, they cause the majority of genetic differences within the human
 population are implicated in various  \citep{Weischenfeldt2013}.
-However, this shall only be discussed later in \cref{sec:balancer_background},
-as I present a study on the functional consequences of \acp{sv} in that chapter.
+However, this shall only be presented later in, \cref{sec:balancer_background},
+together with our study on the functional consequences of \acp{sv}.
 
 
 
@@ -39,8 +39,8 @@ The loss or gain of whole (or major parts of) chromosomes, historically visible
 under under a microscope, is summarized as \emph{aneuploidy}.
 Aneuploidy can range from a single chromosome (or at least the majority of the
 chromosome) being lost or gained, up to a complete increase or decrease of the
-ploidy level (of all chromosomes). The expected \explain{ploidy}{For humans, who
-    are diploid, $N$ equals $23$---meaning we carry 46 chromosomes in our cells.
+ploidy level (of all chromosomes). The expected \explain{ploidy}{Humans, who
+    are diploid organisms, have $N=23$---meaning we carry 46 chromosomes in our cells.
     Interestingly this number was falsely believed to be 48 for three decades
     before it was corrected by \cite{Tijo1956}.} in diploid organisms is
 $2N$, where $N$ is the number of chromosomes and $2$ the number of homologous
@@ -115,3 +115,90 @@ separate class due to the fundamentally different mechanisms of formation.
 
 \subsection{Molecular mechanisms underlying the formation of SVs}
 \label{sec:mechanisms}
+
+In order to truly conceive \aclp{sv}, it is important to understand how they
+originate. Because we understand certain the mechanisms of formation, we know
+today why \acp{sv} are not evenly distributed across the genome, for example, or
+why they re-occur independently in specific locations \citep{Hastings2009}.
+More and more accurate discovery of \acp{sv}, on the other hand, has led to
+a better understanding of the functioning and impact of these mechanisms
+\citep{Hastings2009,Abyzov2015}. Based on specific scars around the breakpoints
+of \acp{sv}, the mechanism that introduced them can sometimes be unraveled in
+retrospect. This is exactly the idea I apply in \cref{sec:complex_invs} to find
+out how the complex \acp{sv} we find were formed.
+
+Aneuploidy occurs through missegregation of single chromosomes during cell
+division. During meiosis, either in oocytes or spermatozoa, this can lead to
+inheritable aneuploidy, which was estimated to occur in 5\% of human pregnancies
+\citep{Templado2013}. Missegregation occurs via nondisjunction of chromosomes in
+meiosis I when homologues fail to separate, or in meiosis II and mitosis when
+sister chromatids are not separated properly. Alternatively, it occurs as a
+consequence of anaphase lag, in which a chromosome is lost in both daughter
+cells due to a delayed movement of chromosomes in anaphase \citep{webAneuploidy}.
+Polyploidy arises differently, for example when an egg is fertilized by two
+sperm cells simultaneously or a fertilized ovum fuses with a sperm cell
+\citep{webAneuploidy}. Missegregation of chromosomes occuring during mitosis may
+lead to somatic aneuploidy, which is observed in many cancer types
+\citep{Gordon2012}. Also, full polyploidy can occur somatically, for example via
+repeated rounds of DNA replication without subsequent mitosis or with partial
+mitosis without subsequent cytokinesis. This occurs naturally, as for example
+in the polytene chromosomes in insect salvary glands or in hepatocytes of the
+human liver, but also spontaneously as frequently seen in different types of
+cancer \citep{Davoli2011}.
+
+Focal \acp{sv} arise either during replication or after a break of the
+double-stranded DNA backbone \citep{Hastings2009}. Double strand breaks and
+replication errors occur stochastically or result from cellular stress, but the
+cell actively counters such errors through its powerful repair mechanisms. DNA
+repair is not always faithful, though, sometimes leading to the formation of
+\acp{sv}. A major mechanism of \sv formation employs the homologous
+recombination machinery, which uses homologous sequence (from the sister
+chromatid) as a template to repair a break. However, given the repetitive
+nature of the human genome, homology might not only present at the
+respective locus but also in other, non-allelic loci. This \emph{\acf{nahr}}
+can create various types of \acp{sv}, including deletions, duplications,
+inversions and even translocation, depending on position and orientation of the
+ectopic homologous sequence \citep{Carvalho2016}. The presence of homology,
+notably of large segmental duplications of more than 90\% sequence identity and
+several kilobases in size, predisposes the human genome to the formation of
+recurrent \acp{sv} via \nahr \citep{Carvalho2016}. The other way around, when
+near identical sequence is detected flanking \sv breakpoints on both ends
+(20~bp are a usual lower threshold), such an \sv is believed to be formed via
+\nahr \citep{Onishi-Seebacher2011}.
+
+Other repair mechanisms do not require homology. \emph{\Acf{nhej}} is the
+dominant pathway during G0/G1-phase to efficiently re-ligate the ends of DNA
+double strands, usually leaving traces of not more than a few deleted or
+inserted base pairs at the junction \citep{Lieber2008}. Importantly, \nehj is
+available to the cell before sister chromatids are present and is a fast way to
+react to double strand breaks. When multiple double strand breaks arise
+simultaneously, \nehj can falsely ligate genomic loci in the wrong order and
+thus introduce \acp{sv}. A related mechanism uses sequence identity of few
+(as little as 1-4) base pairs, also known as \explain{micro-homology}{It is
+debatable whether the term \emph{homology} is correct here, i.e. whether the
+short stretches of identical DNA on both sides of an \sv breakpoint in fact
+share a common evolutionary ancestry}, to initiate re-ligation via a mechanism
+called \emph{micro-homology-mediated end joining} \citep{Hastings2009}.
+
+Replication of DNA, which happens prior to each cell division, is also
+susceptible to errors. For example, through a process called \textit{replication
+slippage} smaller deletions and duplications can arise between stretches of
+homology within a replication fork, limited by the size of an Okazaki fragment
+\citep{Hastings2009}. Furthermore, the DNA backbone can break within a
+replication fork, leaving a single-ended double strand break. Such a break can
+be faithfully resolved by the \emph{\acf{bir}} mechanism: a single strand of the
+unfinished DNA molecule anneals to homologous sequence in the template DNA to
+restart replication, which can continue up to hundreds of kilobases from there
+\citep{Carvalho2016}. Again, this search for homology may fail and either anneal
+to the homologous chromosome (instead of the sister chromatid), leading to
+extended stretches of \loh, or ectopically, resulting in one of several possible
+\sv types including \acp{cnv} and inversions.
+
+Other replicative mechanisms of \sv formation requires no, or only short
+stretches of micro-homology. Notably, a version of \bir that can operate
+independent of the homologous recombination machinerey was described, which
+relies only on micro-homology (4-15bp) to invade template DNA and the mechanism
+of which was consequently called \emph{\acf{mmbir}} \citep{Hastings2009a}.
+Moreover, homology-independent rearrangements occurring during replication can
+include multiple complex rearrangements and are more prone to copy gains than
+losses, in concordance with a model of \acf{fostes} \citep{Zhang2009a,Carvalho2009}.
