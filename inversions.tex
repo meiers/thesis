@@ -2,7 +2,7 @@
 \label{sec:complex_invs}
 
 
-In 2014 and 2015 I was invited to collaborate with a large consortium of
+In 2014 and 2015 I had the opportunity to collaborate with a large consortium of
 scientists on the 1000 Genomes Project. My supervisor Jan Korbel was the
 co-leader of the structural variation subgroup and together with my colleagues
 \tobias, \adrian, \benjamin, \markus, and \andreas
@@ -29,7 +29,7 @@ The 1000 Genomes Project was the effort of a large international panel of
 scientists to capture the genetic diversity of the human population as
 comprehensively as possible. The project can be regarded as the hitherto final
 step in a series of projects that unraveled and characterize the human genome:
-The Human Genome Project, which, founded in 1990, was the first large-scale
+The Human Genome Project, which, founded in 1990, was likely the first truely large-scale
 collaborative work in biology, as well as their private competitor Celera
 Genomics (from 1998) aimed at completing the first human genome sequence.
 These tremendous efforts, published simultaneously in early
@@ -44,7 +44,7 @@ Over the years the HapMap Project was scaled up to more than 1,000 individuals,
 to discover rare \acp{snv}  (minor allele frequency < 5\%) and to call copy number
 variants. The samples originally collected for the HapMap Project, which are
 still available today as immortalized lymphoblastoid cell lines, were also used
-by the 1000 Genomoes Project. Starting long before my own participation, with
+by the 1000 Genomes Project. Starting long before my own participation, with
 the pilot phase publication dating back to 2010\citep{Durbin2010}, the project
 even extended this set of samples by multiple other
 populations\citep{1000GenomesProjectConsortium2012}. However, the fundamental
@@ -56,7 +56,7 @@ sequencing on 2,504 samples and additionally expanded the palette of
 computational methods that were applied as well as added new types of variation
 to be studied\citep{Auton2015}. The final data set consists of approximately
 88 million phased variants, which was estimated to include more than 99\% of
-non-rare \acp{snv} in the studied populations. Besides novel insides on, for example,
+non-rare \acp{snv} in the studied populations. Besides novel insights on, for example,
 seemingly dispensable genes, the primary achievement of the project was to make
 an unprecedented resource of genetic variation available to the public. This
 came along with technical advances in methods and standardizations such as the
@@ -178,25 +178,22 @@ set of inversion breakpoints was submitted to Sanger sequencing
     \begin{adjustbox}{inner,minipage=[b]{\textplusmargin}}
             \begin{minipage}[b]{0.54\textplusmargin}
                 \centering
-                \adjustbox{valign=b,padding=0ex,margin=0ex}{
-                \begin{tabu}{Xrrr}
+                \adjustbox{valign=b,padding=0ex,margin=0ex}{\begin{tabu}{Xrrr}
                     \toprule
                     Method      & \#Total & \#Val. & \#Inval. \\
                     \midrule
                     \pcr        &  96 &  27 &   2 \\
                     \pacbio      & 308 & 186 &  37 \\
-                    ONT MinION  &  96 &  54 &   6 \\
+                    \ont MinION  &  96 &  54 &   6 \\
                     Fosmid      &  34 &  28 &   4 \\
                     Total       & 308 & 229 &  47 \\
                     \bottomrule
-                \end{tabu}
-                }
+                \end{tabu}}
             \end{minipage}
             \hspace{0.04\textplusmargin}
             \begin{minipage}[b]{0.42\textplusmargin}
                 \centering
-                \adjustbox{valign=b,padding=0ex,margin=0ex}{
-                \begin{tabu}{Xr}
+                \adjustbox{valign=b,padding=0ex,margin=0ex}{\begin{tabu}{Xr}
                     \toprule
                     Class & Count \\
                     \midrule
@@ -206,8 +203,7 @@ set of inversion breakpoints was submitted to Sanger sequencing
                     Inv. and multi-del.  &  14 \\
                     Highly complex       &  11 \\
                     \bottomrule
-                \end{tabu}
-                }
+                \end{tabu}}
             \end{minipage}\\[-\baselineskip]%
             \begin{minipage}[t]{0.54\textplusmargin}
                 \centering
@@ -227,8 +223,6 @@ set of inversion breakpoints was submitted to Sanger sequencing
             \end{minipage}
         \end{adjustbox}
 \end{table}
-\todo{fix left-shifting caused (most likely) by adjustbox}
-
 
 The validation experiments carried out at EMBL were three-fold: First, a small
 subset of inversion calls, mostly loci with two-sided support from \delly calls,
@@ -283,15 +277,15 @@ potential allelic dropouts (as explained in \cref{sec:complex_invs_artifacts}).
 
 \figuretextwidth{complex_invs.pdf}
     {complex_invs}
-    {Complex inversion types revealed by \pacbio and ONT MinION reads}
+    {Complex inversion types revealed by \pacbio and \ont MinION reads}
     {Examplatory loci were selected to represent the most commonly seen
     classes of complex inverted variants (listed in \cref{tab:inv_classes}).
     Green lines denote inversions predicted by \delly. \pacbio circular
-    consesus sequences and raw ONT MinION reads (vertical) are compared to their
+    consesus sequences and raw \ont MinION reads (vertical) are compared to their
     reference locus (horizontal) via dotplots using maximal unique matches
     of lengths at least 10 (\pacbio) or 8 (MinION). Axes denote sequence lengths
     in base pairs. Original read names are included for later reference. See
-    \cref{sec:maze_dotplot} for an explanation of the concept of dotplots.}     \todo{make ONT a macro}
+    \cref{sec:maze_dotplot} for an explanation of the concept of dotplots.}
 
 Most interestingly, we observed that only a minority of cases turned out to be
 simple inversions in the sense that a contiguous stretch of DNA is re-oriented
@@ -559,7 +553,7 @@ forces; it is thus unclear whether the mechanism of origin exclusively creates
 this short size spectrum or whether larger inverted or promximal duplications
 are strongly selected against. Nevertheless, the similarities between inverted
 and proximal duplication suggest both to be generate by a similar, possibly
-replication-based mechanism.
+replication-based mechanism (\cref{sec:mechanisms}).
 
 Moreover, I also observed an interesting feature of the deletions flanking some
 inversions. The classification into ``simple inversion'', ``inversion flanked by
@@ -792,7 +786,7 @@ module of \maze comes into play whenever a user is interested in characteristics
 of the breakpoint junctions of \acp{sv}. \Ac{maze} uses current web browser-based
 technology and a modern design to offer a responsive user experience and was
 instrumental in gaining the scientific insights described in
-\crefrange{sec:complex_invs_validation}{sec:breakpoints}.
+\cref{sec:complex_invs_validation,sec:breakpoints}.
 
 
 
@@ -839,11 +833,10 @@ inversions embedded in inverted repeats \citep{Carvalho2016}. For example, up to
 12\% of the human genome were estimated to be susceptible to \nahr-mediated
 inversions \citep{Dittwald2013}. However, paired-end mapping strategies are
 known to have limited power when \sv breakpoints align with repetitive sequence
-because of their inability to correctly map reads in those regions together with
-their short insert sizes, which typically cannot span these repetitive elements.
-\citep{Korbel2007} note a mere 14\% of SVs, which they detected using paired-end
-mapping, to \nahr and the SV calls, notably inversions, of the 1000 Genomes
-Project underlie a similar detection bias. In contrast, studies using alternative
+(\cref{sec:motivation}). \cite{Korbel2007} attributed a mere 14\% of
+paired-end-detected SVs to the \nahr mechanism and the SV calls (notably
+inversions) of the 1000 Genomes Project underlie a similar detection bias.
+In contrast, studies using alternative
 technologies reveal higher levels of \nahr-mediated inversions: Kidd et al.
 report 67\% of inversions identified to be flanked by inverted repeats using
 fosmid libraries (Kidd2008), Chaisson find et al 68\% of 34 inversions detected
