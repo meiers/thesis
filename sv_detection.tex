@@ -1,6 +1,138 @@
 \subsection{Traditional SV discovery}
 \label{sec:sv_detection_old}
 
+A traditional way to investigate the karyotype of cells is by arresting cells in
+metaphase, staining chromosomes and observing them under a microscope
+\citep{Speicher2005}. The images of each chromosome are then ordered by
+chromosome to show an ideogram. By counting the number of each chromosome in the
+cell, gross abnormalities such as aneuploidy can be detected, which is
+schematically depicted under aneuploidy in \cref{fig:SV_classes}. Relevant
+disease-linked forms of aneuploidy could be unraveled early on this way, e.g.
+the trisomy of chromosome 21 \citep{Lejeune1959}. The classic technique has been
+refined to allow higher specificity and resolution, mostly via improved ways of
+staining, such as by quinacrine staining, Giemsa banding, or chromosome-specific
+labeling based on in situ hybridization \citep{Speicher2005}. These techniques
+principally allow the detection of \acp{cnv}, inversions and translocations,
+yet the size range of these \acp{sv} has to be in the order of several Megabases
+or larger. Fluorescence in situ hybridization \citep{Bauman1980}, which relies
+on the annealing of fluorescently labeled DNA probes to their complement DNA,
+is also applied in a targeted manner for validating predicted SVs of slightly
+smaller size.
+
+Other means of detecting \acp{sv} include optical mapping
+\citep{Schwartz1993,Teague2010} and hybridization-based microarrays. The latter
+ones, which are reviewed in \cite{Alkan2011}, used to be the dominating method
+for \cnv detection before high-throughput sequencing became standard. One of the
+two major techniques in this category, namely array comparative genomic
+hybridization, utilizes the competition of the test sample's DNA and a reference
+DNA to a hybridization probe (e.g. short oligonucleotides) to infer the relative
+copy number of the tested locus \citep{Snijders2001}. Using high-density arrays,
+this method can successfully detect deletions down to 500~bp in size
+\citep{Conrad2010}. SNP arrays, on the other hand, utilize hybridization probes
+at sites of polymorphic \acp{snv} to measure the allelic ratio within a single
+sample, which is called \emph{\acf{baf}}. This way, \acp{cnv} but also \loh can
+be detected.
+
+
+
+
 
 \subsection{SV discovery in the era of massively parallel sequencing}
 \label{sec:sv_detection_ngs}
+
+Today, aforementioned techniques have largely been superseded by \sv detection
+utilizing \acl{mps} data.
+% although especially microarrays remain a cost-effective alternative.
+\Ac{sv} detection methods based on \mps are often (also by \cite{Alkan2011})
+separated into four different conceptual approaches, namely read pair analysis,
+split-read analysis, read depth analysis, and sequence assembly. In practice,
+\sv prediction tools do not necessarily fit into only one of these categories.
+Below I will summarize the major ideas behind the different approaches as well
+as representative software implementing them.
+
+\paragraph{Paired-end analysis}
+\Ac{sv} detection based on paired-end sequencing utilizes the orientation and
+expected distance of two sequencing reads to another to detect rearrangements.
+For instance, when their mapping distance on a reference genome is larger than
+expected a deletion may have occurred in the test sample anywhere in between
+those reads. Paired-end analysis can principally detect many different types of
+\acp{sv}, including \acp{cnv}, inversions, translocations, insertions and
+\acp{mei}. This technique had first been used on bacterial artificial chromosome
+\citep{Volik2003}, on fosmid libraries \citep{Tuzun2005} and then on mate pair
+sequencing of human genomes \citep{Korbel2007}. It is nowadays one of the
+dominating principles of \sv detection and is implemented in well-established
+software tools such as \textsc{BreakDancer} \citep{Chen2009}, \delly,
+\textsc{CLEVER} \citep{Marschall2012}, or \textsc{LUMPY} \citep{Layer2014}.
+Besides the richness in detectable SV classes, an advantage of the paired-end
+read signature is that it can identify the breakpoints of an \sv. The breakpoint
+accuracy depends on sequencing coverage and insert size distribution, but
+it is typically in the range of few to several hundred base pairs.
+
+\paragraph{Split-read analysis}
+Split-read approaches utilize the fact that sequencing reads, if long enough,
+can be divided and separately assigned to different locations of the
+reference assembly. This is different from intra-read
+gaps or mismatches, which are still tolerated within each alignment and
+which are typically used to detect \acp{snv} and small indels.
+Based on the position and orientation of the partial alignments, split-read
+analysis detects \acp{sv} in the same way as paired-end analysis. The major
+advantage, though, is that breakpoints can be determined much more accurately,
+often down to the exact nucleotide.
+Split-read approaches had been explored, for instance, early on during the
+1000 Genomes Project (\cref{sec:1000G}) on 400~bp single-ended reads
+\citep{Zhang2011}. Tools such as \textsc{Pindel} \citep{Ye2009} or
+\textsc{BreakSeq} \citep{Lam2010} were among the first ones to specifically
+implemented the split-read approach. Nowadays, strongly encouraged by increasing
+read lengths form standard MPS machines (e.g. up to 2~x~300~bp on an Illumina
+MiSeq platform nowadays), read mapping software has been refined towards the
+ability to directly perform split-read mapping, as exemplified by tools such as
+the widely used \bwamem or specialized tools like \textsc{YAHA}
+\citep{Faust2012} and \textsc{SplazerS} \citep{Emde2012}.
+This allowed other popular paired-end analysis detection tools to incorporate
+the split-read approach, for example in \delly, \textsc{MATE-CLEVER}
+\citep{Marschall2013}, and \textsc{LUMPY}.
+
+\figuretextwidth[t]{SV_detection_methods_Tattini2015.jpg}{SV_detection}{Principles
+    of SV detection in MPS data}{Schematic representation of the four distinct
+    mechanisms for SV detection on three examples: (A) a deletion, (B) an
+    insertion (of duplicated sequence, for example), and (C) an inversion.
+    Figure modified from \citetitle{Tattini2015} \citep{Tattini2015} licensed
+    under \acl{ccby4}.}
+
+\paragraph{read depth analysis}
+A complementary method for detecting \acp{cnv} utilizes the total read depth
+signal inside an \sv. This resembles the methodology of micro-arrays, yet with
+improved resolution since all of the (mappable) genome can be covered instead
+of selected loci. \textsc{SegSeq} \citep{Chiang2009} and \textsc{CNV-seq}
+\citep{Xie2009} were among the first tools that utilized read depth in a
+sample-vs.-control scenario to detect \acp{cnv}. \textsc{mrFast}
+\citep{Alkan2009_mrFAST} and \textsc{CopySeq} \citep{Waszak2010} extended this
+approach to single-sample \cnv calling, and later \textsc{CNVnator}
+\citep{Abyzov2011} and \textsc{genome STRiP} \citep{Handsaker2015} gained more
+popularity. Normalization of read depth is a major challenge in these approaches
+owing to an uneven sequencing coverage, which is why these tools typically
+perform best when an internal reference (e.g. a control sample) is available.
+The currently popular population-scale \cnv caller \textsc{genome STRiP} even
+suggests a minimum of 20 to 30 sample genomes in order to perform well. In
+contrast to paired-end or split-read detection, the read depth method cannot
+accurately predict breakpoints, which becomes a major disadvantage especially
+for smaller variants. For very large variants, on the other hand, read-depth
+methods can still robustly predict \acp{cnv} even when their breakpoints reside
+in repetitive regions.
+
+\paragraph{Assembly} At last, sequence assembly-based methods do not rely on the
+information provided by read mapping software but perform \textit{de novo}
+assembly instead, as demonstrated for example by \citpe{Li2011a}.
+While whole-genome assembly still remains computationally expensive
+\citep{Bradnam2013}, there are methods that perform local re-assembly of reads,
+for example \textsc{TIGRA} \citep{Chen2014b} or the recent \textsc{novoBreak}
+\citep{Chong2017}. Especially for \sv types that are difficult to detect by
+paired-end or split-read approaches, notably for insertion of novel DNA sequence,
+assembly can yield a great benefit. Tools that address this are \textsc{NovelSeq}
+\citep{Hajirasouliha2010}, \textsc{MindTheGap} \citep{Rizk2014}, and
+\textsc{Basil/Anise} \citep{Holtgrewe2015}.
+
+
+\subsection{State of the art and limitations of SV studies}
+\label{sec:limitations}
+\todo{write this section!}
