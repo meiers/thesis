@@ -1,24 +1,127 @@
+DNA sequencing refers to the process of deciphering the order of the four bases
+(adenine, cytosine, guanine, and thymine, abbreviated by A, C, G, and T) that
+constitute a DNA molecule. In the 1990s, sequencing the DNA of humans was a
+decade-long, multi-million dollar effort but it led to the successful production
+of a reference genome of humans and many other organisms
+\citep{Lander2001,Venter2001}. Today, thanks to technological improvements,
+DNA sequencing has become a standard technique applied on a daily basis in
+genomics research. The advance of sequencing technologies has truly
+revolutionized genetic research and brought unforeseen capabilities also to
+studies of structural variation. In fact, these capabilities have not yet
+reached their limit (as described in \cref{sv_detection}) and ongoing
+development of new technologies and protocols is continuously pushing the
+boundaries of what is possible. Since DNA sequencing takes such a prominent
+position in my research---virtually every experiment in this thesis includes
+sequencing---the major techniques shall be introduced here.
 
 
-%\dictum[Frederick Sanger\footnotemark]{(...) [The] knowledge of sequences could
-%contribute much to our understanding of living matter.}
-%\footnotetext{From his biography for the Nobel Prize\cite{Sanger1980}}
+
 
 \subsection{Massively parallel sequencing}
 \label{sec:mps}
 
+The foundation of modern DNA sequencing technologies was laid in 1977 by Sanger
+and his ``chain termination'' technique \citep{Sanger1977}. Despite not being
+the first DNA sequencing method, the chain termination method brought
+unprecedented ease of use and accuracy \citep{Heather2016}. It is based on DNA
+polymer extension via DNA-dependent DNA polymerase (i.e. replication) and the
+incorporation of dideoxynucleotides, which stop polymerization. With subsequent
+electrophoresis, partially replicated DNA fragments can be ordered by length and
+nucleotides identified based on radioactive or fluorescent labels.
+Sanger sequencing was instrumental in the Human Genome Project and owing to the
+accuracy and length (around 1~kb) of sequenced fragments, it is still used
+today for validation purposes. It sequences single DNA fragments, though, and
+is thus laborious to apply in a larger scale.
+
+The throughput could be dramatically increased with the advance of \acf{mps},
+which is also referred to as short-read sequencing,
+2\textsuperscript{nd}-generation sequencing, or high-throughput sequencing.
+Different commercial techniques were brought forward in the first decade of this
+millennium, including Pyrosequencing by 454 Life Sciences, Sequencing by
+Oligonucleotide Ligation and Detection (SOLiD) by Applied Biosystems,
+Nanoball Sequencing by Complete Genomics, Helicos Single Molecule Fluorescent
+Sequencing by Helicos BioSciences, and the Reversible Terminator Chemistry by
+Solexa \citep{wikiDNAseq2018}. Today, the market for \mps technologies is vastly
+dominated by Illumina, who acquired Solexa and their technology in 2007. Here,
+the core principles of Illumina DNA sequencing shall be described representative
+for MPS in general.
+
+Like the Sanger technique, Solexa/Illumina’s approach relies on the concept of
+sequencing by synthesis, i.e. by replication through a DNA polymerase. It in
+fact also utilizes the incorporation of fluorescently labeled dideoxynucleotides,
+which initially terminates the polymerization. A major novelty, though, is that
+the fluorescent label can be removed and the $3^\prime$ hydroxyl group of the
+dideoxynucleotide restored chemically. This technique is widely known as
+reversible terminator chemistry \citep{Turcatti2008}. DNA is then replicated
+step by step, in each of which the incorporated nucleotides are detected using
+fluorescent imaging. This concept of cyclic amplification followed by
+fluorescent detection is shared by multiple of the aforementioned techniques,
+which use slighly different molecular mechanisms \citep{Shendure2008}.
+
+Another key concept of \mps technologies is a step of clonal amplification of
+DNA fragments in order to enhance the fluorescent signal detection. DNA
+fragments are initially ligated to adapter sequences and then, in case of
+Solexa/Illumina, immobilized on the flow cell and amplified via
+\explain{\acf{pcr}}{Did you know that \acs{pcr} was invented only after Sanger
+    sequencing, in 1983? See \cite{Mullis1990} for a brief history.}
+    \citep{Mullis1990}.
+The aspect of parallelism comes into play when many (up to millions of) local
+clusters, each with a clonally amplified DNA fragment, are observed
+simultaneously during nucleotide incorporation. This again was driven by
+technological advances in high-resolution cameras, notably based on
+charge-coupled devices \citep{Barbe1975,Shendure2008}.
+
+\figurepagewidth[t]{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads
+    from \mps are typically short (for example 100~bp), are sequenced from
+    their $5^\prime$ ends and can be single-ended or paired-end. In
+    paired-end or mate pair libraries, the lengths of the original DNA fragment
+    (which can be estimated after read mapping) is called insert size and
+    usually much larger in mate pair experiments than paired-end experiments.}
+
+In contrast to Sanger sequencing, which targets a single locus, \mps can be
+applied to perform \emph{\acf{wgs}}. During \wgs, DNA is highly fragmented prior
+to construct a sequqncing \emph{library}, which is then sequenced via \mps to
+yield a large set of \emph{sequencing reads} from
+all over the genome. Due to the random fragmentation this approach is also
+commonly known as shotgun-sequencing \citep{Weber1997}. In a typical
+\emph{re-sequencing} experiment, where a species with available reference genome
+is sequenced, these reads are then mapped to the reference for further analysis
+such as, for example, variant detection. Apart from \wgs, a large number of
+other sequencing protocols exist that utilize \mps to study different molecular
+characteristics\footnote{see Pachter2018 for a list of such protocols}.
+A prominent example is RNA-seq \citep{Morin2008,Wang2009},
+which make the mRNA present in cells available to sequencing by
+reverse-transcription it into cDNA---we applied this in \cref{sec:balancer}.
+\Cref{sec:ccc,sec:strandseq} cover two other protocols based on MPS that are
+of particular interest in this work.
+
+Modern sequencing machines offer the possibility to sequence a DNA fragment
+from both ends. In case of Illumina/Solexa, this is achieved by a special step
+of bridge amplification that anneals the free end of all fragments in a clonal
+cluster to the surface and then frees the initially attached ends. Afterwards,
+sequencing continues in opposite direction to capture the other end of the
+DNA fragments. This approach is called \emph{paired-end} sequencing or
+paired-end tag sequencing and was used early on to study structural variants
+\citep{Campbell2008} (see also \cref{sec:sv_detection_ngs}). Paired-end reads
+typically allow the sequencing of fragments of up to 500~bp – larger fragments
+(typically around 3~kb, but up to 10~kb) can be achieved by creating
+\emph{mate pair} libraries (a.k.a jumping libraries). In the approach of mate
+pair sequencing, a longer DNA fragment is first circularized before the
+connection of both ends is sequenced either single-ended or in paired-end mode
+\citep{Korbel2007}. In contrast to paired-end reads, which are sequenced from
+their $5^\prime$ ends towards one another and accordingly align in convergent
+orientation to the reference genome, mate pairs align in divergent orientation
+(see \cref{fig:reads}). The size of the sequenced fragment is called
+\emph{insert size} and the number of sequenced bases \emph{read length}.
 
 
-\figurepagewidth{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads from
-\mps are typically short (up to 150~bp), are sequenced from their $5^\prime$
-ends and can be single-ended or paired-end. In paired-end or mate pair
-libraries, the lengths of the original DNA fragment (which can be estimated
-after read mapping) is called insert size and usually much larger in mate pair
-experiments than paired-end experiments.}
 
 
 
-\subsection{Long read sequencing}
+
+
+
+\subsection{Emerging long read sequencing technologies}
 \label{sec:long_read_seq}
 
 
