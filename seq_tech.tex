@@ -124,22 +124,89 @@ orientation to the reference genome, mate pairs align in divergent orientation
 \subsection{Emerging long read sequencing technologies}
 \label{sec:long_read_seq}
 
+Over the last years, new sequencing technologies have been developed which are
+commonly referred to ``3rd-generation sequencing'' in the community. These
+technologies are fundamentally different to \mps technologies as they avoid
+clonal expansion of DNA fragments, but sequence single molecules instead.
+Although single molecule sequencing had been feasible already earlier
+\citep{Braslavsky2003}, later commercialized by Helicos BioSciences,
+third-generation sequencing is commonly associated only with the techniques of
+\acf{pacbio} and \acf{ont}. In contrast to the Helicos platform, these
+techniques achieve significantly longer read lengths (of up to more than 100~kb)
+at usually decreased accuracy. Unlike Sanger's technology, they still sequence
+many molecules in parallel.
 
 \figuretextwidth{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
-    \texorpdfstring{\acs{pacbio}}{PacBio} and ONT sequencing}{\textit{a)} \pacbio
-    sequencing utilizes the concept of sequencing by synthesis similarly to
-    the Illumina technology.
+    \texorpdfstring{\acs{pacbio}}{PacBio} and \texorpdfstring{\acs{ont}}{ONT}
+    sequencing}{
+    \textbf{A:} DNA polymerase inside a zero-mode waveguide processes a DNA
+    molecule. The fluorescently labeled nucleotides are preferably illuminated
+    at the bottom of the well, distinguishing their signal from the pool of
+    nucleotides in the solution.
+    \textbf{B:} Nanopore sequencing by passaging of a single-stranded DNA
+    polymer through a pore in a non-conductive layer. Movement of the DNA
+    molecule is facilitated by a voltage across the layer and decelerated by a
+    processive enzyme (upper ellipse), e.g. a helicase that unwinds the double
+    stranded DNA.
     Figure taken from \citetitle{Heather2016} \citep{Heather2016} licensed under
     \acl{ccby4}.}
 
-Pacific BioSciences\texorpdfstring{\textsuperscript{\textregistered}}{(R)} long read sequencing
-Single Molecule, Real-Time Sequencing (SMRT\textsuperscript{\textregistered})
+The technology of \acl{pacbio} relies on the concept of sequencing by synthesis using
+fluorescently labeled deoxynucleotides. Unlike with Illumina, the sequencing
+occurs in real time on single molecules and was hence termed
+\emph{Single-Molecule Real-Time sequencing (SMRT)} \citep{Eid2009}. Fluorescent
+image detection occurs not in cycles, but continuously (creating a \emph{movie}).
+Besides deciphering the order of nucleotides, this principle also measures
+kinetics of the polymerase, allowing the detection of modified bases such as
+methylated cytosine \citep{Flusberg2010}. The major challenge in SMRT sequencing
+is the detection of the fluorescence signal from a single nucleotide upon
+ligation. To this end, researchers had engineered microplates with so-called
+zero-mode wave guides \citep{Uemura2010}. The laser for excitation of
+fluorophores only illuminates the bottom of these nanowells, in each of which a
+polymerase is deposited so that nucleotides can be detected during incorporation
+against a background of fluorophores outside the well \citep{Heather2016} (see
+\cref{fig:third_gen}a). Single-molecule base detection is still noisier than
+detection in clonally amplified sequences, leading to reported per-base-error
+rates of 11-15\% \citep{Rhoads2015}. To improve accuracy, \pacbio researchers
+promoted a technique called \emph{circular consensus sequence (CCS)}
+\citep{Travers2010}. Here, a double-stranded DNA fragment ligates to circular
+adapters on both ends to form a circular DNA backbone, which still preserving
+its DNA double-stranded structure. The polymerase can then pass this ring of DNA
+repeatedly, effectively sequencing the same fragment multiple times. This long
+read is computationally divided into sub-reads and a consensus is formed with
+reported accuracies of up to more than 99\% \citep{Rhoads2015}.
 
-\todo{Circular consesus sequence - how it works}
+\Acl{ont} utilize a fundamentally different approach to sequence single
+molecules. Driven by electrophoresis, a single-stranded DNA passes through a
+tiny pore that can detect changes in the ionic current specific to the type of
+nucleotide passing through. The development of this technique spanned three
+decades and is based on findings from multiple labs, as \cite{Deamer2016}
+nicely portrayed. One major step towards the current technology was to find an
+appropriate pore that is just wide enough for a single-stranded DNA molecule to
+pass through: Initially \textit{α-hemolysin} channels from
+\textit{Staphylococcus aureus} had been used, which were later replaced by a
+genetically modified version of \textit{MspA}, a porin from
+\textit{Mycobacterium smegmatis} that allowed a much better signal-to-noise
+ratio \citep{Butler2008}. A second crucial step was to decelerate the passage of
+each single nucleotide through the pore in order to allow accurate measurements
+of currents. While DNA polymers would pass a pore at a rate of $10^{-13}$ sec
+per nucleotide even for the smallest voltages, researchers had the idea to place
+processive enzymes in front of the pore that slightly pause passage with each
+nucleotide \citep{Deamer2016}. \Ac{ont} offered the first commercially availabe
+nanopore sequeqncing devices, named MinION, in an early access program from 2014.
+They utilize an ATP-dependent helicase enzyme that unwinds double-stranded DNA
+before passaging the pores, with detection happening simultaneously at up to
+512 pores \citep{Jain2015}. A hairpin adapter is ligated to DNA fragments, so
+that after a single strand has passed the pore the complementary strand
+(linked covalently via the hairpin adapter) follows. This sequences the same
+fragment twice and is utilized to improve sequencing quality. The corrected reads
+are called \emph{2D reads} and were reported to have an improved error rate of
+15\% \citep{Jain2015}. Through the MinION early acces program our laboratory
+gained access to MinION devices, so that we could apply the technique in my
+research project describe in \cref{sec:complex_invs}.
 
-Oxford Nanopore Technologies\texorpdfstring{\textsuperscript{\textregistered}}{{R}}
 
-MinION\textregistered
+
 
 
 \subsection{Chromatin conformation capture sequencing}
