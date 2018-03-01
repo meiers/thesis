@@ -181,12 +181,12 @@
         \marginfig{#1}%
         \captionof{figure}[#3]{\label{fig:#2}\textbf{#3.\enspace} #4}}%
 }
-\newcommand*\figurepagewidth[4]{%                       <- figurepagewidth [4]
-    \begin{figure}[t]
+\newcommand*\figurepagewidth[5][ht]{%                   <- figurepagewidth [4]
+    \begin{figure}[#1]
         \captionsetup{type=figure}
         \hspace{-\dimexpr\oddsidemargin+1in}%
-        \makebox[\textwidth][l]{\includegraphics[width=\paperwidth]{#1}}%
-        \figcap{#2}{#3}{#4}
+        \makebox[\textwidth][l]{\includegraphics[width=\paperwidth]{#2}}%
+        \figcap{#3}{#4}{#5}
     \end{figure}
 }
 
