@@ -209,16 +209,111 @@ research project describe in \cref{sec:complex_invs}.
 
 
 
+
 \subsection{Chromatin conformation capture sequencing}
 \label{sec:ccc}
 
+Studies of the three-dimensional structure of in vivo chromatin have for a long
+time been limited to imaging-based approaches. \cite{Dekker2002}, however,
+proposed a new technique named \emph{chromatin conformation capture (3C)} that
+probes the three-dimensional distance of loci using genomics methods. The basic
+idea is to crosslink DNA with itself in regions that are in close spatial
+proximity. The results of such experiments give insight into the contact
+frequency between two loci relative to other loci, which can be interpreted as
+an average three-dimensional distance between the loci observed across many
+nuclei. The original 3C protocol relies on targeted \pcr amplification and is
+capable of testing the interaction between exactly two loci. However, multiple
+protocols based on 3C have recently been shown to increase the level of
+parallelism, including 4C \citep{Zhao2006,Simonis2006} and 5C \citep{Dostie2006}.
+Eventually, the combination of chromatin conformation capture and \mps resulted
+in \acf{hic} \citep{Lieberman-Aiden2009}. The core principle of \hic, as shown
+in \cref{fig:ccc}, involves cross-linking and digestion of DNA and then
+submitting cross-linked loci to paired-end \mps. After filtering of data (e.g.
+removing fragments ligated to themselves) both reads of a pair represent two
+loci that were in close three-dimensional proximity within the nucleus.
+Principally, the unbiased contact frequency of all loci against all other loci
+can be measured in this way. In practice, the resolution of these two-dimensional
+contact map strongly depends on sequencing coverage. For example, to achieve
+1~kb resolution, \cite{Rao2014} utilized 4.9 billion pairwise contacts in a
+human cell line.
+
 \figuretextwidth{chrom_conf_cap_Li2014_CC.jpg}{ccc}{Chromatin conformation
-    technologies}{Figure taken from \citetitle{Li2014} \citep{Li2014}
-    licensed under \acl{ccby4}.}
+    capture technologies}{
+    Chromatin conformation capture relies on cross-linking of DNA, enzymatic
+    digestion and subsequent ligation of cross-linked loci. In the 3C-protocol,
+    targeted interactions can be analyzed via \pcr. The \hic protocol enriches
+    for cross-linked fragments based on biotin labels before these fragments
+    are paired-end sequneced. Figure modified from \citetitle{Li2014}
+    \citep{Li2014}  licensed under \acl{ccby4}.}
+
+\hic was designed and used to study chromatin conformation and specific
+three-dimensional features such as DNA loops forming between enhancers and
+promoters. It further revealed previously unknown structural features of the
+genome, which are discussed in more detail in \cref{sec:balancer_hic_svs}.
+However, the characteristics of \hic contact maps predestinate them for at least
+two additional use cases: Intra-chromosomal interactions are more frequent than
+inter-chromosomal interactions, which is in concordance with the theory of
+chromosomal territories \citep{Meaburn2007}. Thus, \hic data can by utilized to
+cluster genomic loci by chromosome, which is especially relevant for \textit{de
+novo} assembly \citep{Burton2013}. Another observation is that the contact
+frequency between loci typically decays quickly with increasing genomic
+distance, meaning that the highest signal is detected between loci that are also
+close in linear genomic proximity. Because of that, larger genomic
+rearrangements become prominent in contact maps---I utilized this feature of
+\hic maps to characterize genomic rearrangements in \cref{sec:balancer}.
+
+
+
+
 
 \subsection{Strand-seq}
 \label{sec:strandseq}
 
-\figuretextwidth{strand_seq.pdf}{strand_seq}{Strand-seq principle}{Figure
-    modified from \citetitle{Sanders2016} \citep{Sanders2016} licensed under
-    \acl{ccby4}.}
+Strand-seq is a single-cell DNA sequencing protocol that preserves the identity
+of homologues by sequencing only the template strand of each chromosome
+\citep{Falconer2012,Sanders2017}. The readout are sequencing reads, obtained via
+\mps (e.g. on an Illumina platform) in either paired-end or single-ended mode,
+which all map in the same orientation (plus strand or minus strand) to a
+reference genome if they originate from the same homologue. In cells where
+homologues are inherited on opposite strands, so-called Watson and Crick
+strands, the original homologue for each sequence can be determined simply based
+on its mapping orientation. Strand-seq can thus reliably phase (i.e. distinguish
+haplotypes) chromosomes in their full length \citep{Porubsky2016}. Moreover,
+given the consistent directionality of sequencing reads across a homologue,
+Strand-seq allows to detect (large) inversions as sequencing reads flip
+orientation once mapped to the non-inverted reference genome \citep{Sanders2016}.
+Strand-seq was futher used to study sister chromatid exchange events
+\citep{Falconer2012}. In \cref{sec:mosaicatcher}, I present a novel approach
+that utilizes Strand-seq libraries across multiple single cells to detect mosaic
+\acp{sv}.
+
+\figuretextwidth{strand_seq.pdf}{strand_seq}{Strand-seq principle}{
+    Diploid cells (here schematically represented only for a single pair of
+    chromosomes) contain maternal (M) and paternal (P) homologous chromosomes,
+    each of which is a double-stranded DNA molecule. Watson (W) and Crick (C)
+    are highlighted in orange and green. After replication in the presence of
+    BrdU instead of Thymidine (1), cells contain two sister chromatids of each
+    homologous chromosome, each with a different strand labeled (dotted line).
+    After cell division, photolytic nicking of BrdU sites and library
+    preparation (2), only sequencing reads from the non-labeled strand remain.
+    \textbf{Right side:} A daughter cell inherits the two homologues in one of
+    four different constellations, i.e. both as W (top left), both as C (top
+    right), or both as different strands (maternal W, bottom left, or paternal
+    W, bottom right). After read mapping cells appear in WW, CC, or WC
+    configuration (circles). Figure modified from \citetitle{Sanders2016}
+    \citep{Sanders2016} licensed under \acl{ccby4}.}
+
+Strand-seq requires actively replicating cells, which are grown for a single
+round of replication in a $5$-Bromo-$2^\prime$-deoxyuridine (BrdU) medium.
+The incorporation of this thymidine analog into the newly synthesized DNA strand
+is the basis for obtaining stranded sequencing libraries, because after cell
+division each daughter cell will have only one strand labeled with BrdU
+(\cref{fig:strand_seq}). After cytokinesis, the DNA of a daughter cell is
+enzymatically digested into fragments and ligated to sequencing adaptors. BrdU
+containing fragments are then degraded via photolytic cleavage, so that
+subsequently only non-BrdU containing fragments are amplified via \pcr.
+Fragments from each single cell are tagged with cell-specific barcodes and are
+finally sequenced simultaneously, typically 96 cells together in one Illumina
+lane \citep{Sanders2017}.
+
+
