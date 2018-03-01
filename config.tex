@@ -20,7 +20,7 @@
 \usepackage{tabu}
 \usepackage{caption}
 \usepackage{relsize}
-\usepackage[macros,xspace]{acro} % acronyms (i.e. abbreviations)
+\usepackage[macros,xspace,cite-cmd=\citep]{acro} % acronyms (i.e. abbreviations)
 \usepackage{hyperref}
 \RequirePackage[nameinlink, noabbrev]{cleveref} % load last !!!
 
@@ -91,6 +91,13 @@
     \chapter*{List of Abbreviations}%
     \addcontentsline{toc}{chapter}{List of Abbreviations}%
     \printacronyms[heading=none,exclude-classes={noprint,tools,people},name={List of Abbreviations}]%
+}
+\newcommand*\listofsoftware{%
+    \cleardoublepage
+    \phantomsection
+    \chapter*{List of Software Tools}%
+    \addcontentsline{toc}{chapter}{List of Software Tools}%
+    \printacronyms[heading=none,include-classes={tools},name={List of Software Tools}]%
 }
 \renewcommand*{\bibfont}{\small} % make bibliography smaller !
 \newcommand*\listofreferences{%

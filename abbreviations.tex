@@ -99,100 +99,156 @@
 
 % tools
 \DeclareAcronym{delly}{
-    short=Delly,
-    format=\scshape,
-    long=Delly\footnote{Available online at \url{https://github.com/dellytools/delly}} \citep{Rausch2012},
-    class=tools
+    short       = Delly,
+    long        = Delly,
+    cite        = Rausch2012,
+    list        = SV detection. \url{https://github.com/dellytools/delly},
+    format      =\scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{freebayes}{
-    short=FreeBayes,
-    format=\scshape,
-    long=FreeBayes\footnote{Available online at \url{https://github.com/ekg/freebayes}} \citep{Garrison2012},
-    class=tools
+    short       = FreeBayes,
+    long        = FreeBayes,
+    cite        = Garrison2012,
+    list        = SNV/indel detection. \url{https://github.com/ekg/freebayes},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{last}{
-    short=Last,
-    format=\scshape,
-    long=Last\footnote{Available online at \url{http://last.cbrc.jp}} \citep{Frith2011},
-    class=tools
+    short       = Last,
+    long        = Last,
+    cite        = Frith2011,
+    list        = Alignments. \url{http://last.cbrc.jp},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{blasr}{
-    short=Blasr,
-    format=\scshape,
-    long=Blasr\footnote{A more recent version is available online at \url{https://github.com/PacificBiosciences/blasr}} \citep{Chaisson2012},
-    class=tools
+    short       = Blasr,
+    long        = Blasr,
+    cite        = Chaisson2012,
+    list        = PacBio read mapping. \url{https://github.com/PacificBiosciences/blasr},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{mummer}{
-    short=MUMmer,
-    format=\scshape,
-    long=\textsc{MUMmer}\footnote{Available online at \url{http://mummer.sourceforge.net}} \citep{Kurtz2004},
-    class=tools
+    short       = MUMmer,
+    long        = MUMmer,
+    cite        = Kurtz2004,
+    list        = Maximal matches/alignments. \url{http://mummer.sourceforge.net},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{bwamem}{
-    short=bwa mem,
-    format=\scshape,
-    long=\textsc{bwa mem}\footnote{Available online at \url{https://github.com/lh3/bwa}} \citep{Li2013},
-    class=tools
+    short       = bwa mem,
+    long        = bwa mem,
+    cite        = Li2013,
+    list        = Read mapping. \url{https://github.com/lh3/bwa},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
+}
+\DeclareAcronym{samtools}{
+    short       = SAMtools,
+    long        = SAMtools,
+    cite        = Li2009,
+    list        = General purpose tool for MPS data. \url{https://github.com/samtools/},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{quiver}{
-    short=Quiver,
-    format=\scshape,
-    long=Quiver\footnote{The successor software \textsc{Arrow} is available via PacBio's \emph{GenomicConsensus} software bundle, see \url{http://www.pacb.com/support/software-downloads} or \url{https://github.com/PacificBiosciences/GenomicConsensus}},
-    class=tools
+    short       = Quiver,
+    long        = \textsc{Quiver} (PacBio software),
+    cite        = ,
+    list        = PacBio software. Its successor \textsc{Arrow} at \url{https://github.com/PacificBiosciences/GenomicConsensus},
+    format      = \scshape,
+    first-style = long,
+    class       = tools
 }
 \DeclareAcronym{celeraassembler}{
-    short=wgs-Assembler,
-    format=\scshape,
-    long=Celera Assembler\footnote{Found online at \url{http://wgs-assembler.sourceforge.net}. It was supported up to version 8.3 (May 2015), but has been replaced nowadays by \textsc{Canu} (\url{http://canu.readthedocs.io})} \citep{Myers2000},
-    class=tools
+    short       = wgs-Assembler,
+    long        = wgs-Assembler,
+    cite        = Myers2000,
+    list        = \textit{De novo} assembly. Supported up to version 8.3 (May 2015). Successor \textsc{Canu} at \url{http://canu.readthedocs.io},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{maze}{
-    short=Maze,
-    format=\scshape,
-    long=Delly Maze,
-    class=tools
+    short       = Maze,
+    long        = Maze,
+    cite        = ,
+    list        = Long read visualization. \url{https://github.com/dellytools/maze},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{vt}{
-    short=Vt,
-    format=\scshape,
-    long=\textsc{Vt}\footnote{See online at \url{https://genome.sph.umich.edu/wiki/Vt}} \citep{Tan2015},
-    class=tools
+    short       = vt,
+    long        = vt,
+    cite        = Tan2015,
+    list        = General purpose tool for variant files. \url{https://genome.sph.umich.edu/wiki/Vt},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{vcflib}{
-    short=vcflib,
-    format=\scshape,
-    long=\scshape{vcflib}\footnote{Available online at \url{https://github.com/vcflib/vcflib}},
-    class=tools
+    short       = vcflib,
+    long        = vcflib,
+    cite        = ,
+    list        = General purpose tool for variant files. \url{https://github.com/vcflib/vcflib},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{primerthree}{
-    short=Primer3,
-    format=\scshape,
-    long=Primer 3\footnote{Available online at \url{https://primer3plus.com/cgi-bin/dev/primer3plus.cgi}} \citep{Untergasser2012},
-    class=tools
+    short       = Primer3,
+    long        = Primer3,
+    cite        = Untergasser2012,
+    list        = Primer design. \url{https://primer3plus.com/cgi-bin/dev/primer3plus.cgi},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{STAR}{
-    short=STAR,
-    format=\scshape,
-    long=STAR\footnote{Available online at \url{https://github.com/alexdobin/STAR}} \citep{Dobin2013},
-    class=tools
+    short       = STAR,
+    long        = STAR,
+    cite        = Dobin2013,
+    list        = RNA-seq read mapping. \url{https://github.com/alexdobin/STAR},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{deseq}{
-    short=DESeq2,
-    format=\scshape,
-    long=DESeq2\footnote{Available via Bioconductor (\url{https://bioconductor.org/packages/release/bioc/html/DESeq2.html})} \citep{Love2014},
-    class=tools
+    short       = DESeq2,
+    long        = DESeq2,
+    cite        = Love2014,
+    list        = Differential gene expression analysis. \url{https://bioconductor.org/packages/release/bioc/html/DESeq2.html},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 \DeclareAcronym{igb}{
-    short=IGB,
-    format=\scshape,
-    long=Integrated Genome Browser \citep{Freese2016},
-    class=tools
+    short       = IGB,
+    long        = Integrated Genome Browser,
+    cite        = Freese2016,
+    list        = Genome Browser. \url{http://bioviz.org/igb/},
+    format      = \scshape,
+    class       = tools
 }
 \DeclareAcronym{spades}{
-    short=SPAdes,
-    format=\scshape,
-    long=SPAdes assembler \citep{Bankevich2012},
-    class=tools
+    short       = SPAdes,
+    long        = SPAdes,
+    cite        = Bankevich2012,
+    list        = \textit{De novo} assembly. \url{http://bioinf.spbau.ru/spades},
+    format      = \scshape,
+    first-style = short,
+    class       = tools
 }
 
 
