@@ -122,7 +122,7 @@ in repetitive regions.
 
 \paragraph{Assembly} At last, sequence assembly-based methods do not rely on the
 information provided by read mapping software but perform \textit{de novo}
-assembly instead, as demonstrated for example by \citpe{Li2011a}.
+assembly instead, as demonstrated for example by \citep{Li2011a}.
 While whole-genome assembly still remains computationally expensive
 \citep{Bradnam2013}, there are methods that perform local re-assembly of reads,
 for example \textsc{TIGRA} \citep{Chen2014b} or the recent \textsc{novoBreak}
@@ -131,6 +131,17 @@ paired-end or split-read approaches, notably for insertion of novel DNA sequence
 assembly can yield a great benefit. Tools that address this are \textsc{NovelSeq}
 \citep{Hajirasouliha2010}, \textsc{MindTheGap} \citep{Rizk2014}, and
 \textsc{Basil/Anise} \citep{Holtgrewe2015}.
+
+In practice, \sv detection using any of the four different approaches typically
+requires an additional filtering step after initial \sv prediction. Such
+filters can rely on the quality metrics provided by the prediction tool, but
+optimally they involve an independent signal, such as read coverage for
+paired-end predicted \acp{cnv}. One useful signal that shall be highlighted here
+is \acl{baf}---this idea from microarrays is applicable to \mps data,
+too. At sites of heterozygous \acp{snv} that reside within a putative \sv, the
+sequencing reads supporting both alleles can be contrasted to infer the copy
+number of the locus. Notably, in \cref{sec:balancer_cnv} this principle was instrumental
+to validate predicted duplications.
 
 
 \subsection{State of the art and limitations of SV studies}
