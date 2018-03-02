@@ -1,22 +1,75 @@
 \chapter{General Introduction}
 \label{sec:intro}
-\todo{write general introduction}
+
+n his famous ``On the origin of species [...]'' from 1859 Charles Darwin noted
+the outstanding variety of individuals within a species. Especially domesticated
+speices, as he describes, show remarkable differences---imagine a bloodhound,
+terrier, spaniel, and bull-dog next to one another. But also in nature such
+differences occur. They can be passed on to offspring over generation and
+accumulate to such an extend that a separate species is formed. These
+observations as well as a great amount of preceding research by other led
+Darwin to the formulation of his theory of natural selection.
+
+More than 150 years later, we have understood many of the molecular mechanisms
+behind this principle. We know that genetic information is encoded in DNA and
+that it is subject to mutations, which are partly inheritable. These changes in
+the DNA create the variability of the genetic material that is so essential to
+evolution: the evolutionary principle thus consists of both these parts,
+mutation and selection. Today we are able to study the genetic differences
+between human individuals (but also within other species) and can investigate
+their consequences. Many fundamental associations between the presence of a
+genetic variants and certain traits have been found since, for example why
+red-green color blindness affects more males than females \citep{Nathans1986}.
+Other traits, such as the expected height of a person, are less easily conceived
+as they appear to be affected by the combination of many genetic variants
+\citep{Wood2014,Marouli2017}. Furthermore, we today understand the causal role
+of genetic variation in many diseases, including Mendelian disorders and cancer.    \todo{ref?}
+
+Necessarily, in order to study the consequences of genetic variants we require
+methods to accurately detect them. Nowadays, this has been largely enabled with
+the advance of DNA sequencing technologies. Based on these methods we have
+initially charted the average genome of many species, including humans
+\citep{Lander2001,Venter2001}, and identified functional units such as genes and
+regulatory elements in great detail \citep{Dunham2012}. We then gained further
+insight into the variability within the human population through population
+genetics studies \citep{Auton2015,Sudmant2015}. At last, the identified variants
+could then be analyzed for a potential effect on phenotypes or disease using,
+for example, genome-wide association studies \citep{Ott2015,MacArthur2017}.
+
+Variant detection has become a standard procedure in genomics research. However,
+not all types of genetic variants have been studied equally comprehensively.
+Especially \emph{\acf{sv}}, which are introduced in \cref{sec:sv}, remained
+difficult to ascertain using available assays, which is why their functional
+role is still not as well explored as for other types of genetic variation. The
+limitations of currently standard techniques had long been noticed and
+encouraged further method development. Over the last couple of years, new
+techniques for DNA sequencing (or based on standard DNA sequencing) have become
+available. In this work, I utilize such emerging technologies to characterize
+structural variants beyond what was previously possible.
+
+In the rest of this chapter, I explain some general terminology
+(\cref{sec:variation}), the biology behind structural variants
+(\cref{sec:sv}), previous and emerging DNA sequencing technologies
+(\cref{sec:sequencing}), as well as methods for SV detection
+(\cref{sec:sv_detection}). I continue to elaborate the current limitations
+of structural variant detection in \cref{sec:limitations}. Then, in
+\cref{sec:motivation}, I formulate the goals of my research and provide an
+overview of the research covered in this dissertation.
 
 
-\section{Overview of the dissertation}
-\label{sec:overview}
-\todo{write overview}
+
+
 
 
 \section{Terminology around genetic variation}
 \label{sec:variation}
 
-Alteration in the DNA of an organism, or of a cell, can arise spontaneously via
-chemical or biological processes. If not repaired faithfully, they leave
-\emph{variants} (or \emph{mutations}) of the nucleotide sequence. Some variants
+Alterations in the DNA of an organism, or of a cell, can arise spontaneously
+via chemical or biological processes. If not repaired faithfully, they leave
+\emph{variants} (or \emph{mutation}) of the nucleotide sequence. Some variants
 only affect a single nucleotide in the double-stranded DNA---these variants are
-referred to as \emph{\acfp{snv}}. Others, termed \emph{\acf{sv}}
-(introduced in \cref{sec:sv}), affect larger portions of DNA and are the
+referred to as \emph{\acfp{snv}}. Others, termed \emph{\acf{sv}} or sometimes
+just \emph{genomic rearrangements}, affect larger portions of DNA and are the
 central topic of the research presented here.
 
 Most metazoan organisms are diploid, which means they contain two non-identical
