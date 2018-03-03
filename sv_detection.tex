@@ -106,7 +106,7 @@ improved resolution since all of the (mappable) genome can be covered instead
 of selected loci. \textsc{SegSeq} \citep{Chiang2009} and \textsc{CNV-seq}
 \citep{Xie2009} were among the first tools that utilized read depth in a
 sample-vs.-control scenario to detect \acp{cnv}. \textsc{mrFast}
-\citep{Alkan2009_mrFAST} and \textsc{CopySeq} \citep{Waszak2010} extended this
+\citep{Alkan2009} and \textsc{CopySeq} \citep{Waszak2010} extended this
 approach to single-sample \cnv calling, and later \textsc{CNVnator}
 \citep{Abyzov2011} and \textsc{genome STRiP} \citep{Handsaker2015} gained more
 popularity. Normalization of read depth is a major challenge in these approaches
@@ -144,6 +144,77 @@ number of the locus. Notably, in \cref{sec:balancer_cnv} this principle was inst
 to validate predicted duplications.
 
 
+
+
+
 \subsection{State of the art and limitations of SV studies}
 \label{sec:limitations}
-\todo{write this section!}
+
+\Acl{sv} in the human genome have been studied many times, driven by the
+availability of new technology. Initial population studies mapped large \acp{cnv}
+in several individuals using microarrays \citep{Sebat2004,Iafrate2004,Sharp2005,Redon2006}.
+With refinements of these techniques, \cnv discovery could later be expanded to
+hundreds of individuals and down to a detection size of 1~kb (or even 500~bp),
+which scaled up the number of detected variants tremendously
+\citep{McCarroll2008,Conrad2010}. Further improvements in the discernible size
+range, the breakpoint accuracy and the types of SVs detectable were reached
+with the application of \mps technologies. \cite{Korbel2007} and \cite{Kidd2008}
+were among the first studies to utilize paired-end-like approaches to study
+\citep{sv}, including balanced ones, in few individuals. A series of studies
+followed that explored all the different technical approaches mentioned in
+\cref{sec:sv_detection_ngs}.
+
+The first phase of the 1000 Genomes Project presented the then most
+comprehensive \sv call set, which was based on on low-coverage sequencing data
+of 179 individuals \citep{Mills2011}. However, especially inversion detection
+faced major limitations within the project, as I describe in more detail in
+\cref{sec:complex_invs}. Further studies continued \sv characterization in the
+human population (e.g. \citep{Sudmant2015a,Hehir-Kwa2016}) and in disease,
+revealing thousands of copy number variable loci that are linked to pathological
+phenotypes \citep{Swaminathan2012}. \Acp{sv} were also mapped extensively in
+cancer genomes \citep{Weischenfeldt2016,Campbell2017} and in other organisms such
+as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
+\textit{C. elegans} \citep{Maydan2010}.
+
+\figuretextwidth[t]{SV_limitations.pdf}{sv_limitations}{Examples for limitations
+    of MPS-based SV detection}{Three examples for cases in which current
+    \mps-based \sv detection methods fail. The upper half in each panel shows
+    a sample with an \sv, the lower part reads from that sample mapping to the
+    reference assembly. \textbf{A:} A duplication of a repetitive element
+    (shaded boxes) occurred, which is not detected because read mapping is masked
+    within the repetitive region. \textbf{B:} An inversion flanked by repetitive
+    elements. Because paired-end reads cannot be mapped uniquely inside the
+    repeats, this inversion remains undetected. With an read length or insert
+    size larger than the size of the repeats the inversion could be revealed.
+    \textbf{C:} Insertion of a small piece of DNA into another chromosome leads
+    to the prediction of a reciprocal trasnlocation. The fundamental principal
+    behind this issue is that only the breakpoint of an \sv (similar scenarios
+    are for other \sv classes) are being called, whereas \mps-based methods
+    cannot reason about the inner state of the translocation.}
+\todo{harmonize the way I refer to subfigures throughout the thesis}
+
+Increases in sequencing depth improved breakpoint accuracy and sensitivity of
+\sv detection, yet it did not overcome specific limitations owed to the
+repetitive nature of the human genome. Notably, \acp{sv} attributed to \nahr are
+known to be flanked by repeat sequence, in which read mapping (and consequently
+paired-end \sv detection) often fails. This has been termed the ``short-read
+dilemma'' \citep{Onishi-Seebacher2011}. Unfortunately, the human genome consists
+to a large portion of repeats. Sequence analyses found that up to two third of
+the human genome are derived from repetitive elements (mostly transposable
+elements) \citep{DeKoning2011} with around 5\% of the genome containing large
+(>10~kb) and highly identical segmental duplications \citep{Lander2001}.
+Especially repeat-embedded inversions cannot be detected based on traditional
+techniques (including \mps) ``at high throughput and high resolution''
+\citep{Sanders2016}. \Cref{fig:sv_limitations} depicts three exemplatory
+scenarios in which repeats confuse paired-end sequencing based \sv detection.
+
+Challenges related to the repetitive nature of our genomes have been discussed
+extensively in other areas, notably for de novo assembly \citep{Alkan2011_assembly}
+and haplotype phasing \citep{Browning2011}. In both cases, blocks of information
+(e.g. phasing blocks or contigs) fail to span through repetitive genomic regions.
+These challenges are even greater in other species with more repetitive or
+polyploidy genomes, which tend to also have of reference assemblies of lower
+quality. Livestock and crop are two examples with outstanding environmental
+relevance that suffer from these limitations \citep{Bickhart2014,Saxena2014}.
+
+\todo{Bulk vs. single cell}
