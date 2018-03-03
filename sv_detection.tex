@@ -171,7 +171,7 @@ faced major limitations within the project, as I describe in more detail in
 \cref{sec:complex_invs}. Further studies continued \sv characterization in the
 human population (e.g. \citep{Sudmant2015a,Hehir-Kwa2016}) and in disease,
 revealing thousands of copy number variable loci that are linked to pathological
-phenotypes \citep{Swaminathan2012}. \Acp{sv} were also mapped extensively in
+phenotypes \citep{Swaminathan2012,Forbes2011}. \Acp{sv} were also mapped extensively in
 cancer genomes \citep{Weischenfeldt2016,Campbell2017} and in other organisms such
 as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
 \textit{C. elegans} \citep{Maydan2010}.
@@ -179,8 +179,8 @@ as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
 \figuretextwidth[t]{SV_limitations.pdf}{sv_limitations}{Examples for limitations
     of MPS-based SV detection}{Three examples for cases in which current
     \mps-based \sv detection methods fail. The upper half in each panel shows
-    a sample with an \sv, the lower part reads from that sample mapping to the
-    reference assembly. \textbf{A:} A duplication of a repetitive element
+    sample DNA carrying an \sv; below is shown where reads from that sample map
+    to the reference assembly. \textbf{A:} A duplication of a repetitive element
     (shaded boxes) occurred, which is not detected because read mapping is masked
     within the repetitive region. \textbf{B:} An inversion flanked by repetitive
     elements. Because paired-end reads cannot be mapped uniquely inside the
@@ -191,7 +191,7 @@ as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
     behind this issue is that only the breakpoint of an \sv (similar scenarios
     are for other \sv classes) are being called, whereas \mps-based methods
     cannot reason about the inner state of the translocation.}
-\todo{harmonize the way I refer to subfigures throughout the thesis}
+\todo{harmonize the way I refer to subfigures throughout the thesis (\textbf{A:}, or \texbf{a)}, or \textit{A)},...)}
 
 Increases in sequencing depth improved breakpoint accuracy and sensitivity of
 \sv detection, yet it did not overcome specific limitations owed to the
