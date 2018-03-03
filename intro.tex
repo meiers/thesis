@@ -6,7 +6,7 @@ the outstanding variety of individuals within a species. Especially domesticated
 speices, as he describes, show remarkable differences---imagine a bloodhound,
 terrier, spaniel, and bull-dog next to one another. But also in nature such
 differences occur. They can be passed on to offspring over generation and
-accumulate to such an extend that a separate species is formed. These
+accumulate to such an extent that a separate species is formed. These
 observations as well as a great amount of preceding research by other led
 Darwin to the formulation of his theory of natural selection.
 
@@ -55,7 +55,7 @@ In the rest of this chapter, I explain some general terminology
 (\cref{sec:sv_detection}). I continue to elaborate the current limitations
 of structural variant detection in \cref{sec:limitations}. Then, in
 \cref{sec:motivation}, I formulate the goals of my research and provide an
-overview of the research covered in this dissertation.
+overview of the studies covered in this dissertation.
 
 
 
@@ -123,9 +123,57 @@ mechanism of cancer \citep{Campbell2007}.
 \input{sv_detection}
 
 
-\section{Research goals}
+\section{Research goals and thesis overview}
 \label{sec:motivation}
-\todo{Write research goals}
 
+Studies of structural variation are still fundamentally hampered by the
+shortcomings of current \sv detection methods. This especially affects studies
+of balanced or complex rearrangements, classes that mostly remained cryptic in
+previous studies. In this dissertation, I aim at uncovering and further examine
+\acp{sv} that had been difficult to ascertain beforehand. In order to do so, I
+explore the potential of emerging DNA sequencing technologies---namely the
+techniques introduced in \crefrange{sec:long_read_seq}{sec:strandseq}.
+My work is structured into three separate research projects, in which I explore
+one of the techniques, each. Below, the specific aims of each project are
+outlined. A common theme throughout these projects is the design of new
+bioinformatics methods for data analysis and visualization. I believe that the
+full potential of novel technology can only be unlocked by the simultaneous
+development of new computational approaches and I hope to advance the state of
+the art of current methodology by building---and making available---software
+tools that future research could profit from.
 
+In \cref{sec:complex_invs}, I present my work for the final phase of the
+1000 Genomes Project, in which my role was to validate inversion predictions in
+the human population. These inversion predictions had initially remained
+inconclusive in \pcr-based validation experiments. We then utilized targeted
+long-read sequencing on both \pacbio and \ont MinION platforms to examine the
+respective loci more closely. My immediate goal in this project was to verify
+inversion calls based on long-read information. Moreover, the subsequent goal
+was to further characterize these loci and investigate why previous validations
+had failed. Afterwards, I was further interested in investigating the validated
+inversion cases deeper to understand the biological mechanisms that created
+them.
+
+In \cref{sec:mosaicatcher}, my collaborators and I explored the potential of
+Strand-seq to discover \acp{sv} in single cells. While this had been previously
+done for inversions, we aimed at extending this principle---for the very first
+time---to at least six different \sv classes and towards mosaic (or subclonal)
+variants.  Here, I present the current state of this ongoing endeavor. The first
+goal in this study was to develop a general concept of how different \sv classes
+can be revealed based on the signals available in single-cell Strand-seq data.
+Then, the next goal was to prove feasibility of this concept by implementing the
+approach and applying it to available as well as newly sequenced cell line data
+harboring structural variation. A third important aspect was to test the
+limitations of our approach in a controlled environment. The last goal was hence
+to establish a simulation framework in which the capabilities and boundaries of
+our \sv detection method can be determined.
+
+At last, \cref{sec:conclusions} concludes on the achievements resulting from my
+work. This includes the specific questions of the three projects as well as a
+more general view on how emerging technologies improved \sv characterization in
+the three different scenarios. I then review recent developments by others in
+the community that occurred within the time span of my research. This gives an
+impression of how emerging technologies are about to change studies on
+structural variation and places my work within the broader context of recent
+advances in the field.
 
