@@ -3,7 +3,86 @@
 
 \section{Overview of findings}
 \label{sec:findings}
-\todo{whole section}
+
+The goal of this dissertation was to explore the potential of emerging DNA
+sequencing technologies to discover, characterize and validate structural
+variation. Throughout the projects described herein, I presented three concrete
+use cases for this. Using emerging technologies I was able to scrutinize \acp{sv}
+to an extent that had not been possible based on \mps. Importantly, the \acp{sv}
+revealed by this led to novel insights into the complexity and functional role
+of \acp{sv}. I also developed new computational approaches to detect and analyze
+SVs based on these techniques which I make available to the community.
+
+\paragraph{Complex inversions in the human genome}
+In \cref{sec:complex_invs}, I analyzed inversions in the scope of the 1000
+Genomes Project. Together with colleagues, we were able to solve the
+``validation problem'' by using targeted long-read sequencing on both \pacbio
+and \ont MinION platforms. I verified that more than 80\% of the predicted
+inversions indeed carried an inversion signature---meaning they were
+validated---which could previously be ascertained neither based on \mps data nor
+via \pcr experiments. This solved my first research goal and a principal
+challenge of the overall study \citep{Sudmant2015}.
+
+Moreover, I then found that
+the majority of predicted loci contained not simple inversions, but complex
+variants containing inverted sequence. I categorized them into five major
+classes, which included inverted duplications as the most frequent event. These
+insights had only been possible due to the ability of long-read techniques to
+span complete loci around predicted inversions. My analyses critically relied on
+a visualization tool, which I developed simultaneously and which I made
+available to the public (\url{https://github.com/dellytools/maze}).
+
+The unforeseen amount of complex variation resulting from my work and the work
+of others was one of the key lessons learned from the 1000 Genomes Project's \sv
+study. The function and origin of these complex sv classes remained uncharted,
+though. I thus carefully analyzed the breakpoints of complex \acp{sv} with the
+goal to infer the mechanisms they originated from. The evidence I found was not
+distinctive of any precise mechanism that might have formed these \acp{sv}, but
+it suggested that several of the seemingly very different classes might
+originate from the same mutagenic process. The work on complex variants has
+since been continued and extended by others, further emphasizing the prevlanece
+of this underappreciated phenomenon \citep{Collins2017}.
+
+\paragraph{Effects of SVs on gene expression and chromatin organization}
+In \cref{sec:balancer}, we had set out to study the functional consequences of
+\acp{sv} in respect to gene expression and chromatin conformation. My first goal
+within this collaborative project was to characterize the variants present in
+highly rearranged balancer chromosomes. I achieved this by utilizing deep \wgs
+and \hic data. Among many other aspects, I discovered the exact breakpoints of
+large rearrangements of the balancer chromosomes. In the meantime, others had
+mapped these breakpoints, too, and reassuringly, our results perfectly matched
+their findings \citep{Miller2016,Miller2018}. However, through the technological
+advantage of having \hic data, I could additionally detect precisely (in 2
+cases) or approximately (in 1 case) the breakpoints that had been missed by
+these studies. Further, I utilized haplotype-resolved \hic maps to validate
+large rearrangements including a inversion and a duplication of 258~kb. The
+large duplication most likely inserted in reverse orientation next to the
+original copy, which I concluded from the differential contact frequencies
+around the affected locus. Together, these findings clearly show the benefits
+of \hic for the characterization of large \acp{sv}.
+
+Afterwards, I implemented a
+test for \acl{ase} that utilizes multiple biological replicates and that
+corrects for effects of maternally deposited RNA. I found that changes in
+expression occur almost everywhere across the genome and that they appear not to
+be caused by enhancer hijacking, as had been observed in previous studies.
+Instead, \acp{sv} alter expression via alternative mechanisms such as dosage
+effects or chimeric expression of transcripts through mobile elements. Our
+findings appear contrary to what has been seen in other scenarios; however, I
+argue that this might be a result of natural selection in both these other
+studies and in ours. Balancer chromosomes show a remarkable robustness towards
+the huge rearrangements that they carry, and a potential enhancer hijacking
+mechanism appears to be buffered. We think that these results will complement
+previous studies and lead to a more holistic view on the role of chromatin
+architecture. The manuscript was in preparation at the time of writing this
+thesis.
+
+
+
+\todo{more conclusions?}
+
+
+
 
 \section{The impact of emerging sequencing technology on SV discovery}
 \label{sec:impact}
