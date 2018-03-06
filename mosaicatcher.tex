@@ -42,6 +42,47 @@
 \subsection{Three signals within Strand-seq data are distinctive of SVs}
 \label{sec:mosaic_concept}
 
+\begin{table}[t]%
+\newcommand\ccb{\cellcolor{blue!10}}
+\newcommand\cco{\cellcolor{orange!10}}
+    \begin{adjustbox}{width=\textplusmargin,inner}%
+    \begin{tabu} to \textplusmargin {X[l] c c c c l c c c c}
+        \toprule
+          & \multicolumn4{c}{WC chromosome} & & \multicolumn4{c}{WW chromosome} \\
+         \cmidrule{2-5} \cmidrule{7-10}
+          & & & \multicolumn2{c}{Haplotype} & & & & \multicolumn2{c}{Haplotype} \\
+        \cmidrule(lr){4-5} \cmidrule(lr){9-10}
+         & Cov. & W.f. & \emph{W} & \emph{C} & & Cov. & W.f. & \emph W & \emph{C} \\
+        \midrule
+        Reference allele             &      2N &      50\% & $h_1$   & $h_2$     & &      2N &      100\% & $h_1 + h_2$     & - \\
+        Deletion of $h_1$            &      1N &       0\% & -       & $h_2$     & & \ccb 1N & \ccb 100\% & $h_2$           & - \\
+        Deletion (homozygous)        &      0N &         - & -       & -         & &      0N &          - & -               & - \\
+        Duplication of $h_1$         &      3N &      66\% & $2 h_1$ & $h_2$     & & \ccb 3N & \ccb 100\% & $2 h_1 + h_2$   & - \\
+        Duplication (homozygous)     &      4N &      50\% & $2 h_1$ & $2 h_2$   & &      4N &      100\% & $2 h_1 + 2 h_2$ & - \\
+        Inversion of $h_1$           &      2N &       0\% & -     & $h_1 + h_2$ & & \ccb 2N & \ccb  50\% & $h_2$ & $h_1$       \\
+        Inversion (homozygous)       & \cco 2N & \cco 50\% & $h_2$   & $h_1$     & &      2N &        0\% & -     & $h_1 + h_2$ \\
+        Inverted duplication ($h_1$) & \cco 3N & \cco 33\% & $h_1$ & $h_1 + h_2$ & & \ccb 3N & \ccb  66\% & $h_1 + h_2$ & $h_1$ \\
+        \bottomrule
+    \end{tabu}
+    \end{adjustbox}
+    \tabcap{mosaic_sv_signals}{Distinct signatures of focal SVs in Strand-seq
+    data}{SVs can be identified based on three separate signatures of Strand-seq
+    data: the total read coverage (\emph{Cov.}), the strand ratio---here shown
+    as Watson fraction (\emph{W.f.}), and the presenece of haplotype-tagging
+    \acp{snv} on each strand (\emph{Haplotpye}). In this table I show how the
+    various focal \sv types can be inferred from these signals. This is different
+    for WC chromosomes than for WW or CC chromosomes. For the sake of simpliciy,
+    the table only shows the WW case and assumes heterozygous variants to affect
+    haplotype $h_1$. Entries in orange are \sv classes that cannot be
+    distinguished unambigously using only coverage and Watson fraction.
+    Specifically, a homozygous inversions remain hidden in WC cells and an
+    inverted duplication of $h_1$ cannot be distinguished from a duplication of
+    $h_2$. Entries marked in blue cannot be phased based on coverage and Watson
+    fraction alone. However, all these cases can be disentangled when
+    haplotype-resolved \acp{snv} are available or by integrating information
+    across several cells that share an \sv.}
+\end{table}
+
 
 
 \subsection{Automatd SV detecting}
