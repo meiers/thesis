@@ -274,14 +274,15 @@ of homologues by sequencing only the template strand of each chromosome
 \citep{Falconer2012,Sanders2017}. The readout are sequencing reads, obtained via
 \mps (e.g. on an Illumina platform) in either paired-end or single-ended mode,
 which all map in the same orientation (plus strand or minus strand) to a
-reference genome if they originate from the same homologue. In cells where
+reference genome if they originated from the same homologue. In cells where
 homologues are inherited on opposite strands, so-called Watson and Crick
-strands, the original homologue for each sequence can be determined simply based
+strands, the original homologue for each read (including potential variants
+captured by this read) can be determined simply based
 on its mapping orientation. Strand-seq can thus reliably phase (i.e. distinguish
 haplotypes) chromosomes in their full length \citep{Porubsky2016}. Moreover,
 given the consistent directionality of sequencing reads across a homologue,
-Strand-seq allows to detect (large) inversions as sequencing reads flip
-orientation once mapped to the non-inverted reference genome \citep{Sanders2016}.
+Strand-seq allows to detect (large) inversions in respect to the reference
+genome \citep{Sanders2016}.
 Strand-seq was futher used to study sister chromatid exchange events
 \citep{Falconer2012}. In \cref{sec:mosaicatcher}, I present a novel approach
 that utilizes Strand-seq libraries across multiple single cells to detect mosaic
