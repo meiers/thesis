@@ -185,11 +185,99 @@ available, only one homologue will be deleted/duplicated.
 \Cref{tab:mosaic_sv_signals} summarizes in detail how these signals
 allow to differentiate the focal \sv classes that I cover here.
 
+\paragraph{Copy-neutral variants}
+Inversions do not change copy number, but become visible as a change in strand
+ratio. A heterozygous inversion in a WW cell, for example, switches the strand
+state to WC within the inverted locus. In a WC cell, it becomes WW or CC. Again,
+in the WC cell the inversion can be phased trivially based on strand
+directionality, whereas in the WW or CC case further \snv information has to be
+consulted for phasing. A homozygous inversion is a special case: It changes a WW
+chromosome into CC, making the locus clearly stand out, but it cannot be
+observed within a WC cell. This is because both alleles change their strand
+state, leading again to a WC region. This case can be disentangled with the help
+of phased \acp{snv} or by observation of a population of cells
+(\cref{tab:mosaic_sv_signals}).
+
+Another copy-neutral \sv is \loh. In a \loh event, one homologue is
+``overwritten'' by the other homologue, leading to extended regions of
+homozygousity. To reveal \loh, alleles of\acp{snv} must be assessed. We recently
+found independent regions of \loh within several cells of a lymphoblastoid cell
+line (unbublished data)---all the work on haplotype information within this
+project was spearheaded by \david and will hence not be covered in this
+dissertation.
+
+\paragraph{Complex variants}
+Complex variants can partly be discovered in Strand-seq data, too. We chose
+inverted duplications as a particular candidate, as this class has been found to
+be abundant both on the small (\cref{sec:balancer}) as well as on the large
+scale \citep{Chaisson2017}. As \cref{tab:mosaic_sv_signals} shows, inverted
+duplications are marked by an increase in copy number as well as a flip in
+strand orientation. In a WC cell, such an event cannot be distinguished from a
+normal duplication unless \acp{snv} are available. \Cref{fig:mosaic_examples}
+includes an example of an inverted duplication within an \rpe wild type cells.
+
+\figuretextplusmargin{mosaic_sv_examples.pdf}{mosaic_examples}{Examples of SVs
+    in RPE cells}{Strand-specific count data in 100~kb bins (Watson left, orange
+    and Crick right, blue) are shown in several chromosomal regions of \rpe cells.
+    \textbf{A:} Four loci of three cells each highlight four examples of focal
+    \acp{sv} that could be identified in Strand-seq libraries. The affected
+    loci (marked by dashed lines) show the characteristic changes in read
+    coverage and strand state that were described in \cref{tab:mosaic_sv_signals}.
+    \textbf{B:} A copy number gain of the q-arm of chromosome 10 is visible. The
+    strand state of the extra copy correlates with the strand inheritance
+    pattern of chromosome X (same cells for both chromosomes shown). This
+    observation is best explained by an imbalanced translocation, as shown in
+    the schematic.
+    \textbf{C:} Five chromosomes of cells from the tetraploid RPE C29 cell line
+    (courtesy by \balca and \landsdorp) were selected to represent the five
+    possible strand inheritance patterns in a tetraploid cell: WWWW, WWWC, WWCC,
+    WCCC, and CCCC.}
+
+
+\paragraph{Aneuploidy}
+In a Strand-seq experiment, each homologue of a chromosome is sequenced in
+either W or C orientation. This fundamental property remains valid even in the
+presence of more than two homologues. In a tetraploid cell, for example, a
+chromosome is inherited in any one of five states: WWWW, WWWC, WWCC, WCCC, or
+CCCC. By looking across a population of cells, Strand-seq can disclose the
+ploidy of each chromosome, assuming it is not heterogeneous across cells
+(\cref{fig:mosaic_examples}). A
+usual way to estimate ploidy from \mps data is to assess the \baf of a bulk
+sample---in a tetraploid chromosome, some \acp{snv} will be present at ratios of
+25 or 75\%. Interestingly, Strand-seq detects ploidy even in the complete
+absence of homologue-speicific variants, for example in cells with multiple
+copies of the same homologue such as the CHM1 cell line \citep{Steinberg2014}.
+To the best of our knowledge, this cannot be achieved by any other method.
+
+\paragraph{Translocations}
+At last, also translocations can be revealed using Strand-seq.  A reciprocal
+translocation would alter the strand inheritance state of two chromosomes
+simultaneously: An exchange between a WW and a CC chromosome would switch the
+strand inheritance pattern into WC in both these chromosomes. However, such
+changes in strand state can initially not be distinguished from randomly
+occurring \sce events. This is why a correlated change between two chromosomes
+must be observed across several cells to find translocations. In the \rpe wild
+type cell line (\cref{fig:mosaic_examples}), we report an \emph{imbalanced}
+translocation between chromosomes 10 and X, which had been noted
+beforehand\footnote{In the description of the commercially available
+    ``hTERT RPE-1'' cell line, a derivative of X is recognized, but chromosome
+    10 is not mentioned. Source: \url{https://www.lgcstandards-atcc.org/Products/All/CRL-4000.aspx}}.
+Here, chromosome 10 shows an increase in copy number on the q-arm that seems not
+to be consistently on the same strand across cells. However, the strand
+inheritance state of the extra copy perfectly matches the strand inheritance
+state of chromosome X. This suggests that the extra copy of chromosome 10 is
+linked physically to chromosome X. By correlating strand states across
+chromosomes in this way, translocations can be discovered. The very same idea
+has been used to assign unmapped contigs of the reference assembly to
+chromosomes \citep{Hills2013}.
 
 
 
 
 
+
+
+\FloatBarrier
 \subsection{Automatd SV detecting}
 \label{sec:mosaic_method}
 
