@@ -281,9 +281,60 @@ chromosomes \citep{Hills2013}.
 \subsection{Automatd SV detecting}
 \label{sec:mosaic_method}
 
+In order to capture this spectrum of \sv classes, my collaborators and I
+designed a computational approach for \sv calling from Strand-seq data.
+This approach is implemented in a tool called \mc, which is currently being
+developed. The core principle consists of the three steps (1) binning, (2)
+segmentation, and (3) classification and is explained below. My code for the
+first two steps is available online at
+\url{https://github.com/friendsofstrandseq/mosaicatcher}.
+The third part is being maintained by \maryam and can be found at
+\url{https://github.com/friendsofstrandseq/MaRyam}. At last, the combined
+workflow is available at \url{https://github.com/friendsofstrandseq/pipeline}.
 
+\paragraph{Binning}
+Strand-seq data is extremely sparse: the best libraries currently produced
+contain around 300 reads per Megabases \citep{Chaisson2017,Sanders2017}. In
+order to work with sparse data, I apply a binning scheme that summarizes
+sequencing reads in windows of a given size, e.g. 50~kb. Alternatively, these
+bins can have variable sizes (dynamic-width bins) to accommodate for regions of
+low mappability. The transformation to binned counts allowed us to apply a
+statistical model to estimate the expected number of reads per
+bin---specifically, we utilized a \nb distribution, as I describe
+later. Prior to binning, sequencing reads are filtered for low mapping quality
+(a minimum score of 10 by default), supplementary alignments, and \pcr duplicates.
+Also I only each read pair was counted only once to avoid double-counting of
+sequenced fragments. I utilized the \htslib library within my implementation
+to efficiently read and filter sequencing data.
 
-Use \nb in the text.
+Given the strand-specific binned counts, I implemented a plot function to
+generate figures such as \cref{fig:ss_library}. At first, bins that are
+consistently too low or high across all cells are masked: this is typically the
+case in centromeric or telomeric regions. Further, I designed a classifier to
+distinguish WW, WC, and CC states of each bin. This classifier is supposed to
+tell the class of each bin based on its strand-specific read counts, but it
+should further smoothen out fluctuations in single bins.
+To achieve this, I implemented a \hmm with a multivariate \nb
+emission distribution. The transition probability of the \hmm is chosen
+according the expected number of \acp{sce} within a cell (e.g. 10 transitions
+across all chromosomes). The output of this \hmm is used as background color in
+aforementioned overview plots.
+
+\paragraph{Segmentation}
+The second step towards \sv calling is to detect the boundaries of potential
+\acp{sv}. This had been done in the past by merging data of all cells in a
+strand-aware fashion and detecting boundaries within the merged signal
+\citep{Sanders2016}. However, this approach has the disadvantage that it can
+mask subclonal variants, especially the ones at low allele frequency that we
+are particularly interested in. Boundaries have also been determined within
+single cells separately, e.g. based on an \hmm \citep{Bakker2016}. However, this
+leads to the subsequent challenge of forming consensus boundaries across the
+cells. Instead, I explored multivariate segmentation algorithms that consider
+all cells simultaneously, yet still recognize them as individual cells. This is
+further elaborated in \cref{sec:mosaic_segmentation}. Notably, the segmentation
+algorithm is expected to provide potential \sv breakpoints, which are then
+tested in the subsequent step. Thus, in order increase sensitivity, we allow the
+segmentation to slightly overpredict boundaries.
 
 \figurearbitrary[t!]{0.5}{mosaic_rpe_mean_var.pdf}{mean_var}{Mean variance
     relationship of binned read counts}{Each dot represents one cell of the
@@ -292,9 +343,29 @@ Use \nb in the text.
     variance show a perfectly linear relationship with a slope $p$. In real data,
     we estimate $p$ by fitting a line without intercept.}
 
+\paragraph{Classification} The third and final step is to test segments for the
+presence of \acp{sv} (theory and implementation contributed by \maryam; figures
+from me). In order to classify segments into either a \sv or non-\sv state, we
+employ an elaborate Bayesian model based on \acl{nb} distributions.
+Specifically, we model the read coverage in each strand by a \nb distribution,
+which is adjusted to capture the expected number of reads within a given region.
+Both strands combined yield a joint distribution for all possible strand
+combinations, i.e. WW, WC, or CC, inclusing also abnormal states such as C, WWC,
+and so on. Each of these joint strand states can then be interpreted in respect
+to the expected state in the chromosome and cell. For example, a WC state would
+signify a heterozygous inversion if it occurred on a WW chromosome, but no \sv
+(or a homozygous inversion!) if it occurred on a WC chromosome.
+\Cref{fig:nb_examples} gives a detailed example of how read counts are modeled
+in a joint \nb distribution. The dispersion parameter of the \nb distribution,
+$p$, is estimated across all cells, as \cref{fig:mean_var} explains. The second
+\nb parameter controls the number of expected reads within a locus and must
+hence be scaled to the size of the tested region. In line with our intuition,
+a \nb distribution yields a clearer separation for higher counts, i.e. in larger
+genomic regions intervals than for very small \acp{sv}. In the end, the
+estimated \nb probabilities are considered across all cells to make a final
+decision about an \sv.
 
-
-\figuretextplusmargin[t!]{NB_example.pdf}{mean_var}{Graphical example of the
+\figuretextplusmargin[t!]{NB_example.pdf}{nb_examples}{Graphical example of the
     negative binomial model}{The subplots on the top left and bottom right (in
     both panels) show the probability density functions of three \nb
     distributions. These distributions describe the probability of a given
@@ -314,10 +385,34 @@ Use \nb in the text.
     state) but example \emph{B} would be considered for a heterozygous inversion
     (WW state).}
 
+\paragraph{Additional steps}
+Together with \maryam, \marschall and \david, we set up an automated workflow
+with the aim to process Strand-seq data all the way from raw sequencing files to
+final list of \sv predictions. This pipeline, which is based on the workflow
+engine \snakemake, involves many other relevant steps in addition to the
+tripartite calling procedure explained above, two of which shall be mentioned
+here. First of all, the dominant strand state has to be determined for each cell
+and chromosome in order to guide the \sv classification. This includes the
+detection of \sce events. In order to achieve this, \venla implemented a
+heuristic method to estimate strand states and \acp{sce} based on the output of
+the strand state \hmm. This performed well when it was tested against experts'
+opinions on real-world Strand-seq data. Secondly, haplotype information must be
+annotated. \david hence incorporated functionality to annotate haplotypes in WC
+chromosomes based on the \strandphaser tool. Interestingly, haplotype phasing
+can be performed from Strand-seq data alone \citep{Porubsky2016}, which was also
+built into the the workflow. With sufficient coverage, Strand-seq data can
+even be used for \snv detection, which is a required input to phasing. Together,
+this workflow supplies all input for subsequent \sv calling on Strand-seq data
+without the requirement for additional data sets.
+
+
+
 
 
 \subsection{Revealing potential SV breakpoints via multivariate total variation denoising}
 \label{sec:mosaic_segmentation}
+
+
 
 
 \FloatBarrier
