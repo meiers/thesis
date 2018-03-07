@@ -141,11 +141,11 @@
         \figcap{#3}{#4}{#5}
     \end{figure}
 }
-\newcommand*\figuretextplusmargin[4]{%                  <- figuretextplusmargin [4]
-    \begin{figure}[t]
+\newcommand*\figuretextplusmargin[5][thb]{%                  <- figuretextplusmargin [4]
+    \begin{figure}[#1]
         \captionsetup{type=figure}
-        \includegraphics[width=\textplusmargin,inner]{#1}%
-        \figcap{#2}{#3}{#4}
+        \includegraphics[width=\textplusmargin,inner]{#2}%
+        \figcap{#3}{#4}{#5}
     \end{figure}
 }
 \newlength\tmplengthone
