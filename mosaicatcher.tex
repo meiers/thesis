@@ -103,7 +103,25 @@ classes of \acp{sv} for our purpose.
 \subsection{Three signals within Strand-seq data are distinctive of SVs}
 \label{sec:mosaic_concept}
 
+Strand-seq libraries reveal the presence of large \Acl{sv}. This had been shown
+for inversions in the past by \cite{Sanders2016}. Here, we determined seven
+different \sv classes that can be revealed in Strand-seq data, five of which are
+principally discernible within a single cell (deletion, duplication, inversion,
+inverted duplication, \loh), and two that become apparent across a population of
+cells (aneuploidy and translocation). These \sv classes can be distinguished
+using three independent signals: (1) the normalized read coverage of a locus,
+which corresponds to a diploid state (2N) in a non-affected locus.
+(2) The strand ratio, i.e. the number of W reads over the number of C reads.
+Alternatively, a fraction can be used here, for example the Watson fraction
+W/(W+C). (3) Haplotype information. When whole-chromosome haplotypes are known
+at sites of \acp{snv}, these alleles can be used to reason about potential
+rearrangements. Sequencing reads overlapping such variants can be queried for
+both their original homologue \emph{and} their strand direction.
+Below I explain how we can utilize the combination of these signals to detect,
+genotype and phase \acp{sv}. \Cref{fig:mosaic_examples} contains examples of
+several \sv classes that we identified in \rpe cell lines.
 
+\FloatBarrier
 \begin{table}[t]%
 \newcommand\ccb{\cellcolor{blue!10}}
 \newcommand\cco{\cellcolor{orange!10}}
@@ -144,6 +162,31 @@ classes of \acp{sv} for our purpose.
     haplotype-resolved \acp{snv} are available or by integrating information
     across several cells that share an \sv.}
 \end{table}
+
+\paragraph{Deletions and duplications}
+\Acp{cnv} alter the total read coverage of an affected locus. A deletion
+decreases the coverage from 2N to 1N, i.e. by a factor of two, and is hence
+typically easier to detect---the same has been observed for other read
+depth-based \sv callers. Duplications, which increase copy number to 3N, alter
+the read depth only by a factor of 1.5 compared to the reference state.
+Homozygous duplications increase the copy number even to 4N. Homozygous
+deletions are marked by a complete absence of reads. They thus provide the
+strongest change in read depth, with the only caveat that they resemble regions
+of low mappability such as the centromere on chromosome 1. Homozygous deletions
+are hence best studied in the presence of a control sample that does not carry
+the deletion.
+
+In contrast to classic read depth analysis, Strand-seq additionally provides
+strand information. For example, a heterozygous deletion in a WC chromosome will
+only lack reads on one of the strands. Similarly, a heterozygous duplication
+will increase coverage only on one strand. In a WW or CC cell, strand
+information does not add supportive evidence, but when phased \acp{snv} are
+available, only one homologue will be deleted/duplicated.
+\Cref{tab:mosaic_sv_signals} summarizes in detail how these signals
+allow to differentiate the focal \sv classes that I cover here.
+
+
+
 
 
 
