@@ -34,12 +34,23 @@ text text text text text text text text text text text text text text text
 \section{\textsc{Mosaicatcher}: A novel approach for comprehensive SV detection in single-cell Strand-seq data}
 \label{sec:mosaic_mc}
 
+Strand-seq generates sequencing reads that are all of the same directionality
+when they stem from the same homologue. As explained in \cref{sec:strandseq},
+this is achieved by labeling and degrading the non-template strand of
+actively replicating cells. When the resulting sequencing reads are mapped to a
+reference assembly, they map either to the Watson (W) or Crick (C) strand. The
+presence of two homologous chromosomes then leads to the presence WW, CC, or WC
+chromosomes, which we call their \emph{inherited strand states}.
+Here, I show how these unique characteristics of Strand-seq reveal the presence
+of seven different \sv classes and demonstrate our computational method called
+\mc that implements this idea.
 
-\afterpage{%
-    \clearpage%
-    \ifodd\value{page} \expandafter\afterpage \fi {%
+%\afterpage{%
+%    \clearpage%
+%    \ifodd\value{page} \expandafter\afterpage \fi {%
     \begin{figure}[t!]                                             % cell BM160815_WT_007p1 from BM160815_WT.200000.pdf
         \captionsetup{type=figure}
+        \includegraphics[width=\textplusmargin,inner]{ss_lib_rpewt.pdf}
         \figcap{ss_library}{Example of a single cell Strand-seq library}{
             Here, a single cell Strand-seq library of an \rpe-I wild type cell
             line is displayed using the plot function of \mc.
@@ -55,10 +66,37 @@ text text text text text text text text text text text text text text text
             for WC. Chromosomes 5 and 11 carry \acp{sce}, which are visible by a
             change in the strand inheritance state that continues to the end of
             the chromosomes.}%
-        \vspace{-3cm}%
-        \includegraphics[width=\textplusmargin,inner]{ss_lib_rpewt.pdf}
     \end{figure}
-    }}
+%    }}
+
+\Cref{fig:ss_library} depicts Strand-seq data from a single cell of an \acf{rpe}
+wild type cell line (courtesy by \balca and \landsdorp). This cell-wide overview
+plot was generated using \mc and is typically the starting point for
+an analysis of Strand-seq data. The procedure leading to this plot is outlined
+briefly in \cref{sec:mosaic_method}.
+
+An overview plot allows an initial judgment on the success, quality, and depth
+of a Strand-seq library. In the cell shown here, reads aligning to either W or C
+strand were binned at 200~kb resolution. The cell was sequenced at ample depth
+(median 76 reads per bin), shows the Strand-seq characteristic strand
+inheritance patterns (WW, CC, and WC chromosomes) and is of high quality, which
+can be judged from the low number of reads on the opposite strand in WW or CC
+cells and a fairly even coverage distribution. Experimental parameters
+influencing the quality of Strand-seq libraries are discussed in detail by
+\cite{Sanders2017}.
+
+\Cref{fig:ss_library} further gives a first impression of genomic rearrangements
+in this cell. For example, the region of WW reads at around 120~Mb on chromosome
+1 reveals an inversion of that locus in respect to the reference assembly. The
+most prominent alterations are visible on chromosomes 5 and 11, though. Here,
+the strand inheritance states change at one position and remain consistent to
+the end of the chromosome from there. These positions mark \acf{sce} events,
+which are reciprocal exchanges between two identical sister chromatids and
+which can be specifically measured using Strand-seq \citep{Falconer2012}.
+\Acp{sce} occur randomly across the genome and must not be mistaken with other
+classes of \acp{sv} for our purpose.
+
+
 
 
 
