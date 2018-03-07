@@ -141,6 +141,13 @@
         \figcap{#3}{#4}{#5}
     \end{figure}
 }
+\newcommand*\figurearbitrary[6][ht]{%                       <- figurearbitrary [5]
+    \begin{figure}[#1]
+        \captionsetup{type=figure}
+        \includegraphics[width=#2\textwidth,center]{#3}%
+        \figcap{#4}{#5}{#6}
+    \end{figure}
+}
 \newcommand*\figuretextplusmargin[5][thb]{%                  <- figuretextplusmargin [4]
     \begin{figure}[#1]
         \captionsetup{type=figure}
