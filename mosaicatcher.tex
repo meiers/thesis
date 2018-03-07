@@ -1,10 +1,33 @@
 \chapter{SV Detection in Single Cells}
 \label{sec:mosaicatcher}
 
-\ashley, \jan, \marschall, \david, \maryam, \venla
+Here, I present the current state of a project with the objective to develop a
+computational method for \sv detection in Strand-seq data. This method is being
+developed together with \jan and \ashley as well as with our collaborators
+\david, \maryam, and \marschall from the Max-Planck Institute for Informatics,
+Saarbrücken. \ashley and \jan conceived the general concept of \sv discovery
+based on the signals provided by Strand-seq data. \marschall and \david
+contributed analyses related to phasing and and improvements to the overall work
+flow. \maryam developed the Bayesian classification approach described below.
+Also work from \venla on \acl{sce} events was included into this method.
+The main implementation and all other analyses, including figures, are my own.
+At last, I would like to thank \balca, who provided the cell lines utilized for
+demonstration purposes, and \landsdorp's lab, who carried out the Strand-seq
+experiments on this cell line.
+
+
+
+
 
 \section{Structural variants in the context of somatic mosaicism}
 \label{sec:mosaic_mosaicism}
+
+\todo{Write this section}
+text text text text text text text text text text text text text text text
+text text text text text text text text text text text text text text text
+text text text text text text text text text text text text text text text
+
+
 
 
 
@@ -41,6 +64,7 @@
 
 \subsection{Three signals within Strand-seq data are distinctive of SVs}
 \label{sec:mosaic_concept}
+
 
 \begin{table}[t]%
 \newcommand\ccb{\cellcolor{blue!10}}
