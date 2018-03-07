@@ -294,6 +294,25 @@ Use \nb in the text.
 
 
 
+\figuretextplusmargin[t!]{NB_example.pdf}{mean_var}{Graphical example of the
+    negative binomial model}{The subplots on the top left and bottom right (in
+    both panels) show the probability density functions of three \nb
+    distributions. These distributions describe the probability of a given
+    number of reads for the possible copy number states 0N, 1N, and 2N.
+    In this example, the expected number of reads in a 2N state is 20 (blue
+    curves). Both strands are modeled by separate \nb distributions, that, when
+    combined, yield a joint probability (area of the rectangles).
+    Here, only a the joint states W, C, WW, WC, CC are shown for the sake of
+    simplicity (other possible states would be WWW, WWC, WWCC, and so on).
+    In panel \emph{A}, 12 W and 8 C reads were observed, for which the joint
+    strand state WC is by far the most likely one. In panel \emph{B}, 16 W and
+    4 C were observed, which are best explained by a joint WW state, yet the
+    difference to the runner up (WC) is not big.
+    For SV calling, these joint states have to be interpreted in respect to the
+    strand inheritance state of the chromosome: for example in a WC cell,
+    example \emph{A} would be rejected (WC, i.e. reference, is the most likley
+    state) but example \emph{B} would be considered for a heterozygous inversion
+    (WW state).}
 
 
 
