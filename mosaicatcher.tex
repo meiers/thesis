@@ -462,7 +462,28 @@ whistles in \mc.
 \section{Simulation of Strand-seq data to explore the limits of \textsc{Mosaicatcher}}
 \label{sec:mosaic_simul}
 
+A principal challenge during the implementation of \mc was to measure its
+performance. Initial results on \rpe cells looked very promising, but did not
+allow a systematic investigation of the limitations of our method. In order to
+make this possible, I developed a framework to simulate Strand-seq data.
+Furthermore, the virtual Strand-seq cells can carry \acp{sv} in a fully
+controlled manner. To give an example, \cref{fig:simulation_examples} shows
+different simulated \sv classes at varying sizes. Naturally, such simulations
+represent idealized conditions, yet they were designed in a way to closely
+reflect essential properties of real-life data.
+These simulations allow us to test the correctness of our method during the
+development. More importantly though, they make it possible to explore the
+theoretical limitations of \mc, e.g. in terms of the smallest SV size or lowest
+variant frequency that can be detected reliably. Due to the
+simulations we can focus our efforts on continously refining the methodology in
+order to push these limits.
+
+
+
 \subsection{Development of a versatile simulation framework}
+\label{sec:mosaic_simul_framework}
+
+
 
 \figurearbitrary[t!]{0.7}{mosaic_simulation_examples.png}{simulation_examples}{
     Examples of simulated \acp{sv} in different sizes}{The backgound data was
