@@ -361,9 +361,15 @@ $p$, is estimated across all cells, as \cref{fig:mean_var} explains. The second
 \nb parameter controls the number of expected reads within a locus and must
 hence be scaled to the size of the tested region. In line with our intuition,
 a \nb distribution yields a clearer separation for higher counts, i.e. in larger
-genomic regions intervals than for very small \acp{sv}. In the end, the
-estimated \nb probabilities are considered across all cells to make a final
-decision about an \sv.
+genomic regions intervals than for very small \acp{sv}. A shortcoming of our
+approach is that the \nb distribution offers no intuitive way to model an
+expectation of 0 counts, i.e. the absence of reads. We hence added a factor
+$\alpha \approx 5\%$ to our model to formulate a \nb distribution that captures
+zero counts. For instance, in a WW regions with $e$ expected total reads, the
+expected number of C reads would be modeled by $\alpha \cdot e$ and the expected
+number of W reads by $(1-\alpha) \cdot e$. In the end, the
+estimated \nb probabilities for all \sv classes are considered across cells to
+make a final decision about an \sv.
 
 \figuretextplusmargin[t!]{NB_example.pdf}{nb_examples}{Graphical example of the
     negative binomial model}{The subplots on the top left and bottom right (in
@@ -409,7 +415,7 @@ without the requirement for additional data sets.
 
 
 
-\subsection{Revealing potential SV breakpoints via multivariate total variation denoising}
+\subsection{A multivariate segmentation algorithm to find SV breakpoints}
 \label{sec:mosaic_segmentation}
 
 
