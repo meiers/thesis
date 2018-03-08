@@ -418,6 +418,43 @@ without the requirement for additional data sets.
 \subsection{A multivariate segmentation algorithm to find SV breakpoints}
 \label{sec:mosaic_segmentation}
 
+The objective of segmentation is to group the genome into consecutive regions of
+the same copy number. This can be formulated as a problem of placing $k$
+breakpoints in such a way, that the resulting consecutive segments best
+represent a single copy number state each---the latter can be expressed in terms
+of squarred (Gaussian) error. This problem gained much attention with the
+availability of comparative genomic hybridization arrays to map \acp{cnv}.
+Several methods were put forward for this task and a popular one is circular
+binary segmentation \citep{Olshen2004,Venkatraman2007}. Today, these techniques
+are also commonly applied to \mps data. The number of data points (hybridization
+loci in arrays, or genomic bins in \mps experiments) critically impact the
+runtime of such methods. Circular binary segmentation is efficient in this
+respect, but it uses a heuristic approach (e.g. placing one breakpoint after the
+other) that does not guarantee to find an optimal solution. In contrast, the
+\textsc{tilingArray} \citep{Huber2006} package uses a dynamic programming
+algorithm to find the optimal solution according to the squared error criterion.
+As this algorithm does not scale well to deep \mps data, other approaches have
+been proposed such as the Group fused LASSO formulation \citep{Bleakley2011}.
+
+As Strand-seq data is inherently sparse, problem size is not a limitation factor
+in our application. For example with 50~kb bins, chromosome 1 still only
+contains \textasciitilde5000 data points. I hence designed and implemented an
+algorithm for Strand-seq segmentation that is based on the \textsc{tilingArray}
+principle\footnote{Original from \url{http://bioconductor.org/packages/release/bioc/html/tilingArray.html};
+    implemented independently (including major changes) in \mc (see
+    \texttt{segmentation.hpp})}.
+The \textsc{tilingArray} algorithm internally uses a cost matrix that defines
+how expensive (in terms of variance) each consecutive segment is. A dynamic
+programming algorithm then choses the optimal combination of breakpoints. The
+calculation of the cost matrix in \textsc{tilingArray} assumes the changes in
+signal across all replicates to be the same, i.e. an increase at the same locus
+in all samples. For Strand-seq data, I needed to relax this criterion to capture
+inversions---where one strand is increased and another decreased---and mosaic
+variation. I hence re-defined said cost matrix to allow individual jumps within
+each strand. Notably, the positions of the breakpoints are still consistent
+throughout all cells. I implemented this algorithm with all the bells and
+whistles in \mc.
+
 
 
 
