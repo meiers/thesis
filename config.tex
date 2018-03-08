@@ -17,6 +17,7 @@
 \usepackage[section]{placeins}
 \usepackage{afterpage} % to force one figure on even page
 \usepackage{tikz}
+\usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{tabu}
@@ -32,6 +33,28 @@
 \hbadness=10000 % reduce underfull hbox errors
 \usepackage{silence}
 \WarningFilter{latex}{Marginpar on page}
+
+
+
+
+
+% acro styles
+% preamble:
+\newcommand*\addcolon[1]{#1:}
+\newlist{acronyms}{description}{1}
+\setlist[acronyms]{
+    labelwidth = 4em,
+    leftmargin = 4.5em,
+    noitemsep,
+    itemindent = 0pt,
+    font=\addcolon}
+\newlist{software}{description}{1}
+\setlist[software]{
+    font=\addcolon}
+\DeclareAcroListStyle{acronyms_style}{list}{ list = acronyms }
+\DeclareAcroListStyle{software_style}{list}{ list = software }
+
+
 
 
 % Good style recommondations from here:
@@ -92,6 +115,7 @@
     \phantomsection
     \chapter*{List of Abbreviations}%
     \addcontentsline{toc}{chapter}{List of Abbreviations}%
+    \acsetup{ list-style = acronyms_style }%
     \printacronyms[heading=none,exclude-classes={noprint,tools,people},name={List of Abbreviations}]%
 }
 \newcommand*\listofsoftware{%
@@ -99,6 +123,7 @@
     \phantomsection
     \chapter*{List of Software Tools}%
     \addcontentsline{toc}{chapter}{List of Software Tools}%
+    \acsetup{ list-style = software_style }
     \printacronyms[heading=none,include-classes={tools},name={List of Software Tools}]%
 }
 \renewcommand*{\bibfont}{\small} % make bibliography smaller !
