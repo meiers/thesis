@@ -478,13 +478,6 @@ variant frequency that can be detected reliably. Due to the
 simulations we can focus our efforts on continously refining the methodology in
 order to push these limits.
 
-
-
-\subsection{Development of a versatile simulation framework}
-\label{sec:mosaic_simul_framework}
-
-
-
 \figurearbitrary[t!]{0.7}{mosaic_simulation_examples.png}{simulation_examples}{
     Examples of simulated \acp{sv} in different sizes}{The backgound data was
     simulated in 50~kb bins with a median of 20 reads per bin. \Acp{sv} were
@@ -493,7 +486,151 @@ order to push these limits.
 
 
 
-\subsection{Assessing the performance of the segmentation algorithm}
+
+\subsection{Development of a versatile simulation framework}
+\label{sec:mosaic_simul_framework}
+
+Binned read counts of Strand-seq libraries approximately follow a \acl{nb}
+distribution. This impression is supported by the near linear relationship of
+mean and variance that we observed (\cref{fig:mean_var}). Hence, in order to
+computationally generate Strand-seq data, I devised a tool to sample binned read
+counts from a negative binomial distribution. The \nb parameters can be chosen
+in a way to closely resemble real data.
+
+The simulation consists of three steps. First, the backbone of each homologue is
+created via sampling from a \nb distribution. To do that, the bin size, the \nb
+parameter $p$ and the expected number of reads per bin have to be specified
+(see \cref{tab:simulation_params}). By default, a set of 24 chromosomes with the
+typical sizes of human chromosomes 1--22, X and Y are generated this way.
+This is done for a user-defined number of cells.
+
+In the next step, \acp{sv} are introduced into these homologues. The variants
+must be predefined in a configuration that lists the position, size, \sv type
+and variant frequency of each \sv; however, I included routines to generate this
+file by randomly distributing \acp{sv} of varying size across the genome and
+simultaneously avoiding overlapping loci. Currently, the simulations allow four
+different \sv classes, namely, deletions, duplications, inversions (each of them
+either heterozygous or homozygous), and inverted duplications. These variants
+are then applied to the $h_1$ homologue (or to both) by changing the
+strand-specific coverage. Internally, each homologue is composed of two read
+counts per bin: the reads sequenced in dominant the orientation that the
+homologue inherits, called \emph{forward} for now, and reads sequenced
+in \emph{reverse} orientation, which are all initialized to 0. An inversion,
+for example, is incorporated by flipping reads from the forward to the reverse
+orientation in a specific region. A duplication, on the other hand, doubles the
+forward read counts and does not alter the reverse counts. Importantly, the
+coordinates of an \sv do not need to align with the boundaries of bins---this
+would be a very unrealistic requirement. Bins that are only partially affected
+by a \sv also only partially will have their read counts altered also only
+partially. Variants with frequency $f<1$ are incorporated only into subset
+of cells, chosen with a probability $f$ for each cell. The user-defined
+variant frequency $f$ hence states only the \emph{expected} fraction of cells
+carrying the \sv. This reflects the situation within a cell population that
+underlies a random sampling of cells during a Strand-seq experiment.
+
+\begin{table}[t]
+    \centering
+    \begin{tabu}{rrX}
+        \toprule
+        Parameter & Default & Description \\
+        \midrule
+        $n$       & 100    & Number of cells \\
+        $w$       & 50,000 & Window size \\
+        %$g$       & GRCh38 & File describing number and size of chromosomes \\
+        $c$/$C$   & 10/20  & Expected coverage. Sampled uniformely from $[c,C]$ \\
+        $p$       & 0.8    & \nb parameter $p$ \\
+        $a$       & 0.1    & Fraction of non-zero background bins \\
+        $s$       & 4      & Expected number of \sce events per cell \\
+        $z$       & 0.1    & Fraction of reads that can be phased \\
+        \bottomrule
+    \end{tabu}
+    \tabcap{simulation_params}{Major parameters controlling Strand-seq simulations}
+        {These parameters can be specified during Strand-seq simulations. The
+        coverage is specified as the mean number of reads per bin and sampled
+        uniformely form the allowed range for each cell. The parameter $a$
+        controls the fraction of bins that allow background reads: for those bins,
+        the number of background reads is sampled from a geometric distribution;
+        $a$ is hence only losely related to $\alpha$ (classification).}
+\end{table}
+
+At last, cells are rendered into Strand-seq libraries. Initially, I add spurious
+background reads (in reverse) to a subset of bins to reflect imperfect
+experimental conditions. Then, each homologue is randomly inherited as either W
+or C strand, with the reverse reads (containing \acp{sv} and spurious reads) on
+the opposite strand. I further allow the strand state of a homologue to switch
+at any position with a very low probability---this creates \sce events. The
+final W and C reads lose the information about their original homologue, as
+forward reads from a W homologue are merged with reverse reads from a C
+homologue, just as when reads from Strand-seq experiment are mapped to the
+reference genome. However, prior to the merging I allow a fraction of reads in
+each bin (typically 10\%, but this is chosen from a binomial distribution
+within each bin) to be phased, i.e. to virtually overlap a haplotype-phased
+\snv. Hence, we know both strand orientation as well as homologue for this
+subset of reads, which is written to a separate table.
+
+
+
+
+
+\subsection{Performance of the segmentation algorithm}
+\label{sec:mosaic_segm_simul}
+
+The simulation framework offers an excellent opportunity to benchmark \mc. Our
+tripartite calling procedure is based on first finding potential breakpoints,
+and then testing the resulting segments for \acp{sv}---these parts can hence be
+evaluated independently. Here, I benchmarked the segmentation algorithm
+introduced in \cref{sec:mosaic_segmentation} using different classes of
+simulated \acp{sv}. I was especially interested in how well breakpoint detection
+performed for low \sv sizes.
+
+I simulated a number of Strand-seq experiments under different conditions. In
+each simulation, 200 cells had been generated with an expected number of 20
+reads within 50~kb bins. I then distributed one of three \sv classes, namely
+deletion, duplication, or inversion, of a fixed size across the genome. For the
+sake of simplicity, this was only done for chromosome 1. Next, this procedure
+was repeated for the \sv sizes 100~kb, 400~kb, 1~Mb, and 2~Mb. As mentioned
+previously, the random placement of \sv boundaries is independent of the binning
+scheme. A 100~kb event, for example, hence rarely overlaps exactly two bins, but
+rather spans one bin completely and two neighboring bins partially. After that,
+I applied the segmentation algorithm with increasing numbers of allowed segments
+(this is a parameter of the algorithm) to all these data sets. Too few segments
+are bound to miss some \sv breakpoints, whereas too many segments only add false
+predictions. Based on the number of correctly identified breakpoints and the
+number of spurious predictions I calculated receiver operator characteristics.
+The results are shown in \cref{fig:segm_simul}.
+
+\figuretextwidth[t!]{mosaic_mc_roc.pdf}{segm_simul}{Performance of segmentation
+    on simulated SVs}{Here, I simulated three heterozygous \sv classes of
+    different sizes on chromosome 1. The underlying simulated Strand-seq data
+    contains 200 cells, binned at 50~kb resolution with a mean of 20 reads per
+    bin. Then, for each of these data sets, I calculated receiver operator
+    characteristics by measuring the fraction of correctly identified \sv
+    breakpoints (sensitivity; correctness means that the segment boundary is not
+    more than 3 bin sizes away from the simulated breakpoint) vs. the number of
+    spurious breakpoints. Each dot represents these values for a specific number
+    of allowed segments in the range from 10-50. \Acp{sv} are present in all
+    cells.}
+
+These initial results show that the segmentation algorithm performs well in
+detecting \sv breakpoints in simulations. Large \sv, in the range of 1~Mb and
+above, can be identified exhausitvely for all three \sv classes. The number of
+required breakpoints depends on the number of \acp{sv} present within the cell,
+which is of course not known \emph{a priori}. This is why the receiver operator
+characteristics plots show a rectangular behavior: with an increasing number of
+allowed segments more and more \sv breakpoints are successfully detected, until
+they were all found. Then, more segments add only false positive breakpoints.
+Smaller \acp{sv} are expectedly more difficult to capture, yet even within the
+100~kb events, around three quarter of the breakpoints could be detected while
+generating less than 20 false breakpoints. At a size of 400~kb, again all
+breakpoints were found with slightly lower specificity compared to large
+\acp{sv}. This means that, in order to capture small \sv (in the range of
+100-400~kb), we need to allow the segmentation to create more segments than
+expected (oversegmentation), which then have to be subjected to statistical
+testing in the classification step.
+
+
+
+
 
 \section{Conclusions and outlook}
 \label{sec:mosaic_conclusion}
