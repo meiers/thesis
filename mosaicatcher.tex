@@ -278,7 +278,7 @@ chromosomes \citep{Hills2013}.
 
 
 \FloatBarrier
-\subsection{Automatd SV detecting}
+\subsection{Automated SV detection}
 \label{sec:mosaic_method}
 
 In order to capture this spectrum of \sv classes, my collaborators and I
@@ -635,4 +635,132 @@ testing in the classification step.
 \section{Conclusions and outlook}
 \label{sec:mosaic_conclusion}
 
+Strand-seq is an emerging sequencing technique with the unique ability to
+resolve single homologues by sequencing only their template strands. While it
+had been used in the past for \sce mapping \citep{Falconer2012}, phasing
+\citep{Porubsky2016}, and inversion discovery \citep{Sanders2017}, we
+demonstrated here that Strand-seq data reveals the presence of at least seven
+different \sv classes. Based on an integration of three separate signals of
+Strand-seq data, these \sv classes can be detected, genotyped and assigned to a
+haplotype. To give substance to this claim, I highlighted examples of five
+different \sv classes that we identified in recently sequenced \rpe cell lines.
+Moreover, as Strand-seq operates on single cells, these \acp{sv} can be detected
+even if they are present only in a small fraction of the total cell population.
+This enables us to study \acp{sv} in the context of somatic mosaicism.
+Previously, these studies had been limited to only \acp{cnv} and subclonal
+fractions of at least 10\% due to technical limitations of the applied
+approaches. \todo{match with intro to this chapter!}
+Strand-seq based \sv calling will thus open whole new possibilities to study
+the yet underexplored role of \acp{sv} in cellular heterogeneity.
+
+I presented our computational method called \mc that was designed to achieve
+fully automated \sv calling from Strand-seq. \mc operates by grouping sparse
+read data into bins, segmenting the genome to find the boundaries of potential
+\acp{sv} and subsequently classifying these segments. I designed and implemented
+a multivariate segmentation algorithm based on a quadratic error term that
+captures two important characteristics: It recognizes single cells
+separately---instead of merging their signals---but still defines breakpoints
+across the population of cells. This approach intuitively captures large
+variation present in few cells or small variants present in many cells. The \sv
+classification utilizes \acl{nb} distributions---for which I provide evidence
+that they approximate real data well---to calculate probabilities for each \sv
+class based on the number of strand-resolved reads within the locus.
+Due to our Bayesian inference strategy, we are able to supply prior knowledge
+and can easily integrate \sv predictions across the population of cells. While
+this method is currently under development, we have already seen positive
+evidence---for example in \rpe cells and publicly avialble data sets---that this
+approach performs well.
+
+In order to test the limitations of \mc, I designed a versatile framework for
+the simulation of Strand-seq data. This set of tools can computationally generate
+Strand-seq libraries containing up to four classes of focal \acp{sv} of arbitrary
+sizes. Read counts are modeled from the same \nb distributed that was fitted to
+real data previously. I then used this framework to explore the capabilities of
+the segmentation algorithm in respect small \sv sizes. The results suggest that
+even at an \sv size of 100~kb, which corresponds to only two data points among
+the binned read counts, the majority of breakpoints can be correctly detected.
+\Acp{sv} larger than 1~Mb are found robustly. The capabilities of \mc will have
+to be tested further using simulations and real-life data, but these initial
+results suggests that the lower detection limit will likely be in the size range
+of 100-500~kb.
+
+
+
+
+\subsection{Open challenges}
+\label{sec:mosaic_challenges}
+
+Despite good progress in the development of \mc, we are facing several
+challenges that yet have to be overcome. First of all, our current approach
+covers the detection of focal \acp{sv} but not yet of translocations and
+aneuploidy. As their detection works principally different than for focal \acp{sv},
+I have been developing independent methods for them in parallel. These approaches,
+once they were refined and thouroughly test, shall later be integrated into a
+single software tool. A second point is that, in its current state, \mc does not
+utilize the information from phased \acp{snv}, although they can already be
+annotated using \strandphaser. Consequently, \acp{sv} are only phased in WC
+chromosomes.
+
+Third, the current segmentation algorithm requires the number of segments as an
+input parameter, which is not known a priori and for which we need to find an
+appropriate way of estimation.  Others have used the Bayesian Information
+criterion in this situation \citep{Huber2006} but it did not seem to work well
+for our purpose. Moreover, we do not yet know how sensitive the segmentation is
+towards low variant frequencies---in case it performs poorly, we will revisit
+single-cell segmentation again. Also, the segmentation relies on the bin
+coordinates (typically 50~kb), which only sporadically align with \sv
+breakpoints. In order to overcome this, we are experimenting with a shifted
+binning scheme. We further thought of a subsequent refinement procedure that
+directly accesses the read mapping positions in \sv-carrying cells to estimate
+breakpoints at higher accuracy.
+
+At last, the classification step is work in progress. In its current state, it
+accurately classifies segments in single cells, but it does not yet integrate
+this information across the cell population. Single outliers in read counts,
+which occur both in real as well as in simulated data, can lead to a certain
+\sv state having the highest likelihood.
+single-cell classifier into rejecting the null hypothesis of a reference state.
+To tackle this issue, we want to introduce a size-adjusted prior distribution.
+Further, we are considering to restrict the model to bi-allelic \acp{sv}---i.e.
+only only variant class at the same time at each locus. This way, single outlier
+cells, such as spurious triplication calls in a duplication locus, could be
+corrected. A related challenge originates from the unevenly distributed coverage
+of Strand-seq data. In addition to mappability and GC content, Strand-seq
+coverage can be affected by nucleosome positioning (due to MNase digestion),
+which is tissue-specific---this aspect is further explored by colleagues in the
+laboratory. Because of that, a one-fits-all solution (such as the widely-used GC
+correction) will likely belie expectations. We are currently testing methods
+for normalization based on control samples or on within the data itself using
+methods such factor analysis \citep{Stegle2012} or an expectation-maximization
+algorithm.
+
+
+
+\subsection{Future directions}
+\label{sec:mosaic_outlook}
+
+Our immediate future steps towards the publication of \mc are the completion of
+the method, addressing some of the points mentioned above. We then plan on
+demonstrating its performance in cell line data. Besides the \rpe
+wild type cell lines I showed here, we can further apply \mc to a set previously
+published, high-quality set of Strand-seq libraries (Chaisson2017). This data
+includes more than 1000 cells across 9 individuals from family offspring trios and
+is likely the richest Strand-seq data set available to date. Moreover, \acp{sv}
+have been mapped comprehensively based on a combination of techniques in these
+samples, making it a perfect test scenario for \mc. The cell line data is
+expected to be very homogenous, but we already observed sporadic stretches of
+\loh (unpublished work by \david). Moreover, we have Strand-seq libraries of
+multiple hyperploid cell lines available, including the aforementioned \rpe C29
+line, to explore the identification of aneuploidy with Strand-seq data.
+
+Moreover, applications of \mc beyond the simple demonstration of feasibility are
+already planned. For example, \ashley recently sequenced cells clones derived
+from fibroblast, which had been previously reported to harbor somatic mosaicism
+including large structural variation \citep{Saini2016}. Another project led by
+\karen, aims at studying cellular heterogeneity within the blood in the context
+of ageing. Previous studies had shown outstanding degrees of somatic mosaicism,
+from point mutations to aneuploidy, in the hematopoietic lineage
+\citep{Razzaghian2010,Holstege2014}. At last, cancer is another prime target to
+be analyzed using Strand-seq and \mc, which provide a whole new approach to
+study heterogeneity on the structural variation level.
 
