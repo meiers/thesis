@@ -86,29 +86,29 @@ thesis.
 \paragraph{SV detection in single cells}
 Finally, in \cref{sec:mosaicatcher} I present a novel method for SV detection on
 the single-cell level, which is currently under active development. This method
-termed \emph{Mosaicatcher} allows, for the very first time, the detection of
+termed \mc allows, for the very first time, the detection of
 multiple different \sv classes based on single-cell Strand-seq data. In a first
 step, my collaborators and I devised a detailed scheme about how each \sv type
 can be detected, genotyped and phased within a set of single-cell data. This
 conceptual work is largely based on previous experience with Strand-seq data,
-but I presented examples of 4\todo{how many?} \sv classes in a new, yet
+but I presented examples of five \sv classes in a new, yet
 unpublished data set of \acl{rpe} cells. In the next step, I conceived and
 implemented a framework to simulate Strand-seq data. This framework models
 Strand-seq data in terms of a negative binomial distribution, for which I
 provided evidence that it reflects well the properties of real data. The
 framework can then be used to simulate single-cell Strand-seq libraries of
-arbitrary sequencing depth and incorporating 5\todo{5- how many really?}
+arbitrary sequencing depth and incorporating four
 different \sv classes at any desired size and subclonal fraction. Simulations
 within this framework enable us to explore the theoretical limitations of
-Mosaicatcher. At last, I designed and implemented an algorithm for data binning
+\mc. At last, I designed and implemented an algorithm for data binning
 and segmentation, which covers two of three steps of our conceptual \sv calling
-procedure. The segmentation algorithm utilizes strand-specific read depth across
-all cells simultaneously to find the boundaries of potential \acp{sv} via a
-total variation de-noising approach and I showed that it performs well in
+procedure. The segmentation algorithm uses the multivariate strand-specific read
+depth to find the boundaries of potential \acp{sv} based on a quadratic error
+term and I showed that it performs well in
 simulations. The last goal---implementing and applying this method---has not yet
-been reached at the time of writing. Mosaicatcher will, once completed, greatly
+been reached at the time of writing. \mc will, once completed, greatly
 facilitate studies of somatic mosaicism, e.g. in the context of ageing or cancer,
-which had recently mostly been limited to CNVs and higher subclonal fractions.
+which had recently been severly limited---if not in respect to \acp{sv}.
 
 
 
