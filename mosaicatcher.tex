@@ -7,9 +7,10 @@ developed together with \jan and \ashley as well as with our collaborators
 \david, \maryam, and \marschall from the Max-Planck Institute for Informatics,
 Saarbrücken. \ashley and \jan conceived the general concept of \sv discovery
 based on the signals provided by Strand-seq data. \marschall and \david
-contributed analyses related to phasing and and improvements to the overall work
-flow. \maryam developed the Bayesian classification approach described below.
-Also work from \venla on \acl{sce} events was included into this method.
+contributed analyses related to phasing, general improvements to the overall
+work flow and fruitful discussion on many aspects. \maryam developed the
+Bayesian classification approach described below. Also work from \venla on
+\acl{sce} events was included into this method.
 The main implementation and all other analyses, including figures, are my own.
 At last, I would like to thank \balca, who provided the cell lines utilized for
 demonstration purposes, and \landsdorp's lab, who carried out the Strand-seq
@@ -22,10 +23,52 @@ experiments on this cell line.
 \section{Structural variants in the context of somatic mosaicism}
 \label{sec:mosaic_mosaicism}
 
-\todo{Write this section}
-text text text text text text text text text text text text text text text
-text text text text text text text text text text text text text text text
-text text text text text text text text text text text text text text text
+As briefly introduced earlier, somatic mosaicism refers to the presence of
+genetically distinct subpopulations of cells within an individual
+\citep{Youssoufian2002}. The relatively high chance of dividing cells to mutate
+suggests that nearly all of our cells harbor variation, ranging from \acp{snv}
+to large \acp{sv} \citep{Campbell2015}. Fortunately, the majority of these
+accumulated variants do not affect our health. Some cases of mosaicism are even
+part of our physiological development, such as the programmed rearrangements of
+the T-cell receptor genes or polyploidy in liver cells
+\citep{Forsberg2017,Davoli2011}. However, mosaicism has also been linked to
+disease and it is becoming increasingly clear that \aclp{sv} play an important
+role in that process \citep{Forsberg2017}. The prime example is cancer, which
+arises from the clonal expansion of a cell that carries beneficial (driver)
+mutations as well as passenger mutations \citep{Forsberg2017}. But other
+diseases, such as type 2 diabetes mellitus or Alzheimer, have been linked to the
+presence of mosaic mutation, too \citep{Forsberg2017}. Moreover, the amount of
+mosaicism has been shown to increase with age. For example, \cite{Forsberg2012}
+observed Meagabase-range aberrations in people of age above 60, but not in
+younger subjects. Especially the blood compartment, but also skin, appear to be
+affected by somatic mutation---as, for instance, was shown in the blood of a
+115-year old woman, which harbored a manifold-higher amount of mosaic variants
+than other tissues \citep{Forsberg2017,Holstege2014}.
+
+Single-cell studies have uncovered vast amounts of somatic copy number
+alterations in cancer \citep{Navin2011,Demeulemeester2016}. They also revealed
+unforeseen amounts of somatic mosaicism in brain tissue, including in
+post-mitotic neurons, which were analyzed on the level of \acp{snv}, \acp{cnv}
+\acp{mei} \citep{Lodato2015,Cai2014,Evrony2012}.
+These single-cell methods typically rely on whole-genome amplification such as
+MDA or MALBAC to increase the amount of DNA available for sequencing
+\citep{Dean2002,Zong2012}. However, the amplification step has been noted to
+introduce biases that hamper detection of \acp{cnv} below several Megabases in
+size \citep{Deleye2017}. While single-cell \cnv detection has been
+constantly improving since, allowing much higher resolution
+\citep{Garvin2015,Gao2016,Bakker2016,Knouse2016}, copy-neutral \acp{sv} have
+been lagging behind.
+
+These limitations made it difficult to robustly discern structural variation,
+especially copy number-neutral and complex events in the context of cellular
+heterogeneity. Consequently, the role of somatic \acp{sv} remains comparatively
+underexplored to other forms of genetic variation. In this chapter, I present a
+fully novel way to study \acp{sv} on the single-cell level. Based on the
+single-cell sequencing method Strand-seq, we developed a computational approach
+for the detection of previously difficult-to-ascertain \sv classes. Below, I
+explain this method in detail and give an outlook on the future research that
+can and will be done using this new method.
+
 
 
 
