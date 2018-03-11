@@ -20,7 +20,7 @@ sequencing---the major techniques shall be introduced here.
 \subsection{Massively parallel sequencing}
 \label{sec:mps}
 
-The foundation of modern DNA sequencing technologies was laid in 1977 by Sanger
+The foundation of modern DNA sequencing technologies was laid in 1977 by Frederick Sanger
 and his ``chain termination'' technique \citep{Sanger1977}. Despite not being
 the first DNA sequencing method, the chain termination method brought
 unprecedented ease of use and accuracy \citep{Heather2016}. It is based on DNA
@@ -34,7 +34,7 @@ today for validation purposes. It sequences single DNA fragments, though, and
 is thus laborious to apply in a larger scale.
 
 The throughput could be dramatically increased with the advance of \acf{mps},
-which is also referred to as short-read sequencing,
+which is also referred to as short-read sequencing, next-generation sequencing,
 2\textsuperscript{nd}-generation sequencing, or high-throughput sequencing.
 Different commercial techniques were brought forward in the first decade of this
 millennium, including Pyrosequencing by 454 Life Sciences, Sequencing by
@@ -46,6 +46,7 @@ dominated by Illumina, who acquired Solexa and their technology in 2007. Here,
 the core principles of Illumina DNA sequencing shall be described representative
 for \mps in general.
 
+\paragraph{Key principles of parallel DNA sequencing}
 Like the Sanger technique, Solexa/Illumina’s approach relies on the concept of
 sequencing by synthesis, i.e. by replication through a DNA polymerase. It in
 fact also utilizes the incorporation of fluorescently labeled dideoxynucleotides,
@@ -62,14 +63,20 @@ Another key concept of \mps technologies is a step of clonal amplification of
 DNA fragments in order to enhance the fluorescent signal detection. DNA
 fragments are initially ligated to adapter sequences and then, in case of
 Solexa/Illumina, immobilized on the flow cell and amplified via
-\explain{\acf{pcr}}{Did you know that \acs{pcr} was invented only after Sanger
+\explain{\acf{pcr}}{A method for amplification of DNA fragments. Did you know
+    that \acs{pcr} was invented only after Sanger
     sequencing, in 1983? See \cite{Mullis1990} for a brief history.}
     \citep{Mullis1990}.
 The aspect of parallelism comes into play when many (up to millions of) local
 clusters, each with a clonally amplified DNA fragment, are observed
 simultaneously during nucleotide incorporation. This again was driven by
 technological advances in high-resolution cameras, notably based on
-charge-coupled devices \citep{Barbe1975,Shendure2008}.
+charge-coupled devices \citep{Barbe1975,Shendure2008}. Due to clonal
+amplificaiton and high-resolution imaging, Illumina machines can sequence DNA
+with extremely high accuracy, with a per-base error rate is in the order
+of 0.1\% \citep{Fox2014}.
+
+\paragraph{Applications}
 
 \figurepagewidth[t]{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads
     from \mps are typically short (for example 100~bp), are sequenced from
@@ -80,7 +87,7 @@ charge-coupled devices \citep{Barbe1975,Shendure2008}.
 
 In contrast to Sanger sequencing, which targets a single locus, \mps can be
 applied to perform \emph{\acf{wgs}}. During \wgs, DNA is highly fragmented prior
-to construct a sequqncing \emph{library}, which is then sequenced via \mps to
+to the construction of a sequencing \emph{library}, which is then sequenced via \mps to
 yield a large set of \emph{sequencing reads} from
 all over the genome. Due to the random fragmentation this approach is also
 commonly known as shotgun-sequencing \citep{Weber1997}. In a typical
@@ -88,13 +95,14 @@ commonly known as shotgun-sequencing \citep{Weber1997}. In a typical
 is sequenced, these reads are then mapped to the reference for further analysis
 such as, for example, variant detection. Apart from \wgs, a large number of
 other sequencing protocols exist that utilize \mps to study different molecular
-characteristics\footnote{see Pachter2018 for a list of such protocols}.
+characteristics\footnote{see \cite{Pachter2018} for a list of such protocols}.
 A prominent example is RNA-seq \citep{Morin2008,Wang2009},
 which make the mRNA present in cells available to sequencing by
 reverse-transcription it into cDNA---we applied this in \cref{sec:balancer}.
 \Cref{sec:ccc,sec:strandseq} cover two other protocols based on \mps that are
 of particular interest in this work.
 
+\paragraph{Paired-end sequencing}
 Modern sequencing machines offer the possibility to sequence a DNA fragment
 from both ends. In case of Illumina/Solexa, this is achieved by a special step
 of bridge amplification that anneals the free end of all fragments in a clonal
@@ -102,17 +110,48 @@ cluster to the surface and then frees the initially attached ends. Afterwards,
 sequencing continues in opposite direction to capture the other end of the
 DNA fragments. This approach is called \emph{paired-end} sequencing or
 paired-end tag sequencing and was used early on to study structural variants
-\citep{Campbell2008} (see also \cref{sec:sv_detection_ngs}). Paired-end reads
-typically allow the sequencing of fragments of up to 500~bp – larger fragments
-(typically around 3~kb, but up to 10~kb) can be achieved by creating
-\emph{mate pair} libraries (a.k.a jumping libraries). In the approach of mate
-pair sequencing, a longer DNA fragment is first circularized before the
-connection of both ends is sequenced either single-ended or in paired-end mode
-\citep{Korbel2007}. In contrast to paired-end reads, which are sequenced from
-their $5^\prime$ ends towards one another and accordingly align in convergent
-orientation to the reference genome, mate pairs align in divergent orientation
-(see \cref{fig:reads}). The size of the sequenced fragment is called
-\emph{insert size} and the number of sequenced bases \emph{read length}.
+\citep{Campbell2008} (see also \cref{sec:sv_detection_ngs}). Using pairs, more
+bases can be sequenced at high quality than could be with a single read.
+Typically, the DNA fragments subject ot paired-end sequencing have a length of
+up to 500~bp. Larger fragments (typically around 3~kb, but up to 10~kb) can be
+achieved by creating \emph{mate pair} libraries (a.k.a jumping libraries). In the
+approach of mate pair sequencing, a longer DNA fragment is first circularized before
+the connection of both ends is sequenced either single-ended or in paired-end mode
+\citep{Korbel2007}. The size of the underlying DNA fragment is called
+\emph{insert size} and the number of sequenced bases \emph{read length}
+(\cref{fig:reads}). Paired-end and mate pair sequencing have played a pivotal
+role in \sv detection, which is elaborated later in this introduction.
+
+\paragraph{Sequence analysis}
+After DNA sequencing, the computational analysis of the obtained sequencing
+reads begins. Naturally, this analysis may be very different depending on which
+protocol was used. For a \wgs resequencing experiment, a very common first step
+is to assign the short reads to their most likely origin and
+\explain{read orientation}{Only one DNA strand (e.g. the $5^\prime$ strand) is
+    encoded in a reference genome, but fragments from both strands are sequenced.
+    Thus, also the reverse complement sequence of each read must be mapped---i.e.
+    it maps to the \emph{minus} strand (\cref{fig:reads}).} within the reference
+genome. This process is called \emph{read mapping} or \emph{read alignment} and
+software tools to perform this task are abundant
+\citep{Li2009,Weese2009,Langmead2009,Alkan2009,Li2013}. The intricacies that
+hamper read mapping are sequencing errors and the repetitive nature of large
+genomes, which do not allow unique placement of reads in many regions. These
+regions are said to have low \emph{mappability} and difficult to deal with.
+Subsequent to read mapping, downstream analyses can be carried out such as \sv
+detection, which I describe in \cref{sec:sv_detection}. The very popular
+paired-end sequencing allows both the mapping of a read to be
+informed by the placement of the second read---for example when one read maps
+ambigously but it can be ``anchored'' by the second, uniquely mapping read.
+Paired-end reads, which are sequenced from their $5^\prime$ ends towards one
+another, align in convergent orientation to the reference genome, whereas mate
+pairs align in divergent orientation (\cref{fig:reads}).
+
+An alternative to read mapping is \emph{de novo} assembly, which exploits the
+relationship of sequencing reads to one another (i.e. a common subsequence) to
+restore the genome fully independent of a reference. These methods, however,
+typically fail to produce long consecutive sequences \citep{Alkan2011_assembly}.
+
+
 
 
 
@@ -124,19 +163,7 @@ orientation to the reference genome, mate pairs align in divergent orientation
 \subsection{Emerging long read sequencing technologies}
 \label{sec:long_read_seq}
 
-Over the last years, new sequencing technologies have been developed which are
-commonly referred to ``3rd-generation sequencing'' in the community. These
-technologies are fundamentally different to \mps technologies as they avoid
-clonal expansion of DNA fragments, but sequence single molecules instead.
-Although single molecule sequencing had been feasible already earlier
-\citep{Braslavsky2003}, later commercialized by Helicos BioSciences,
-third-generation sequencing is commonly associated only with the techniques of
-\acf{pacbio} and \acf{ont}. In contrast to the Helicos platform, these
-techniques achieve significantly longer read lengths (of up to more than 100~kb)
-at usually decreased accuracy. Unlike Sanger's technology, they still sequence
-many molecules in parallel.
-
-\figuretextwidth{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
+\figuretextwidth[t]{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
     \texorpdfstring{\acs{pacbio}}{PacBio} and \texorpdfstring{\acs{ont}}{ONT}
     sequencing}{
     \textbf{A:} DNA polymerase inside a zero-mode waveguide processes a DNA
@@ -150,6 +177,18 @@ many molecules in parallel.
     stranded DNA.
     Figure taken from \citetitle{Heather2016} \citep{Heather2016} licensed under
     \acl{ccby4}.}
+
+Over the last years, new sequencing technologies have been developed which are
+commonly referred to as ``3rd-generation sequencing'' in the community. These
+technologies are fundamentally different to \mps technologies as they avoid
+clonal expansion of DNA fragments, but sequence single molecules instead.
+Although single molecule sequencing had been feasible already earlier
+\citep{Braslavsky2003}, later commercialized by Helicos BioSciences,
+third-generation sequencing is commonly associated only with the techniques of
+\acf{pacbio} and \acf{ont}. In contrast to the Helicos platform, these
+techniques achieve significantly longer read lengths (of up to more than 100~kb)
+at usually decreased accuracy. Unlike Sanger's technology, they still sequence
+many molecules in parallel.
 
 The technology of \acl{pacbio} relies on the concept of sequencing by synthesis using
 fluorescently labeled deoxynucleotides. Unlike with Illumina, the sequencing
@@ -253,7 +292,7 @@ genome, which are discussed in more detail in \cref{sec:balancer_hic_svs}.
 However, the characteristics of \hic contact maps predestinate them for at least
 two additional use cases: Intra-chromosomal interactions are more frequent than
 inter-chromosomal interactions, which is in concordance with the theory of
-chromosomal territories \citep{Meaburn2007}. Thus, \hic data can by utilized to
+chromosomal territories \citep{Cremer2001}. Thus, \hic data can by utilized to
 cluster genomic loci by chromosome, which is especially relevant for \textit{de
 novo} assembly \citep{Burton2013}. Another observation is that the contact
 frequency between loci typically decays quickly with increasing genomic
