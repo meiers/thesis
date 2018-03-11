@@ -57,7 +57,8 @@ For instance, when their mapping distance on a reference genome is larger than
 expected a deletion may have occurred in the test sample anywhere in between
 those reads. Paired-end analysis can principally detect many different types of
 \acp{sv}, including \acp{cnv}, inversions, translocations, insertions and
-\acp{mei}. This technique had first been used on bacterial artificial chromosome
+\acp{mei} (\cref{fig:SV_detection}, B). This technique had first been used on
+bacterial artificial chromosome
 \citep{Volik2003}, on fosmid libraries \citep{Tuzun2005} and then on mate pair
 sequencing of human genomes \citep{Korbel2007}. It is nowadays one of the
 dominating principles of \sv detection and is implemented in well-established
@@ -71,7 +72,7 @@ it is typically in the range of few to several hundred base pairs.
 \paragraph{Split-read analysis}
 Split-read approaches utilize the fact that sequencing reads, if long enough,
 can be divided and separately assigned to different locations of the
-reference assembly. This is different from intra-read
+reference assembly  (\cref{fig:SV_detection}, C). This is different from intra-read
 gaps or mismatches, which are still tolerated within each alignment and
 which are typically used to detect \acp{snv} and small indels.
 Based on the position and orientation of the partial alignments, split-read
@@ -92,16 +93,17 @@ This allowed other popular paired-end analysis detection tools to incorporate
 the split-read approach, for example in \delly, \textsc{MATE-CLEVER}
 \citep{Marschall2013}, and \textsc{LUMPY}.
 
-\figuretextwidth[t]{SV_detection_methods_Tattini2015.jpg}{SV_detection}{Principles
-    of SV detection in MPS data}{Schematic representation of the four distinct
-    mechanisms for SV detection on three examples: (A) a deletion, (B) an
-    insertion (of duplicated sequence, for example), and (C) an inversion.
+\figuretextwidth[t]{SV_detection_methods_Tattini2015_new.png}{SV_detection}{
+    Principles of SV detection in MPS data}{Schematic representation of the four
+    distinct mechanisms for SV detection on three examples:  A deletion,
+    an insertion (of duplicated sequence, for example), and an inversion.
     Figure modified from \citetitle{Tattini2015} \citep{Tattini2015} licensed
     under \acl{ccby4}.}
 
 \paragraph{Read depth analysis}
 A complementary method for detecting \acp{cnv} utilizes the total read depth
-signal inside an \sv. This resembles the methodology of micro-arrays, yet with
+signal inside an \sv  (\cref{fig:SV_detection}, A). This resembles the
+methodology of microarrays, yet with
 improved resolution since all of the (mappable) genome can be covered instead
 of selected loci. \textsc{SegSeq} \citep{Chiang2009} and \textsc{CNV-seq}
 \citep{Xie2009} were among the first tools that utilized read depth in a
@@ -122,7 +124,9 @@ in repetitive regions.
 
 \paragraph{Sequence assembly} At last, sequence assembly-based methods do not rely on the
 information provided by read mapping software but perform \textit{de novo}
-assembly instead, as demonstrated for example by \citep{Li2011a}.
+assembly instead, as demonstrated for example by \citep{Li2011a}. A comparison,
+e.g. via sequence alignment, of the sample sequence to the reference genome then
+reveals the presence of \acp{sv}  (\cref{fig:SV_detection}, D).
 While whole-genome assembly still remains computationally expensive
 \citep{Bradnam2013}, there are methods that perform local re-assembly of reads,
 for example \textsc{TIGRA} \citep{Chen2014b} or the recent \textsc{novoBreak}
@@ -140,8 +144,8 @@ paired-end predicted \acp{cnv}. One useful signal that shall be highlighted here
 is \acl{baf}---this idea from microarrays is applicable to \mps data,
 too. At sites of heterozygous \acp{snv} that reside within a putative \sv, the
 sequencing reads supporting both alleles can be contrasted to infer the copy
-number of the locus. Notably, in \cref{sec:balancer_cnv} this principle was instrumental
-to validate predicted duplications.
+number of the locus. Notably, in \cref{sec:balancer_cnv} this principle was
+instrumental to validate predicted duplications.
 
 
 
@@ -160,7 +164,7 @@ which scaled up the number of detected variants tremendously
 range, the breakpoint accuracy and the types of SVs detectable were reached
 with the application of \mps technologies. \cite{Korbel2007} and \cite{Kidd2008}
 were among the first studies to utilize paired-end-like approaches to study
-\citep{sv}, including balanced ones, in few individuals. A series of studies
+\acp{sv}, including balanced ones, in few individuals. A series of studies
 followed that explored all the different technical approaches mentioned in
 \cref{sec:sv_detection_ngs}.
 
@@ -188,9 +192,11 @@ as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
     size larger than the size of the repeats the inversion could be revealed.
     \textbf{C:} Insertion of a small piece of DNA into another chromosome leads
     to the prediction of a reciprocal trasnlocation. The fundamental principal
-    behind this issue is that only the breakpoint of an \sv (similar scenarios
-    are for other \sv classes) are being called, whereas \mps-based methods
-    cannot reason about the inner state of the translocation.}
+    behind this limitation is that standard \mps-based calling only detects the
+    breakpoints of a copy-neutral rearrangement, but cannot reason about their
+    inner state. This is different in a \cnv, for which the inner state (i.e.
+    its read coverage) can be utilized for calling. The issue depicted here
+    also arises for other \sv classes, notably inversions.}
 \todo{harmonize the way I refer to subfigures throughout the thesis (\textbf{A:}, or \textbf{a)}, or \textit{A)},...)}
 
 Increases in sequencing depth improved breakpoint accuracy and sensitivity of

@@ -8,16 +8,15 @@ terrier, spaniel, and bull-dog next to one another. But also in nature such
 differences occur. These difference can be passed on to offspring over
 generations and accumulate to such an extent that a separate species is formed.
 It was this observation as well as a great amount of preceding research by him
-and others that led Darwin to the formulation of his theory of natural selection.
+and others that led Darwin to the formulation of his famous evolutionary theory.
 
 More than 150 years later, we have understood many of the molecular mechanisms
 behind this principle. We know that genetic information is encoded in DNA and
 that it is subject to mutations, which are partly inheritable. These changes in
 DNA create the variability of genetic material that is so essential to
-evolution: the evolutionary principle thus consists of both these parts,
-mutation and selection. Today we are able to study the genetic differences,
+evolution. Today we are able to study the genetic differences,
 which we also call genetic \emph{variants},
-between human individuals (but also within other species) and can investigate
+between human individuals or between individuals of other species and can investigate
 their consequences. Many fundamental associations between the presence of a
 genetic variants and certain traits have been found since, for example why
 red-green color blindness affects more males than females \citep{Nathans1986}.
@@ -27,38 +26,42 @@ as they appear to be affected by the combination of many genetic variants
 causal role of genetic variation in many diseases, including Mendelian disorders
 and cancer \citep{Stankiewicz2010}.
 
-Necessarily, in order to study the consequences of genetic variants we require
+In order to study the consequences of genetic variants we require
 methods to accurately detect them. Nowadays, this has been largely enabled with
 the advance of DNA sequencing technologies. Based on these methods, the average
 genome of many species, including humans could be charted for the first time
 \citep{Lander2001,Venter2001}, and functional units such as genes and regulatory
-elements were identified in great detail \citep{Dunham2012}. The scientific
-community then gained further insight into the variability within the human
-population through population genetics studies \citep{Auton2015,Sudmant2015}.
+elements were identified in great detail \citep{Dunham2012}. Then, population
+genetics studies gained further insight into the variability within the human
+population \citep{Auton2015,Sudmant2015}.
 At last, the identified variants could be analyzed for a potential effect on
 phenotypes or disease using, for example, genome-wide association studies
 \citep{Ott2015,MacArthur2017}.
 
 Variant detection has become a standard procedure in genomics research. However,
 not all types of genetic variants have been studied equally comprehensively.
-Especially \emph{\acl{sv}}, which are introduced in \cref{sec:sv}, remained
+Especially larger genomic rearrangments, so-called \emph{\acl{sv}} (which are
+introduced in \cref{sec:sv}), remained
 difficult to ascertain using available assays, which is why their functional
-role is still not as well explored as for other types of genetic variation. The
-limitations of currently standard techniques had long been noticed and
+role is still not as well explored as for smaller types of genetic variation.
+However, \aclp{sv} are known to have extraordinary impact on the our genetic
+material---they constitute, for example, the majority of genetic
+differences within the human population.
+The limitations of currently standard techniques had long been noticed and
 encouraged further method development \citep{Onishi-Seebacher2011}. Over the
-last couple of years, new techniques for DNA sequencing (or based on standard
-DNA sequencing) have become available. In this work, I utilize such emerging
-technologies to characterize
-\acl{sv} beyond what was previously possible.
+last couple of years, new technologies for DNA sequencing as well as new method
+based on DNA sequencing have become available. These techniques hold promise to
+improve the abilities to study such rearrangements. In this work, I utilize such
+emerging technologies to characterize \aclp{sv} beyond what was possible previously.
 
 In the rest of this chapter, I explain the relevant terminology around genetic
 variation (\cref{sec:variation}), introduce structural variants and the biology
 behind them (\cref{sec:sv}), give an overview of previous and emerging DNA
 sequencing technologies (\cref{sec:sequencing}), and outline the methodology
 of SV detection (\cref{sec:sv_detection}). I continue to elaborate the current
-limitations of structural variant detection in \cref{sec:limitations}. Then, in
-\cref{sec:motivation}, I formulate the goals of my research and provide an
-overview of the studies covered in this dissertation.
+limitations of \acl{sv} detection (\cref{sec:limitations}). Then, I formulate
+the goals of my research and provide an overview of the studies covered in this
+dissertation (\cref{sec:motivation}).
 
 
 
@@ -70,14 +73,17 @@ overview of the studies covered in this dissertation.
 
 Alterations in the DNA of an organism, or of a cell, can arise spontaneously
 via chemical or biological processes. If not repaired faithfully, they leave
-traces in the genetic material that we call genetic \emph{variants} (or
-\emph{mutations}). The typical nucleotide sequence of many species are known and
-we express them in a so-called \emph{reference} genome (reference assembly).
-Thus, variants are usually defined as a difference to such a reference. Some
+traces in the genetic material that we call genetic \emph{variants}. The process
+of altering the DNA seqeunce is called \emph{mutation}---but the terms mutation
+and variant are often used interchangeably.
+We already know the nucleotide sequence of the genomes of many species,
+including humans. This sequence, which is supposed to represent an average
+individuals genotype, is stored in a so-called \emph{reference} genome (also
+reference assembly, or simply reference).
+Thus, variants are usually defined as a difference to this reference. Some
 variants only affect a single nucleotide, e.g. by changing a cytosine into a
-thymine, and they are called \emph{\acfp{snv}}. Others,
-termed \emph{\acfp{sv}} or sometimes just \emph{genomic rearrangements}, affect
-larger portions of DNA and are the central topic of the research presented here.
+thymine, and they are called \emph{\acfp{snv}}. Others, delete or insert
+nucleotides, or fully rearrange their order, as will be introduced later.
 
 Most \explain{metazoa}{Animals. Not all animals are diploid,
     though. Bees and ants, for example, produce fully haploid males, yet still
@@ -104,7 +110,8 @@ more often in a population, specifically in at least 1\% of the homologoues,
 are also called \emph{polymorphisms}.
 
 When a variant is present in an individual, but not in their parents, we call it
-a \emph{de novo} mutation. The variant could either have occurred within the
+a \emph{de novo} variant (or de novo mutation). The mutation could
+either have occurred within the
 zygote during the first few cell divisions, or already beforehand in the
 parental germ line. The latter can sometimes be inferred if other offspring of
 those parents carries the same variant. Variants that occur not in the germ line
@@ -147,9 +154,9 @@ one of the techniques, each. Below, the specific aims of each project are
 outlined. A common theme throughout these projects is the design of new
 bioinformatics methods for data analysis and visualization. I believe that the
 full potential of novel technology can only be unlocked by the simultaneous
-development of new computational approaches and I hope to advance the state of
-the art of current methodology by building---and making available---software
-tools that future research benefits from.
+development of new computational approaches. I hence thrive for advancing the
+state of the art of current methodology by building---and making
+available---software tools that future research benefits from.
 
 In \cref{sec:complex_invs}, I present my work for the final phase of the
 1000 Genomes Project, in which my role was to validate inversion predictions in
