@@ -267,16 +267,16 @@ includes an example of an inverted duplication within \rpe wild type cells.
 \figuretextplusmargin[t!]{mosaic_sv_examples.pdf}{mosaic_examples}{Examples of SVs
     in RPE cells}{Strand-specific count data in 100~kb bins (Watson orange,
     Crick blue) are shown in several chromosomal regions of \rpe cells.
-    \textbf{A:} Four loci harboring \acp{sv} are shown across three cells each.
+    \subpanel{A} Four loci harboring \acp{sv} are shown across three cells each.
     The affected
     loci (marked by dashed lines) show the characteristic changes in read
     coverage and strand state that were described in \cref{tab:mosaic_sv_signals}.
-    \textbf{B:} A copy number gain of the q-arm of chromosome 10 is visible. The
+    \subpanel{B} A copy number gain of the q-arm of chromosome 10 is visible. The
     strand state of the extra copy correlates with the strand inheritance
     pattern of chromosome X (same cells for both chromosomes shown). This
     observation is best explained by an imbalanced translocation, as shown in
     the schematic to the right.
-    \textbf{C:} Five chromosomes of cells from the tetraploid RPE C29 cell line
+    \subpanel{C} Five chromosomes of cells from the tetraploid RPE C29 cell line
     (courtesy by \balca and \landsdorp) were selected to represent the five
     possible strand inheritance patterns in a tetraploid cell: WWWW, WWWC, WWCC,
     WCCC, and CCCC.}
@@ -430,14 +430,14 @@ make a final decision about an \sv.
     combined, yield a joint probability (area of the rectangles; top right subpanels).
     Here, only the joint states W, C, WW, WC, CC are shown for the sake of
     simplicity (other possible states would be WWW, WWC, WWCC, and so on).
-    In panel \emph{A}, 12 W and 8 C reads were observed, for which the joint
-    strand state WC is by far the most likely one. In panel \emph{B}, 16 W and
+    \subpanel{A} 12 W and 8 C reads were observed, for which the joint
+    strand state WC is by far the most likely one. \subpanel{B} 16 W and
     4 C were observed, which are best explained by a joint WW state, yet the
     difference to the runner up (WC) is not big.
     For SV calling, these joint states have to be interpreted in respect to the
     strand inheritance state of the chromosome: for example in a WC cell,
-    example \emph{A} would be rejected (WC, i.e. reference, is the most likley
-    state) but example \emph{B} would be considered for a heterozygous inversion
+    example \textbf{A} would be rejected (WC, i.e. reference, is the most likley
+    state) but example \textbf{B} would be considered for a heterozygous inversion
     (WW state).}
 
 \paragraph{Additional steps}

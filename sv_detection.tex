@@ -184,20 +184,19 @@ as \textit{Drosophila melanogaster} \citep{Massouras2012,Zichner2013} or
     of MPS-based SV detection}{Three examples for cases in which current
     \mps-based \sv detection methods fail. The upper half in each panel shows
     sample DNA carrying an \sv; below is shown where reads from that sample map
-    to the reference assembly. \textbf{A:} A duplication of a repetitive element
+    to the reference assembly. \subpanel{A} A duplication of a repetitive element
     (shaded boxes) occurred, which is not detected because read mapping is masked
-    within the repetitive region. \textbf{B:} An inversion flanked by repetitive
+    within the repetitive region. \subpanel{B} An inversion flanked by repetitive
     elements. Because paired-end reads cannot be mapped uniquely inside the
     repeats, this inversion remains undetected. With an read length or insert
     size larger than the size of the repeats the inversion could be revealed.
-    \textbf{C:} Insertion of a small piece of DNA into another chromosome leads
+    \subpanel{C} Insertion of a small piece of DNA into another chromosome leads
     to the prediction of a reciprocal trasnlocation. The fundamental principal
     behind this limitation is that standard \mps-based calling only detects the
     breakpoints of a copy-neutral rearrangement, but cannot reason about their
     inner state. This is different in a \cnv, for which the inner state (i.e.
     its read coverage) can be utilized for calling. The issue depicted here
     also arises for other \sv classes, notably inversions.}
-\todo{harmonize the way I refer to subfigures throughout the thesis (\textbf{A:}, or \textbf{a)}, or \textit{A)},...)}
 
 Increases in sequencing depth improved breakpoint accuracy and sensitivity of
 \sv detection, yet it did not overcome specific limitations owed to the
