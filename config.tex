@@ -72,7 +72,7 @@
 
 \addbibresource{references.bib}
 
-\setstretch{1.1}
+\setstretch{1.05}
 
 \graphicspath{{figs/}}
 
@@ -258,8 +258,7 @@
 %% Custom macros
 \newcommand\margintext[1]{%
     \ifstrequal{#1}{}{}{{\marginpar{\raggedright\footnotesize\itshape #1}}}}
-\newcommand\explain[2]{%
-    \textbf{\color{black!70} #1}%
+\newcommand\explain[2]{#1%
     \margintext{\textbf{#1}\quad #2}}
 
 \newcommand\todo[1]{%
