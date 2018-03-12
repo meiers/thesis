@@ -938,8 +938,8 @@ can be studied.
 
 After characterizing \acp{sv} and detecting differentially expressed genes, we
 were interested in their relationship. In the upcoming section I describe how we
-explored their correlation and which \acp{sv} we believe are causal to \ase
-genes. Later on, \cref{sec:balancer_cc} will specifically cover the role of
+explored their correlation and which \acp{sv} we believe are causal to \ase.
+Later on, \cref{sec:balancer_cc} will specifically cover the role of
 chromatin conformation.
 
 
@@ -953,17 +953,18 @@ of 15 breakpoints do so, affecting genes such as \textit{Src42A}
 (Draper-Shark-mediated signalling immune response pathway), \textit{GlyP}
 (carbohydrate metabolism pathway) and \textit{p53} (tumour suppressor). The
 deletion present at breakpoint \textit{chr3R:20.3~Mb} even spans a complete
-gene, which is consequently lost in the balancer chromosome. All cases are
-listed in \cref{tab:blancer_breakpoints}. We assume that disrupted genes become
-non-functional or at least severely truncated on the balancer chromosomes,
-which is why most of them also show up in the set of \ase genes.
+gene, which is consequently lost in the balancer chromosome. A full list of
+breakpoints and disrupted genes is given in  \cref{tab:blancer_breakpoints}.
+The majority of these genes consequently show up in the list of \ase genes
+and are likely non-functional or at least severely truncated on the balancer
+chromosomes.
 
 These frequent gene knockouts are perhaps surprising, as it is expected that
 selective forces during the creation of balancer chromosomes would rule out
 breakpoints disrupting genes. It can thus be assumed that these
 particular genes are not dosage-dependent. Balancer chromosomes are indeed known
 to tolerate recessive mutation due to the reduced influence of
-natural selection \citep{Araye2013}. Yet the frequency of gene knockouts
+natural selection \citep{Araye2013}. Nevertheless, the frequency of gene knockouts
 without apparent phenotypic consequences should be acknowledged here.
 
 
@@ -973,25 +974,27 @@ without apparent phenotypic consequences should be acknowledged here.
 \subsection{Positional clustering of ASE genes}
 \label{sec:balancer_ase_clustering}
 
-Following the intuition that \ase genes could be preferably located around
-rearrangement junctions on the balancer chromosomes, I specifically
-looked for an enrichment of \ase genes at breakpoints compared to random
-positions places in the genome (\cref{fig:suppl_ase_genes_around_bps}).
+
+Following the enhancer adoption hypothesis, we reasoned that \ase genes would
+be preferably located around the rearrangement junctions on the balancer
+chromosomes. To assess this, I specifically tested for an enrichment of \ase
+genes around breakpoints in contrast to around randomly chosen genomic positions
+(\cref{fig:suppl_ase_genes_around_bps}).
 Surprisingly, only a single breakpoint, namely \textit{chr3R:20.31~Mb},
 appeared to be surrounded by more \ase genes than expected by random chance: 5
-out of 6 neighbouring genes, which span a region of around $\pm$~50~kb.
+out of 6 neighbouring genes, which span a region of around $\pm$~50~kb, were significant.
 By means of integrated visualization (\cref{sec:balancer_visualization}) of this
 locus I noted that two genes were highly up-regulated left of the breakpoint,
 another gene down-regulated right of the breakpoint, and an additional gene
-disrupted by the breakpoint itself. Notably, this was the only breakpoint
-that could potentially involve a chromatin-structure-related mechanism affecting
-gene regulation. However, closer inspection revealed that the \ase signal of
-these genes is likely caused by chimeric transcription across the breakpoint
+disrupted by the breakpoint itself. Notably, we considered this breakpoint as
+the best candidate for a potential chromatin structure-related
+effect on gene regulation. However, closer inspection revealed that the \ase signal of
+these genes was likely caused by chimeric transcription across the breakpoint
 junction. We observed such chimeric, likely non-functional expression happening
 on an appreciable set of other genes, too, as I elaborate in
 \cref{sec:balancer_ase_mei}.
 
-\figuretextwidth{ase_clustering.pdf}{ase_clustering}{Distance between
+\figuretextwidth[t]{ase_clustering.pdf}{ase_clustering}{Distance between
     neighboring ASE genes}{This is a histogram of distances between neighboring
     significant ASE genes (blue) as well as between a random set of control
     genes (grey), which were sampled from expressed, but non-ASE genes 500 times.
@@ -999,15 +1002,15 @@ on an appreciable set of other genes, too, as I elaborate in
 
 I then turned to a more unbiased approach and searched the set of \ase
 genes for positional clustering anywhere in the genome.
-As \cref{fig:ase_clustering} demonstrates, \ase genes are generally located as
-far away from another as random expressed genes, with the exception of
+As \cref{fig:ase_clustering} demonstrates, \ase genes turned out to be located as
+far away from another as random control genes, with the exception of
 a small set of genes in a distance of approximately 3~kb to one another.
 These, as the integrated visualization again quickly revealed, mostly belong to
 the large duplication on \cyo (see \cref{sec:balancer_cnv,fig:dup_validation})
 and not to one of the chromosomal rearrangements. We thus concluded that there
-is no single spot in the balancer genomes that shows an enrichment in
-significantly mis-regulated genes; instead \acl{ase} is fairly
-evenly distributed across the genome. In addition, these analyses hinted at
+is no other region in the genomes with an enrichment in
+significantly mis-regulated genes; instead \acl{ase} is similarly distributed
+as other expressed genes. In addition, these analyses (e.g. the \cyo duplication) hinted at
 mechanisms unrelated to chromatin conformation that could create \ase signal,
 which are further explored subsequently.
 
@@ -1032,7 +1035,7 @@ which are further explored subsequently.
 % sample estimates:
 % odds ratio
 %   2.591054
-\figuretextwidth{ASE_cnv_overlap.pdf}{ASE_cnv_overlap}{Log fold change of
+\figuretextwidth[t]{ASE_cnv_overlap.pdf}{ASE_cnv_overlap}{Log fold change of
     \texorpdfstring{\ase}{ASE} genes overlapping \texorpdfstring{\acp{cnv}}{CNVs}}
     {Expression level log fold change of 73 significant \ase genes that overlap
     \acp{cnv}. Two genes overlap multiple different \acp{cnv} (\textit{ambiguous}).
@@ -1045,24 +1048,24 @@ exons (incl. $3^\prime$ or $5^\prime$ untranslated regions) affected by a \cnv.
 This overlap yielded 73 genes, which is a significantly higher fraction
 among the \ase genes (14\%) than among expressed, but non-\ase genes (292 cases,
 6\%; p-value $<10^-9$, Fisher's exact test). \Cref{fig:ASE_cnv_overlap} shows
-the effect \acp{cnv} have on the expression of \ase genes. As expectable, a
+the effect \acp{cnv} have on the expression of \ase genes. As expected, a
 clear trend towards a dosage effect can be seen, i.e. that a deletion within a
 balancer gene decreases and a duplication increases the balancer
 expression (seen by a positive log fold change), and vice versa for
 wild-type-specific \acp{cnv}. Duplications, which are typically much larger in
 size than deletions (\cref{fig:svsize_del,fig:svsize_dup}), show a
-clearer signal of differential expression as they often duplicate whole genes.
+clearer impact on transcript levels, as they often duplicate whole genes.
 Yet it cannot be expected that a higher copy number neccessarily leads to an
 increase in transcribed RNA. For example, a partial duplication could disrupt a
-gene in a way that its expression decreases. Accordingly, the impact on
-expression is less clear for deletions that typically affect only single exons.
+gene in a way that its expression is decreases. Accordingly, the impact of
+deletions is less, as they often affect only single exons.
 The specific explanation for each gene could, if need to, be unravelled
 in case-by-case fashion.
 
 We derive as a conclusion from this analysis that up to 14\% of significant \ase
 genes could be explained directly by \acp{cnv} affecting their exons---ergo,
-these genes are unlikely to be involved in chromatin\ conformation-related
-mechansisms.
+chromatin\ conformation-related are unlikely to play a causal role in the altered
+expression of these genes.
 
 
 
@@ -1071,7 +1074,7 @@ mechansisms.
 \subsection{Mobile element insertions can give rise to strong ASE signals}
 \label{sec:balancer_ase_mei}
 
-\figuretextwidth{MEI_example.pdf}{balancer_mei_example}{Example of a
+\figuretextwidth[t]{MEI_example.pdf}{balancer_mei_example}{Example of a
 \texorpdfstring{\acs{mei}}{MEI} driving ectopic expression of a gene}{
     RNA-seq tracks along the gene \textit{Ptp52F} on chromosome 2R showing the
     total RNA-seq reads (total read coverage in absolute numbers; bottom panel)
@@ -1080,11 +1083,11 @@ mechansisms.
     vertical lines represent \acp{snv} used for haplotype-separation. RNA-seq
     tracks were visualized using \igb.}
 
-In a thorough manual data inspection \yad found a sizeable number of genes with
+In a thorough manual data inspection, \yad found a sizeable number of genes with
 an RNA-seq signal that did not start at their expected transcription start site.
 We further found that this expression was often only present on one of the two
 haplotypes, and that the RNA-seq coverage started at a seemingly random
-position. Interestingly, despite starting in an intronic or even intergeneic
+position. Interestingly, despite starting in an intronic or even intergenic
 region, this signal would often pick up a characteristic splicing pattern
 (high signal within exons, no or low signal along introns) from the end of the
 first traversed exon. \Cref{fig:balancer_mei_example} depicts an example gene
@@ -1097,29 +1100,29 @@ computes an assembly of these reads using \spades and compares the assembled
 contigs to a database of common transposable elements in \textit{Drosophila}.
 The comparison is done via read mapping and confirmed visually using the dotplot
 functionality of \maze developed during previous work (\cref{sec:maze}). Using this
-approach I found transposable element insertions in 42 loci. Based on the
+approach, I found transposable element insertions in 42 loci. Based on the
 position and orientation of the mobile element (i.e. mobile elements contain
 their own transcription start site) I evaluated whether the aberrant \ase
 signal of the gene could be caused by chimeric transcription from the mobile
 element’s promoter. This is the case in 37 loci (\cref{tab:meilist}),
 of which 25 were expressed high enough to be tested for \ase.
 
-\figuretextplusmargin{MEI_impact.pdf}{balancer_mei_impact}{ASE genes associated
+\figuretextplusmargin[t]{MEI_impact.pdf}{balancer_mei_impact}{ASE genes associated
     to MEI}{List of significant ASE genes (x axis) ordered by log fold change
     (balancer/wild type, y axis). Genes that are very likely dis-regulated due
     to an MEI driving their chimeric expression are highlighted in blue.}
 
 Astonishingly, all 25 genes were also called to show significant \ase, partially
-with extreme fold changes reported as shown in \cref{fig:balancer_mei_impact}.
-In the aftermath, this is
-little surprising given that an \mei drives expression of a gene that, even if
-weak, can be orders of magnitudes larger than the second copy which is only
-weakly expressed, if at all. \Acp{mei} could in principle also cause chimeric
-expression of higher expressed genes, but in such cases the additional
-mRNA is probably negligible compared to the active transcription of both
-haplotypes. At last, it should be kept in mind that this analysis centered on
-differentially expressed genes with aberrant transcription start sites, hence
-the full impact of \mei is still under-explored.
+with extreme fold changes as shown in \cref{fig:balancer_mei_impact}.
+In the aftermath, the high fold changes can likely be explained by the activation
+of silenced (or very weakly expressed) genes. The promoter intrinsic the the mobile
+element then allows expression only from the affected homologue, which can be
+orders of magnitudes larger than the expression from second copy.
+\Acp{mei} could in principle also cause chimeric
+expression of higher expressed genes, the additional
+mRNA is probably just not detecteble. At last, it should be kept in mind that
+this analysis centered on differentially expressed genes with aberrant
+transcription start sites, hence the full impact of \mei is still under-explored.
 
 
 
