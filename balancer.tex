@@ -119,20 +119,20 @@ enriched in house-keeping genes and conserved across cell types
 
 Well-characterized long-range interactions between promoters and enhancers,
 which can be revealed through 3C-based techniques, appear to be confined
-within \acp{tad} (reviewed in \cite{Smallwood2013}). Additionally, units of
+within \acp{tad} (reviewed by \citet{Smallwood2013}). Additionally, units of
 enhancers and promoters with correlated activity were found to align well
 with them \citep{Shen2012}.
 It is unclear whether the DNA loops connecting enhancers and promoters are cause
 or consequence of active expression, but it was observed that many such contacts
 establish long before gene activation \citep{Ghavi-Helm2014}.
 Further research using functional assays supported that genes are co-regulated
-within \acp{tad}. Notably, \cite{Symmons2014} inserted reporter genes at
+within \acp{tad}. Notably, \citet{Symmons2014} inserted reporter genes at
 several hundred sites of the mouse genome and observed tissue-specific activity
 in spatial blocks correspond to \acp{tad}.
 
 Together, these results suggest that \acp{tad} exert a crucial regulatory
 function. A current hypothesis is that they confine promoter-enhancer
-interactions inside, as \cite{Ji2016} call them, insulated neighbourhoods. As
+interactions inside, as \citet{Ji2016} call them, insulated neighbourhoods. As
 I described in the next section, a series of recent perturbation studies
 gave additional substance to this hypothesis.
 
@@ -160,19 +160,19 @@ genetic diseases via mining of public databases and showed, among other things,
 that around 10\% of known disease-associated deletions potentially function via
 an enhancer adoption mechanism \citep{Ibn-Salem2014,Li2016,Zepeda-Mendoza2017}.
 
-Moreover, as \cite{Lupianez2016} and \cite{Krijger2016} review, a number of studies
+Moreover, as \citet{Lupianez2016} and \citet{Krijger2016} review, a number of studies
 specifically tested this hypothesis on particular genomic loci by genome
-editing using CRISPR/Cas \citep{Doudna2014}. For example, \cite{Guo2015} altered
+editing using CRISPR/Cas \citep{Doudna2014}. For example, \citet{Guo2015} altered
 the binding sites of an architectural protein in proximity of an enhancer element
 and observed looping as well as ectopic gene expression across the boundary.
-Similarly, \cite{Narendra2015} observed heterochromatin spreading when they
+Similarly, \citet{Narendra2015} observed heterochromatin spreading when they
 deleted such a boundary at the \textit{Hox} locus in \textit{Drosophila}.
 In fact, already \citet{Nora2012} observed this mechanisms when they studied an
 additional mouse line with a \tad boundary deletion and observed a merged \tad
 and ectopic gene expression instead of the two clearly separated \acp{tad} and
 regulatory insulation seen in wild type mice.
 
-Recently, \cite{Lupianez2015} impressively replicated limb abnormalities in mice
+Recently, \citet{Lupianez2015} impressively replicated limb abnormalities in mice
 that were known from human genetic diseases. They first showed that these
 abnormalities originated from misregulated gene expression in a developmental
 stage, which was caused by \tad boundary deletion. When they engineered similar deletions in
@@ -234,8 +234,8 @@ Interestingly, despite their common usage only recently some balancer
 chromosomes had been characterized via whole-genome sequencing \citep{Miller2016,Miller2018}.
 
 We chose balancer chromosomes for chromosome 2 and 3, namely \explain{\cyo}{
-    Chromosome 2 balancer, derived from \cite{Oster1956} and based on work of
-    \cite{Ward1923} (see \cite{Miller2018}), which carries the \textit{Cy}
+    Chromosome 2 balancer, derived from \citet{Oster1956} and based on work of
+    \citet{Ward1923} (see \citet{Miller2018}), which carries the \textit{Cy}
     allele, hence showing a characteristic
     phenotype of curly wings in adult flies \marginfig{dm_cyo.pdf}}
 and TM3 \citep{Tinderholt1960} to create a double balancer line, named $F_1$.
@@ -309,7 +309,7 @@ Early on we made a decision to study fly embryos (instead of adult flies) for
 mainly two reasons: To begin with, \textit{D. melanogaster} embryos are well
 described, there is an outstanding amount of external data available
 \citep{Gramates2017,Celniker2009}, and the Furlong lab has years of experience
-on embryogenesis (e.g. \cite{Furlong2001,Ghavi-Helm2014}). Secondly,
+on embryogenesis \cite[among others]{Furlong2001,Ghavi-Helm2014}. Secondly,
 it is experimentally very difficult (if not infeasible) to extract intact
 nuclei from adult flies, which is a crucial requirement for \hic experiments.
 However, collecting double balancer embryos is not directly possible
@@ -453,7 +453,7 @@ yet these calls are large enough for validation with \pcr.
 read depth signal are applied prior to \pcr-based experimental validations.
 The latter is highly recommended for \cnv predictions based on a paired-end read
 signature in general and noted also by authors of other tools than \delly
-(e.g. \cite{Layer2014}). I developed an ad hoc filtering strategy
+(e.g. \citet{Layer2014}). I developed an ad hoc filtering strategy
 for larger ($\geq$ 160~bp) deletion calls, which compares locally normalized
 read depths between of between heterozygous and homozygous samples (see
 \cref{sec:suppl_del} for details). As a consequence, shared deletions are
@@ -765,7 +765,7 @@ extensions of this idea will likely lead towards \explain{reference graphs}{
     However, such approaches, which are being actively researched, require new
     methods for processing and interpretation of sequencing data}
 \citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection
-requires many different considerations, as nicely elaborated by \cite{Castel2015},
+requires many different considerations, as nicely elaborated by \citet{Castel2015},
 and there is an abundance of software available to perform the different steps
 involved \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGeijn2015,Liu2016}.
 However, due the particular requirements of our study, they are mostly not
@@ -784,7 +784,7 @@ This approach considers all \acp{snv} that a read pair overlaps and can hence
 also detect if observed alleles within the fragment are disaccordant---a fact
 that we deemed especially important for the separation of \hic
 data later on (\cref{sec:balancer_cc_impl}). This approach also differs
-from the \snv-centric approaches of other tools (e.g. \cite{Castel2015}) that
+from the \snv-centric approaches of other tools \citep[for example]{Castel2015} that
 yield allelic read counts at each variant. Furthermore, I preferred to derive a
 single sum of fragments for each allele of a whole gene, instead of considering
 different sites of variation within a gene. This comes with caveat that
@@ -793,7 +793,7 @@ recently shown to occur at cites of CTCF binding motifs
 \citep{Ruiz-Velasco2017} and which can be identified using profound
 statistical tests \citep[for instance]{Skelly2011}. The advantage, though, is
 that our method does not require an additional model to integrate across sites of
-variation within a gene (such as presented by \cite{Mayba2014}) and can be
+variation within a gene (such as presented by \citet{Mayba2014}) and can be
 expected to be more robust to local fluctuations in coverage than single-\snv
 analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
 2x~144~bp) as shown in \cref{tab:balancer_rnaseq}.
@@ -1139,7 +1139,7 @@ library in as many as 24 lanes on an Illumina machine to obtain high resolution
 contact frequency maps. We then annotated read pairs by haplotype in the same
 way RNA-seq data was annotated beforehand (\cref{sec:balancer_ase_impl}).
 Moreover, a strict filter procedure was designed following recommendations from
-\cite{Ramirez2018}, which is described in the appendix (see \cref{sec:suppl_hic}
+\citet{Ramirez2018}, which is described in the appendix (see \cref{sec:suppl_hic}
 and \cref{tab:hic_fragments} for details on the effect of different filters).
 Finally, 117 million pairwise contacts remained on the wild type chromosomes
 and 35 million on the balancer chromosomes to build \hic maps in 5~kb
@@ -1215,7 +1215,7 @@ from these methods, this is still a major challenge in the field
 \tad separation score \citep{Ramirez2018} to predict \acp{tad} only on the
 contact map of the wild type chromosomes. This resulted in 880 domain calls with
 a median size of 125~kb, which is a slightly lower segmentation than reported by
-\cite{Sexton2012} (1,170 domains with a median size of 62~kb).
+\citet{Sexton2012} (1,170 domains with a median size of 62~kb).
 
 We then inspected the \acp{tad} around the 15 breakpoints of large chromosomal
 rearrangements. Most \tad callers, including the method we applied here, report
@@ -1254,7 +1254,7 @@ annotation, in which we classified 10/15 breakpoints as breaking \acp{tad}.
     \tabcap{tads_at_bp}{Overview of \texorpdfstring{\tad}{TAD} calls at
     breakpoint positions}{  \Ac{tad} annotation at breakpoints of large
     chromosomal rearrangements. \Acp{tad} were called only based on wild type
-    \hic data using the approach of \cite{Ramirez2018}. Column \emph{\acs{tad}}
+    \hic data using the approach of \citet{Ramirez2018}. Column \emph{\acs{tad}}
     contains the size of the overlapping \tad call and \emph{Distance} the
     distance of breakpoints to the \tad boundaries. Only in three cases (marked
     by \sout{Distance}) breakpoints were closer to \tad boundaries by more than
@@ -1426,11 +1426,11 @@ expressed but for which we have no explanation at hand. By correlating these
 genes with significant differences in three-dimensional chromatin interactions,
 we found that indeed chromatin structure appears to be preferably altered around
 \ase genes (\cref{fig:HiC_ASE_genes}) and might consequently play a role in
-mediating transcriptional regulation. Recently, \cite{Li2018} described a clear
+mediating transcriptional regulation. Recently, \citet{Li2018} described a clear
 correlation between changes in intra-\tad density and up- or down-regulation of
 gene expression during differentiation of leukemia cell lines. It was suggested
 that both arise simultaneously as consequence of an altered epigenetic state of
-the \tad, as for example \cite{LeDily2014} observed. This could potentially
+the \tad, as for example \citet{LeDily2014} observed. This could potentially
 explain our observations, too. It is different from enhancer hijacking though,
 but epigenetic mechanisms could principally also play a role in suppressing
 enhancer hijacking. For example, it is easily conceivable that among the eight
