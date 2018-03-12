@@ -6,8 +6,8 @@ Organization in \texorpdfstring{\textit{D. Melanogaster}}{D. Melanogaster}}
 
 In the project described here I teamed up with \yad, \alek and \eileen to study the functional
 impact of \acp{sv}, specifically of large chromosomal rearrangements, in the model
-organism \textit{Drosophila melanogaster}. Also in this work, recent
-sequencing technologies, notably \hic, were instrumental in the characterization
+organism \textit{Drosophila melanogaster}. Recent
+sequencing technologies, here \hic, were of fundamental importance for the characterization
 of \acp{sv}, which was an essential step of the project. All wet lab experiments
 described below were performed by \yad with the help of \rebecca.
 \alek implemented all \hic-related analyses, which are hence
@@ -36,46 +36,47 @@ phenotypes, such as altered gene expression, to little severe (e.g. the efficien
 starch digestion depending on the copy number of \textit{AMY1} \citep{Perry2007})
 or more severe phenotypes (e.g. red-green blindness, caused by \acp{cnv} on
 chromosome X \citep{Nathans1986}), to disease or to an increased susceptibility
-towards a disease (e.g. to complex diseases such as autoimmunity
-\citep{Fanciulli2007} or autism \citep{Sebat2007}). Especially \acp{cnv}, the
+towards a disease. The latter can include complex diseases such as autoimmunity
+\citep{Fanciulli2007} or autism \citep{Sebat2007}. Especially \acp{cnv}, the
 most-frequently studied type of \sv, have been linked to Mendelian diseases
 \citep[see table 2]{Zhang2009} and are frequently involved in cancer
-\citep{Beroukhim2010}. Yet the types of \acp{sv} linked to disease are by far
-not restricted to localized deletions or duplications: Trisomy 21, as an example
-for aneuploidy in general, causes Down syndrome and was among the earliest
+\citep{Beroukhim2010}. Yet \sv classes that contribute to disease are by far
+not restricted to only deletions or duplications. Aneuploidy, to start with, can
+play a major role in diseases such as Down syndrome, which was among the earliest
 identified genetic diseases \citep{Lejeune1959}. Also inversions were identified
 as the cause of several Mendelian diseases \citep{Feuk2010}. Recurrent
 translocations, often creating gene fusions, are known to be driving many
-different cancer types \citep{Mertens2015} and, at last, transposable elements h
-ave been noted be to play a role in cancer \citep{Burns2017}.
+cancer types \citep{Mertens2015} and, at last, transposable elements have
+been noted be to play a role in cancer \citep{Burns2017}.
 
-The mechanisms by which \acp{sv} can induce these phenotypic consequences are
+The mechanisms by which \acp{sv} induce these phenotypic consequences are
 manifold. Breakpoints of \acp{sv} that fall into a gene may cause its loss
 of function. Aforementioned gene fusions can create novel chimeras that
 potentially exert fundamentally different functions from the original genes
 \citep{Mertens2015}. Copy number gains or losses lead to dosage imbalance, with
 critical consequences for many cancer-associated genes \citep{Fehrmann2015}, and
 a heterozygous deletion or a \loh event can reveal recessive mutations
-that had been rescued by a funcitonal allele beforehand.
-
-Furthermore \acp{sv} may impact on the molecular level, e.g. on gene expression,
-which can partly be studied even if not associated with a real phenotype. In
-the context of \explain{expression quantitiative trail loci}{Genomic loci
-    with different alleles that influence the expression of (typically a single)
-    genes not neccessarily in close proximity} analyses
+that had been rescued by a functional allele beforehand.
+Furthermore, \acp{sv} may impact on the molecular level, e.g. on gene expression,
+which can be studied even if not associated with an observable phenotype.
+In the context of \explain{expression quantitiative trail loci}{Genomic loci
+    with different alleles that influence the expression of genes (typically a
+    single gene) that are not neccessarily in close proximity} analyses,
 more and more such effects have lately been found \citep{Sudmant2015,Chiang2017}.
-Causative \acp{sv} need not affect the actual gene itself, but could target
-regulatory sequences in proximity or elsewhere in the genome instead. This is
+
+However, causative \acp{sv} need not affect the actual gene itself, but could
+target regulatory sequences in proximity or elsewhere in the genome. This is
 typically the case for aforementioned expression quantitative trait loci, yet
 the (then very surprising) discovery was already made in 1979 in a row of
-heritable blood diseases named thalassemia \citep{Fritsch1979}.
+heritable blood diseases named thalassemia \citep{Fritsch1979}. These
+\emph{position effects} have long been noted to have an impact in health and
+disease, yet the underlying mechanism are in many cases not yet understood
+\citep{Kleinjan2005}.
 
-The impact of position effects in health and disease have long been noted, yet
-the underlying mechanism was so far not understood \citep{Kleinjan2005}.
-Over the past years the community has gained more insight into a mechanism in which
-\acp{sv} neither affect genes nor regulatory sequences, but re-model the
-three-dimensional chromatin organization instead, which is elaborated in more
-detail below (\cref{sec:disrupting_tads}).
+Over the past years the community has gained more insight into a novel mechanism
+which \acp{sv} neither affects genes nor regulatory sequences themselves.
+Instead, this mechanism re-models the three-dimensional organization of
+chromatin, as I elaborate further below.
 
 
 
@@ -100,8 +101,8 @@ and a relative insulation of contacts across distinct domains. These structures
 show up as characteristic triangles in contact frequency maps, as illustrated in
 \cref{fig:TAD_schematic}. Despite molecular differences in, for example,
 the involved architectural proteins, the phenomenon of \acp{tad} was observed in
-a range of species across the tree of life, ranging from humans and mice to
-\textit{Drosophila melanogaster} and \textit{Caenorhabditis elegans}, suggesting
+a range of species across the tree of life ranging from humans and mice to
+\textit{Drosophila melanogaster} and \textit{Caenorhabditis elegans}. This suggests
 that these structures are a universal feature of metazoan genomes
 \citep{Dekker2015}.
 
@@ -109,27 +110,31 @@ that these structures are a universal feature of metazoan genomes
 function has been discussed and reviewed intensely in recent years
 \citep[among others]{Gibcus2013,Gorkin2014,Sexton2015b,Hnisz2016a,Ruiz-Velasco2017}.
 Key characteristics of \acp{tad} are that the expression of genes within
-\acp{tad} tends to be orchestrated \citep[see figure 4b]{LeDily2014,Nora2012},
-\acp{tad} align with epigenetic features such as histone marks \citep{Nora2012}
-and DNA replication timing \citep{Pope2014,LeDily2014}, TAD boundaries are
-associated with the insulator element-binding protein CTCF, enriched in
-house-keeping genes and conserved across cell types
+\acp{tad} tends to be orchestrated \citep[see figure 4b]{LeDily2014,Nora2012} and
+that they align with epigenetic features such as histone marks \citep{Nora2012}
+and DNA replication timing \citep{Pope2014,LeDily2014}. Furthermore, \tad
+boundaries are associated with the insulator element-binding protein CTCF,
+enriched in house-keeping genes and conserved across cell types
 \citep{Dixon2012,Rao2014,Schmitt2016}.
 
-Well-characterized long-range interactions between promoters and enhancers
-appear to be confined within \acp{tad} (reviewed in \cite{Smallwood2013}) and
-units of enhancers and promoters with correlated activity align with them
-\citep{Shen2012}. It is unclear whether the DNA loops connecting enhancers
-and promoters, which can be revealed through 3C-based techniques, are cause
-or consequence of active expression, but it was
-observed that many such contacts establish long before gene activation
-\citep{Ghavi-Helm2014}. Moreover, \cite{Symmons2014} inserted reporter genes at
+Well-characterized long-range interactions between promoters and enhancers,
+which can be revealed through 3C-based techniques, appear to be confined
+within \acp{tad} (reviewed in \cite{Smallwood2013}). Additionally, units of
+enhancers and promoters with correlated activity were found to align well
+with them \citep{Shen2012}.
+It is unclear whether the DNA loops connecting enhancers and promoters are cause
+or consequence of active expression, but it was observed that many such contacts
+establish long before gene activation \citep{Ghavi-Helm2014}.
+Further research using functional assays supported that genes are co-regulated
+within \acp{tad}. Notably, \cite{Symmons2014} inserted reporter genes at
 several hundred sites of the mouse genome and observed tissue-specific activity
-in spatial blocks that correspond to \acp{tad}. These results suggest that
-\acp{tad} exert a crucial regulatory function by confining promoter-enhancer
-interactions inside, as \cite{Ji2016} call them, insulated neighbourhoods. A
-series of perturbation studies firther support this hypothesis, as described
-subsequently.
+in spatial blocks correspond to \acp{tad}.
+
+Together, these results suggest that \acp{tad} exert a crucial regulatory
+function. A current hypothesis is that they confine promoter-enhancer
+interactions inside, as \cite{Ji2016} call them, insulated neighbourhoods. As
+I described in the next section, a series of recent perturbation studies
+gave additional substance to this hypothesis.
 
 
 
@@ -138,18 +143,22 @@ subsequently.
 \subsection{Consequences of disrupting chromatin conformation}
 \label{sec:disrupting_tads}
 
-The disruption of \tad boundaries was shown to be able to cause severe
-misregulation via a so-called enhancer adoption \citep{Lettice2011} or enhancer
-hijacking \citep{Northcott2014} mechanism. According to the hypothesis, merging
-of two \acp{tad} as a consequence of an \sv alters the ``search space'' of an
-enhancer, which can then suddenly drive expression of another gene in
-non-physiological amounts. This was quite remarkably shown in various cancer
-types including medulloblastoma \citep{Northcott2014}, lung cancer and
-colorectal cancer \citep{Weischenfeldt2016} and acute lymphoblastic leukemia
+Several studies followed up on the question what would happen when the boundaries
+between \acp{tad} were disrupted. In line with the hypothesis of insulated
+neighborhoods, they found that the merging of two \acp{tad} can alter the
+``search space'' of an enhancer element, which can then suddenly drive
+expression of another gene to non-physiological amounts. This mechanism was
+termed \emph{enhancer adoption} \citep{Lettice2011} or \emph{enhancer
+hijacking} \citep{Northcott2014}.
+
+The cause for a \tad boundary disruption can be a \sv that deletes or inverts
+the genomic region harboring this boundary. This was quite remarkably shown in
+various cancer types including medulloblastoma \citep{Northcott2014}, lung cancer
+and colorectal cancer \citep{Weischenfeldt2016} and acute lymphoblastic leukemia
 \citep{Hnisz2016}. Furthermore, computational studies linked this mechanism to
-genetic diseases via mining of public databases and showed, for example, that
-around 10\% of disease-associated deletions potentially function via an enhancer
-adoption mechanism \citep{Ibn-Salem2014,Li2016,Zepeda-Mendoza2017}.
+genetic diseases via mining of public databases and showed, among other things,
+that around 10\% of known disease-associated deletions potentially function via
+an enhancer adoption mechanism \citep{Ibn-Salem2014,Li2016,Zepeda-Mendoza2017}.
 
 Moreover, as \cite{Lupianez2016} and \cite{Krijger2016} review, a number of studies
 specifically tested this hypothesis on particular genomic loci by genome
@@ -158,20 +167,23 @@ the binding sites of an architectural protein in proximity of an enhancer elemen
 and observed looping as well as ectopic gene expression across the boundary.
 Similarly, \cite{Narendra2015} observed heterochromatin spreading when they
 deleted such a boundary at the \textit{Hox} locus in \textit{Drosophila}.
-In fact already \cite{Nora2012} observed this mechanisms when they studied an
+In fact, already \citet{Nora2012} observed this mechanisms when they studied an
 additional mouse line with a \tad boundary deletion and observed a merged \tad
 and ectopic gene expression instead of the two clearly separated \acp{tad} and
 regulatory insulation seen in wild type mice.
 
 Recently, \cite{Lupianez2015} impressively replicated limb abnormalities in mice
 that were known from human genetic diseases. They first showed that these
-abnormalities arise in a developmental stage from misregulated gene expression
-caused by \tad boundary deletions. When they engineered similar deletions in
-mice using the CRISPR/Cas system they observed large changes in chromatin
+abnormalities originated from misregulated gene expression in a developmental
+stage, which was caused by \tad boundary deletion. When they engineered similar deletions in
+mice using the CRISPR/Cas system, they observed a change in chromatin
 conformation, ectopic gene expression across the boudary and indeed the same
-phenotype of limb malformations that had been seen in human. Together, these
-studies underline the functional role of \acp{tad} and suggest that breaking
-\acp{tad} potentially leads to misregulation via an enhancer adoption mechanism.
+phenotype of limb malformations that had been observed in human patients.
+
+In conclusion, all these studies provide strong evidence for \acp{tad} to play
+a central role for gene regulation. When \acp{tad} break---and fuse with another
+\tad---genes encounter a new regulatory environment including enhancers, which
+may lead to severe misregulation via en enhancer adopiton mechanisms.
 
 
 
