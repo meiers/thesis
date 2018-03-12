@@ -265,23 +265,24 @@ landscape  of the balancer chromosomes, which is presented in
 \label{sec:balancer_ase_motivation}
 
 To study the effects of \acp{sv} on gene regulation we wanted to compare global
-gene expression of the balancer chromosomes against their the wild type
+gene expression in the balancer chromosomes in comparison to their wild type
 homologues. This could principally be done by comparing two different fly
-strains, one carrying genomic rearrangements and one without. However, while
-this is also not possible using balancer chromosomes that cannot be
-in a homozygous state, this approach would make it difficult to distinguish
-\textit{cis}-regulation, i.e. the effect of alterations of the DNA itself, from
+strains, one carrying genomic rearrangements and one without. However, this
+approach would make it difficult to distinguish \textit{cis}-regulation, i.e.
+the effect of alterations of the chromosome itself, from
 \textit{trans}-regulation such as an altered expression of some transcription
+% this is also not possible using balancer chromosomes that cannot be in a homozygous state,
 factor. This is why a central foundation of the study was to compare wild
 type chromosomes and balancer chromosomes within the same fly line via \acf{ase} analysis.
 This is achieved by measuring gene expression separately for both alleles, which
-differ by naturally occurring variation, notably \acp{snv}.
-Since we were able to resolve chromosome-long haplotypes in this study, alleles can be
-aggregated across genes and expression changes can be distinguished into up- and
-down-regulation of the balancer genes in respect to the wild type genes.
-\Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl} provide more detail on the procedure.
-We assume that the vast majority of \acp{snv} simply tag alleles but do not have
-an effect on their regulation, or that this effect is negligible in comparison
+differ by naturally occurring variation, notably \acp{snv}. Since we were
+able to resolve chromosome-long haplotypes in this study, alleles could even be
+aggregated within each gene and across all genes. We could thus distinguish
+expression changes into up- or down-regulation of a balancer allele (in respect
+to the wild type allele). \Cref{sec:balancer_maternal_rna,sec:balancer_ase_impl}
+provide more detail on the procedure. We assume in the \ase analysis that the
+vast majority of \acp{snv} simply tag alleles but do not have an effect on
+their regulation, or that this effect is negligible in comparison
 to larger rearrangements.
 
 \figuretwocolumns[0.38]
@@ -292,16 +293,16 @@ to larger rearrangements.
     {balancer_crossing_scheme.pdf}{balancer_crossing_scheme}{Crossing scheme}{
         The fly lines used in this study are derived from a homozygous wild type
         line, denoted by \textit{+/+;+/+} or $F_0$ and a double balancer line
-        (\textit{w;If/CyO;Sb/TM3,Ser}). After a first cross adult flies are
+        (\textit{If/CyO;Sb/TM3,Ser}). After a first cross adult flies are
         selected for markers of both balancer chromosomes, yielding an $F_1$
         generation (a.k.a. double balancer cross). A backcross with the initial
         wild type line generates a pool of four different genotypes ($N_1$)
         of which on average 25\% of both chromosome 2 and 3 are balancer
         chromosomes.}
 
-Another central point of the study was to explore the three-dimensional
+Another key point of the study was to explore the three-dimensional
 chromatin conformation of the highly rearranged balancer chromosomes and to link
-this to observed \ase. We hence performed a \hic
+it to observed \ase. We hence performed a \hic
 experiment and again used \acp{snv} to distinguish fragments belonging to
 balancer- or wild type chromosomes. As a matter of fact the resulting
 haplotype-resolved maps of contact frequency can additionally be utilized to
@@ -315,12 +316,14 @@ on embryogenesis \cite[among others]{Furlong2001,Ghavi-Helm2014}. Secondly,
 it is experimentally very difficult (if not infeasible) to extract intact
 nuclei from adult flies, which is a crucial requirement for \hic experiments.
 However, collecting double balancer embryos is not directly possible
-based on markers only expressed in an adult stage. We hence decided
+based on their phenotypic markers, which are only expressed in an adult stage. We hence decided
 to collect fly embryos from a backcross of the double balancer line ($F_1$) with
 the original wild type line ($F_0$). The resulting generation, termed $N_1$, is a
 mix of genotypes as shown in \cref{fig:balancer_crossing_scheme}, in which
 effectively 25\% of chromosomes 2 and 3 are balancer chromosomes. This cross
-was used both to measure \ase and chromatin conformation. In the subsequent
+was used both to measure \ase and chromatin conformation.
+
+In the subsequent
 sections I describe the methodology and our findings on the effect genomic
 rearrangements have on chromatin organization and gene regulation.
 
