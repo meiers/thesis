@@ -532,7 +532,7 @@ to manual validation. In total I verified 122
 duplications in the size range from several hundred base pairs up to 258~kb
 using this strategy (\cref{fig:svsize_dup}).
 
-\figuretextwidth[th]{dup_validation_example.pdf}{dup_validation} % DUP00003911
+\figuretextwidth[t]{dup_validation_example.pdf}{dup_validation} % DUP00003911
     {Signals used for duplication validation shown in an example}
     {A tandem duplication at locus \textit{chr2R:7,520,066−7,526,996} is shown,
     which was predicted based on paired-end read signature using \delly
@@ -575,6 +575,21 @@ increases the copy number of 33 genes.
 \subsection{Validation of large rearrangements using Hi-C data}
 \label{sec:balancer_hic_svs}
 
+\figuretextwidth[t]{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
+    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
+    Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
+    The top panel displays differential unnormalized Hi-C fragment counts
+    ($\textrm{log}_2 \frac{bal}{wt}$)
+    colored from red (positive) to blue (negative). The panel below shows the
+    biallelic frequency. This duplication was initially discovered
+    based on the characteristic biallelic frequency signal and is validated by
+    a total increase of locus-internal Hi-C contacts on the balancer chromosome,
+    as seen as the red triangle. Moreover, a decrease in balancer-specific
+    contacts close to the diagonal left of the locus (blue) as
+    well as an increase left of the upper tip of the triangular region
+    suggest the duplication was inserted to the left in inverted orientation.
+    Hi-C data processing and plots were contributed by \alek.}
+
 I further aimed at refining the breakpoint junctions of the major rearrangements on
 the balancer chromosomes. These junctions had previously been known only at microscopic
 resolution\footnote{\label{footnote:balancer_karyotype}
@@ -601,21 +616,6 @@ predictions called with \delly (on \wgs and mate pair sequencing data) to
 track down breakpoints at base pair resolution. This yielded base pair
 resolution breakpoints in 14/15 cases, which are reported in
 \cref{tab:blancer_breakpoints}.
-
-\figuretextwidth[th]{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
-    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
-    Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
-    The top panel displays differential unnormalized Hi-C fragment counts
-    ($\textrm{log}_2 \frac{bal}{wt}$)
-    colored from red (positive) to blue (negative). The panel below shows the
-    biallelic frequency. This duplication was initially discovered
-    based on the characteristic biallelic frequency signal and is validated by
-    a total increase of locus-internal Hi-C contacts on the balancer chromosome,
-    as seen as the red triangle. Moreover, a decrease in balancer-specific
-    contacts close to the diagonal left of the locus (blue) as
-    well as an increase left of the upper tip of the triangular region
-    suggest the duplication was inserted to the left in inverted orientation.
-    Hi-C data processing and plots were contributed by \alek.}
 
 Since our (yet unpublished) \hic- and \mps-based breakpoint refinement, two
 consecutive studies had mapped---for the first time---the genomic coordinates of
@@ -717,16 +717,16 @@ as in the scope of two additional control experiments
     in \cref{sec:balancer_ase_impl}.}
 
 At an early stage of the project we sequenced mRNA from 4-8h embryos of the
-$N_1$ backcross (\cref{fig:balancer_crossing_scheme}) to explore the power to
+$N_1$ backcross (see \cref{fig:balancer_crossing_scheme}) to explore the power to
 detect significant \ase genes. As briefly introduced in
 \cref{sec:balancer_ase_motivation}, 25\% of chromosomes 2 and 3 within the
 genetic pool consist of balancer chromosomes. This means that when we separate
 RNA-seq reads by haplotype we expect their distribution to be centered around a
 balancer fraction of 25\%. As the left panels of \cref{fig:ASE_histograms}
 display, this initial experiment was marked by a (unsatisfactory) wide
-distribution. More precisely, it did not follow a binomial distribution, which
-is a model applied by many \ase detection methods, but showed a large
-overrepresentation of wild type mRNA instead. Only after discussions with
+distribution. More precisely, it did not resemble a binomial distribution, which
+is a model intrinsically applied by many \ase detection methods. Instead, it showed a large
+overrepresentation of wild type mRNA. Only after discussions with
 \garfield we figured that, since we had crossed female wild type flies with double
 balancer males, the reason for this skew in the distribution could be attributed
 to \explain{maternally deposited mRNA}{Before maternal-to-zygotic transition
@@ -765,7 +765,7 @@ hypothesis of both alleles being represented equally. This is typically done by
 mapping RNA-seq reads to a common reference and inspecting sites of tagging
 variants (i.e. \acp{snv}), although some approaches also rely on mapping to
 personalized genomes to overcome mapping biases \citep{Rozowsky2014} and future
-extensions of this idea will likely lead towards \explain{reference graphs}{
+extensions of this idea are pointing towards \explain{reference graphs}{
     Representation of different alleles or haplotypes simultaneously in a graph
     structure. A diploid genome, but also the haplotypes of a whole populations
     could be represented in such a data strucutre to avoid a reference bias.
@@ -778,34 +778,13 @@ involved \citep{Skelly2011,Mayba2014,Harvey2014,Pirinen2015,Romanel2015,VandeGei
 However, due the particular requirements of our study, they are mostly not
 applicable here: First, we needed to test \ase against an unusual fraction of 25\%,
 whereas some models (reasonably) expect a 50\% null hypothesis. Second, we
-would like to incorporate multiple replicates to reduce statistical noise, and third,
+would like to incorporate multiple replicates to obtain robust estimates, and third,
 we expected the different replicates to entail different \ase ratios for some
 genes (i.e. the ones with maternal mRNA), a situation that is unique to our
 study. I hence implemented an approach to \ase detection that captures these
 features.
 
-As a first step I mapped RNA-seq read pairs to \acs{dm6} using \STAR. I then
-separated read pairs into haplotypes using a simple Python script based on
-\textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
-This approach considers all \acp{snv} that a read pair overlaps and can hence
-also detect if observed alleles within the fragment are disaccordant---a fact
-that we deemed especially important for the separation of \hic
-data later on (\cref{sec:balancer_cc_impl}). This approach also differs
-from the \snv-centric approaches of other tools \citep[for example]{Castel2015} that
-yield allelic read counts at each variant. Furthermore, I preferred to derive a
-single sum of fragments for each allele of a whole gene, instead of considering
-different sites of variation within a gene. This comes with caveat that
-it might mask potential allele-specific alternative exon usage, which, for instance, was
-recently shown to occur at cites of CTCF binding motifs
-\citep{Ruiz-Velasco2017} and which can be identified using profound
-statistical tests \citep[for instance]{Skelly2011}. The advantage, though, is
-that our method does not require an additional model to integrate across sites of
-variation within a gene (such as presented by \citet{Mayba2014}) and can be
-expected to be more robust to local fluctuations in coverage than single-\snv
-analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
-2x~144~bp) as shown in \cref{tab:balancer_rnaseq}.
-
-\begin{table}[ht]
+\begin{table}[t]
     \centering
     \begin{tabu}{lrrrr}
         \toprule
@@ -820,29 +799,51 @@ analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
     \tabcap{balancer_rnaseq}{Haplotype separation of RNA-seq data}{
         Fraction of RNA-seq read pairs that could be assigned to either one of
         the haplotypes balancer or wild type (WT) ot that contained conflicting
-        variants (disaccordant). The difference to 100\% in each comes from read
-        pairs that could not be assigned.}
+        variants (disaccordant). The difference to 100\% in each row comes from
+        read pairs that did not overlap sites of tagging \acp{snv}.}
 \end{table}
 
-At last, each gene should be statistically tested against the null
+As a first step I mapped RNA-seq read pairs to \acs{dm6} using \STAR. I then
+separated read pairs into haplotypes using a simple Python script based on
+\textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
+This approach considers all \acp{snv} that a read pair overlaps and can hence
+also detect if observed alleles within the fragment are disaccordant---a fact
+that we deemed especially important for the separation of \hic
+data later on (\cref{sec:balancer_cc_impl}). This approach also differs
+from the \snv-centric approaches of other tools \citep[for example]{Castel2015} that
+yield allelic read counts at each variant. Furthermore, I preferred to derive a
+single sum of fragments for each allele of a whole gene, instead of considering
+the sites of variation within a gene separately. This comes with caveat that
+it might mask potential allele-specific alternative exon usage, which, for instance, was
+recently shown to occur at sites of CTCF binding
+\citep{Ruiz-Velasco2017} and which can be identified using profound
+statistical tests \citep[for instance]{Skelly2011}. The advantage, though, is
+that our method does not require an additional model to integrate across sites of
+variation within a gene (such as presented by \citet{Mayba2014}) and can be
+expected to be more robust to local fluctuations in coverage than single-\snv
+analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
+2$\cdot$144~bp) using this approach, as summarized in \cref{tab:balancer_rnaseq}.
+
+\figuretextwidth{DESeq2_N1_6_8h.png}{DESeq}{ASE analysis based on
+    \texorpdfstring{\deseq}{DESeq2}}{The x-axis shows the average fragment count
+    per gene across four replicates (only haplotype-assigned read pairs go into
+    this number). The y-axis shows log$_2$ ratio of balancer over wild
+    type counts. A single outlier to the right was trimmed.}
+
+Then, each gene should be statistically tested against the null
 hypothesis. The commonly used Binomial test is known to inflate small p-values
 \citep{Harvey2014} and further cannot integrate our replicate design. I thus
 used \deseq, a well-established tool for differential RNA-seq analysis, to test
 for \ase. Given the haplotype-specific counts for each gene, \deseq is able to
 detect divergence from the 25\% fraction across multiple replicates and can
 further cope with a potential shift in \ase ratio between the replicates caused
-by maternally deposited mRNA, which will increase the p-value. It also performs
+by maternally deposited mRNA, which will be reflected in the p-values. It also performs
 multiple testing correction at a controlled \fdr (more detail in
 \cref{sec:suppl_deseq}).
 
-\figuretextwidth{DESeq2_N1_6_8h.pdf}{DESeq}{ASE analysis based on
-    \texorpdfstring{\deseq}{DESeq2}}{Average haplotype-resolved fragment count
-    per gene across four replicates vs. log ratio of balancer over wild
-    type counts are shown. A single outlier to the right was trimmed. }
-
 Among 5357 genes on chromosome 2 and 3 for which there was sufficient
 haplotype-resolved coverage we detected 512 significant \ase genes (9.6\%) at a
-\fdr of 5\%. The median fold change was 1.8 with a symmetrical distribution in
+\fdr of 5\%. The median fold change was 1.8 with a fairly symmetrical distribution in
 both directions (see \cref{fig:DESeq}). At a minimum fold change of at least
 1.5, 343 genes remain (6.4\%). These percentages are similar to the fraction of
 \ase genes in $F_1$ crosses of two distinct DGRP lines, where 5-10\% ASE genes
@@ -858,17 +859,17 @@ are reported (Furlong lab, unpublished work).
 
 We carefully considered some of the assumptions made in the \ase analysis and
 decided to carry out two important control experiments. A first question was
-whether balanced chromosomes carry a higher fraction of \ase genes than
-unbalanced chromosomes such as chromosome X.
+whether balanced chromosomes contained a higher fraction of \ase genes than
+unbalanced chromosomes such as chromosome X. This could not be answered in our
+$N_1$ backcrosses, where chromosome X had eventually become homozygous due to the
+maternal wild type line.
 \figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE per chromosome}{
     Balancer fraction of allele-specific RNA-seq fragments on chromosomes 2, 3,
     and X in a adult, female flies from an $F_1^{f}$ line. Error bars
     indicate 99\% confidence intervals from a binomial test.}
-This could not be answered in our
-$N_1$ backcrosses, where chromosome X eventually became homozygous due to the
-maternal wild type line. Instead, we performed RNA-seq on adult, handpicked
-female flies from the $F_1$ generation, named $F_1^f$, and sequenced two
-replicates. In this sample chromosome X is paired with its (non-rearranged,
+Instead, we performed RNA-seq on adult, handpicked
+female flies from the $F_1$ generation, named $F_1^f$, in two
+replicates. In this sample, chromosome X is paired with its (non-rearranged,
 but diverged) homologue at a ratio of 50\%, too, and can thus be compared to
 chromosomes 2 and 3. The two chromosome X homologues contain less, but still
 sufficient distinguishing variation for \ase analysis (see \cref{tab:snvs2}).
@@ -878,12 +879,12 @@ RNA-seq data and found 301/4940 (6.1\%) significant \ase genes on chromosomes
 embryonic $N_1$ samples are of no concern, as gene expression is expected to
 be highly tissue- and developmental\ stage-dependent. Importantly though, the
 fraction of \ase genes on balancer chromosomes is not significantly higher than
-on chromosome X (p=0.47, Fisher’s exact test) as shown in \cref{fig:ase_chrX}.
+on chromosome X (p=0.47, Fisher’s exact test), as shown in \cref{fig:ase_chrX}.
 
-Furthermore we wanted to test whether the existence of multiple different
+Furthermore, we wanted to test whether the existence of multiple different
 genotypes in the $N_1$ generation could cause potential \textit{trans} effects,
 e.g. whether genes on chromosome 3 would depend on the presence of \cyo
-(i.e. balancer chromosome 2), and vice versa. In order to test this \yad generated
+(i.e. balancer chromosome 2), and vice versa. In order to test this, \yad generated
 three new $F_1$ generations of adult flies with different genotypes: one line
 (\Fcyo) with only chromosome 2 balanced, another one (\Ftm) with only
 chromosome 3 balanced, and a last one with double balancer configuration ($F_1$).
@@ -902,7 +903,7 @@ previously sequenced $F_1^f$ generation. Moreover, the balancer-to-wild\ type
 ratios of genes from these two samples are in high correlation (Pearson’s
 $r^2$~=~0.824). Relevantly, I was then able to test the interaction term of \ase
 and genetic background using \deseq: I asked, for instance, for which genes on
-chromosome 2 the \ase ratio significantly changes between $F_1$ (contianing
+chromosome 2 the \ase ratio significantly changed between $F_1$ (containing
 \ac{tm3}) and \Fcyo (not containing \ac{tm3}).
 Again I executed this analysis separately on both chromosomes and found a
 significant interaction for 77/5981 genes (1.3\%) at an FDR of 5\% and a
@@ -914,7 +915,7 @@ for which the balancer/wild type ratio is significantly influenced by the
 genetic background (also at an FDR of 5\% and a minimum fold change of 1.5).
 Requiring a fold change of at least two, these rates decrease to 39/5981
 (0.65\%) and 11/5382 (0.2\%).
-The analysis is shown in \cref{fig:ASE_single_balancer_control}.
+These results are visualized in \cref{fig:ASE_single_balancer_control}.
 
 We concluded from this analysis that there is indeed a \textit{trans} effect of
 the genetic background on the haplotype ratios of genes. However, this effect is
@@ -922,7 +923,7 @@ small, maybe negligible, and even between the genetically seemingly identical
 lines such as $F_1$ and $F_1^f$ significant changes are observed.
 We together reasoned that the analysis of a double balancer line (in contrast
 to a single balancer line) adds another variable to our study design that should
-be kept in mind (as it has a small, but notable effect), yet that this strategy
+be kept in mind, yet that this strategy
 is still preferable due to the sheer amount of chromosomal rearrangements that
 can be studied.
 
@@ -935,7 +936,7 @@ can be studied.
 \section{Results III: The interplay between SVs and differentially expressed genes}
 \label{sec:balancer_sv_interplay}
 
-After characterizing \acp{sv} and detecting differentially expressed genes we
+After characterizing \acp{sv} and detecting differentially expressed genes, we
 were interested in their relationship. In the upcoming section I describe how we
 explored their correlation and which \acp{sv} we believe are causal to \ase
 genes. Later on, \cref{sec:balancer_cc} will specifically cover the role of
