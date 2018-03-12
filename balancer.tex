@@ -532,7 +532,7 @@ to manual validation. In total I verified 122
 duplications in the size range from several hundred base pairs up to 258~kb
 using this strategy (\cref{fig:svsize_dup}).
 
-\figuretextwidth{dup_validation_example.pdf}{dup_validation} % DUP00003911
+\figuretextwidth[th]{dup_validation_example.pdf}{dup_validation} % DUP00003911
     {Signals used for duplication validation shown in an example}
     {A tandem duplication at locus \textit{chr2R:7,520,066−7,526,996} is shown,
     which was predicted based on paired-end read signature using \delly
@@ -575,8 +575,8 @@ increases the copy number of 33 genes.
 \subsection{Validation of large rearrangements using Hi-C data}
 \label{sec:balancer_hic_svs}
 
-I further aimed at refining breakpoint junctions of the major rearrangements on
-the balancer chromosomes, which had previously been known only at microscopic
+I further aimed at refining the breakpoint junctions of the major rearrangements on
+the balancer chromosomes. These junctions had previously been known only at microscopic
 resolution\footnote{\label{footnote:balancer_karyotype}
     Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
     33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
@@ -587,8 +587,8 @@ resolution\footnote{\label{footnote:balancer_karyotype}
 haplotypes separately in respect to the same reference genome (see
 \cref{sec:balancer_cc_impl}). In these maps, which are shown in
 \cref{fig:balancer_hic_rearrangements}, we identified strong contact signals off
-the diagonal with a characteristic ``bowtie'' shape that coincide with gaps
-close to the diagonal. Undoubtedly these signals stem from genomic
+the diagonal with a characteristic ``bowtie'' shape that coincided with gaps
+close to the diagonal. Undoubtedly these signals stemmed from genomic
 rearrangements and by comparing them to the available cytogenetic information,
 \yad could assign 15/16 of these breakpoints to the respective inversions.
 The last breakpoint appears to lie outside the mappable reference genome and is
@@ -596,13 +596,13 @@ thus inaccessible to read-mapping based methods.
 I then searched through inversion and
 translocation\footnote{These are not actual translocation, they just exhibit
     translocation signatures because the left and right arms of chromosomes 2
-    and 3 are reported separately in \ac{dm6}}
-predictions made using \delly on \wgs and mate pair sequencing data to
+    and 3 are reported separately in \acs{dm6}}
+predictions called with \delly (on \wgs and mate pair sequencing data) to
 track down breakpoints at base pair resolution. This yielded base pair
 resolution breakpoints in 14/15 cases, which are reported in
 \cref{tab:blancer_breakpoints}.
 
-\figuretextwidth{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
+\figuretextwidth[th]{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
     \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
     Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
     The top panel displays differential unnormalized Hi-C fragment counts
@@ -620,42 +620,45 @@ resolution breakpoints in 14/15 cases, which are reported in
 Since our (yet unpublished) \hic- and \mps-based breakpoint refinement, two
 consecutive studies had mapped---for the first time---the genomic coordinates of
 several balancer rearrangements including \cyo and \ac{tm3}
-\citep{Miller2018,Miller2018}. Reassuringly, when I compared our
-results to the positions stated inthese studies I found precise agreement for
-12/12 breakpoints provided by the studies. However, utilizing read pair and
-split-read signatures in paired-end \mps data followed by assembly, these
+\citep{Miller2016,Miller2018}. Reassuringly, when I compared our
+results to the positions stated in these studies I found precise agreement for
+12/12 breakpoints provided by the studies. However, relying on an approach using read pair and
+split-read signatures in \mps data followed by local assembly, these
 studies failed to identify three breakpoints: for two of them (namely \textit{2L:2.14~Mb}
-and \textit{2L:12.71~Mb} on \cyo) estimates at 10~kb resolution were provided but they are
+and \textit{2L:12.71~Mb} on \cyo) estimates at 10~kb resolution were provided, but they are
 off from our reported breakpoints by several kilobases. Another
 breakpoint (\textit{3R:20.3~Mb} on \ac{tm3}) remained fully obscure, whereas we at least
 provide a ``best guess'' based on \hic information. This strongly highlights the
-technological advantage in our study: through \hic we were able to track down
+technological advantage in our study: Based on \hic data, we were able to track down
 the genomic positions of breakpoints down to 5~kb resolution. Then,
 both short- and long-insert paired sequencing data was searched for read pairs
-spanning the breakpoint junction. We found, again in agreement with these previous
+spanning the breakpoint junction.
+
+We found, again in agreement with these previous
 studies, that only one of the breakpoint junctions in the balancer chromosomes
-showed a precise re-ligation, whereas most of them are scarred by a
+showed a precise re-ligation, whereas most of them were scarred by a
 loss of genetic material (9 cases, max. 1.8~kb, median 114~bp) or small sequence
 duplications (4 cases, median 9~bp, max 281~bp; see
 \cref{sec:suppl_balancer_breakpoints}). Additionally, we predict that the
 breakpoint on \ac{tm3} at \textit{3L:20.3~Mb} contains a deletion of around 17~kb, which could
-explain the difficulties in ascertainment by Miller et al.
+explain the difficulties in ascertainment by \citet{Miller2016}.
 
-Moreover, I utilized the haplotype-resolved contact maps further to validate and
+\paragraph{Characterization of large \acp{sv} using \hic}
+I also utilized the haplotype-resolved contact maps further to validate and
 characterize other large \acp{sv}. Notably, an inversion of approximately 40~kb
 on \ac{tm3} (\textit{chr3L:14.61-14.64~Mb}). was
 validated by a characteristic Hi-C signal (data not shown). I also inspected
 aforementioned 258~kb duplication on \cyo closer, which I had predicted by a
-chatacteristic \baf signal (described in
-\cref{sec:balancer_cnv}). Interestingly, the differential \hic contact map as
-displayed in \cref{fig:dup_hic_biaf} confirms the duplication (seen as a red
-triangle, which stands for a total increase in contacts on the balancer
-haplotype), yet also suggests that the additional copy of the locus was most
-likely inserted in inverted orientation to its left end. There are two signals
-providing evidence for this: A reduction in contacts of the locus to its left
-neighboring region (blue), suuggesting that this end of the locus is no longer
-proximal to its original left neighboring region, just as if an insertion had
-happened there. And secondly, there is a striking increase in contact frequency
+characteristic \baf signal (described in
+\cref{sec:balancer_cnv}). Interestingly, the differential \hic contact map
+(\cref{fig:dup_hic_biaf}) confirms the duplication by total increase in contacts
+on the balancer haplotype (seen as a red triangle). However, beyond the pure copy
+number the \hic signal further suggests that the additional copy of the locus was
+inserted in inverted orientation to its left end. There are two lines of evidence
+for this: A reduction in contacts of the locus to its left neighboring region
+(blue, i.e. decrease on the balancer chromosome), suuggesting that this end of the locus is no longer
+proximal to its original left neighboring region---as if an insertion had
+happened there. Secondly, there is a striking increase in contact frequency
 of the right end of the duplicated locus to the left neighboring region. Taken
 together this is best explained by an inverted duplication occurring in tandem.
 
@@ -781,7 +784,7 @@ genes (i.e. the ones with maternal mRNA), a situation that is unique to our
 study. I hence implemented an approach to \ase detection that captures these
 features.
 
-As a first step I mapped RNA-seq read pairs to \ac{dm6} using \STAR. I then
+As a first step I mapped RNA-seq read pairs to \acs{dm6} using \STAR. I then
 separated read pairs into haplotypes using a simple Python script based on
 \textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
 This approach considers all \acp{snv} that a read pair overlaps and can hence
@@ -1328,7 +1331,7 @@ visualization.
 \Cref{fig:ggbio1} shows an excerpt of one of the plots we generated. The top
 panel of the figure highlights \circled{a} the position of the genomic locus
 within the respective chromosomal assembly (here the wild type reference genome
-\textsc{dm6}) with colors that roughly correspond to the initial illustration of
+\acs{dm6}) with colors that roughly correspond to the initial illustration of
 balancer chromosomes (\cref{fig:balancer_hic_rearrangements}). Below, we
 incorporated different \hic maps. IN \cref{fig:ggbio1}, there are is one \hic
 map created only on \circled{b} wild type data and one only on \circled{c}
