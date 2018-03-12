@@ -1167,8 +1167,8 @@ breakpoints of large rearrangements, at which contact frequencies of the two
 differently arranged chromosomes cannot simply be compared, we observed a
 striking similarity between the balancer and wild type chromosomes. As it
 appears, the rearrangement on the balancer chromosomes affects the
-three-dimensional chromatin organization only locally around breakpoints and
-anywhere else it remains mainly unaffected. In order to quantify this we
+three-dimensional chromatin organization only locally---anywhere else, the
+three-dimensional organization remains largely unaffected. In order to quantify this, we
 calculated the \tad separation score as a one-dimensional feature of the local
 compactness \citep{Ramirez2015,Ramirez2018}. In fact we calculated score
 profiles for seven window sizes\footnote{50~kb, 60~kb, 80~kb, 100~kb, 130~kb,
@@ -1177,10 +1177,10 @@ correlation ($r^2 = 0.93$) between balancer and wild type haplotypes,
 confirming our visual impression.
 
 Despite the similarity on the large scale, single pairwise contacts can in fact
-differ between the haplotypes. We hence tested for significant differential
+differ between the haplotypes. We tested for significant differential
 pairwise contacts using \deseq by providing haplotype-resolved fragment counts
 in 5~kb bins utilizing both \hic replicates. Among 509,217 tested pairwise
-connections that had sufficient read support we found a total of 48,206
+connections that had sufficient read support, we found a total of 48,206
 significant differences. Despite attempts to normalize for distances in the
 altered genomic order, 1,388 (2.9\%) of the detected significant differences
 spanned across a breakpoint of the large chromosomal rearrangements---these
@@ -1192,23 +1192,26 @@ pairs were excluded from the further analysis.
     downstream sequence to the right) and all other 5~kb bins within $\pm$100~kb.
     On the y-axis, the fraction of significantly differential \hic contacts among
     all \hic contacts is shown. The signal is averaged across \ase and non-\ase
-    genes and plotted here including 90\% confidence interavls.}
+    genes and plotted here including 95\% confidence interavls.}
 
 We were then interested in whether changes in chromatin architecture are
-associated with differential gene expression. Except for breakpoint-spanning
-contacts. To study a potential relationship between \ase and differential
-contacts, we centered \hic contacts at gene promoters (i.e. at the 5~kb bin
-surrounding the promoter) and averaged across many genes. In
-\cref{fig:HiC_ASE_genes}, genes are aligned and oriented according to their
-transcription start site and the average fraction of differential contacts among
-all contacts are shown on the y-axis. Interestingly, we found that on average
+associated with differential gene expression.
+To study this relationship, we zoomed in on the differential \hic contacts at
+gene promoters (i.e. at the 5~kb bin surrounding the promoter) and averaged
+across many genes. \cref{fig:HiC_ASE_genes} shows the significant contacts from
+the promoter (center) to all 5~kb-bins in the surrounding region. Genes are
+aligned and oriented according to their transcription start site
+and the average fraction of differential contacts among
+all contacts are shown on the y-axis. Interestingly, we found that, on average,
 there were more differential \hic contacts reaching to the promoters of
-\ase genes than to promoters of non-ASE genes. This difference is pronounced
+\ase genes than to promoters of non-\ase genes. This difference is pronounced
 within 50~kb around the gene and notably vanishes at a distance of 100~kb.
+
 This data suggests that chromatin conformation might indeed play a role in
 regulating gene expression. However, it is unclear whether the conformational
 changes are cause or consequence of altered gene expression and how much this
 association varies between single loci.
+
 
 
 
@@ -1219,7 +1222,7 @@ association varies between single loci.
 
 One of the crucial questions of the study was how chromatin conformation,
 especially \tad structure, would change around breakpoints of large chromosomal
-rearrangements. Based on \hic data \acp{tad} can be predicted using one of
+rearrangements. Based on \hic data, \acp{tad} can be predicted using one of
 several available algorithms – however, given the differences in the predictions
 from these methods, this is still a major challenge in the field
 \citep[notably figure 3]{Forcato2017}. We utilized \tad calling based on the
@@ -1239,7 +1242,7 @@ rather than into boundaries (\cref{tab:tads_at_bp}). Since \tad calls did not
 always match our visual impression, \cref{tab:tads_at_bp} also includes a manual
 annotation, in which we classified 10/15 breakpoints as breaking \acp{tad}.
 
-\begin{table}[ht]
+\begin{table}[th]
     \centering
     \begin{tabu}{lrrrrl}
         \toprule
@@ -1287,7 +1290,7 @@ classification differed from the computational analysis.
 Despite inaccuracies in computationally defining \acp{tad}, the numbers reported
 here make clear that breakpoints in fact disrupt \tad structure of the wild type
 chromosomes. Moreover, in the new genomic order of the balancer chromosome, new
-\acp{tad} have formed across the junctions in many cases. This is for example the
+\acp{tad} were formed across the junctions in many cases. This is for example the
 case at locus \textit{chr2R:14.0~Mb}, which is visualized in \cref{fig:ggbio1}
 (and explained in more detail subsequently). Domains that were not affected by
 breakpoints, on the other hand, did not seem to change at all
@@ -1310,7 +1313,7 @@ enhancer\ hijacking-like mechanism could be found in this study.
 \label{sec:balancer_visualization}
 
 At last, this section covers a methodological aspect that was essential in
-eriving many of the aforementioned results, especially of section
+deriving many of the aforementioned results, especially of section
 \cref{sec:balancer_tads_at_bp}.
 
 With a variety of data available in our study including RNA-seq and \hic, we
@@ -1324,20 +1327,20 @@ represented in the two different genome assemblies resulting from balancer and
 wild type chromosomes. Only recently some tools (published or at pre-print
 stage) addressed the first point \citep{Ramirez2018,Kerpedjiev2017}, yet not
 allowing the flexibility we required. This is why \alek and I utilized the
-R-package \textsc{ggBio} \citep{Yin2012} to create our own tailored
+R-package \ggbio to create our own tailored
 visualization.
 
 \figuretextplusmargin{ggbio_dm6_2R_14Mb.jpg}{ggbio1}{Integrated visualization
     around breakpoint \textit{2R:14.1~Mb}}{
-     visualized via custom plot functions based on
-    \textsc{ggBio} \citep{Yin2012}. The figure is explained in the main text.}
+    Visualized through our custom plot functions based on
+    \ggbio. The figure is explained in the main text.}
 
 \Cref{fig:ggbio1} shows an excerpt of one of the plots we generated. The top
 panel of the figure highlights \circled{a} the position of the genomic locus
 within the respective chromosomal assembly (here the wild type reference genome
 \acs{dm6}) with colors that roughly correspond to the initial illustration of
 balancer chromosomes (\cref{fig:balancer_hic_rearrangements}). Below, we
-incorporated different \hic maps. IN \cref{fig:ggbio1}, there are is one \hic
+incorporated different \hic maps. In \cref{fig:ggbio1}, there is one \hic
 map created only on \circled{b} wild type data and one only on \circled{c}
 balancer \hic data. Around the breakpoint of one of the large rearrangements,
 for example at \textit{chr2R:14.07~Mb} as shown here, these haplotype-resolved
@@ -1369,6 +1372,10 @@ Such a breakpoint-centered plot is accompanied by two additional
 plots that represent the same locus in the genomic order of the balancer
 chromosomes, which can be found in the appendix (\cref{fig:ggbio2,fig:ggbio3}).
 
+We generated these plots for all loci of interest, notably for the breakpoints
+of the large balacer rearrangements. These plots were highly useful to confirm
+statistical analyses and to gain insights on the mechanisms acting in a locus.
+We are currently considering to make this software available to the public.
 
 
 
