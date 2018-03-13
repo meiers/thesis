@@ -1096,7 +1096,7 @@ with strong balancer-specific gene expression.
 We speculated that this might be driven by the insertion of mobile elements in
 the positions where the RNA-seq signal started. Hence I developed a computational
 pipeline that extracts DNA-sequencing reads of a given genomic region,
-computes an assembly of these reads using \spades and compares the assembled
+computes an assembly of these reads using \samtools and \spades, and compares the assembled
 contigs to a database of common transposable elements in \textit{Drosophila}.
 The comparison is done via read mapping and confirmed visually using the dotplot
 functionality of \maze developed during previous work (\cref{sec:maze}). Using this
