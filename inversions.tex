@@ -446,7 +446,7 @@ method that resulted as a side products of this work is.
 
 The five computational steps towards \pacbio assembly cover both steps performed
 by external software as well as by own tools specifically designed for this
-task. At first, I extracted \pacbio reads mapping a specific locus and depleted
+task. At first, I extracted \pacbio reads mapping to a specific locus using \samtools and depleted
 them for reads of the reference allele. This depletion relies on the orientation
 of sequence alignments computed by \last. Next, I fed the remaining reads into
 \celeraassembler version 8.2 to perform the actual assembly step per locus. The
@@ -870,8 +870,4 @@ doing so, yet manual inspection of complex \acp{sv} is still highly recommended
 side product from this work, is a handy tool to inspect complex \acp{sv}
 sequenced with long reads and can be used in the future to further investigate
 complex loci.
-
-
-
-\todo{Mention \samtools somwhere!}
 
