@@ -117,7 +117,7 @@ presence of two homologous chromosomes then leads to the the observation of WW, 
 chromosomes. I call those (WW, WC, CC) their \emph{inherited strand states}.
 Here, I show how these unique characteristics of Strand-seq reveal the presence
 of seven different \sv classes and demonstrate our computational method called
-\mc that implements this idea.
+\mc that realizes this idea.
 
 
 
@@ -148,13 +148,13 @@ of seven different \sv classes and demonstrate our computational method called
     \end{figure}
 %    }}
 
-\Cref{fig:ss_library} depicts Strand-seq data from a single cell of an \acf{rpe}-1
+\Cref{fig:ss_library} depicts Strand-seq data from a single cell of a \acf{rpe}-1
 wild type cell line (courtesy by \balca and \landsdorp). This cell-wide overview
 plot was generated using \mc and is typically the starting point for
 an analysis of Strand-seq data. The procedure leading to this plot is outlined
 briefly in \cref{sec:mosaic_method}.
 
-These overview plot allows an initial judgment on the success, quality, and depth
+This overview plot allows an initial judgment on the success, quality, and depth
 of a Strand-seq library. In the cell shown here, reads aligning to either W or C
 strand were binned at 200~kb resolution. The cell was sequenced at ample depth
 (median of 76 reads per bin), shows the Strand-seq characteristic strand
@@ -165,7 +165,7 @@ influencing the quality of Strand-seq libraries are discussed in detail by
 \citet{Sanders2017}.
 
 \Cref{fig:ss_library} further gives a first impression of genomic rearrangements
-in this cell. For example, the region of WW reads at around 120~Mb on chromosome
+in this cell. For example, the region of WW reads at around 148~Mb on chromosome
 1 reveals an inversion of this locus in respect to the reference assembly. The
 most prominent alterations are visible on chromosomes 5 and 11, though. Here,
 the strand inheritance states change at one position (specifically,
@@ -197,7 +197,7 @@ W/(W+C). And (3), haplotype information. When whole-chromosome haplotypes are kn
 for sites of \acp{snv}, sequencing reads overlapping such variants can be queried for
 both their original homologue \emph{and} their strand direction \citep{Porubsky2016}.
 These alleles can be used to reason about potential rearrangements. In the
-following report, I refere to the two homologues (or their haplotypes) as $h_1$
+following report, I refer to the two homologues (or their haplotypes) as $h_1$
 and $h_2$.
 Below, I explain how we can utilize the combination of these signals to detect,
 genotype and phase the seven \sv classes. \Cref{fig:mosaic_examples} contains examples of
@@ -326,7 +326,7 @@ ploidy of each chromosome, assuming it is not heterogeneous
 usual way to estimate ploidy from \mps data is to assess the \baf of \acp{snv} within a bulk
 sample---in a tetraploid chromosome, some \acp{snv} will be present at ratios of
 25 or 75\%. Interestingly, Strand-seq detects ploidy even in the complete
-absence of homologue-speicific variants, for example in cells with multiple
+absence of homologue-specific variants, for example in cells with multiple
 copies of the same homologue such as the CHM1 cell line \citep{Steinberg2014}.
 To the best of our knowledge, this cannot be achieved by any other sequencing method.
 
@@ -401,8 +401,8 @@ Given the strand-specific binned counts, I implemented a plot function to
 generate overview plots as shown in \cref{fig:ss_library}. At first, bins that
 consistently appear as outliers in all cells are masked: this is typically the
 case in centromeric or telomeric regions with zero read coverage. Further, I designed a classifier to
-distinguish WW, WC, and CC states for each bin. This classifier is supposed to
-tell the class of each bin based on its strand-specific read counts, but it
+distinguish WW, WC, and CC states for each bin. This classifier predicts
+the class of each bin based on its strand-specific read counts, but it
 should also smoothen out fluctuations in single bins.
 To achieve this, I implemented a \hmm with a multivariate \nb
 emission distribution. The transition probability of the \hmm is chosen
@@ -456,13 +456,13 @@ signify a heterozygous inversion if it occurred in a WW chromosome, but no \sv
 in a joint \nb distribution. The dispersion parameter of the \nb distribution,
 $p$, is estimated across all cells, as \cref{fig:mean_var} explains. The second
 \nb parameter controls the number of expected reads within a locus and must
-hence be scaled to the size of the tested region.
-
-In line with our intuition,
+hence be scaled to the size of the tested region. In line with our intuition,
 \nb distributions yield a clearer separation for higher counts, i.e. in larger
-genomic regions intervals than for small \acp{sv}. A shortcoming of our
-approach is that \nb distributions offers no intuitive way to model an
-expectation of zero counts, i.e. the absence of reads. We hence added a factor
+genomic regions intervals than for small \acp{sv}.
+
+As we do not have a clear understanding of the processes that cause background
+reads (i.e. reads from a homologue that map to opposite, non-tamplate strand),
+we cannot accurately model them. We hence added a factor
 $\alpha \approx 5\%$ to our model to formulate a \nb distribution that captures
 this case. For instance, in a WW regions with $e$ expected total reads, the
 expected number of C reads would be modeled by $\alpha \cdot e$ and the expected
@@ -557,8 +557,7 @@ For Strand-seq data, I needed to relax this criterion to capture
 inversions---where one strand is increased and another decreased---and mosaic
 variation. I hence re-defined said cost matrix to allow individual jumps within
 each strand. Notably, the positions of the breakpoints are still consistent
-throughout all cells. This implementation with all the bells and
-whistles is as a central part of \mc.
+throughout all cells. I implemented this algorithm using C++ as a central part of \mc.
 
 
 
@@ -603,8 +602,8 @@ computationally generate Strand-seq data, I devised a tool to sample binned read
 counts from a negative binomial distribution. The \nb parameters were chosen
 in a way to closely resemble real data, but can be changed by the user.
 
-The simulation consists of three steps. At first, the backbone of each homologue is
-created via sampling from a \nb distribution. To do that, the bin size, the \nb
+The simulation consists of three steps. At first, a basic read coverage of each homologue is
+generated via sampling from a \nb distribution. To do that, the bin size, the \nb
 parameter $p$ and the expected number of reads per bin have to be specified
 (see \cref{tab:simulation_params}). By default, a set of 24 chromosomes with the
 typical sizes of human chromosomes 1--22, X and Y are generated for a user-defined number of cells.
@@ -693,8 +692,7 @@ performed for low \sv sizes.
 I simulated a number of Strand-seq experiments under different conditions. In
 each simulation, 200 cells were generated in 50~kb bins with an expected number
 of 20 reads per bin. I then distributed one of three \sv classes, namely
-deletion, duplication, or inversion, of a fixed size across the genome. For the
-sake of simplicity, this was only done for chromosome 1. Next, this procedure
+deletion, duplication, or inversion, of a fixed size across chromosome 1. Next, this procedure
 was repeated for the \sv sizes 100~kb, 400~kb, 1~Mb, and 2~Mb. As mentioned
 previously, the random placement of \sv boundaries is independent of the binning
 scheme. A 100~kb event, for example, hence rarely overlaps exactly two bins, but
@@ -709,7 +707,8 @@ number of spurious predictions, I calculated receiver operator characteristics.
 The results are shown in \cref{fig:segm_simul}.
 
 \figuretextwidth[t!]{mosaic_mc_roc.pdf}{segm_simul}{Performance of segmentation
-    on simulated SVs}{Here, I simulated three heterozygous \sv classes of
+    on simulated SVs}{Here, I simulated a random number (around 20-50 per
+    simulation) of each of three heterozygous \sv classes of
     different sizes on chromosome 1. The underlying simulated Strand-seq data
     contains 200 cells, binned at 50~kb resolution with a mean of 20 reads per
     bin. Then, for each of these data sets, I calculated receiver operator
@@ -784,7 +783,7 @@ the simulation of Strand-seq data. This set of tools can computationally generat
 Strand-seq libraries containing up to four classes of focal \acp{sv} of arbitrary
 sizes. Read counts are modeled from the same \nb distributed that was fitted to
 real data previously. I then used this framework to explore the capabilities of
-the segmentation algorithm in respect to small \sv sizes. The results suggest that
+the segmentation algorithm with respect to small \sv sizes. The results suggest that
 even at an \sv size of 100~kb, which corresponds to only two data points in our
 binning scheme, the majority of breakpoints can be correctly detected.
 \Acp{sv} larger than 1~Mb are found robustly. The capabilities of \mc will have
@@ -803,11 +802,11 @@ challenges that yet have to be overcome. First of all, our current approach
 covers the detection of focal \acp{sv}, but not yet of translocations and
 aneuploidy. As their detection works principally different than for focal \acp{sv},
 I have been developing independent methods for them in parallel. These approaches,
-once they were refined and thouroughly test, shall later be integrated into a
+once they have been refined and thouroughly tested, shall later be integrated into a
 single software tool. A second point is that, in its current state, \mc does not
 utilize the information from phased \acp{snv}, although they can already be
-annotated using \strandphaser. Consequently, \acp{sv} are only phased in WC
-chromosomes.
+annotated using \strandphaser. Consequently, \acp{sv} can only be assigned
+to homologues on WC chromosomes, where homologues are separated by their strand.
 
 Third, the segmentation algorithm of \mc currently requires the number of segments as an
 input parameter, which is not known a priori and for which we need to find an
@@ -822,11 +821,11 @@ binning scheme. We further thought of a subsequent refinement procedure that
 directly accesses the read mapping positions in \sv-carrying cells to estimate
 breakpoints at higher accuracy.
 
-At last, the classification step is work in progress. In its current state, it
-accurately classifies segments in single cells, but it does not yet integrate
+At last, the classification step was work in progress at the time of writing. In its current state, it
+accurately classified segments in single cells, but it did not yet integrate
 this information across the cell population. Single outliers in read counts,
 which occur both in real as well as in simulated data, can lead to a certain
-\sv state receiving the highest likelihood. This can flasely trick an individual
+\sv state receiving the highest likelihood. This can falsely trick an individual
 classifier into rejecting the null hypothesis of a reference state.
 To tackle this issue, we plan to introduce a size-adjusted prior distribution that
 assumes a reference state in most positions.
