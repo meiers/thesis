@@ -20,7 +20,7 @@ experiments on these cell lines.
 
 
 
-\section{Structural variants in the context of somatic mosaicism}
+\section{Introduction: Structural variants in the context of somatic mosaicism}
 \label{sec:mosaic_mosaicism}
 
 As briefly introduced earlier, somatic mosaicism refers to the presence of
@@ -105,7 +105,7 @@ can and will be done using this promising novel approach.
 
 
 
-\section{\textsc{Mosaicatcher}: A novel method for single-cell SV detection}
+\section{Results I: A novel method for single-cell SV detection}
 \label{sec:mosaic_mc}
 
 Strand-seq generates sequencing reads that are all of the same directionality
@@ -132,7 +132,7 @@ of seven different \sv classes and demonstrate our computational method called
         \includegraphics[width=\textplusmargin,inner]{ss_lib_rpewt.pdf}
         \figcap{ss_library}{Example of a single cell Strand-seq library}{
             Here, a single cell Strand-seq library of an \rpe-I wild type cell
-            line is displayed using the plot function of \mc.
+            line is displayed using the plot function of \mc (\cref{sec:mosaic_method}).
             Each vertical panel shows binned read counts of one chromosome, with
             the Watson strand on the left, in orange, and the Crick strand on
             the right, in blue. In the cell shown here, data reads were binned at
@@ -360,7 +360,7 @@ chromosomes \citep{Hills2013}.
 
 
 \FloatBarrier
-\subsection{Automated SV detection}
+\subsection{Automated SV detection with \textsc{Mosaicatcher}}
 \label{sec:mosaic_method}
 
 In order to capture this spectrum of \sv classes, my collaborators and I
@@ -563,8 +563,10 @@ throughout all cells. I implemented this algorithm using C++ as a central part o
 
 
 
+
+
 \FloatBarrier
-\section{Simulation of Strand-seq data to explore the limits of \textsc{Mosaicatcher}}
+\section{Results II: Strand-seq simulations to explore the limits of \textsc{Mosaicatcher}}
 \label{sec:mosaic_simul}
 
 A principal challenge during the implementation of \mc was to measure its
@@ -742,6 +744,9 @@ testing in the classification step.
 
 \section{Conclusions and outlook}
 \label{sec:mosaic_conclusion}
+
+
+\subsection{Summary of findings}
 
 Strand-seq is an emerging sequencing technique with the unique ability to
 resolve single homologues by sequencing only their template strands. While it
