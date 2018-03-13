@@ -1,8 +1,5 @@
-\chapter{Conclusions}
+\chapter{Conclusions and Discussion}
 \label{sec:conclusions}
-
-\section{Overview of findings}
-\label{sec:findings}
 
 The goal of this dissertation was to explore the potential of emerging DNA
 sequencing technologies to discover, characterize and validate structural
@@ -10,14 +7,21 @@ variation. These technologies hold the potential to improve variant detection in
 multiple ways. Throughout the projects described herein, I presented three
 concrete approaches of how these techniques enhanced the detection of difficult
 \sv types. I was able to scrutinize \acp{sv} to an extent that had not been
-possible based on \mps. Importantly, the \acp{sv} unraveled by my work
-led to novel insights into the complexity and functional role
+possible beforehand based on standard \mps experiments. Importantly, the
+\acp{sv} unraveled by my work led to novel insights into the complexity and
+functional role
 of \acp{sv}. I further developed new computational approaches to detect and
 analyze \acp{sv} based on these techniques, proved their utility, and made
 them available to the community.
 
+While each chapter contains a conclusion on its own, I here summarize again the
+major findings of my work and put them into the context of recent developments
+within the community.
 
-\paragraph{Complex inversions in the human genome}
+
+
+\subsection{Complex inversions in the human genome}
+
 In \cref{sec:complex_invs}, I analyzed inversions in the scope of the 1000
 Genomes Project. Together with colleagues, we were able to solve the
 ``validation problem'' by using targeted long-read sequencing on both \pacbio
@@ -44,11 +48,75 @@ goal to infer the mechanisms they originated from. The evidence I found was not
 distinctive of any precise mechanism that might have formed these \acp{sv}, but
 it suggested that several of the seemingly very different classes might
 originate from the same mutagenic process. The work on complex variants has
-since been continued and extended by others, further emphasizing the prevlanece
+since been continued and extended by others, further emphasizing the prevalence
 of this underappreciated phenomenon \citep{Collins2017}.
 
 
-\paragraph{Effects of SVs on gene expression and chromatin organization}
+
+
+\subsubsection{Long-read sequencing on the rise}
+
+In recent years an increasing number of studies have been published that utilize
+long-read sequencing. Notably the \pacbio technology, which became commercially
+available in 2011, has gained many users. \pacbio was used to perform targeted
+validation experiments, as I show in \cref{sec:complex_invs}, and computational
+methods have been proposed to facilitate this approach \citep{Wang2015,Rudewicz2016}.
+The method by \citet{Wang2015} is even designed specifically for \sv
+characterization and uses a breakpoint visualization approach very similar to
+the one I developed for \maze.
+
+However, the applications of \pacbio have long gone beyond this level. Due
+increases in throughput, \wgs has become possible in a more cost-effective
+fashion. For example, prior to 2014, \citet{Chaisson2014} still needed 243 SMRT
+flow cells to achieve a coverage of 40~x in a human genome, whereas the most
+recent developments (i.e. the \pacbio Sequel system) promise a 10-fold coverage
+from only 4 SMRT cells\footnote{\label{footnote:pacbioblog}%
+\url{https://www.pacb.com/blog/new-software-polymerase-sequel-system-boost-throughput-affordability/}}.
+
+The capabilities of the \pacbio technology have especially caused a stir in the
+plant genomics community, which had been affected by the limitations of
+short-read \mps to a special degree \citep{Bickhart2014}. Notably, the hope is
+to perform \textit{de novo} assembly of highly repetitive, or even polyploid
+genomes \citep{Li2017}. However, the problem of \textit{de novo} assembly from
+\pacbio data alone is not yet considered to be solved, despite a number of
+available software tools \citep{Chin2013,Chin2016,Koren2017,Koren2018} and the
+attention of renowned scientists\footnote{E.g. the efforts of Gene Myers, see
+\url{https://dazzlerblog.wordpress.com/}}.
+
+Meanwhile, \pacbio \wgs data was specifically used to study \acp{sv} in the
+human genome. \citet{Chaisson2014} utilized a local assembly approach to detect
+insertions and deletions in a haploid CHM1 cell line. Remarkably, they found
+tens of thousands of \acp{sv} that had not been detected beforehand. They further
+observed an insertional bias (more insertions than deletions) of short tandem
+repeats, ALU elements and complex variation. In addition, they could close (or
+reduce in size) dozens of gaps that were missing in the reference genome
+(GRCh37). Obviously, this had not been possible based on standard \mps
+approaches. These results highlight shortcomings of the human reference assembly,
+which does not represent the human genome in its entireness. Even more though,
+they highlight the capabilities of long-read sequencing for \sv detection.
+Since then, \sv detection based on \pacbio data has been further improved and
+new software tools have been developed using read mapping or assembly approaches
+\citep{Pendleton2015,Huddleston2017}. In a recent study, we utilized \pacbio and
+other techniques for an unprecedentedly deep characterization of \acp{sv} in
+the human genome \citep{Chaisson2017}, which to a large part relied on \pacbio
+technology.
+
+\ont technology has seen many improvements, too, and is slowly gaining
+popularity. Recently, the \textit{de novo} assembly of the genomes of yeast,
+\textit{Caenorhabditis elegans}, and \textit{Drosophila melanogaster} were
+demonstrated using \ont seqeuncing \citep{Istace2017,Tyson2017,Solares2018}.
+What is especially interesting to note, though, is the pace of these technological
+improvements. In the latest study by \ont, \citet{Jain2018} used a novel protocol
+capable of generating sequencing reads with a N50 value of more than 100~kb
+(and a maximum of 880~kb). This is a length so far unachieved by PacBio, which
+typically yields a maximum read length below 100~kb\footnoteref{footnote:pacbioblog}.
+
+
+
+
+
+\subsection{Effects of SVs on gene expression and chromatin organization}
+
 In \cref{sec:balancer}, we had set out to study the functional consequences of
 \acp{sv} in respect to gene expression and chromatin conformation. My first goal
 within this collaborative project was to characterize the variants present in
@@ -77,14 +145,60 @@ findings appear contrary to what has been seen in other scenarios; however, I
 argue that this might be a result of natural selection in both these other
 studies and in ours. Balancer chromosomes show a remarkable robustness towards
 the huge rearrangements that they carry, and a potential enhancer hijacking
-mechanism appears to be buffered. We think that these results will complement
+mechanism appears to be buffered.
+
+We think that these results will complement
 previous studies and lead to a more holistic view on the role of chromatin
 architecture. The manuscript was in preparation at the time of writing this
 thesis.
 
 
-\paragraph{SV detection in single cells}
-Finally, in \cref{sec:mosaicatcher} I present a novel method for SV detection on
+
+
+
+\subsubsection{SV characterization via \hic}
+I demonstrated in \cref{sec:balancer} how \hic data can be utilized for \sv
+characterization. Naturally---and considering the popularity of \hic and the
+amount of publicly available data---this observation was made by others, too.
+
+To potential of \hic to improve \textit{de novo} assembly had been noted early on:
+\Citet{Kaplan2013}, for instance, predicted that \hic could facilitate assembly
+and assigned unplaced contigs to the human genome; \Citet{Burton2013} created
+scaffolds of human, mouse, and \textit{Drosophila} genomes based on \hic and
+\mps data; \Citet{Selvaraj2013} successfully extended the idea to haplotyping;
+And recently, the mosquito \textit{Aedes aegypti}, vector of the Zika virus, was
+assembled using \hic data \citep{Dudchenko2017}.
+
+Interstingly, the biological folding of chromosomes is not relevant---,aybe even
+impairing---for the purpose of assembly or \sv detection. \citet{Putnam2016}
+hence developed a protocol that reconstitutes chromatin in vitro prior to \hic
+library preparation.
+
+The core idea of \hic-based \sv detection is the identification of characteristic
+alterations in contact frequencies. The presumably first \acp{sv} detected using
+\hic were translocations in cancer cell lines, which were detected during the
+search for \textit{trans} interactions between chromosomes \citep{Rickman2012}.
+This idea was then augmented towards the detection of arbitrary rearrangements.
+For example, large rearrangements in scrambled synthetic yeast genomes were
+recently studied based on \hic \citep{Mercy2017}. Moreover, \citet{Putnam2016}
+explored the potential of \hic to identify inversions. And more translocations
+could be identified in cancer cell lines \citep{Barutcu2015,Ay2015,Harewood2017}.
+Eventually, \hic based SV detection was further extended to \acp{cnv}
+\citep{Harewood2017,Li2018}.
+
+Hence in summary, the idea of applying Hi-C for \sv characterization has been
+commonly known beforehand. Moreover, recent efforts within the community
+have advanced the state of the art far way beyond the application I presented
+here.  Nevertheless was \hic-based \sv detection a highly important step within
+our study and it allowed us to gain novel insights on the relationship of
+chromatin conformation and gene regulation.
+
+
+
+
+\subsection{Structural variation detection in single cells}
+
+Finally, in \cref{sec:mosaicatcher} I present a novel method for \sv detection on
 the single-cell level, which is currently under active development. This method
 termed \mc allows, for the very first time, the detection of
 multiple different \sv classes based on single-cell Strand-seq data. In a first
@@ -113,8 +227,24 @@ which had recently been severly limited---if not in respect to \acp{sv}.
 
 
 
+\subsection{Concluding remarks}
+Copy-number neutral and complex forms of structural variation have often been
+neglected in genetics studies compared to \acp{cnv}. Consequently, less is known
+about their prevalence and their role in health and disease. This is owed to
+technical limitations in their detection based on commonly used techniques
+such as \mps.
+
+Here, I presented three concrete examples of how emerging technologies improve
+the detection and characterization of \acp{sv}. Utilizing these technologies
+allowed me to detect an unforeseen amount of complex inversions in the human
+genome, and to shed new light onto the functional impact of \acp{sv}.
+I further developed a computational tool for the characterization of complex
+rearrangements from long-read data, including the fine-mapping of their
+breakpoints, and a novel approach for \sv detection within single cells.
+
+Together with efforts by others in the community, these new approaches will
+enhance our abilities to discern such \acp{sv} both in the germ line as well as
+in the context of somatic mosaicism. This will eventually contribute to a deeper
+understanding of genetic variants and their potential functional roles.
 
 
-\section{The impact of emerging sequencing technology on SV discovery}
-\label{sec:impact}
-\todo{whole section}
