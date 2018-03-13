@@ -268,16 +268,4 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=0.5pt,minimum size=12pt] (char) {\textsf{\small#1}};}}
 % https://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
-%\newcommand{\circled}[1]{%
-%  \tikz[baseline=(char.base)]{%
-%    \node[shape = circle, draw, inner sep = 1pt] (char) {};%
-%    \node at (char.base) {};}}
-%\robustify{\circled}
 
-%% Custom macros (not mine)
-\newcommand*\captitle[1]{\textbf{#1}}
-
-\newcommand*\gene[1]{\textit{#1}}
-\newcommand*\ko[1]{\textit{#1\textsuperscript{\(-/-\)}}}
-\newcommand*\protein[1]{#1}
-\newcommand*\species[1]{\textit{#1}}
