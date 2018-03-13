@@ -28,11 +28,11 @@ Comments on literature used in \cref{sec:chromatin_conformation,sec:disrupting_t
     perturbation experiment showing that new \acp{tad} can be created this way.
 \item \citet{Dekker2015} reviewed the existence of \tad-like structures in a
     variety of organisms, including mammals, \textit{Drosophila}, and
-    \textit{S. pomple} (see figure 1).
+    \textit{S. pombe} (see figure 1).
 \item \citet{Pope2014} found that ``replication domain boundaries share a near
     one-to-one correlation with \tad boundaries''.
 \item \citet{Shen2012} defined pairs of enhancers and promoters with correlated
-    activity based on chromatin states and polII occupancy and found that these
+    activity based on chromatin states and polymerase II occupancy and found that these
     units correlated with \acp{tad}.
 \item \citet{Schmitt2016} produced \hic maps of 21 primary human tissues and cell
     types and found a high conervation of \tad boundaries (figure 1 E).
@@ -210,7 +210,7 @@ are summarized by ``duplications'' in the main text.
         paired-end signature uncovered by \delly. Values in italic could not be
         resolved at the base pair level. Between the $3\prime$ and $5\prime$ ends
         of the breakpoints deletions or duplications can have occurred:
-        Deletions are states as negative integers, duplications as poitive
+        Deletions are states as negative integers, duplications as positive
         integers (Del/Dup).
     }
 \end{table}
@@ -231,8 +231,8 @@ p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
 
 
 
-\figuretextplusmargin{ASE_single_balancer_control.pdf}{ASE_single_balancer_control}
-    {Significant changes in ASE signal depeding on the genetic background}{
+\figuretextplusmargin{ASE_single_balancer_control.png}{ASE_single_balancer_control}
+    {Significant changes in ASE signal depending on the genetic background}{
     \subpanel{A} Balancer-to-wild type ratio (log scale) of gene
     expression of genes on chromosomes 2 and 3 in two different $F_1$ samples,
     namely adult $F_1^f$, which was sequenced for \cref{fig:ase_chrX}, and $F_1$,
@@ -246,7 +246,7 @@ p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
     type ratio significantly differs (FDR 5\%, fold change $\geq 2$).}
 
 
-\section{Further \texorpdfstring{\ase}{ASE} related analyses}
+\section{Further \texorpdfstring{\ase}{ASE}-related analyses}
 \label{sec:suppl_ase_more}
 
 \figuretextwidth{ASE_genes_around_bps.pdf}{suppl_ase_genes_around_bps}
@@ -274,7 +274,7 @@ p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
            to the start points of RNA-seq signal measured for the respective
            genes. \textit{+/-}: orientation of transcription of the gene.
            \textit{lfc}: log fold change of gene expression balancer/wild type.
-           \textit{TE familiy}: Most likely family of transposable element.
+           \textit{TE family}: Most likely family of transposable element.
            \textit{MEI pos}: Position of \mei relative to the gene (upstream/downstream)
            as well as orientation of the insertion of the \mei.} \\
     \toprule
@@ -332,7 +332,7 @@ p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
     \cref{sec:balancer_visualization}. Here, the locus belonging to the
     \textbf{green} genomic region is shown in respect to a custom reference
     genome that represents the genomic order of the balancer chromosomes.
-    Notably, the gap in \hic contacts are now present in the balancer track.}
+    Notably, the gap in \hic contacts are now present in the wild type track.}
 
 \figuretextplusmargin{ggbio_dm6_2R_14Mb_3.jpg}{ggbio3}{Integrated visualization
     around breakpoint \textit{2R:14.1~Mb}: balancer chromosome assembly (II)}{
@@ -340,7 +340,7 @@ p-values were corrected using \textsc{FDRtool} \citep{Strimmer2008}.
     \cref{sec:balancer_visualization}. Here, the locus belonging to the
     \textbf{red} genomic region is shown in respect to a custom reference
     genome that represents the genomic order of the balancer chromosomes.
-    Notably, the gap in \hic contacts are now visible in the balancer track.}
+    Notably, the gap in \hic contacts are now visible in the wild type track.}
 
 \FloatBarrier
 
