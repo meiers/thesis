@@ -11,52 +11,86 @@ studied more comprehensively than ever before. However, in contrast to smaller
 types of genetic variation, \sv detection is still fundamentally hampered by
 the limitations of short-read sequencing that cannot sufficiently cope with the
 complexity of large genomes. Emerging DNA sequencing technologies and protocols
-hold the potential to overcome some of these limitations. This dissertation
-presents three distinct studies each utilizing such emerging techniques to
-detect, to validate and/or to characterize \acp{sv}. This work demonstrates
-how \acp{sv} can be characterized that had previously been
-challening, or even impossible, to assess and describes the biological insights
-resulting from specific applications of the approaches.
+hold the potential to overcome some of these limitations. In this dissertation,
+I present three distinct studies each utilizing such emerging techniques to
+detect, to validate and/or to characterize \acp{sv}. These
+technologies, together with novel computational approaches that I developed, allow
+to characterize \acp{sv} that had previously been challening, or even
+impossible, to assess.
 
 First, inversions---a class of \sv that is notoriously difficult to
-ascertain---were studied in the context of the 1000 Genomes Project. By utilizing
-modern long-read sequencing technologies from both, \acl{pacbio} and \acl{ont},
-hundreds of inversion loci could be validated and characterized that had remained
-inconclusive in classical \acs{pcr} validation experiments. The majority of presumed
-inversion loci was found to harbor additional complexity indiscernible to
-low-coverage short-read sequencing. This analysis revealed an unprecedented amount of
-complex variation in the human population and demonstrates the capability of
-long-read sequencing to characterize complex \acp{sv}.
+ascertain---were studied in the context of the 1000 Genomes Project. These inversions had
+previously been predicted from low-coverage short read sequencing data, but
+remained inconclusive in classical \acs{pcr} validation experiments. Using sequencing
+data from modern long-read technologies (\acl{pacbio} and \acl{ont}),
+I was able to validate hundreds of them. I then developed a
+computational tool to visualize long-read data, and discovered that the majority
+of loci harbored complex \acp{sv} rather than simple inversions. These findings
+suggest that the amount of complex structural variation in the human genome had
+so far been under-appreciated, owing to limitations in their detection using
+standard techniques.
 
-Second, the functional impact of large \acp{sv}, including
-pericentric inversions, on gene expression was explored. Previously, a series of
-studies have shown drastic effects of \acp{sv} on specific genes via a mechanism that alters
-the three-dimensional conformation of DNA. While these studies concentrated on
-single, pathological cases, our research project utilizes highly rearranged
-chromosomes of \textit{Drosophila melanogaster} showing no pathological
-phenotypes to assess the generality of such a mechanism. In order to study
-chromatin structure in 3D, \acf{hic} was applied. Besides our findings on
-chromatin structure, we were able highlight the capabilities of \hic to resolve
-large chromosomal rearrangements and other SV classes.
+In the second part, I explored the functional impact of large \acp{sv} on gene
+expression and chromatin organization. Previously, a series of
+studies described drastic effects of \acp{sv} on the regulation of genes
+via mechanisms that alter the three-dimensional conformation of DNA. However,
+these studies had focused on pathological phenotypes and on few,
+selected genes. We hence set out to study
+gene expression and chromatin conformation in highly rearranged
+chromosomes of \textit{Drosophila melanogaster} without a pathological phenotype.
+I first utilized \acs{hic}, which we applied in order to measure chromatin
+conformation, to characterize the rearrangements present in these chromosomes.
+Then, despite the presence of 15 breakpoints, we found no evidence for a
+conformation-related mechanism acting on gene regulation. This is particularly
+surprising as the majority of these breakpoints disrupted \aclp{tad}.
+This study hence sheds a new light on the role of chromatin
+conformation that is complementary to the findings of previous studies.
+In addition, it demonstrates the capabilities of the \acs{hic} technology to
+reveal structural variation.
 
-Third, the current state of an ongoing project is presented with the objective
-to enable-–-for the first time---the detection of a wide variety of \sv classes,
-including copy-number balanced and unbalanced \acp{sv}, in single cells. Based on
-single-cell stranded template sequencing (Strand-seq), at at least seven different
-classes of \acp{sv} are identifiable at the single-cell level by utilizing three
-independent signals present in the data. Here, the general concepts behind this
-novel methodology as well as specific solutions for two out of
-three steps towards this goal are presented. Furthermore, a versatile simulation
-framework was established to explore the limitations of this approach.
-Once completed, our method will eventually facilitate studies of \sv
-heterogeneity and mosaicism, for example in the context of cancer and ageing.
+% We applied \acs{hic} to measure the organization of chromatin into \aclp{tad}.
+% I utilized this \acs{hic} data to determine the breakpoints of all 15 major
+% rearrangements and other \acp{sv}, which had not been fully possible beforehand.
+% Eventually, we observed a considerable amount of expression changes attributed
+% to the presenece of structural variaiton, yet no evidence for the type of mechanism.
+% These results first demonstrate the potential of \hic to facilitate \acp{sv}
+% detection and, second, shed a new light on the role of chromatin conformation in
+% gene regulation.
 
-In conclusion, utilizing emerging sequencing technologies such as long-read
-sequencing, \hic, or Strand-seq significantly improves our abilities to assess
-structural variation, which is an essential step to studying the impact of
-genetic variation on health and disease. These methods may, in
-the future, reveal currently hidden patterns of structural variation in the
-human genome and in other species with complex genomes.
+Third, I present the current state of a collaborative effort
+to enable \sv detection in single cells. Studies of somatic mosaicism, i.e. on
+the genetic heterogeneity among cells, have so far been severly limited in the
+ability to discover \acp{sv}, especially copy-neutral and complex rearrangements.
+We hence conceived a novel method to infer---for the first time---at least seven
+different \sv classes in single cells. This approach utlizes three independent
+signals that are identifiable in single-cell stranded template sequencing
+(Strand-seq) data. I here
+present a computational method called \mc to realize this idea and provide
+examples that demonstrate its feasibility. In order to explore the limitations
+of this method, I designed a versatile framework for the simulation of
+Strand-seq data and used it to assess the performance of one of the central
+steps of \mc. Once completed, this novel method will facilitate studies of \sv
+heterogeneity and mosaicism in the context of cancer and ageing.
+
+% Until now, the detection of \acp{sv} has been hampered by technological
+% limitations. However, \sv detection is a fundamental first step towards
+% studying the functional impact of this pervasive form of genetic variation.
+% Here, I demonstrated how utilizing emerging sequencing technologies such as
+% long-read sequencing, \hic, or Strand-seq overcomes many of these challenges.
+% Based on novel computational approaches that I developed, I could characterize
+% variants that had been difficult, if not impossible to ascertain beforehand.
+% These tools were instrumental in gaining insights on the biology of \acp{sv} and
+% they may, in the future, reveal more currently hidden patterns of structural
+% variation. Together with efforts by others in the community these improvements
+% in detection will allow us to gain a deeper understanding of the role of
+% \acp{sv} in health and disease.
+
+In summary, I utilized emerging technoogies to discover \acp{sv}---notably
+copy-neutral and complex rearrangements---that so far eluded detection based on
+\mps. This led to novel insights on the complexity and functional impact of these
+\acp{sv}. Moreover, I developed computational tools that advance our capabilites
+for \sv detection and characterization, and that might aid future studies to gain a
+deeper understanding of the role of \acp{sv} in health and disease.
 
 
 
@@ -66,7 +100,6 @@ human genome and in other species with complex genomes.
 \chapter*{Zusammenfassung}%
 \addcontentsline{toc}{chapter}{Zusammenfassung}%
 
-\todo{change this text to match the English version}
 Strukturvariationen (SV) verändern die Chromosomenstruktur, in dem sie
 Teile der DNA deletieren, duplizieren oder anderweitig neu anordnen. Sie sind für
 den Großteil der Unterschiede in der Nukleotidsequenz zwischen Menschen verantwortlich
@@ -79,51 +112,87 @@ großer Genome nicht ausreichend abbilden kann. Neu aufkommende
 DNA-Se\-quen\-zier\-me\-tho\-den und –protokolle bergen das Potenzial diese Limitierungen
 zu überwinden. In dieser Dissertation werden drei separate Studien präsentiert,
 die aufkommende Technologien zur Detektion, Validierung und/oder Charakterisierung
-von SV nutzen. Diese Dissertation zeigt auf wie solche Technologien genutzt
-werden können um SV zu untersuchen, die zuvor schwierig, wenn nicht gar
-unmöglich, zu ermitteln waren, und erläutert die biologischen Erkenntnisse, die
-unter Anwendung dieser Prinzipien gewonnen wurden.
+von SV nutzen. Im Verbund mit neuartigen Computermethoden, die ich entwickelt habe,
+erlauben diese Technologien die Bestimmung von SV die zuvor schwierig, wenn
+nicht gar unmöglich, war.
 
 Zunächst werden Inversionen---eine bekanntermaßen schwierig zu ermittelnde Form
-von SV---im Rahmen des ``1000 Genomes Project'' untersucht. Mithilfe moderner
+von SV---im Rahmen des ``1000 Genomes Project'' untersucht. Diese Inversionen wurden zuvor
+basierend auf MPS-Methoden mit niedriger Ab\-de\-ckung vorhergesagt, blieben aber
+in klassischen \acs{pcr}-basierten Va\-li\-die\-rungs\-ex\-pe\-ri\-men\-ten ergebnislos.
+Mithilfe moderner
 Sequenziertechnologie für besonders lange DNA\--Ab\-schnit\-te von \acl{pacbio}
-und \acl{ont} konnten hunderte von vor\-her\-ge\-sag\-ten Inversionen validiert und
-genauer cha\-rak\-te\-ri\-siert werden, welche zuvor in klassischen \acs{pcr}-basierten
-Validierungsexperimenten ergebnislos blieben. Es stellte sich heraus, dass die
-meis\-ten Loci mit vermuteten Inversionen tatsächlich komplexe Formen von SV
-enthalten, welche mit \mps Methoden und nur niedriger Abdeckung nicht zu
-erkennen sind. Diese Studie offenbarte eine ungeahnte Häufigkeit von komplexen
-Inversionen in der menschlichen Population und demonstriert die Nutzbarkeit
-jener Sequenziertechnologien zur Erkennung komplexer Formen von SV.
+und \acl{ont} konnte ich hunderte davon validieren. Ich entwickelte dann eine
+neue Methode zur Visualisierung dieser langen DNA-Abschnitte und fand heraus,
+dass die Mehrzahl der Loci anstatt Inversionen letztendlich komplexe Formen von
+SV enthielten. Diese Entdeckung legt nahe, dass die Menge an komplexen SV im
+menschlichen Genom aufgrund der Limitierungen der verwendeten Technologien bisher
+unterschätzt wurde.
 
-Zweitens wurde der funktionelle Einfluss von großen SV,
-inklusive perizentrischer Inversionen, auf die Genexpression untersucht.
+% genauer cha\-rak\-te\-ri\-siert werden, welche zuvor in klassischen \acs{pcr}-basierten
+% Validierungsexperimenten ergebnislos blieben. Es stellte sich heraus, dass die
+% meis\-ten Loci mit vermuteten Inversionen tatsächlich komplexe Formen von SV
+% enthalten, welche mit \mps Methoden und nur niedriger Abdeckung nicht zu
+% erkennen sind. Diese Studie offenbarte eine ungeahnte Häufigkeit von komplexen
+% Inversionen in der menschlichen Population und demonstriert die Nutzbarkeit
+% jener Sequenziertechnologien zur Erkennung komplexer Formen von SV.
+
+Im zweiten Teil untersuche ich den funktionellen Einfluss von großen SV
+auf die Genexpression und die Chromatinorganisation.
 Zuvor hatten eine Reihe von Studien drastische Effekte von SV auf die
 Genexpression gezeigt, welche über einen Mechanismus funktionieren, der die
-dreidimensionale Struktur des Chromatins beeinflusst. Während sich diese Studien
-auf einzelne Loci mit pathologischen Konsequenzen fokussieren, nutzt unsere
-Studie stark umstrukturierte Chromosomen in \textit{Drosophila melanogaster}
-ohne pathologischen Phänotyp um die Allgemeingültigkeit dieses Mechanismus zu
-untersuchen. Zur Analyse der dreidimensionale Chromatinstruktur wurde \hic
-angewendet. Neben einer Zusammenfassung der Ergebnisse dieser Studie wird
-insbesondere die Fähigkeit der \hic Technologie, große SV sichtbar machen zu
-können, hervorgehoben.
+dreidimensionale Form der DNA be\-ein\-flusst. Diese Studien fokussierten sich
+jedoch nur auf wenige Loci mit bekannten pathologischen Konsequenzen. Deshalb
+entwickelten wir ein eigene Studie, in der wir die Genexpression und Veränderungen der
+Chromatinstrukur in völlig neu angeordneten Chromosomen der Fruchtfliege
+\textit{Drosophila melanogaster} ohne pathologischen Phänotyp untersuchen. Ich
+nutzte zunächst die Hi-C Technologie, die wir zur Messung der Chromatinstruktur
+verwendeten, um die neue Anordnung dieser Chromosomen zu bestimmen. Danach fanden
+wir, obwohl 15 Bruchpunkte vorhanden waren, keine Hinweise auf einen funktionellen
+Einfluss der Chromatinstruktur. Dies war besonders überraschend, da die Mehrzahl
+dieser Bruchpunkte sogenannte \emph{\aclp{tad}} zu unterbrechen scheint. Unsere
+Studie wirft somit ein völlig neues Licht auf die Rolle der Chromatinstruktur und
+ergänzt damit vorherige Studien. Zusätzlich dazu wird in dieser Studie eindrucksvoll
+demonstriert, wie SV mithilfe der Hi-C Technologie genauer bestimmt werden können.
 
-Drittens wird der aktuelle Stand einer laufenden Studie vorgestellt mit dem
-Ziel---zum ersten Mal---ein breites Spektrum von SV-Klassen, sowohl mit unbalanzierter
-als auch mit balanzierter Kopienzahl, in einzelnen Zellen zu detektieren.
-Basierend auf der Ein\-zel\-strang-Se\-quen\-zier\-me\-tho\-de Strand-seq können
-mindestens sieben verschiedene Klas\-sen von SV anhand drei verschiedener Signale
-in Zellen bestimmt werden. Hier werden das generelle Konzept sowie
-konkrete Lösungen zu zweien von drei relevanten Schritten hin zum Gesamtziel
-dargelegt. Nach Fertigstellung könnte diese Arbeit Studien zu somatischem
+% , nutzt unsere
+% Studie stark umstrukturierte Chromosomen in \textit{Drosophila melanogaster}
+% ohne pathologischen Phänotyp um die Allgemeingültigkeit dieses Mechanismus zu
+% untersuchen. Zur Analyse der dreidimensionale Chromatinstruktur wurde \hic
+% angewendet. Neben einer Zusammenfassung der Ergebnisse dieser Studie wird
+% insbesondere die Fähigkeit der \hic Technologie, große SV sichtbar machen zu
+% können, hervorgehoben.
+
+Drittens wird der aktuelle Stand eines gemeinsamen Unterfanges vorgestellt, das
+zum Ziel hat die Detektion von SV in einzelnen Zellen zu ermöglichen.
+Studien zu somatischem Mosaizismus, d.h. zur genetischen Heterogenität zwischen
+Zellen, konnten aufgrund technologischer Limitierungen bisher nur eingeschränkt
+SV analysieren, vor allem nicht SV mit neutraler Kopienzahl oder komplexe Veränderungen.
+Wir konzipierten deshalb eine neuartige Methode die, zum ersten mal überhaupt,
+mindestens sieben verschiedene SV-Klassen in einzlenen Zellen ermitteln kann.
+Diese Methode basiert auf drei unabhänigen Signalen die in der
+Ein\-zel\-strang-Se\-quen\-zier\-me\-tho\-de Strand-seq identifiziert werden können.
+Hier stelle ich eine Software mit dem Namen \mc vor, die dieses Konzept umsetzt,
+und belege anhand von Beispielen deren Machbarkeit.
+Um die Grenzen der Methode bestimmen zu können entwickelte ich ein vielseitig
+einsetzbares Simulationsprogramm für Strand-seq-Daten und untersuchte damit die
+Leistungsfähigkeit von einem der zentralen Bausteine von \mc.
+Nach Fertigstellung könnte diese Arbeit Studien zu somatischem
 Mosaizismus, zum Beispiel im Kontext des Alterns oder von Krbeserkrankungen,
 vorantreiben.
 
-Zusammenfassend lässt sich sagen, dass aufkommende Sequenzierungsmethoden für
-lange DNA-Ab\-schnit\-te (\acl{pacbio} und \acl{ont}) sowie neue Protokolle wie
-\hic oder Strand-seq einen enormen Fortschritt für die Detektion von SV bedeuten
-und damit den Grundstein legen für weiter Untersuchungen zur Rolle genetischer
-Variation im gesundem Menschen oder in Hinsicht auf Krankheiten.  Diese Methoden könnten
-zukünftig bisher ungeahnte Muster von SV im menschlichen Genom und in Spezies
-mit noch komplexeren Genomen enthüllen.
+In dieser Dissertation habe ich aufkommende Technologien benutzt um SV, vor allem
+komplexe oder jene mit neutraler Kopienzahl, zu bestimmen, die mit\-hil\-fe bisheriger
+Technologien nicht auffindbar waren. Dies führte zu neuen Erkenntnissen zur
+Komplexität und zur funktionalen Rolle dieser SV. Darüberhinaus habe ich
+Computermethoden entwichelt, die unsere Fähigkeiten zur Bestimmung von SV erweitern
+und die zukünftige Studien zur Rolle dieser SV in Hinsicht auf Krankheiten
+ermöglichen.
+
+%lässt sich sagen, dass aufkommende Sequenzierungsmethoden für
+%lange DNA-Ab\-schnit\-te (\acl{pacbio} und \acl{ont}) sowie neue Protokolle wie
+%\hic oder Strand-seq einen enormen Fortschritt für die Detektion von SV bedeuten
+%und damit den Grundstein legen für weiter Untersuchungen zur Rolle genetischer
+%Variation im gesundem Menschen oder in Hinsicht auf Krankheiten.  Diese Methoden könnten
+%zukünftig bisher ungeahnte Muster von SV im menschlichen Genom und in Spezies
+%mit noch komplexeren Genomen enthüllen.
