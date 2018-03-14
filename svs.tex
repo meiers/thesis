@@ -15,7 +15,7 @@ flavors of which the major ones are described subsequently.
 \Acp{sv} in the human genome are of particular relevance for health and disease.
 For example, they are implicated in various Mendelian diseases and in cancer
 \citep{Weischenfeldt2013}.
-Later, in \cref{sec:balancer_background} I specifically discuss the phenotypic
+Later, in \cref{sec:balancer_background}, I specifically discuss the phenotypic
 impact of \acp{sv} and present a study, in which I investigated a particular
 aspect of the functional consequences of \acp{sv}.
 
@@ -25,10 +25,11 @@ aspect of the functional consequences of \acp{sv}.
 \subsection{Different classes of structural variation}
 \label{sec:sv_classes}
 
-The spectrum of \acl{sv} is broad. The major \sv classes are generally be
-divided into \acl{cnv}, such as deletions and
-duplications, or balanced rearrangements, such as inversions and translocations.
-Below
+The spectrum of \aclp{sv} is broad. The major \sv classes are generally be
+divided into \aclp{cnv}, such as deletions and
+duplications, or balanced rearrangements, such as inversions and translocations,
+yet a series of other \sv forms is known. Below, I introduce the major classes
+of \acp{sv} that are relevant in this work.
 
 \emph{\Acfp{cnv}} describe the focal loss or gain of genetic material. They are
 termed \emph{imbalanced}, as they do not leave the balance of the two homologues
@@ -51,21 +52,20 @@ Aneuploidy can range from a single chromosome (or at least the majority of the
 chromosome) being lost or gained, up to a complete increase or decrease of the
 ploidy level (of all chromosomes). The expected \explain{ploidy}{In humans,
     $N$ equals 23, meaning that we carry 46 chromosomes in our cells.
-    Interestingly this number was falsely believed to be 48 for three decades
+    Interestingly, this number was falsely believed to be 48 for three decades
     before it was corrected by \citet{Tijo1956}}
 in diploid organisms is $2N$, where $N$ is the number of chromosomes and $2$ the
 number of homologous copies. Ploidy can aberrantly increase to \emph{triploidy}
 ($3N$), \emph{tetraploidy} ($4N$) or even higher states covered by the general term
-\emph{polyploid}y. Cells can also be in a purely \emph{haploid} state ($1N$),
+\emph{polyploidy} (\cref{fig:SV_classes}). Cells can also be in a purely \emph{haploid} state ($1N$),
 but they are rarely viable due to problems with chromosome segregation. Mixed
-states, where only some chromosomes change their copy number or not all
-chromosomes have the same copy number are referred to as hyperploidy
-(\cref{fig:SV_classes}).
+states, where only some chromosomes increase their copy number, are somtimes
+also referred to as hyperploidy.
 
 Other types of \acp{sv} do not change the total copy number of a locus. Notably,
 \emph{inversions} reverse the orientation of a locus, but generally do not
 include gains or losses (\cref{fig:SV_classes}). In fact, even an inversion can
-introduce (or co-locate with) \ac{cnv} depending on its mechanism of formation,
+introduce (or co-locate with) \acp{cnv} depending on its mechanism of formation,
 which his is one of the major findings of \cref{sec:complex_invs}.
 In cases where multiple \sv classes occur within the same allel we term them
 \emph{complex}. The most prominent examples are \emph{inverted duplications},
@@ -88,33 +88,33 @@ without gaining or loosing genetic material.
     a triploid and a tetraploid chromosome.}
 
 Another class falling into the category of balanced \acp{sv} are
-\emph{translocations}. For a translocation, genetic
+\emph{translocations}. In a translocation event, genetic
 material is exchanged between two non-homologous chromosomes. A \emph{reciprocal
 translocation} is balanced because the total amount of genetic material does
-not change, just the assignment of certain loci (potentially of whole arms)
+not change, just the assignment of certain loci (potentially of whole chromosomal arms)
 to chromosomes.
 But \emph{imbalanced translocations} can arise, too. Here, one chromosome remains
 largely unchanged but a part of the homologue is duplicated and added to another
 chromosome, which might itself loose genetic material at the same time. This can
-involve whole chromosome arms, but also smaller loci---this is also covered by
+involve whole chromosome arms, but also smaller loci, which is also covered by
 the definition of translocation. Typically though, translocation refers to the
 special case of a reciprocal translocation as shown in \cref{fig:SV_classes}.
 
-Furthermore, when cells lack one of the two alleles of a larger genomic locus,
+Furthermore, when cells lack one of the two alleles within a larger genomic region,
 this is called a \emph{\acf{loh}}. \loh is an immdiate consequence of the
-(partial) loss of a homologue, as for example happens in case of a deletion.
+(partial) loss of a homologue during a deletion.
 However, there are also copy-neutral \loh events in which the same haploid
 genotype is present in two copies. This might for example occur when an
-individual inherits two copies of a chromosome from one parent and none from the
+individual inherits two copies of a chromosome from one parent, and none from the
 other parent (uniparental disomy), but it can also occur via other mechanisms
 (\cref{sec:mechanisms}). \Ac{loh} is often not observed directly, but indirectly
 by looking at smaller variants (notably \acp{snv}) in a given genomic
-region-–-the absence of heterozygous variants is an indicator of \loh.
+region---the absence of heterozygous variants is an indicator of \loh.
 
 Finally, various other forms of \acp{sv} exist that are of less relevance for
 this work. One exception, which shall briefly be mentioned here, are
 \emph{\acfp{mei}}. Mobile elements, notably \emph{transposons}, are DNA elements
-that can ``jump'' within a host genome. The human consists to a large amount of
+that can ``jump'' within a host genome. The human consists to a large fraction of
 the remainders of such elements \citep{Haubold2006}, which are largely
 prohibited from active transposition by repressive mechanisms in the host cell.
 A \mei may occur in a cut-and-paste or a copy-and-paste fashion and, although
