@@ -135,18 +135,20 @@ typically yields a maximum read length below 100~kb\footnoteref{footnote:pacbiob
 
 \section{Effects of SVs on gene expression and chromatin organization}
 
-In \cref{sec:balancer}, we had set out to study the functional consequences of
+In \cref{sec:balancer}, we set out to study the functional consequences of
 \acp{sv} in respect to gene expression and chromatin conformation. My first goal
 within this collaborative project was to characterize the variants present in
 highly rearranged balancer chromosomes. I achieved this by utilizing deep \wgs
 and \hic data. Among many other aspects, I discovered the exact breakpoints of
 large rearrangements of the balancer chromosomes. In the meantime, others had
 mapped these breakpoints, too, and reassuringly, our results perfectly matched
-their findings \citep{Miller2016,Miller2018}. However, through the technological
-advantage of having \hic data, I could additionally detect precisely (in 2
+their findings \citep{Miller2016,Miller2018}.
+
+However, through the technological
+advantage of \hic data, I could additionally detect precisely (in 2
 cases) or approximately (in 1 case) the breakpoints that had been missed by
-these studies. Further, I utilized haplotype-resolved \hic maps to validate
-large rearrangements including a inversion and a duplication of 258~kb. The
+these studies. In addition, I utilized haplotype-resolved \hic maps to validate
+large rearrangements including a inversion, and a duplication of 258~kb. The
 large duplication most likely inserted in reverse orientation next to the
 original copy, which I concluded from the differential contact frequencies
 around the affected locus. Together, these findings clearly show the benefits
@@ -158,12 +160,14 @@ corrects for effects of maternally deposited RNA. I found that changes in
 expression occur almost everywhere across the genome and that they appear not to
 be caused by enhancer hijacking, as had been observed in previous studies.
 Instead, \acp{sv} alter expression via alternative mechanisms such as dosage
-effects or chimeric expression of transcripts through mobile elements. Our
+effects or chimeric expression of transcripts through mobile elements (summarized in \cref{sec:balancer_concl}). Our
 findings appear contrary to what has been seen in other scenarios; however, I
-argue that this might be a result of natural selection in both these other
-studies and in ours. Balancer chromosomes show a remarkable robustness towards
-the huge rearrangements that they carry, and a potential enhancer hijacking
-mechanism appears to be buffered.
+argue that this might be a result of natural selection in both the other
+studies and in ours. In conclusion, balancer chromosomes show a remarkable
+robustness towards the huge rearrangements and other variation that they carry,
+and the potential effects of enhancer hijacking mechanisms appear to be buffered.
+I speculated that this buffering might be caused by other forms of variation,
+such as \acp{snv}, or possible via changes of the epigenome.
 
 We think that these results will complement
 previous studies and lead to a more holistic view on the role of chromatin
@@ -179,7 +183,7 @@ I demonstrated in \cref{sec:balancer} how \hic data can be utilized for \sv
 characterization. Naturally---and considering the popularity of \hic and the
 amount of publicly available data---this observation was made by others, too.
 
-To potential of \hic to improve \textit{de novo} assembly had been noted early on:
+The prospects of \hic for purposes other than studying chromatin conformation has been noted early in the field of \textit{de novo} assembly:
 \Citet{Kaplan2013}, for instance, predicted that \hic could facilitate assembly
 and assigned unplaced contigs to the human genome; \Citet{Burton2013} created
 scaffolds of human, mouse, and \textit{Drosophila} genomes based on \hic and
