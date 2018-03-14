@@ -78,13 +78,6 @@ of 0.1\% \citep{Fox2014}.
 
 \paragraph{Applications}
 
-\figurepagewidth[t]{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads
-    from \mps are typically short (for example 100~bp), are sequenced from
-    their $5^\prime$ ends and can be single-ended or paired-end. In
-    paired-end or mate pair libraries, the lengths of the original DNA fragment
-    (which can be estimated after read mapping) is called insert size and
-    usually much larger in mate pair experiments than in paired-end experiments.}
-
 In contrast to Sanger sequencing, which targets a single locus, \mps can be
 applied to perform \emph{\acf{wgs}}. During \wgs, DNA is highly fragmented prior
 to the construction of a sequencing \emph{library}, which is then sequenced via \mps to
@@ -105,6 +98,14 @@ reverse-transcription into cDNA. We used this technique in \cref{sec:balancer}.
 of particular interest in this work.
 
 \paragraph{Paired-end sequencing}
+
+\figurepagewidth[t]{reads.pdf}{reads}{MPS sequencing reads}{Sequencing reads
+    from \mps are typically short (for example 100~bp), are sequenced from
+    their $5^\prime$ ends and can be single-ended or paired-end. In
+    paired-end or mate pair libraries, the lengths of the original DNA fragment
+    (which can be estimated after read mapping) is called insert size and
+    usually much larger in mate pair experiments than in paired-end experiments.}
+
 Modern sequencing machines offer the possibility to sequence a DNA fragment
 from both ends. In case of Illumina/Solexa, this is achieved by a special step
 of bridge amplification that anneals the free end of all fragments in a clonal
@@ -166,6 +167,50 @@ typically fail to produce long consecutive sequences \citep{Alkan2011_assembly}.
 \subsection{Emerging long read sequencing technologies}
 \label{sec:long_read_seq}
 
+Over the last years, new sequencing technologies have been developed which are
+commonly referred to as ``3rd-generation sequencing'' in the community. These
+technologies are fundamentally different to \mps technologies in that they avoid
+clonal amplification of DNA fragments, but sequence single molecules instead.
+Although single molecule sequencing had been feasible already earlier
+\citep{Braslavsky2003}, later commercialized by Helicos BioSciences,
+third-generation sequencing is commonly associated only with the techniques of
+\acf{pacbio} and \acf{ont}. In contrast to the Helicos platform, these
+techniques achieve significantly longer read lengths (up to more than 100~kb)
+at usually decreased accuracy. Unlike Sanger's technology, they still sequence
+many molecules in parallel.
+
+\paragraph{\acl{pacbio}}
+Like Illumina \mps, The technology of \acl{pacbio} relies on the concept of sequencing by synthesis using
+fluorescently labeled deoxynucleotides. However, the sequencing
+occurs in real time on single molecules and was hence termed
+\emph{Single-Molecule Real-Time sequencing (SMRT)} \citep{Eid2009}. Fluorescent
+image detection occurs not in cycles, but continuously (acquiring \emph{movies} instead of images).
+Besides deciphering the order of nucleotides, this principle also measures
+kinetics of the polymerase, allowing the detection of modified bases such as
+methylated cytosine \citep{Flusberg2010}.
+
+The major challenge in the development of SMRT sequencing
+was the detection of the fluorescence signal from a single nucleotide upon
+ligation. To this end, researchers had engineered microplates with so-called
+zero-mode wave guides \citep{Uemura2010}. The laser for excitation of
+fluorophores only illuminates the bottom of these nanowells, in which the
+polymerases are deposited. This way, only the nucleotides that are actively
+being incorporated by the polymerase can be excited and detected
+against a background of fluorophores outside the well \citep{Heather2016} (see
+\cref{fig:third_gen} A). The base calling in single molecules is still noisier than
+detection in clonally amplified sequences, though, leading to reported per-base-error
+rates of 11-15\% \citep{Rhoads2015}.
+
+To improve accuracy, \pacbio researchers
+promoted a technique called \emph{circular consensus sequence (CCS)}
+\citep{Travers2010}. Here, a double-stranded DNA fragment ligates to hairpin
+adapters on both ends to form a circular DNA molecule (the sugar phosphate
+backbone is one covalently bound ring), which still preserves
+its double-stranded structure. The polymerase can then pass this ring of DNA
+repeatedly, effectively sequencing the same fragment multiple times. This long
+read is computationally divided into sub-reads and a consensus is formed with
+reported accuracies of up to more than 99\% \citep{Rhoads2015}.
+
 \figuretextwidth[t]{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
     \texorpdfstring{\acs{pacbio}}{PacBio} and \texorpdfstring{\acs{ont}}{ONT}
     sequencing}{
@@ -181,43 +226,8 @@ typically fail to produce long consecutive sequences \citep{Alkan2011_assembly}.
     Figure taken from \citetitle{Heather2016} \citep{Heather2016} licensed under
     \acl{ccby4}.}
 
-Over the last years, new sequencing technologies have been developed which are
-commonly referred to as ``3rd-generation sequencing'' in the community. These
-technologies are fundamentally different to \mps technologies as they avoid
-clonal expansion of DNA fragments, but sequence single molecules instead.
-Although single molecule sequencing had been feasible already earlier
-\citep{Braslavsky2003}, later commercialized by Helicos BioSciences,
-third-generation sequencing is commonly associated only with the techniques of
-\acf{pacbio} and \acf{ont}. In contrast to the Helicos platform, these
-techniques achieve significantly longer read lengths (of up to more than 100~kb)
-at usually decreased accuracy. Unlike Sanger's technology, they still sequence
-many molecules in parallel.
 
-The technology of \acl{pacbio} relies on the concept of sequencing by synthesis using
-fluorescently labeled deoxynucleotides. Unlike with Illumina, the sequencing
-occurs in real time on single molecules and was hence termed
-\emph{Single-Molecule Real-Time sequencing (SMRT)} \citep{Eid2009}. Fluorescent
-image detection occurs not in cycles, but continuously (creating a \emph{movie}).
-Besides deciphering the order of nucleotides, this principle also measures
-kinetics of the polymerase, allowing the detection of modified bases such as
-methylated cytosine \citep{Flusberg2010}. The major challenge in SMRT sequencing
-is the detection of the fluorescence signal from a single nucleotide upon
-ligation. To this end, researchers had engineered microplates with so-called
-zero-mode wave guides \citep{Uemura2010}. The laser for excitation of
-fluorophores only illuminates the bottom of these nanowells, in each of which a
-polymerase is deposited so that nucleotides can be detected during incorporation
-against a background of fluorophores outside the well \citep{Heather2016} (see
-\cref{fig:third_gen}a). Single-molecule base detection is still noisier than
-detection in clonally amplified sequences, leading to reported per-base-error
-rates of 11-15\% \citep{Rhoads2015}. To improve accuracy, \pacbio researchers
-promoted a technique called \emph{circular consensus sequence (CCS)}
-\citep{Travers2010}. Here, a double-stranded DNA fragment ligates to circular
-adapters on both ends to form a circular DNA backbone, which still preserving
-its DNA double-stranded structure. The polymerase can then pass this ring of DNA
-repeatedly, effectively sequencing the same fragment multiple times. This long
-read is computationally divided into sub-reads and a consensus is formed with
-reported accuracies of up to more than 99\% \citep{Rhoads2015}.
-
+\paragraph{\acl{ont}}
 \Acl{ont} utilize a fundamentally different approach to sequence single
 molecules. Driven by electrophoresis, a single-stranded DNA passes through a
 tiny pore that can detect changes in the ionic current specific to the type of
@@ -231,21 +241,23 @@ genetically modified version of \textit{MspA}, a porin from
 \textit{Mycobacterium smegmatis} that allowed a much better signal-to-noise
 ratio \citep{Butler2008}. A second crucial step was to decelerate the passage of
 each single nucleotide through the pore in order to allow accurate measurements
-of currents. While DNA polymers would pass a pore at a rate of $10^{-13}$ sec
+of currents. While DNA polymers would naturally pass a pore at a rate of $10^{-13}$ sec
 per nucleotide even for the smallest voltages, researchers had the idea to place
-processive enzymes in front of the pore that slightly pause passage with each
-nucleotide \citep{Deamer2016}. \Ac{ont} offered the first commercially availabe
+processive enzymes in front of the pore that slightly pause the passage of each
+nucleotide \citep{Deamer2016}.
+
+\Ac{ont} offered the first commercially availabe
 nanopore sequeqncing devices, named MinION, in an early access program from 2014.
-They utilize an ATP-dependent helicase enzyme that unwinds double-stranded DNA
+Their technology utilizes an ATP-dependent helicase enzyme that unwinds double-stranded DNA
 before passaging the pores, with detection happening simultaneously at up to
 512 pores \citep{Jain2015}. A hairpin adapter is ligated to DNA fragments, so
 that after a single strand has passed the pore the complementary strand
 (linked covalently via the hairpin adapter) follows. This sequences the same
-fragment twice and is utilized to improve sequencing quality. The corrected reads
+fragment twice and is utilized to improve sequencing quality. These corrected reads
 are called \emph{2D reads} and were reported to have an improved error rate of
 15\% \citep{Jain2015}. Through the MinION early acces program our laboratory
-gained access to MinION devices, so that we could apply the technique in my
-research project describe in \cref{sec:complex_invs}.
+gained access to MinION devices, enabling us to apply the technique in the scope
+of the research project describe in \cref{sec:complex_invs}.
 
 
 
@@ -260,10 +272,12 @@ time been limited to imaging-based approaches. \citet{Dekker2002}, however,
 proposed a new technique named \emph{chromatin conformation capture (3C)} that
 probes the three-dimensional distance of loci using genomics methods. The basic
 idea is to crosslink DNA with itself in regions that are in close spatial
-proximity. The results of such experiments give insight into the contact
-frequency between two loci relative to other loci, which can be interpreted as
+proximity. The results of such experiments give insight into the \emph{contact
+frequency} between two loci relative to other loci, which can be interpreted as
 an average three-dimensional distance between the loci observed across many
-nuclei. The original 3C protocol relies on targeted \pcr amplification and is
+nuclei.
+
+The original 3C protocol relies on targeted \pcr amplification and is
 capable of testing the interaction between exactly two loci. However, multiple
 protocols based on 3C have recently been shown to increase the level of
 parallelism, including 4C \citep{Zhao2006,Simonis2006} and 5C \citep{Dostie2006}.
@@ -275,11 +289,11 @@ removing fragments ligated to themselves) both reads of a pair represent two
 loci that were in close three-dimensional proximity within the nucleus.
 Principally, the unbiased contact frequency of all loci against all other loci
 can be measured in this way. In practice, the resolution of these two-dimensional
-contact map strongly depends on sequencing coverage. For example, to achieve
-1~kb resolution, \citet{Rao2014} utilized 4.9 billion pairwise contacts in a
-human cell line.
+contact maps strongly depends on sequencing coverage. For example, to achieve
+1~kb resolution---the densest maps known to date---\citet{Rao2014} required 4.9
+billion pairwise contacts in a human cell line.
 
-\figuretextwidth{chrom_conf_cap_Li2014_CC.jpg}{ccc}{Chromatin conformation
+\figuretextwidth[t]{chrom_conf_cap_Li2014_CC.jpg}{ccc}{Chromatin conformation
     capture technologies}{
     Chromatin conformation capture relies on cross-linking of DNA, enzymatic
     digestion and subsequent ligation of cross-linked loci. In the 3C-protocol,
@@ -289,7 +303,7 @@ human cell line.
     \citep{Li2014}  licensed under \acl{ccby4}.}
 
 \hic was designed and used to study chromatin conformation and specific
-three-dimensional features such as DNA loops forming between enhancers and
+three-dimensional features, as for example DNA loops forming between enhancers and
 promoters. It further revealed previously unknown structural features of the
 genome, which are discussed in more detail in \cref{sec:balancer_hic_svs}.
 However, the characteristics of \hic contact maps predestinate them for at least
@@ -301,8 +315,8 @@ novo} assembly \citep{Burton2013}. Another observation is that the contact
 frequency between loci typically decays quickly with increasing genomic
 distance, meaning that the highest signal is detected between loci that are also
 close in linear genomic proximity. Because of that, larger genomic
-rearrangements become prominent in contact maps---I utilized this feature of
-\hic maps to characterize genomic rearrangements in \cref{sec:balancer}.
+rearrangements become prominent in contact maps---this is what I utilized
+to characterize genomic rearrangements in \cref{sec:balancer}.
 
 
 
@@ -316,21 +330,19 @@ of homologues by sequencing only the template strand of each chromosome
 \citep{Falconer2012,Sanders2017}. The readout are sequencing reads, obtained via
 \mps (e.g. on an Illumina platform) in either paired-end or single-ended mode,
 which all map in the same orientation (plus strand or minus strand) to a
-reference genome if they originated from the same homologue. In cells where
-homologues are inherited on opposite strands, so-called Watson and Crick
+reference genome if they originated from the same homologue\footnote{In paired-end
+sequencing, the first reads of all pairs map in the same orientation.}. In cells where
+homologues are inherited on opposite strands, which we call \emph{Watson (W)} and \emph{Crick (C)}
 strands, the original homologue for each read (including potential variants
 captured by this read) can be determined simply based
 on its mapping orientation. Strand-seq can thus reliably phase (i.e. distinguish
 haplotypes) chromosomes in their full length \citep{Porubsky2016}. Moreover,
 given the consistent directionality of sequencing reads across a homologue,
 Strand-seq allows to detect (large) inversions in respect to the reference
-genome \citep{Sanders2016}.
-Strand-seq was futher used to study sister chromatid exchange events
-\citep{Falconer2012}. In \cref{sec:mosaicatcher}, I present a novel approach
-that utilizes Strand-seq libraries across multiple single cells to detect mosaic
-\acp{sv}.
+genome \citep{Sanders2016}. Strand-seq was futher used to study \acl{sce} events
+(introduced in \cref{sec:mosaic_mc}) \citep{Falconer2012}.
 
-\figuretextwidth{strand_seq.pdf}{strand_seq}{Strand-seq principle}{
+\figuretextwidth[t]{strand_seq.pdf}{strand_seq}{Strand-seq principle}{
     \subpanel{A} Diploid cells (here schematically represented only for a single pair of
     chromosomes) contain maternal (M) and paternal (P) homologous chromosomes,
     each of which is a double-stranded DNA molecule. Watson (W) and Crick (C)
@@ -353,11 +365,16 @@ is the basis for obtaining stranded sequencing libraries, because after cell
 division each daughter cell will have only one strand labeled with BrdU
 (\cref{fig:strand_seq}). After cytokinesis, the DNA of a daughter cell is
 enzymatically digested into fragments using a micrococcal nuclease enzyme
-(MNase). These fragments are ligated to sequencing adaptors. BrdU
-containing fragments are then degraded via photolytic cleavage, so that
-subsequently only non-BrdU containing fragments are amplified via \pcr.
+(MNase). These fragments are ligated to sequencing adaptors. BrdU-containing
+fragments are then degraded via photolytic cleavage, so that
+subsequently only non-BrdU-containing fragments are amplified via \pcr.
 Fragments from each single cell are tagged with cell-specific barcodes and are
 finally sequenced simultaneously, typically 96 cells together in one Illumina
 lane \citep{Sanders2017}.
+
+In \cref{sec:mosaicatcher}, I go into more depth on the workings of Strand-seq,
+notably on the computational analysis of Strand-seq data. I then present a novel
+approach that utilizes Strand-seq libraries across multiple single cells to
+detect mosaic \acp{sv}.
 
 
