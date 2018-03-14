@@ -286,7 +286,8 @@ their regulation, or that this effect is negligible in comparison
 to larger rearrangements.
 
 \figuretwocolumns[0.38]
-    {balancer_chroms.pdf}{balancer_chroms}{Genome overview}{Schematic of the
+    {balancer_chroms.pdf}{balancer_chroms}{Genome overview of balanced fly line}
+        {Schematic of the
         four chromosomes of (female) \textit{D. melanogaster} flies of the wild
         type line $F_0$ and of the double balancer cross $F_1$. \Ac{cyo} red,
         \ac{tm3} blue. }
@@ -479,7 +480,7 @@ we are primarily interested in genetic variation distinguishing the homologues.
         Weighted average          &   4,279 &    &    & $^*$0.375\% \\
         \bottomrule
     \end{tabu}
-    \tabcap{pcrresults}{\Ac{pcr} for deletion validation}{Number of calls as
+    \tabcap{pcrresults}{Deletion validation via PCR}{Number of calls as
         well as number number of validated (\textbf{V}) and invalidated
         (\textbf{I}) loci as determined by \pcr. The proportion of validated
         calls determines the empirical \ac{fdr}.
@@ -576,7 +577,7 @@ increases the copy number of 33 genes.
 \label{sec:balancer_hic_svs}
 
 \figuretextwidth[t]{dup_hic_biaf.png}{dup_hic_biaf}{Large duplication on
-    \texorpdfstring{\cyo}{CyO} characterized by differential Hi-C data}{
+    CyO characterized by differential Hi-C}{
     Genomic regions around the duplication \textit{chr2L:8,957,000-9,215,000}.
     The top panel displays differential unnormalized Hi-C fragment counts
     ($\textrm{log}_2 \frac{bal}{wt}$)
@@ -663,7 +664,7 @@ of the right end of the duplicated locus to the left neighboring region. Taken
 together this is best explained by an inverted duplication occurring in tandem.
 
 \figuretextplusmargin{balancer_hiC_rearrangements.png}{balancer_hic_rearrangements}
-    {Major rearrangements of the balancer chromosomes revealed by Hi-C}{
+    {Major rearrangements of balancer chromosomes seen in Hi-C}{
     \subpanel{A} Haplotype-resolved Hi-C contact frequency maps of chromosomes 2 and 3 in
     respect to the wild type reference genome are shown. Details of the data
     processing can be found in \cref{sec:suppl_hic}. The bottom triangles show
@@ -825,7 +826,7 @@ analyses. On average we could separate 28\% of RNA-seq read pairs (read lengths
 2$\cdot$144~bp) using this approach, as summarized in \cref{tab:balancer_rnaseq}.
 
 \figuretextwidth{DESeq2_N1_6_8h.png}{DESeq}{ASE analysis based on
-    \texorpdfstring{\deseq}{DESeq2}}{The x-axis shows the average fragment count
+    \texorpdfstring{\acs{deseq}}{DESeq2}}{The x-axis shows the average fragment count
     per gene across four replicates (only haplotype-assigned read pairs go into
     this number). The y-axis shows log$_2$ ratio of balancer over wild
     type counts. A single outlier to the right was trimmed.}
@@ -863,7 +864,7 @@ whether balanced chromosomes contained a higher fraction of \ase genes than
 unbalanced chromosomes such as chromosome X. This could not be answered in our
 $N_1$ backcrosses, where chromosome X had eventually become homozygous due to the
 maternal wild type line.
-\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE per chromosome}{
+\figuremargin{ASE_chrX_numbers.pdf}{ase_chrX}{ASE fraction per chromosome}{
     Balancer fraction of allele-specific RNA-seq fragments on chromosomes 2, 3,
     and X in a adult, female flies from an $F_1^{f}$ line. Error bars
     indicate 99\% confidence intervals from a binomial test.}
@@ -1186,8 +1187,8 @@ altered genomic order, 1,388 (2.9\%) of the detected significant differences
 spanned across a breakpoint of the large chromosomal rearrangements---these
 pairs were excluded from the further analysis.
 
-\figuretextwidth[t]{HiC_ASE_genes_Alek.pdf}{HiC_ASE_genes}{Differential \hic
-    contact around genes}{This shows differential \hic contacts between gene
+\figuretextwidth[t]{HiC_ASE_genes_Alek.pdf}{HiC_ASE_genes}{Differential Hi-C
+    contact from gene promoters}{This shows differential \hic contacts between gene
     promoters (at 0~kb; all genes are aligned and oriented with the gene and
     downstream sequence to the right) and all other 5~kb bins within $\pm$100~kb.
     On the y-axis, the fraction of significantly differential \hic contacts among
