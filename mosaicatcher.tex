@@ -1,4 +1,4 @@
-\chapter{Structrual Variant Detection in Single Cells}
+\chapter{Structural Variant Detection in Single Cells}
 \label{sec:mosaicatcher}
 
 Here, I present the current state of a project with the objective to develop a
@@ -90,12 +90,12 @@ been lagging behind.
 
 These limitations made it difficult to robustly discern structural variation,
 especially copy number-neutral and complex events such as inter-chromosomal
-rearrangments or inversions, in the context of cellular
+rearrangements or inversions, in the context of cellular
 heterogeneity. Consequently, the role of somatic \acp{sv} remains comparatively
-underexplored to other forms of genetic variation. In this chapter, I present a
+under-explored to other forms of genetic variation. In this chapter, I present a
 novel principle to study \acp{sv} on the single-cell level. Based on the
 single-cell sequencing method Strand-seq, we developed a computational approach
-for the detection of varous \sv classes, including ones that were previously
+for the detection of various \sv classes, including ones that were previously
 difficult to ascertain. Below, I
 explain this method in detail and give an outlook on the future research that
 can and will be done using this promising novel approach.
@@ -138,7 +138,7 @@ of seven different \sv classes and demonstrate our computational method called
             the right, in blue. In the cell shown here, data reads were binned at
             200~kb-bin contains, leading to a median count of 76 reads per bin depicted by
             dotted lines. Some regions, e.g. the centromere of chromosome 1 or
-            the sub-telomeric regions of chromosomes 13--15, are not coverded by
+            the sub-telomeric regions of chromosomes 13--15, are not covered by
             reads because of mappability issues; these bins are excluded from
             further analyses. The estimated strand inheritance state of each bin
             is color-coded in the background: blue for CC, orange for WW and yellow
@@ -230,13 +230,13 @@ five different \sv classes that we identified in \rpe cell lines.
     \tabcap{mosaic_sv_signals}{Distinct signatures of focal SVs in Strand-seq
     data}{SVs can be identified based on three separate signatures of Strand-seq
     data: the total read coverage (\emph{Cov.}), the strand ratio (here shown
-    as Watson fraction; \emph{W.f.}), and the presenece of haplotype-tagging
-    \acp{snv} on each strand (\emph{Haplotpye}). The table shows how
+    as Watson fraction; \emph{W.f.}), and the presence of haplotype-tagging
+    \acp{snv} on each strand (\emph{Haplotype}). The table shows how
     focal \sv types can be inferred from these signals. This is different
-    for WC chromosomes than for WW or CC chromosomes. For the sake of simpliciy,
+    for WC chromosomes than for WW or CC chromosomes. For the sake of simplicity,
     the table only shows the WW case and assumes heterozygous variants to affect
     haplotype $h_1$. Entries in orange are \sv classes that cannot be
-    distinguished unambigously using only coverage and Watson fraction.
+    distinguished unambiguously using only coverage and Watson fraction.
     Specifically, homozygous inversions remain hidden in WC cells and an
     inverted duplication of $h_1$ cannot be distinguished from a duplication of
     $h_2$. Entries marked in blue cannot be phased based on coverage and Watson
@@ -281,7 +281,7 @@ of phased \acp{snv} (\cref{tab:mosaic_sv_signals}).
 
 In a copy-neutral \acl{loh}, one homologue is
 ``overwritten'' by the other homologue, leading to extended regions of
-homozygousity. To reveal \loh, the alleles of \acp{snv} must be assessed. We recently
+homozygosity. To reveal \loh, the alleles of \acp{snv} must be assessed. We recently
 noted sporadic regions of \loh within cells of a lymphoblastoid cell
 line (data not shown). This analysis as well as other work on haplotype information
 was spearheaded by \david and will hence not be covered in this
@@ -378,7 +378,7 @@ workflow is available at \url{https://github.com/friendsofstrandseq/pipeline}.
 Strand-seq data is extremely sparse: the best libraries currently produced
 contain around 300 reads per Megabases \citep{Chaisson2017,Sanders2017}.
 This is related to the fact that the Strand-seq protocol does not include
-whole-genome amplification. Incidentally, this also makes Strand-seq excempt
+whole-genome amplification. Incidentally, this also makes Strand-seq exempt
 from related biases in coverage. In
 order to work with sparse data, I applied a binning scheme that summarizes
 sequencing reads in windows of a given size, e.g. 50~kb. Alternatively, these
@@ -419,7 +419,7 @@ and detecting boundaries within the merged signal
 \citep{Sanders2016}. However, this approach has the disadvantage that it can
 mask subclonal variants, especially the ones at low allele frequency that we
 are particularly interested in. Boundaries have also been determined within
-single cells separately, e.g. via \textsc{BreakPointR}\footnote{Unpublishd
+single cells separately, e.g. via \textsc{BreakPointR}\footnote{Unpublished
     method by \david. \url{https://github.com/daewoooo/BreakPointR}}
 or based on a \hmm similar to our aforementioned approach \citep{Bakker2016}.
 However, this leads to the subsequent challenge of forming consensus boundaries
@@ -461,7 +461,7 @@ hence be scaled to the size of the tested region. In line with our intuition,
 genomic regions intervals than for small \acp{sv}.
 
 As we do not have a clear understanding of the processes that cause background
-reads (i.e. reads from a homologue that map to opposite, non-tamplate strand),
+reads (i.e. reads from a homologue that map to opposite, non-template strand),
 we cannot accurately model them. We hence added a factor
 $\alpha \approx 5\%$ to our model to formulate a \nb distribution that captures
 this case. For instance, in a WW regions with $e$ expected total reads, the
@@ -477,7 +477,7 @@ make a final \sv call.
     number of reads for the possible copy number states 0N, 1N, and 2N.
     In this example, the expected number of reads in a 2N state is 20 (blue
     curves). Both strands are modeled by separate \nb distributions, that, when
-    combined, yield a joint probability (area of the rectangles; top right subpanels).
+    combined, yield a joint probability (area of the rectangles; top right sub-panels).
     Here, only the joint states W, C, WW, WC, CC are shown for the sake of
     simplicity (other possible states would be WWW, WWC, WWCC, and so on).
     \subpanel{A} 12 W and 8 C reads were observed, for which the joint
@@ -486,7 +486,7 @@ make a final \sv call.
     difference to the runner up (WC) is not big.
     For SV calling, these joint states have to be interpreted in respect to the
     strand inheritance state of the chromosome: for example in a WC cell,
-    example \textbf{A} would be rejected (WC, i.e. reference, is the most likley
+    example \textbf{A} would be rejected (WC, i.e. reference, is the most likely
     state) but example \textbf{B} would be considered for a heterozygous inversion
     (WW state).}
 
@@ -525,7 +525,7 @@ the same copy number. In Strand-seq data, I apply this principle to both strands
 separately. It can be formulated as a problem of placing $k$
 breakpoints in such a way, that the resulting consecutive segments best
 represent a single copy number state each---``best'', in this case, refers to
-the squarred (Gaussian) error, which shall be minimized. This problem gained much attention with the
+the squared (Gaussian) error, which shall be minimized. This problem gained much attention with the
 availability of comparative genomic hybridization arrays to map \acp{cnv}.
 Several methods were put forward for this task and a popular one is circular
 binary segmentation \citep{Olshen2004,Venkatraman2007}. Today, these techniques
@@ -548,7 +548,7 @@ principle\footnote{Original from \url{http://bioconductor.org/packages/release/b
     \texttt{segmentation.hpp} at \url{https://github.com/friendsofstrandseq/mosaicatcher})}.
 The \textsc{tilingArray} algorithm internally uses a cost matrix that defines
 how expensive (in terms of variance) each consecutive segment is. A dynamic
-programming algorithm then choses the optimal combination of breakpoints. The
+programming algorithm then chooses the optimal combination of breakpoints. The
 calculation of the cost matrix in \textsc{tilingArray} assumes the changes in
 signal across all replicates to be the same, i.e. an increase at the same locus
 in all samples.
@@ -582,7 +582,7 @@ These simulations allow us to test the correctness of our method during its
 development. More importantly though, they make it possible to explore the
 theoretical limitations of \mc, e.g. in terms of the smallest SV size or lowest
 variant frequency that can be detected reliably. Due to the
-simulations we can focus our efforts on continously refining the methodology in
+simulations we can focus our efforts on continuously refining the methodology in
 order to push these limits.
 
 \figurearbitrary[t!]{0.7}{mosaic_simulation_examples.png}{simulation_examples}{
@@ -645,7 +645,7 @@ underlies a random sampling of cells during a Strand-seq experiment.
         $n$       & 100    & Number of cells \\
         $w$       & 50,000 & Window size \\
         %$g$       & GRCh38 & File describing number and size of chromosomes \\
-        $c$/$C$   & 10/20  & Expected coverage. Sampled uniformely from $[c,C]$ \\
+        $c$/$C$   & 10/20  & Expected coverage. Sampled uniformly from $[c,C]$ \\
         $p$       & 0.5    & \nb parameter $p$ \\
         $a$       & 0.1    & Fraction of non-zero background bins \\
         $s$       & 4      & Expected number of \sce events per cell \\
@@ -655,10 +655,10 @@ underlies a random sampling of cells during a Strand-seq experiment.
     \tabcap{simulation_params}{Major parameters controlling Strand-seq simulations}
         {These parameters can be specified during Strand-seq simulations. The
         coverage is specified as the mean number of reads per bin and sampled
-        uniformely form the allowed range for each cell. The parameter $a$
+        uniformly form the allowed range for each cell. The parameter $a$
         controls the fraction of bins that allow background reads: for those bins,
         the number of background reads is sampled from a geometric distribution;
-        $a$ is hence only losely related to $\alpha$ (from the classification).}
+        $a$ is hence only loosely related to $\alpha$ (from the classification).}
 \end{table}
 
 At last, cells are rendered into Strand-seq libraries. Initially, I add spurious
@@ -723,7 +723,7 @@ The results are shown in \cref{fig:segm_simul}.
 
 These initial results show that the segmentation algorithm performs well in
 detecting \sv breakpoints in simulations. Large \sv, in the range of 1~Mb and
-above, can be identified exhausitvely for all three \sv classes. The number of
+above, can be identified exhaustively for all three \sv classes. The number of
 required breakpoints depends on the number of \acp{sv} present within the cell,
 which is of course not known \emph{a priori}. This is why the receiver operator
 characteristics plots show a rectangular behavior: with an increasing number of
@@ -760,10 +760,10 @@ different \sv classes that we identified in recently sequenced \acf{rpe} cell li
 Moreover, as Strand-seq operates on single cells, these \acp{sv} can be analyzed
 even if they are present only in a small fraction of the total cell population.
 This enables us to study \acp{sv} in the context of somatic mosaicism.
-Previously, these studies had been severly limited in their ability to assess
+Previously, these studies had been severely limited in their ability to assess
 \acp{sv} other than \acp{cnv} or struggled with lower variant frequencies.
 Strand-seq based \sv calling will thus open whole new possibilities to study
-the yet underexplored role of \acp{sv} in cellular heterogeneity.
+the yet under-explored role of \acp{sv} in cellular heterogeneity.
 
 I then presented our computational method called \mc that was designed to achieve
 fully automated \sv calling from Strand-seq. \mc operates by grouping sparse
@@ -780,7 +780,7 @@ class based on the number of strand-resolved reads within the locus.
 Due to our Bayesian inference strategy, we are able to supply prior knowledge
 and can easily integrate \sv predictions across the population of cells. While
 this method is currently under development, we have already seen positive
-evidence---for example in \rpe cells and publicly avialble data sets---that this
+evidence---for example in \rpe cells and publicly available data sets---that this
 approach performs well.
 
 In order to test the limitations of \mc, I designed a versatile framework for
@@ -807,7 +807,7 @@ challenges that yet have to be overcome. First of all, our current approach
 covers the detection of focal \acp{sv}, but not yet of translocations and
 aneuploidy. As their detection works principally different than for focal \acp{sv},
 I have been developing independent methods for them in parallel. These approaches,
-once they have been refined and thouroughly tested, shall later be integrated into a
+once they have been refined and thoroughly tested, shall later be integrated into a
 single software tool. A second point is that, in its current state, \mc does not
 utilize the information from phased \acp{snv}, although they can already be
 annotated using \strandphaser. Consequently, \acp{sv} can only be assigned
@@ -861,7 +861,7 @@ includes more than 1000 cells across 9 individuals from family offspring trios a
 is likely the richest Strand-seq data set available to date. Moreover, \acp{sv}
 have been mapped comprehensively based on a combination of techniques in these
 samples, making it a perfect test scenario for \mc. The cell line data is
-expected to be very homogenous, but we already observed sporadic stretches of
+expected to be very homogeneous, but we already observed sporadic stretches of
 \loh (unpublished work by \david). Moreover, we have Strand-seq libraries of
 multiple hyperploid cells, including the aforementioned \rpe C29
 line, to explore the identification of aneuploidy with Strand-seq data.

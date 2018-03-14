@@ -29,7 +29,7 @@ The 1000 Genomes Project was the effort of a large international panel of
 scientists to capture the genetic diversity of the human population as
 comprehensively as possible. The project can be regarded as the hitherto final
 step in a series of projects that unraveled and characterize the human genome:
-The Human Genome Project, which, founded in 1990, was likely the first truely large-scale
+The Human Genome Project, which, founded in 1990, was likely the first truly large-scale
 collaborative work in biology, as well as their private competitor Celera
 Genomics (from 1998) aimed at completing the first human genome sequence.
 These tremendous efforts, published simultaneously in early
@@ -59,7 +59,7 @@ to be studied \citep{Auton2015}. The final data set consists of approximately
 non-rare \acp{snv} in the studied populations. Besides novel insights on, for example,
 seemingly dispensable genes, the primary achievement of the project was to make
 an unprecedented resource of genetic variation available to the public. This
-came along with technical advances in methods and standardizations such as the
+came along with technical advances in methods and standardization such as the
 nowadays commonly used file format \vcf\footnote{Established for the
 1000 Genomes Project, the format is nowadays maintained by the Global Alliance
 for Genomics \& Health (\url{https://www.ga4gh.org}}.
@@ -70,7 +70,7 @@ impute \citep{Howie2012} missing \acp{sv} in many genome-wide association studie
 cancer studies \citep{Hiltemann2015}. At last, since the start of the 1000
 Genomes Project a considerable number of similarly large sequencing studies has
 popped up that focus on specific populations \citep{UK10K,Sulem2015,Telenti2016}
-or disease \citep{Campbell2017} and which eventually scale up the catalogue of
+or disease \citep{Campbell2017} and which eventually scale up the catalog of
 known variation in the human population.
 
 
@@ -212,7 +212,7 @@ set of inversion breakpoints was submitted to Sanger sequencing
             \begin{minipage}[t]{0.54\textplusmargin}
                 \centering
                 \tabcap{inv_validations}{Inversion validations}{Number of
-                predicted inversions analysed (\#Total), validated (\#Val.) and
+                predicted inversions analyzed (\#Total), validated (\#Val.) and
                 invalidated (\#Inval.) using one of several techniques performed
                 at EMBL or by collaborators.}
             \end{minipage}
@@ -246,7 +246,7 @@ I received both the raw sequencing data of the amplicons in multiple stages. At
 first I explored the differences between raw \pacbio reads and the circular
 consensus sequences provided by \pacbio’s internal software. In virtually all
 cases the circular consensus sequence showed the same information as its raw
-subreads, yet with less sequencing errors, which is why I preferred the
+sub-reads, yet with less sequencing errors, which is why I preferred the
 consensus sequences from that point on. After mapping to the human reference
 genome using \blasr, I selected reads mapping their respective locus for
 visualization. I then generated dotplots of each long read against its reference
@@ -282,10 +282,10 @@ potential allelic dropouts (as explained in \cref{sec:complex_invs_artifacts}).
 \figuretextwidth{complex_invs.pdf}
     {complex_invs}
     {Complex inversion types revealed by \pacbio and \ont MinION reads}
-    {Examplatory loci were selected to represent the most commonly seen
+    {Exemplary loci were selected to represent the most commonly seen
     classes of complex inverted variants (listed in \cref{tab:inv_classes}).
     Green lines denote inversions predicted by \delly. \pacbio circular
-    consesus sequences and raw \ont MinION reads (vertical) are compared to their
+    consensus sequences and raw \ont MinION reads (vertical) are compared to their
     reference locus (horizontal) via dotplots using maximal unique matches
     of lengths at least 10 (\pacbio) or 8 (MinION). Axes denote sequence lengths
     in base pairs. Original read names are included for later reference. See
@@ -365,13 +365,13 @@ reference allele. Intriguingly there was a clear trend towards the shorter
 allele being more abundant. For example in an inverted duplication, the
 reference allele was usually more abundant than the inversion allele, whereas in
 the case of an inversion flanked by a deletion, the alternative allele was seen
-more frequently. This is, however, not suprising as it is a known effect of \pcr
+more frequently. This is, however, not surprising as it is a known effect of \pcr
 to prefer shorter fragments and one of the reasons why many DNA protocols (such
 as standard Illumina sequencing for example) contain a size selection step. This
 is also why we required at least 30 reads of the reference allele to be seen
 before declaring a locus invalidated. Yet it could mean that some of the
 invalidated loci are in fact true inversion-type alleles but the alternative
-allele dropped out. This was not futher explored so that \fdr estimates for the
+allele dropped out. This was not further explored so that \fdr estimates for the
 amplicon-based inversion validation can be considered conservative.
 
 A last, initially very puzzling observation is also linked to long-range \pcr
@@ -454,7 +454,7 @@ task. At first, I extracted \pacbio reads mapping to a specific locus using \sam
 them for reads of the reference allele. This depletion relies on the orientation
 of sequence alignments computed by \last. Next, I fed the remaining reads into
 \celeraassembler version 8.2 to perform the actual assembly step per locus. The
-outcome is a list of \explain{contigs}{\emph{Contigous} stretches of DNA
+outcome is a list of \explain{contigs}{\emph{Contiguous} stretches of DNA
     derived from, in this case, stitching together sequencing reads based on
     their overlap. The order and orientation of these contigs to one another can
     often not be determined by the assembly software \citep{Alkan2011_assembly}},
@@ -474,7 +474,7 @@ to be crucial in achieving near-perfect quality.
     {Overview of length and quality of the 210 loci (listed in
     \cref{tab:inversionlocilist}) that were assessed using
     any of three technologies. Quality is approximated by number of mismatches
-    to the reference genome, taking into account known variantion of the sample.
+    to the reference genome, taking into account known variation of the sample.
     Note that unlike Illumina-assembled reads, \pacbio assemblies are restricted
     to the size of the amplicons.}
         {inv_assemblies_sizes.pdf}
@@ -512,7 +512,7 @@ known \acp{snv} were not counted. Eventually I gathered high quality,
 basepair-resolution sequence information for 210 loci (and 365 sample) of
 different classes of variants. The sizes and qualities of the best sequence per
 locus are shown in \cref{fig:inv_assemblies_qualities} and are the technology
-yielding the best data per locus is explicitely listed in
+yielding the best data per locus is explicitly listed in
 \cref{tab:inversionlocilist}.
 
 
@@ -594,10 +594,10 @@ of the set of complex \acp{sv}\footnote{I refer to the set of 199 loci as
 (non-complex) inversions} I compared them to another set of \acp{sv} using the
 exact same methodology. I employed a data set of short read assemblies of
 deletion breakpoints available from the 1000 Genomes Project \citep{Sudmant2015},
-parts of which had been analyzed beforehands \citep{Abyzov2015}. I filtered to
+parts of which had been analyzed beforehand \citep{Abyzov2015}. I filtered to
 this data set down to 12,206 single-breakpoint events without additional
 complexity and compared the breakpoint characteristics of complex \acp{sv} and
-deletions as shown in \cref{fig:inv_assemblies_microhomology}. Interstingly,
+deletions as shown in \cref{fig:inv_assemblies_microhomology}. Interestingly,
 deletions and complex \acp{sv} did not differ strongly in the amount and length
 of micro-homology. However, the distributions in general differed significantly
 (p-value < 0.001, Kolmogorov–Smirnov test ) with complex \acp{sv} harboring less
@@ -619,7 +619,7 @@ duplications follow exactly the same tight size distribution, and the deletions
 that sometimes flank inversions span a continuous size range rather than showing
 a binary pattern (present or absent). At last, the insertion of a few base pairs
 of DNA at the breakpoints of complex \acp{sv} could be traces of \nhej or \bir
-mechanisms operating \citep{Hastings2009,Carvalho2016}, yet I deemded the singal
+mechanisms operating \citep{Hastings2009,Carvalho2016}, yet I deemed the signal
 not strong enough to make these distinctions.
 
 
@@ -708,7 +708,7 @@ and displays those in red. Besides a one-vs.-one mode, \maze can compare many
 sequences to a single one, just as I needed in \cref{sec:complex_invs_validation}
 to inspect long reads of amplicon sequencing. Moreover, Maze can also compare
 multiple pairs of sequences, a scenario that became relevant once optimal
-assemblies for diferent loci were available in \cref{sec:breakpoints}. In those
+assemblies for different loci were available in \cref{sec:breakpoints}. In those
 sections an early version of \maze was used and plots were written as PDF files
 instead of displayed in the web browser.
 
@@ -858,7 +858,7 @@ in the high level of complexity. While generally the functional relevance of
 this class of complex SVs remains to be shown, a few variants overlap genes as
 for example \textit{Ras} homologue family member H \textit{(RHOH)}
 \citep{Sudmant2015}. \Ac{nahr} appears not to be relevant in creating these
-\acp{sv}, but the effective mechanisms still remain obsure. A higher number of
+\acp{sv}, but the effective mechanisms still remain obscure. A higher number of
 micro-insertions, as I found through detailed breakpoint analysis based on
 nucleotide-resolution assembly sequences, could hint at \nhej or a
 replication-based mechanism (e.g. \bir) operating. \citet{Collins2017}, who did a

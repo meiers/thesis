@@ -59,9 +59,9 @@ a heterozygous deletion or a \loh event can reveal recessive mutations
 that had been rescued by a functional allele beforehand.
 Furthermore, \acp{sv} may impact on the molecular level, e.g. on gene expression,
 which can be studied even if not associated with an observable phenotype.
-In the context of \explain{expression quantitiative trail loci}{Genomic loci
+In the context of \explain{expression quantitative trail loci}{Genomic loci
     with different alleles that influence the expression of genes (typically a
-    single gene) that are not neccessarily in close proximity} analyses,
+    single gene) that are not necessarily in close proximity} analyses,
 more and more such effects have lately been found \citep{Sudmant2015,Chiang2017}.
 
 However, causative \acp{sv} need not affect the actual gene itself, but could
@@ -132,7 +132,7 @@ in spatial blocks correspond to \acp{tad}.
 
 Together, these results suggest that \acp{tad} exert a crucial regulatory
 function. A current hypothesis is that they confine promoter-enhancer
-interactions inside, as \citet{Ji2016} call them, insulated neighbourhoods. As
+interactions inside, as \citet{Ji2016} call them, insulated neighborhoods. As
 I described in the next section, a series of recent perturbation studies
 gave additional substance to this hypothesis.
 
@@ -177,13 +177,13 @@ that were known from human genetic diseases. They first showed that these
 abnormalities originated from misregulated gene expression in a developmental
 stage, which was caused by \tad boundary deletion. When they engineered similar deletions in
 mice using the CRISPR/Cas system, they observed a change in chromatin
-conformation, ectopic gene expression across the boudary and indeed the same
+conformation, ectopic gene expression across the boundary and indeed the same
 phenotype of limb malformations that had been observed in human patients.
 
 In conclusion, all these studies provide strong evidence for \acp{tad} to play
 a central role for gene regulation. When \acp{tad} break---and fuse with another
 \tad---genes encounter a new regulatory environment including enhancers, which
-may lead to severe misregulation via en enhancer adopiton mechanisms.
+may lead to severe misregulation via en enhancer adoption mechanisms.
 
 
 
@@ -354,7 +354,7 @@ Below, the mutational landscape of the balanced chromosomes is described.
 \subsection{\Aclp{snv}}
 \label{sec:balancer_snvs}
 
-I utilized \wgs data of both $F_0$ and $F_1$ cross simulataneously to call
+I utilized \wgs data of both $F_0$ and $F_1$ cross simultaneously to call
 \acp{snv} and small indels with \freebayes. The comparison of genotypes of the
 homozygous wild type line and the heterozygous cross enabled me to assign
 mutations to individual haplotypes: if, for example, a \snv is heterozygous in
@@ -401,7 +401,7 @@ RNA-seq into haplotypes (\cref{sec:balancer_ase_impl,sec:balancer_cc_impl}).
         wild type-specific & 2247.0 & 1905.6 &  844.0 \\
         common             & 2338.7 & 1873.7 & 2212.3 \\
         wt heterozygous    &   98.6 &  120.4 &  176.2 \\
-        errorneous         &   17.6 &   16.7 &    5.7 \\
+        erroneous         &   17.6 &   16.7 &    5.7 \\
         \bottomrule
     \end{tabu}
     \tabcap{snvs2}{Number of \acp{snv} per Megabase}{The
@@ -428,7 +428,7 @@ substitutions, i.e. the \explain{mutation spectrum}
     {As a summary of the total set of
     mutations I count the relative frequencies of different base substitutions
     (e.g. \texttt{C>T}) and their tri-nucleotide contexts (one base up- and
-    downstream). The spectrum of somatic \acp{snv} is often analysed in cancer
+    downstream). The spectrum of somatic \acp{snv} is often analyzed in cancer
     genomics in this way, in order to extract \emph{mutational signatures} that
     are linked to mutagenic processes}
 of the balancer chromosomes. The idea behind this is that balancer chromosomes,
@@ -484,7 +484,7 @@ we are primarily interested in genetic variation distinguishing the homologues.
         well as number number of validated (\textbf{V}) and invalidated
         (\textbf{I}) loci as determined by \pcr. The proportion of validated
         calls determines the empirical \ac{fdr}.
-        $^*$ Calls below 160~bp were not \pcr-validated and did not enter the weighted emprical \fdr)}
+        $^*$ Calls below 160~bp were not \pcr-validated and did not enter the weighted empirical \fdr)}
 \end{table}
 
 After that, \yad performed \pcr verification experiments on 75 randomly picked loci for
@@ -557,7 +557,7 @@ considered of high accuracy. Although very large deletions were
 detected neither in wild type nor balancer chromosomes, I did recognize a slightly
 higher rate of deletions on the balancer chromosomes. The ratios were 1.08 for
 deletions in the size range below 50~bp, 1.3 for 50~-~159~bp, and 1.9 for larger
-ones. Interstingly, a study in human cancer reported an increase in deletion
+ones. Interestingly, a study in human cancer reported an increase in deletion
 rate as a consequence of ionizing radiation \citep{Behjati2016}, suggesting that the
 subtle increase in deletion number (notably in the larger size spectrum) could
 be a trace of the irradiation applied during generation of the
@@ -582,8 +582,8 @@ increases the copy number of 33 genes.
     The top panel displays differential unnormalized Hi-C fragment counts
     ($\textrm{log}_2 \frac{bal}{wt}$)
     colored from red (positive) to blue (negative). The panel below shows the
-    biallelic frequency. This duplication was initially discovered
-    based on the characteristic biallelic frequency signal and is validated by
+    B-allele frequency. This duplication was initially discovered
+    based on the characteristic B-allele frequency signal and is validated by
     a total increase of locus-internal Hi-C contacts on the balancer chromosome,
     as seen as the red triangle. Moreover, a decrease in balancer-specific
     contacts close to the diagonal left of the locus (blue) as
@@ -594,7 +594,7 @@ increases the copy number of 33 genes.
 I further aimed at refining the breakpoint junctions of the major rearrangements on
 the balancer chromosomes. These junctions had previously been known only at microscopic
 resolution\footnote{\label{footnote:balancer_karyotype}
-    Described in terms of cytological bands, i.e. \cyo = \textit{2Lt-22D1
+    Described in terms of cytogenetic bands, i.e. \cyo = \textit{2Lt-22D1
     33F5-30F 50D1-58A4 42A2-34A1 22D2-30E 50C10-42A3 58B1-2Rt} and
     \ac{tm3} = \textit{3Lt-65E 85E-79E 100C-100F2 92D1-85E 65E-71C
     94D-93A 76C-71C 94F-100C 79E-76C 93A-92E1 100F3-3Rt}.
@@ -603,7 +603,7 @@ resolution\footnote{\label{footnote:balancer_karyotype}
 haplotypes separately in respect to the same reference genome (see
 \cref{sec:balancer_cc_impl}). In these maps, which are shown in
 \cref{fig:balancer_hic_rearrangements}, we identified strong contact signals off
-the diagonal with a characteristic ``bowtie'' shape that coincided with gaps
+the diagonal with a characteristic ``bow tie'' shape that coincided with gaps
 close to the diagonal. Undoubtedly these signals stemmed from genomic
 rearrangements and by comparing them to the available cytogenetic information,
 \yad could assign 15/16 of these breakpoints to the respective inversions.
@@ -657,7 +657,7 @@ on the balancer haplotype (seen as a red triangle). However, beyond the pure cop
 number the \hic signal further suggests that the additional copy of the locus was
 inserted in inverted orientation to its left end. There are two lines of evidence
 for this: A reduction in contacts of the locus to its left neighboring region
-(blue, i.e. decrease on the balancer chromosome), suuggesting that this end of the locus is no longer
+(blue, i.e. decrease on the balancer chromosome), suggesting that this end of the locus is no longer
 proximal to its original left neighboring region---as if an insertion had
 happened there. Secondly, there is a striking increase in contact frequency
 of the right end of the duplicated locus to the left neighboring region. Taken
@@ -668,12 +668,12 @@ together this is best explained by an inverted duplication occurring in tandem.
     \subpanel{A} Haplotype-resolved Hi-C contact frequency maps of chromosomes 2 and 3 in
     respect to the wild type reference genome are shown. Details of the data
     processing can be found in \cref{sec:suppl_hic}. The bottom triangles show
-    characteristic ``bowtie-shaped'' patterns as well as gaps on the diagonal
+    characteristic ``bow tie-shaped'' patterns as well as gaps on the diagonal
     that demarcate breakpoint junctions of the rearranged balancer chromosomes.
-    The respective sections of the reference genome are color-coded, with a grey
-    circle representing centromers.
+    The respective sections of the reference genome are color-coded, with a gray
+    circle representing centromeres.
     \subpanel{B} These junctions can be followed to reconstruct the relative order of the
-    balancer chromosomes such as shown in the top panel. Vertical ``bowties''
+    balancer chromosomes such as shown in the top panel. Vertical ``bow ties''
     represent a connection of segments in same orientation, horizontal
     ones segments that are inverted to one another.
     \subpanel{C} The fully reconstructed order of the balancer genomes is shown in the bottom
@@ -727,14 +727,14 @@ balancer fraction of 25\%. As the left panels of \cref{fig:ASE_histograms}
 display, this initial experiment was marked by a (unsatisfactory) wide
 distribution. More precisely, it did not resemble a binomial distribution, which
 is a model intrinsically applied by many \ase detection methods. Instead, it showed a large
-overrepresentation of wild type mRNA. Only after discussions with
+over-representation of wild type mRNA. Only after discussions with
 \garfield we figured that, since we had crossed female wild type flies with double
 balancer males, the reason for this skew in the distribution could be attributed
 to \explain{maternally deposited mRNA}{Before maternal-to-zygotic transition
     zygotes or early embryos do not transcribe their own genes but utilize mRNA
     of the maternal cell that was loaded into the egg during oogenesis. After
     around two hours of embryonic development a large portion of maternal mRNA
-    is actively degraded, yet some maternal transcipt can remain
+    is actively degraded, yet some maternal transcript can remain
     \citep{Tadros2009}}
 present in early embryos as well as unfertilized eggs remaining in the sequenced
 pool.
@@ -769,7 +769,7 @@ personalized genomes to overcome mapping biases \citep{Rozowsky2014} and future
 extensions of this idea are pointing towards \explain{reference graphs}{
     Representation of different alleles or haplotypes simultaneously in a graph
     structure. A diploid genome, but also the haplotypes of a whole populations
-    could be represented in such a data strucutre to avoid a reference bias.
+    could be represented in such a data structure to avoid a reference bias.
     However, such approaches, which are being actively researched, require new
     methods for processing and interpretation of sequencing data}
 \citep{Dilthey2015,Marschall2016,Novak101378}. Accurate unbiased \ase detection
@@ -789,7 +789,7 @@ features.
     \centering
     \begin{tabu}{lrrrr}
         \toprule
-        Data set   & Total reads   & Balancer   & WT   & Disaccordant \\
+        Data set   & Total reads   & Balancer   & WT   & Discordant \\
         \midrule
         \Npat 1. replicate & 51,560,368  & 6.151\% & 22.489\%  & 0.136\% \\
         \Npat 2. replicate & 52,618,060  & 5.762\% & 21.471\%  & 0.139\% \\
@@ -799,8 +799,8 @@ features.
     \end{tabu}
     \tabcap{balancer_rnaseq}{Haplotype separation of RNA-seq data}{
         Fraction of RNA-seq read pairs that could be assigned to either one of
-        the haplotypes balancer or wild type (WT) ot that contained conflicting
-        variants (disaccordant). The difference to 100\% in each row comes from
+        the haplotypes balancer or wild type (WT) or that contained conflicting
+        variants (Discordant). The difference to 100\% in each row comes from
         read pairs that did not overlap sites of tagging \acp{snv}.}
 \end{table}
 
@@ -808,7 +808,7 @@ As a first step I mapped RNA-seq read pairs to \acs{dm6} using \STAR. I then
 separated read pairs into haplotypes using a simple Python script based on
 \textsc{pysam}\footnote{Found online at \url{https://github.com/pysam-developers/pysam}}.
 This approach considers all \acp{snv} that a read pair overlaps and can hence
-also detect if observed alleles within the fragment are disaccordant---a fact
+also detect if observed alleles within the fragment are discordant---a fact
 that we deemed especially important for the separation of \hic
 data later on (\cref{sec:balancer_cc_impl}). This approach also differs
 from the \snv-centric approaches of other tools \citep[for example]{Castel2015} that
@@ -951,8 +951,8 @@ chromatin conformation.
 During the characterization of the large chromosomal rearrangements
 I observed that they often happen to disrupt genes. In fact, 11 out
 of 15 breakpoints do so, affecting genes such as \textit{Src42A}
-(Draper-Shark-mediated signalling immune response pathway), \textit{GlyP}
-(carbohydrate metabolism pathway) and \textit{p53} (tumour suppressor). The
+(Draper-Shark-mediated signaling immune response pathway), \textit{GlyP}
+(carbohydrate metabolism pathway) and \textit{p53} (tumor suppressor). The
 deletion present at breakpoint \textit{chr3R:20.3~Mb} even spans a complete
 gene, which is consequently lost in the balancer chromosome. A full list of
 breakpoints and disrupted genes is given in  \cref{tab:blancer_breakpoints}.
@@ -983,7 +983,7 @@ genes around breakpoints in contrast to around randomly chosen genomic positions
 (\cref{fig:suppl_ase_genes_around_bps}).
 Surprisingly, only a single breakpoint, namely \textit{chr3R:20.31~Mb},
 appeared to be surrounded by more \ase genes than expected by random chance: 5
-out of 6 neighbouring genes, which span a region of around $\pm$~50~kb, were significant.
+out of 6 neighboring genes, which span a region of around $\pm$~50~kb, were significant.
 By means of integrated visualization (\cref{sec:balancer_visualization}) of this
 locus I noted that two genes were highly up-regulated left of the breakpoint,
 another gene down-regulated right of the breakpoint, and an additional gene
@@ -998,8 +998,8 @@ on an appreciable set of other genes, too, as I elaborate in
 \figuretextwidth[t]{ase_clustering.pdf}{ase_clustering}{Distance between
     neighboring ASE genes}{This is a histogram of distances between neighboring
     significant ASE genes (blue) as well as between a random set of control
-    genes (grey), which were sampled from expressed, but non-ASE genes 500 times.
-    Errorbars indicate the 5\% and 95\% quantiles of random sub-sampling.}
+    genes (gray), which were sampled from expressed, but non-ASE genes 500 times.
+    Error bars indicate the 5\% and 95\% quantiles of random sub-sampling.}
 
 I then turned to a more unbiased approach and searched the set of \ase
 genes for positional clustering anywhere in the genome.
@@ -1056,11 +1056,11 @@ expression (seen by a positive log fold change), and vice versa for
 wild-type-specific \acp{cnv}. Duplications, which are typically much larger in
 size than deletions (\cref{fig:svsize_del,fig:svsize_dup}), show a
 clearer impact on transcript levels, as they often duplicate whole genes.
-Yet it cannot be expected that a higher copy number neccessarily leads to an
+Yet it cannot be expected that a higher copy number necessarily leads to an
 increase in transcribed RNA. For example, a partial duplication could disrupt a
 gene in a way that its expression is decreases. Accordingly, the impact of
 deletions is less, as they often affect only single exons.
-The specific explanation for each gene could, if need to, be unravelled
+The specific explanation for each gene could, if need to, be unraveled
 in case-by-case fashion.
 
 We derive as a conclusion from this analysis that up to 14\% of significant \ase
@@ -1084,7 +1084,7 @@ expression of these genes.
     vertical lines represent \acp{snv} used for haplotype-separation. RNA-seq
     tracks were visualized using \igb.}
 
-In a thorough manual data inspection, \yad found a sizeable number of genes with
+In a thorough manual data inspection, \yad found a sizable number of genes with
 an RNA-seq signal that did not start at their expected transcription start site.
 We further found that this expression was often only present on one of the two
 haplotypes, and that the RNA-seq coverage started at a seemingly random
@@ -1121,7 +1121,7 @@ element then allows expression only from the affected homologue, which can be
 orders of magnitudes larger than the expression from second copy.
 \Acp{mei} could in principle also cause chimeric
 expression of higher expressed genes, the additional
-mRNA is probably just not detecteble. At last, it should be kept in mind that
+mRNA is probably just not detectable. At last, it should be kept in mind that
 this analysis centered on differentially expressed genes with aberrant
 transcription start sites, hence the full impact of \mei is still under-explored.
 
@@ -1193,7 +1193,7 @@ pairs were excluded from the further analysis.
     downstream sequence to the right) and all other 5~kb bins within $\pm$100~kb.
     On the y-axis, the fraction of significantly differential \hic contacts among
     all \hic contacts is shown. The signal is averaged across \ase and non-\ase
-    genes and plotted here including 95\% confidence interavls.}
+    genes and plotted here including 95\% confidence intervals.}
 
 We were then interested in whether changes in chromatin architecture are
 associated with differential gene expression.
@@ -1374,7 +1374,7 @@ plots that represent the same locus in the genomic order of the balancer
 chromosomes, which can be found in the appendix (\cref{fig:ggbio2,fig:ggbio3}).
 
 We generated these plots for all loci of interest, notably for the breakpoints
-of the large balacer rearrangements. These plots were highly useful to confirm
+of the large balancer rearrangements. These plots were highly useful to confirm
 statistical analyses and to gain insights on the mechanisms acting in a locus.
 We are currently considering to make this software available to the public.
 
@@ -1459,7 +1459,7 @@ Their observation is different from enhancer hijacking,
 but epigenetic mechanisms could principally also play a role in suppressing
 enhancer hijacking. To give an example, it is easily conceivable that among the eight
 described examples of neo-\tad formation at least one
-active enhancer elements was juxtaopsed to potential target genes.
+active enhancer elements was juxtaposed to potential target genes.
 Ectopic expression could then be suppressed through histone modifications, for
 example. Alternatively, these potential position effects could also be buffered
 by other genetic variants, such as one of the 760 thousand \acp{snv}.

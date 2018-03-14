@@ -57,7 +57,7 @@ reversible terminator chemistry \citep{Turcatti2008}. DNA is then replicated
 step by step, in each of which the incorporated nucleotides are detected using
 fluorescent imaging. This concept of cyclic DNA synthesis followed by
 fluorescent detection is shared by multiple of the aforementioned techniques,
-which use slighly different molecular mechanisms \citep{Shendure2008}.
+which use slightly different molecular mechanisms \citep{Shendure2008}.
 
 Another key concept of \mps technologies is a step of clonal amplification of
 DNA fragments in order to enhance the fluorescent signal detection. DNA
@@ -72,7 +72,7 @@ clusters, each with a clonally amplified DNA fragment, are observed
 simultaneously during nucleotide incorporation. This again was driven by
 technological advances in high-resolution cameras, notably based on
 charge-coupled devices \citep{Barbe1975,Shendure2008}. Due to clonal
-amplificaiton and high-resolution imaging, Illumina machines can sequence DNA
+amplification and high-resolution imaging, Illumina machines can sequence DNA
 with extremely high accuracy, with a per-base error rate is in the order
 of 0.1\% \citep{Fox2014}.
 
@@ -115,7 +115,7 @@ DNA fragments. This approach is called \emph{paired-end} sequencing or
 paired-end tag sequencing and was used early on to study structural variants
 \citep{Campbell2008} (see also \cref{sec:sv_detection_ngs}). Using pairs, more
 bases can be sequenced at high quality than could be with a single read.
-Typically, the DNA fragments subject ot paired-end sequencing have a length of
+Typically, the DNA fragments subject to paired-end sequencing have a length of
 up to 500~bp. Larger fragments (typically around 3~kb, but up to 10~kb) can be
 achieved by creating \emph{mate pair} libraries (a.k.a jumping libraries). In the
 approach of mate pair sequencing, a longer DNA fragment is first circularized before
@@ -128,7 +128,7 @@ role in \sv detection, which is elaborated later in this introduction.
 \paragraph{Sequence analysis}
 After DNA sequencing, the computational analysis of the obtained sequencing
 reads begins. Naturally, this analysis may be very different depending on which
-protocol was used. For a \wgs resequencing experiment, a very common first step
+protocol was used. For a \wgs re-sequencing experiment, a very common first step
 is to assign the short reads to their most likely origin and
 \explain{read orientation}{Only one DNA strand (e.g. the $5^\prime$ strand) is
     encoded in a reference genome, but fragments from both strands are sequenced.
@@ -145,13 +145,13 @@ detection, which I describe in \cref{sec:sv_detection}.
 
 The very popular paired-end sequencing allows the mapping of a read to be
 informed by the placement of the second read. For example, when one read maps
-ambigously, it can somtimes be ``anchored'' by the second, uniquely mapping read.
+ambiguously, it can sometimes be ``anchored'' by the second, uniquely mapping read.
 Paired-end reads, which are sequenced from their $5^\prime$ ends towards one
 another, align in convergent orientation to the reference genome, whereas mate
 pairs align in divergent orientation (\cref{fig:reads}).
 
 An alternative to read mapping is \emph{de novo} assembly, which exploits the
-relationship of sequencing reads to one another (i.e. a common subsequence) to
+relationship of sequencing reads to one another (i.e. a common sub-sequence) to
 restore the sequenced genome independent of a reference. These methods, however,
 typically fail to produce long consecutive sequences \citep{Alkan2011_assembly}.
 
@@ -191,12 +191,12 @@ methylated cytosine \citep{Flusberg2010}.
 
 The major challenge in the development of SMRT sequencing
 was the detection of the fluorescence signal from a single nucleotide upon
-ligation. To this end, researchers had engineered microplates with so-called
+ligation. To this end, researchers had engineered micro-plates with so-called
 zero-mode wave guides \citep{Uemura2010}. The laser for excitation of
-fluorophores only illuminates the bottom of these nanowells, in which the
+flurophores only illuminates the bottom of these nanowells, in which the
 polymerases are deposited. This way, only the nucleotides that are actively
 being incorporated by the polymerase can be excited and detected
-against a background of fluorophores outside the well \citep{Heather2016} (see
+against a background of flurophores outside the well \citep{Heather2016} (see
 \cref{fig:third_gen} A). The base calling in single molecules is still noisier than
 detection in clonally amplified sequences, though, leading to reported per-base-error
 rates of 11-15\% \citep{Rhoads2015}.
@@ -209,7 +209,7 @@ backbone is one covalently bound ring), which still preserves
 its double-stranded structure. The polymerase can then pass this ring of DNA
 repeatedly, effectively sequencing the same fragment multiple times. This long
 read is computationally divided into sub-reads and a consensus is formed with
-reported accuracies of up to more than 99\% \citep{Rhoads2015}.
+reported accuracy of up to more than 99\% \citep{Rhoads2015}.
 
 \figuretextwidth[t]{third_gen_seq_Heather2016.png}{third_gen}{Concepts of
     \texorpdfstring{\acs{pacbio}}{PacBio} and \texorpdfstring{\acs{ont}}{ONT}
@@ -218,7 +218,7 @@ reported accuracies of up to more than 99\% \citep{Rhoads2015}.
     molecule. The fluorescently labeled nucleotides are preferably illuminated
     at the bottom of the well, distinguishing their signal from the pool of
     nucleotides in the solution.
-    \subpanel{B} Nanopore sequencing by passaging of a single-stranded DNA
+    \subpanel{B} Nanopore sequencing by passing of a single-stranded DNA
     polymer through a pore in a non-conductive layer. Movement of the DNA
     molecule is facilitated by a voltage across the layer and decelerated by a
     processive enzyme (upper ellipse), e.g. a helicase that unwinds the double
@@ -246,16 +246,16 @@ per nucleotide even for the smallest voltages, researchers had the idea to place
 processive enzymes in front of the pore that slightly pause the passage of each
 nucleotide \citep{Deamer2016} (\cref{fig:third_gen}, B).
 
-\Ac{ont} offered the first commercially availabe
-nanopore sequeqncing devices, named MinION, in an early access program from 2014.
+\Ac{ont} offered the first commercially available
+Nanopore sequencing devices, named MinION, in an early access program from 2014.
 Their technology utilizes an ATP-dependent helicase enzyme that unwinds double-stranded DNA
-before passaging the pores, with detection happening simultaneously at up to
+before passing the pores, with detection happening simultaneously at up to
 512 pores \citep{Jain2015}. A hairpin adapter is ligated to DNA fragments, so
 that after a single strand has passed the pore the complementary strand
 (linked covalently via the hairpin adapter) follows. This sequences the same
 fragment twice and is utilized to improve sequencing quality. These corrected reads
 are called \emph{2D reads} and were reported to have an improved error rate of
-15\% \citep{Jain2015}. Through the MinION early acces program our laboratory
+15\% \citep{Jain2015}. Through the MinION early access program our laboratory
 gained access to MinION devices, enabling us to apply the technique in the scope
 of the research project describe in \cref{sec:complex_invs}.
 
@@ -299,7 +299,7 @@ billion pairwise contacts in a human cell line.
     digestion and subsequent ligation of cross-linked loci. In the 3C-protocol,
     targeted interactions can be analyzed via \pcr. The \hic protocol enriches
     for cross-linked fragments based on biotin labels before these fragments
-    are paired-end sequneced. Figure modified from \citetitle{Li2014}
+    are paired-end sequenced. Figure modified from \citetitle{Li2014}
     \citep{Li2014}  licensed under \acl{ccby4}.}
 
 \hic was designed and used to study chromatin conformation and specific
@@ -339,7 +339,7 @@ on its mapping orientation. Strand-seq can thus reliably phase (i.e. distinguish
 haplotypes) chromosomes in their full length \citep{Porubsky2016}. Moreover,
 given the consistent directionality of sequencing reads across a homologue,
 Strand-seq allows to detect (large) inversions in respect to the reference
-genome \citep{Sanders2016}. Strand-seq was futher used to study \acl{sce} events
+genome \citep{Sanders2016}. Strand-seq was further used to study \acl{sce} events
 (introduced in \cref{sec:mosaic_mc}) \citep{Falconer2012}.
 
 \figuretextwidth[t]{strand_seq.pdf}{strand_seq}{Strand-seq principle}{
@@ -365,7 +365,7 @@ is the basis for obtaining stranded sequencing libraries, because after cell
 division each daughter cell will have only one strand labeled with BrdU
 (\cref{fig:strand_seq}). After cytokinesis, the DNA of a daughter cell is
 enzymatically digested into fragments using a micrococcal nuclease enzyme
-(MNase). These fragments are ligated to sequencing adaptors. BrdU-containing
+(MNase). These fragments are ligated to sequencing adapters. BrdU-containing
 fragments are then degraded via photolytic cleavage, so that
 subsequently only non-BrdU-containing fragments are amplified via \pcr.
 Fragments from each single cell are tagged with cell-specific barcodes and are
