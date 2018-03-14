@@ -24,18 +24,18 @@ within the community.
 
 \section{Complex inversions in the human genome}
 
-In \cref{sec:complex_invs}, I analyzed inversions in the scope of the 1000
-Genomes Project. Together with colleagues, we were able to solve the
-``validation problem'' by using targeted long-read sequencing on both \pacbio
-and \ont MinION platforms. I verified that more than 80\% of the predicted
-inversions indeed carried an inversion signature---meaning they were
-validated---which could previously be ascertained neither based on \mps data nor
-via \pcr experiments. This solved my first research goal and a principal
+Inversions are a \sv class of outstanding relevance for human disease \citep{Feuk2010},
+yet they are especially difficult to detect and they eluded ascertainment also
+in the 1000 Genomes Project. As I show in \cref{sec:complex_invs}, I was able to
+validate hundreds of inversion loci by using targeted long-read sequencing data
+from both \pacbio and \ont MinION platforms. This revealed that more than 80\% of the
+inversion loci predicted from \mps indeed carried an inversion signature.
+Strikingly, this verification had previously not been possible via \pcr
+experiments.  This solved my first research goal and a principal
 challenge of the overall study \citep{Sudmant2015}.
 
-Moreover, I then found that
-the majority of predicted loci contained not simple inversions, but complex
-variants containing inverted sequence. I categorized them into five major
+Moreover, I then found that the majority of predicted loci contained not simple
+inversions, but complex variants containing inverted sequence. I categorized them into five major
 classes, which included inverted duplications as the most frequent event. These
 insights had only been possible due to the ability of long-read techniques to
 span complete loci around predicted inversions. My analyses critically relied on
@@ -52,19 +52,22 @@ it suggested that several of the seemingly very different classes might
 originate from the same mutagenic process, with slight evidence for replication-based
 mechanisms such as \mmbir.
 
-It is good to know that, after my own contribution, the role and prevalence of complex variation has
-been studied further by others \citep{Chaisson2014,Collins2017}.
-Using 10X Genomics and mate pair sequencing, \citet{Colling2017} even extended
+Intrigued by the unforeseen amount of complex variation revealed in the 1000 Genomes
+Project, others continued to study this \sv class in human genomes \citep{Chaisson2014,Collins2017}.
+Using the emerging 10X Genomics technology and mate pair sequencing, \citet{Collins2017} even extended
 the five classes that I reported to a total of 16 different complex \sv classes
 (which they call cxSV), more than 80\% of which contained inverted sequence.
 This further emphasizes the that this phenomenon was previously underappreciated,
-as I predicted, and which I could not resolve in our study due to the initial
-calling from low coverage \mps data. They also note that these complex events might
-have been created by a replicative mechanism such as \mmbir.
-The prevalence of these classes in patients
-with autism spectrum disorder and other
-further emphasizing the prevalence
-of this underappreciated phenomenon .
+as I predicted. They also note that these complex events might have been created
+by a replicative mechanism such as \mmbir.
+
+My work and the subsequent finding of \citet{Collins2017} underline the
+prevalence of complex inverted rearrangments---leading to the notion of the ``morbin''
+human genome. Whereas my work revelead complex \acp{sv} in healthy individuals,
+\Citet{Collins2017} found them in patients with autism spectrum disorder. The
+functional role of these \sv classes is not yet understood, but our results
+suggest that inverted and complex variation can and and should be detected,
+especially in the context of genetic studies around human disease.
 
 
 
@@ -94,7 +97,9 @@ The capabilities of the \pacbio technology have especially caused a stir in the
 plant genomics community, which had been affected by the limitations of
 short-read \mps to a special degree \citep{Bickhart2014}. Notably, the hope is
 to perform \textit{de novo} assembly of highly repetitive, or even polyploid
-genomes \citep{Li2017}. However, the problem of \textit{de novo} assembly from
+genomes \citep{Li2017}. An accurate assembly would make the discovery of \acp{sv}
+trivial---it could simply be done by sequence comparison.
+However, the problem of \textit{de novo} assembly from
 \pacbio data alone is not yet considered to be solved, despite a number of
 available software tools \citep{Chin2013,Chin2016,Koren2017,Koren2018} and the
 attention of renowned scientists\footnote{E.g. the efforts of Gene Myers, see
@@ -129,13 +134,17 @@ capable of generating sequencing reads with a N50 value of more than 100~kb
 (and a maximum of 880~kb). This is a length so far unachieved by PacBio, which
 typically yields a maximum read length below 100~kb\footnoteref{footnote:pacbioblog}.
 
+Together, these technological improvements in long-read sequencing will facilitate
+studies on \acp{sv} that have been overlooked in the past---they might even, at some point in the future,
+make whole-homologue \emph{de novo} assembly possible, which would directly reveal the full spectrum
+of \acp{sv} within an indiual's genome.
 
 
 
 
 \section{Effects of SVs on gene expression and chromatin organization}
 
-In \cref{sec:balancer}, we set out to study the functional consequences of
+In \cref{sec:balancer}, I set out to study the functional consequences of
 \acp{sv} in respect to gene expression and chromatin conformation. My first goal
 within this collaborative project was to characterize the variants present in
 highly rearranged balancer chromosomes. I achieved this by utilizing deep \wgs
@@ -148,7 +157,7 @@ However, through the technological
 advantage of \hic data, I could additionally detect precisely (in 2
 cases) or approximately (in 1 case) the breakpoints that had been missed by
 these studies. In addition, I utilized haplotype-resolved \hic maps to validate
-large rearrangements including a inversion, and a duplication of 258~kb. The
+large rearrangements including an inversion, and a duplication of 258~kb. The
 large duplication most likely inserted in reverse orientation next to the
 original copy, which I concluded from the differential contact frequencies
 around the affected locus. Together, these findings clearly show the benefits
@@ -158,18 +167,18 @@ Afterwards, I implemented a
 test for \acl{ase} that utilizes multiple biological replicates and that
 corrects for effects of maternally deposited RNA. I found that changes in
 expression occur almost everywhere across the genome and that they appear not to
-be caused by enhancer hijacking, as had been observed in previous studies.
+be caused by enhancer hijacking, as had been observed in previous studies (\cref{sec:balancer_background}).
 Instead, \acp{sv} alter expression via alternative mechanisms such as dosage
 effects or chimeric expression of transcripts through mobile elements (summarized in \cref{sec:balancer_concl}). Our
 findings appear contrary to what has been seen in other scenarios; however, I
-argue that this might be a result of natural selection in both the other
+argued that this might be a result of natural selection in both the other
 studies and in ours. In conclusion, balancer chromosomes show a remarkable
 robustness towards the huge rearrangements and other variation that they carry,
 and the potential effects of enhancer hijacking mechanisms appear to be buffered.
 I speculated that this buffering might be caused by other forms of variation,
 such as \acp{snv}, or possible via changes of the epigenome.
 
-We think that these results will complement
+I think that these results will complement
 previous studies and lead to a more holistic view on the role of chromatin
 architecture. The manuscript was in preparation at the time of writing this
 thesis.
@@ -183,18 +192,19 @@ I demonstrated in \cref{sec:balancer} how \hic data can be utilized for \sv
 characterization. Naturally---and considering the popularity of \hic and the
 amount of publicly available data---this observation was made by others, too.
 
-The prospects of \hic for purposes other than studying chromatin conformation has been noted early in the field of \textit{de novo} assembly:
+The prospects of \hic for purposes other than studying chromatin conformation have
+been noted early in the field of \textit{de novo} assembly:
 \Citet{Kaplan2013}, for instance, predicted that \hic could facilitate assembly
 and assigned unplaced contigs to the human genome; \Citet{Burton2013} created
 scaffolds of human, mouse, and \textit{Drosophila} genomes based on \hic and
 \mps data; \Citet{Selvaraj2013} successfully extended the idea to haplotyping;
 And recently, the mosquito \textit{Aedes aegypti}, vector of the Zika virus, was
 assembled using \hic data \citep{Dudchenko2017}.
-
-Interstingly, the biological folding of chromosomes is not relevant---,aybe even
-impairing---for the purpose of assembly or \sv detection. \citet{Putnam2016}
-hence developed a protocol that reconstitutes chromatin \textit{in vitro} prior to \hic
-library preparation.
+%Interstingly, the biological
+%folding of chromatin is not relevant---maybe even impairing---for the pure
+%purpose of assembly or \sv detection. \citet{Putnam2016}
+%hence developed a protocol that reconstitutes chromatin \textit{in vitro} prior to \hic
+%library preparation.
 
 The core idea of \hic-based \sv detection is the identification of characteristic
 alterations in contact frequencies. The presumably first \acp{sv} detected using
