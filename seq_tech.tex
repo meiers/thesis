@@ -7,8 +7,8 @@ of a reference genome of humans and many other organisms
 DNA sequencing has become a standard technique applied on a daily basis in
 genomics research. The advance of sequencing technologies has truly
 revolutionized genetic research and brought unforeseen capabilities also to
-studies of structural variation. In fact, these capabilities have not yet
-reached their limit (as described in \cref{sec:sv_detection}) and ongoing
+studies of structural variation. In fact, these capabilities are not yet completely satisfactory
+(as described in \cref{sec:sv_detection}) and ongoing
 development of new technologies and protocols is continuously pushing the
 boundaries of what is possible. Since DNA sequencing takes such a prominent
 position in my research---virtually every experiment in this thesis includes
@@ -28,7 +28,7 @@ polymer extension via DNA-dependent DNA polymerase (i.e. replication) and the
 incorporation of dideoxynucleotides, which stop polymerization. With subsequent
 electrophoresis, partially replicated DNA fragments can be ordered by length and
 nucleotides identified based on radioactive or fluorescent labels.
-Sanger sequencing was instrumental in the Human Genome Project and owing to the
+Sanger sequencing was instrumental in the Human Genome Project and, owing to the
 accuracy and length (around 1~kb) of sequenced fragments, it is still used
 today for validation purposes. It sequences single DNA fragments, though, and
 is thus laborious to apply in a larger scale.
@@ -50,12 +50,12 @@ for \mps in general.
 Like the Sanger technique, Solexa/Illumina’s approach relies on the concept of
 sequencing by synthesis, i.e. by replication through a DNA polymerase. It in
 fact also utilizes the incorporation of fluorescently labeled dideoxynucleotides,
-which initially terminates the polymerization. A major novelty, though, is that
+which initially terminate the polymerization. A major novelty, though, is that
 the fluorescent label can be removed and the $3^\prime$ hydroxyl group of the
-dideoxynucleotide restored chemically. This technique is widely known as
+dideoxynucleotide chemically restored. This technique is widely known as
 reversible terminator chemistry \citep{Turcatti2008}. DNA is then replicated
 step by step, in each of which the incorporated nucleotides are detected using
-fluorescent imaging. This concept of cyclic amplification followed by
+fluorescent imaging. This concept of cyclic DNA synthesis followed by
 fluorescent detection is shared by multiple of the aforementioned techniques,
 which use slighly different molecular mechanisms \citep{Shendure2008}.
 
@@ -66,7 +66,7 @@ Solexa/Illumina, immobilized on the flow cell and amplified via
 \explain{\acf{pcr}}{A method for amplification of DNA fragments. Did you know
     that \acs{pcr} was invented only after Sanger
     sequencing, in 1983? See \citet{Mullis1990} for a brief history}
-    \citep{Mullis1990}.
+    \citep{Mullis1990}, which they call bridge amplification.
 The aspect of parallelism comes into play when many (up to millions of) local
 clusters, each with a clonally amplified DNA fragment, are observed
 simultaneously during nucleotide incorporation. This again was driven by
@@ -83,7 +83,7 @@ of 0.1\% \citep{Fox2014}.
     their $5^\prime$ ends and can be single-ended or paired-end. In
     paired-end or mate pair libraries, the lengths of the original DNA fragment
     (which can be estimated after read mapping) is called insert size and
-    usually much larger in mate pair experiments than paired-end experiments.}
+    usually much larger in mate pair experiments than in paired-end experiments.}
 
 In contrast to Sanger sequencing, which targets a single locus, \mps can be
 applied to perform \emph{\acf{wgs}}. During \wgs, DNA is highly fragmented prior
@@ -93,12 +93,14 @@ all over the genome. Due to the random fragmentation this approach is also
 commonly known as shotgun-sequencing \citep{Weber1997}. In a typical
 \emph{re-sequencing} experiment, where a species with available reference genome
 is sequenced, these reads are then mapped to the reference for further analysis
-such as, for example, variant detection. Apart from \wgs, a large number of
+such as, for example, variant detection.
+
+Apart from \wgs, a large number of
 other sequencing protocols exist that utilize \mps to study different molecular
 characteristics\footnote{see \citet{Pachter2018} for a list of such protocols}.
 A prominent example is RNA-seq \citep{Morin2008,Wang2009},
-which make the mRNA present in cells available to sequencing by
-reverse-transcription it into cDNA---we applied this in \cref{sec:balancer}.
+which makes the mRNA present in cells available to sequencing by
+reverse-transcription into cDNA. We used this technique in \cref{sec:balancer}.
 \Cref{sec:ccc,sec:strandseq} cover two other protocols based on \mps that are
 of particular interest in this work.
 
@@ -118,7 +120,7 @@ achieved by creating \emph{mate pair} libraries (a.k.a jumping libraries). In th
 approach of mate pair sequencing, a longer DNA fragment is first circularized before
 the connection of both ends is sequenced either single-ended or in paired-end mode
 \citep{Korbel2007}. The size of the underlying DNA fragment is called
-\emph{insert size} and the number of sequenced bases \emph{read length}
+\emph{insert size}, and the number of sequenced bases \emph{read length}
 (\cref{fig:reads}). Paired-end and mate pair sequencing have played a pivotal
 role in \sv detection, which is elaborated later in this introduction.
 
@@ -129,26 +131,27 @@ protocol was used. For a \wgs resequencing experiment, a very common first step
 is to assign the short reads to their most likely origin and
 \explain{read orientation}{Only one DNA strand (e.g. the $5^\prime$ strand) is
     encoded in a reference genome, but fragments from both strands are sequenced.
-    Thus, also the reverse complement sequence of each read must be mapped---i.e.
-    it maps to the \emph{minus} strand (\cref{fig:reads})} within the reference
-genome. This process is called \emph{read mapping} or \emph{read alignment} and
+    Thus, also the reverse complement sequence of each read must be mapped---we
+    say they are mapped to the \emph{minus} strand (\cref{fig:reads})} within the reference
+genome. This process is called \emph{read mapping} or \emph{read alignment}, and
 software tools to perform this task are abundant
 \citep{Li2009,Weese2009,Langmead2009,Alkan2009,Li2013}. The intricacies that
 hamper read mapping are sequencing errors and the repetitive nature of large
 genomes, which do not allow unique placement of reads in many regions. These
-regions are said to have low \emph{mappability} and difficult to deal with.
+regions are said to have low \emph{mappability} and are difficult to deal with---often they are simply neglected.
 Subsequent to read mapping, downstream analyses can be carried out such as \sv
-detection, which I describe in \cref{sec:sv_detection}. The very popular
-paired-end sequencing allows both the mapping of a read to be
-informed by the placement of the second read---for example when one read maps
-ambigously but it can be ``anchored'' by the second, uniquely mapping read.
+detection, which I describe in \cref{sec:sv_detection}.
+
+The very popular paired-end sequencing allows the mapping of a read to be
+informed by the placement of the second read. For example, when one read maps
+ambigously, it can somtimes be ``anchored'' by the second, uniquely mapping read.
 Paired-end reads, which are sequenced from their $5^\prime$ ends towards one
 another, align in convergent orientation to the reference genome, whereas mate
 pairs align in divergent orientation (\cref{fig:reads}).
 
 An alternative to read mapping is \emph{de novo} assembly, which exploits the
 relationship of sequencing reads to one another (i.e. a common subsequence) to
-restore the genome fully independent of a reference. These methods, however,
+restore the sequenced genome independent of a reference. These methods, however,
 typically fail to produce long consecutive sequences \citep{Alkan2011_assembly}.
 
 
