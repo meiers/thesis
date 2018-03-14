@@ -3,9 +3,11 @@
 
 The goal of this dissertation was to explore the potential of emerging DNA
 sequencing technologies to discover, characterize and validate structural
-variation. These technologies hold the potential to improve variant detection in
-multiple ways. Throughout the projects described herein, I presented three
-concrete approaches of how these techniques enhanced the detection of difficult
+variation. These technologies had brought large improvements to related fields
+such as chromosome phasing and \emph{de novo} assembly, but are particularly
+suited for the purpose of \sv characterization, too.
+Throughout the projects described herein, I presented three
+concrete approaches of how these techniques advance the detection of difficult
 \sv types. I was able to scrutinize \acp{sv} to an extent that had not been
 possible beforehand based on standard \mps experiments. Importantly, the
 \acp{sv} unraveled by my work led to novel insights into the complexity and
@@ -37,7 +39,7 @@ variants containing inverted sequence. I categorized them into five major
 classes, which included inverted duplications as the most frequent event. These
 insights had only been possible due to the ability of long-read techniques to
 span complete loci around predicted inversions. My analyses critically relied on
-a visualization tool, which I developed simultaneously and which I made
+the visualization tool \maze, which I developed simultaneously and which I made
 available to the public (\url{https://github.com/dellytools/maze}).
 
 The unforeseen amount of complex variation resulting from my work and the work
@@ -47,29 +49,44 @@ though. I thus carefully analyzed the breakpoints of complex \acp{sv} with the
 goal to infer the mechanisms they originated from. The evidence I found was not
 distinctive of any precise mechanism that might have formed these \acp{sv}, but
 it suggested that several of the seemingly very different classes might
-originate from the same mutagenic process. The work on complex variants has
-since been continued and extended by others, further emphasizing the prevalence
-of this underappreciated phenomenon \citep{Collins2017}.
+originate from the same mutagenic process, with slight evidence for replication-based
+mechanisms such as \mmbir.
+
+It is good to know that, after my own contribution, the role and prevalence of complex variation has
+been studied further by others \citep{Chaisson2014,Collins2017}.
+Using 10X Genomics and mate pair sequencing, \citet{Colling2017} even extended
+the five classes that I reported to a total of 16 different complex \sv classes
+(which they call cxSV), more than 80\% of which contained inverted sequence.
+This further emphasizes the that this phenomenon was previously underappreciated,
+as I predicted, and which I could not resolve in our study due to the initial
+calling from low coverage \mps data. They also note that these complex events might
+have been created by a replicative mechanism such as \mmbir.
+The prevalence of these classes in patients
+with autism spectrum disorder and other
+further emphasizing the prevalence
+of this underappreciated phenomenon .
 
 
 
 
 \subsubsection{Long-read sequencing on the rise}
 
-In recent years an increasing number of studies have been published that utilize
-long-read sequencing. Notably the \pacbio technology, which became commercially
-available in 2011, has gained many users. \pacbio was used to perform targeted
-validation experiments, as I show in \cref{sec:complex_invs}, and computational
-methods have been proposed to facilitate this approach \citep{Wang2015,Rudewicz2016}.
+In the mean time (especially since 2014, when I started this project) an
+increasing number of studies were published by others that utilize long-read
+sequencing technologies for \sv detection and related tasks.
+Notably the \pacbio technology, which became commercially
+available in 2011, has gained many users. Initially, \pacbio had been used to
+perform targeted validation experiments like I showed here, and computational tools
+have been proposed since to facilitate this approach \citep{Wang2015,Rudewicz2016}.
 The method by \citet{Wang2015} is even designed specifically for \sv
 characterization and uses a breakpoint visualization approach very similar to
 the one I developed for \maze.
 
-However, the applications of \pacbio have long gone beyond this level. Due
+However, the applications of \pacbio have long gone beyond this level. Due to
 increases in throughput, \wgs has become possible in a more cost-effective
 fashion. For example, prior to 2014, \citet{Chaisson2014} still needed 243 SMRT
 flow cells to achieve a coverage of 40~x in a human genome, whereas the most
-recent developments (i.e. the \pacbio Sequel system) promise a 10-fold coverage
+recent developments (i.e. the \pacbio Sequel system) promise a 10~x coverage
 from only 4 SMRT cells\footnote{\label{footnote:pacbioblog}%
 \url{https://www.pacb.com/blog/new-software-polymerase-sequel-system-boost-throughput-affordability/}}.
 
@@ -83,8 +100,8 @@ available software tools \citep{Chin2013,Chin2016,Koren2017,Koren2018} and the
 attention of renowned scientists\footnote{E.g. the efforts of Gene Myers, see
 \url{https://dazzlerblog.wordpress.com/}}.
 
-Meanwhile, \pacbio \wgs data was specifically used to study \acp{sv} in the
-human genome. \citet{Chaisson2014} utilized a local assembly approach to detect
+Nevertheless, \pacbio \wgs data was specifically used to study \acp{sv} in the
+human genome. Notably by \citet{Chaisson2014}, who utilized a local assembly approach to detect
 insertions and deletions in a haploid CHM1 cell line. Remarkably, they found
 tens of thousands of \acp{sv} that had not been detected beforehand. They further
 observed an insertional bias (more insertions than deletions) of short tandem
@@ -94,6 +111,7 @@ reduce in size) dozens of gaps that were missing in the reference genome
 approaches. These results highlight shortcomings of the human reference assembly,
 which does not represent the human genome in its entireness. Even more though,
 they highlight the capabilities of long-read sequencing for \sv detection.
+
 Since then, \sv detection based on \pacbio data has been further improved and
 new software tools have been developed using read mapping or assembly approaches
 \citep{Pendleton2015,Huddleston2017}. In a recent study, we utilized \pacbio and

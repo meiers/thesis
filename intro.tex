@@ -146,10 +146,10 @@ mosaicism, which arises through the clonal expension of cells. \citep{Campbell20
 
 Studies of structural variation are still fundamentally hampered by the
 shortcomings of current \sv detection methods. This especially affects studies
-of balanced or complex rearrangements, which had mostly remained cryptic in
+of balanced or complex rearrangements, which had often remained cryptic in
 previous studies. In this dissertation, I aim at uncovering and further examining
 \acp{sv} that had been difficult to ascertain beforehand. In order to do so, I
-explore the potential of emerging DNA sequencing technologies---namely the
+utilize emerging sequencing technologies and protocols---namely the
 techniques introduced in \crefrange{sec:long_read_seq}{sec:strandseq}.
 My work is structured into three separate research projects, in which I explore
 one of the techniques, each. Below, the specific aims of each project are
@@ -168,8 +168,8 @@ long-read sequencing on both \pacbio and \ont MinION platforms to examine the
 respective loci more closely. My immediate goal in this project was to verify
 inversion calls based on long-read information. Moreover, the subsequent goal
 was to further characterize these loci and investigate why previous validations
-had failed. Afterwards, I was further interested in investigating the validated
-inversion cases deeper to understand the biological mechanisms that created
+had failed. Afterwards, an optional goal was to investigate the validated
+inversions deeper to understand the biological mechanisms that created
 them.
 
 In \cref{sec:balancer}, I focused on the functional aspects of structural variation.
@@ -181,8 +181,8 @@ to study chromatin conformation of highly rearranged chromosomes of
 \textit{Drosophila melanogaster}. A crucial initial step of the project was to
 map the rearrangements and other variation present in these chromosomes. My
 first goal thus was to characterize \acp{sv}, including large pericentric
-inversions that were known from cytogenetics, in detail for the first time in
-these chromosomes. As a part of this goal, I aimed at exploring the usability of
+inversions, which had been known only at cytogenetic resolution beforehand.
+As a part of this goal, I aimed at exploring the usability of
 \hic data for validation and characterization purposes. The second and more
 general goal of this study was to find out whether, and how these rearrangements
 affect gene expression. My specific milestone towards this goal was to robustly
@@ -195,23 +195,23 @@ are involved.
 In \cref{sec:mosaicatcher}, my collaborators and I explored the potential of
 Strand-seq to discover \acp{sv} in single cells. While this had been previously
 done for inversions, we aimed at extending this principle---for the very first
-time---to at least six different \sv classes and towards mosaic (or subclonal)
-variants.  Here, I present the current state of this ongoing endeavor. The first
+time---to at as many \sv classes as possible. Unlike previous efforts using Strand-seq,
+the particular goal was to enable this detection also for variants that are present in only
+a low fraction of cells.
+Here, I present the current state of this ongoing endeavor. The first
 goal in this study was to develop a general concept of how different \sv classes
 can be revealed based on the signals available in single-cell Strand-seq data.
 Then, the next goal was to prove feasibility of this concept by implementing the
 approach and applying it to available as well as newly sequenced cell line data
 harboring structural variation. A third important aspect was to test the
-limitations of our approach in a controlled environment. The last goal was hence
-to establish a simulation framework in which the capabilities and boundaries of
-our \sv detection method can be determined.
+limitations of our approach in a controlled environment.
 
 At last, \cref{sec:conclusions} concludes on the achievements resulting from my
 work. This includes the specific questions of the three projects as well as a
 more general view on how emerging technologies improved \sv characterization in
-the three different scenarios. I then review recent developments by others in
-the community that occurred within the time span of my research. This gives an
-impression of how emerging technologies are about to change studies on
+the three different scenarios. I then briefly review recent developments by others in
+the community that occurred around the same time as my research. This should give a
+broader impression on how emerging technologies are about to change studies on
 structural variation and places my work within the broader context of recent
 advances in the field.
 
