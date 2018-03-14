@@ -8,6 +8,8 @@ European Molecular Biology Laboratory
 
 Licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/)
 
+The final version can be found under [Releases](https://github.com/meiers/thesis/releases/tag/printed)
+
 ## Acknowledgments
 
 The latex source code is based on [this template](https://github.com/EBI-predocs/latex-thesis) from the EBI students and heavily influenced by [Konrad Rudolphs' thesis design](https://github.com/klmr/thesis). 
